@@ -408,8 +408,264 @@ Pinokio
 Étude de la lampe
 \end_layout
 
+\begin_layout Standard
+Afin de répondre aux questions liées aux intéractions homme/machine et l'attribu
+tion de conscience dans le cadre du projet, le groupe Psyphine a construit
+ et developpé un prototype robotisé qui se présente sous la forme d'une
+ lampe dite 
+\begin_inset Quotes cld
+\end_inset
+
+La lampe de Psyphine
+\begin_inset Quotes crd
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsection
 Description de la lampe
+\end_layout
+
+\begin_layout Standard
+Lampe de Psyphine, comme la montre la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:La-lampe-de"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, est construite de contreplaqué léger dont les pièces ont été découpées
+ au laser.
+ Ces derniers sont assemblées autour de cinq moteurs.
+ L’abat-jour a été découpé dans un carton jaune et contient une ampoule
+ centrale et une petite caméra située juste au dessus de l’ampoule [ reference
+ yann boniface ].
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename lampe.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename lampe_1.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:La-lampe-de"
+
+\end_inset
+
+La lampe de Psyphine.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Moteurs
+\end_layout
+
+\begin_layout Standard
+Cette lampe est équipée de cinq moteurs permettent cinq articulations (
+ illustré par la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Les-moteurs-de"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 1 :
+\series default
+ la base sur un axe vertical
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 2 :
+\series default
+ le premier bras pour avancer ou éloigner la lampe
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 3 :
+\series default
+ le deuxième bras pour monter ou descendre l’abat-jour
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 4 :
+\series default
+ pour incliner l’abat-jour vers le bas ou vers le haut
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 5 :
+\series default
+ pour tourner l’abat-jour à droite ou à gauche
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename lampe_1.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Les-moteurs-de"
+
+\end_inset
+
+Les moteurs de la lampe
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Systeme
+\end_layout
+
+\begin_layout Standard
+La lampe robotisée est commandée par un ordinateur portable auquel les moteurs
+ sont raccordés sur un port USB ou en wifi par l’intermédiaire d’un Raspberry
+ Pi.
+ Chaque mouvement de la lampe consiste en une séquence de positions pour
+ chacun des moteurs.
 \end_layout
 
 \begin_layout Subsection
@@ -441,7 +697,7 @@ addcontentsline{toc}{section}{Conclusion}
 \end_layout
 
 \begin_layout Chapter
-Etat de l'art
+État de l'art
 \end_layout
 
 \begin_layout Quotation
@@ -724,7 +980,7 @@ Tests
 \end_layout
 
 \begin_layout Section
-Déscussion des résultats
+Discussion des résultats
 \end_layout
 
 \begin_layout Section*
