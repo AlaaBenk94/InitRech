@@ -1,0 +1,185 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\lang french
+Traveaux
+\lang english
+ realiser
+\end_layout
+
+\begin_layout Paragraph
+La pinokio Lampe : le travaille est réaliser par Dany Samy, Hugo Tram, Matthieu
+ Nogatchewsky, Simon Bauer , ce travaille touche trois axe ( transmission
+ des information , 
+\lang french
+traitement
+\lang english
+ d’image et détection de visage , modification de la lampe ) sur le plans
+ de transmission ils son mettre on place un partage de port USB de Raspberry
+ qui est connecter directement aux moteurs pour contrôler les ces moteur
+ à distance avec 
+\lang french
+les
+\lang english
+ 
+\lang french
+commande
+\lang english
+ envoyer par l’ordinateur qui fais les calcule nécessaire des vitesse pour
+ chaque moteur et pour transmettre les images réceptionner par la camera
+ de la lampe aux ordinateur ils sont utiliser le protocole UDP pour réaliser
+ cette transmission avec des socket , ils sont programmer aussi des scripte
+ pour automatiser la tache de configuration de client et serveur ( ordinateur
+ , Raspberry ) ,et sur le plan traitement d’image et détection de visage
+ ils sont utiliser le bibliothèque OpenCV pour compresser les image en mode
+ JPEG avant l’envoyer et il sont utiliser cette bibliothèque aussi pour
+ faire une détection de visage avec la méthode Viola et Jones , a base des
+ résultat obtenu par les fonction de la bibliothèque ils sont défini comment
+ calculer les angles des moteurs 4 et 3 et le temps d’exécution pour bouger
+ la lampe dans la direction qui lui permettre d’approcher le maximum le
+ centre de visage détecter aux centre de l’image (un suivi de visage ) ,et
+ sur le plan modification de la lampe ils sont fais des expérience pour
+ identifier la cause de problème de déconnexions des moteur finis-on par
+ des retouches de connectique qui améliore légèrement autre problème été
+ poser c’est le problème d’échauffement et ils sont proposer une solution
+ consiste a modifier la position de base de telle sorte que on a une distributio
+n mieux de pois par moteur.
+\end_layout
+
+\begin_layout Paragraph*
+Lampe Robot : réaliser par BARBILLON Stanislas, JULIO Marjorie, STAB Aurélien
+ ,ils sont construire une nouvelle architecture a laide de la bibliothèque
+ Poppy cette architecture facilite la définition des nouveaux mouvements
+ ( interface haut niveaux ) ,ils sont aussi transmise les fonction de la
+ architecture qui il existe déjà a sont architecture et pour stocker ces
+ primitives ils sont défini une structure de stockage avec des ficher JSON
+ et CSV et ensuit ORM , pour la partie de suivi de visage ils sont réaliser
+ la détection de visage avec la bibliothèque OpenCV (méthode Viola et Jones
+ ) puis pour approcher centre de la détection aux centre de l’image ils
+ sont résoudre ce problème cinématique par la projection de l’espace 3D
+ a 2D puis résoudre le problème avec la méthode de cinématique inversée
+ ( en 2D ) avec 4 moteur ( MOT_head , MOT_bas_rot ,MOT_head_arm, MOT_arm).
+\end_layout
+
+\begin_layout Paragraph
+Suivi de visages et détection de saillances réaliser par D’Alessandro Eva
+ , Giovinazzo Augustin ils sont utiliser la bibliothèque OpenCV (méthode
+ Viola et Jones ) pour la détection de visage et ces composant et comme
+ cette bibliothèque a un taux élever de fausses détections pour la bouches
+ il sont proposer des solution baser sur des caractéristique de visage humain
+ pour faire une segmentation utiliser pour éliminer des fausse détection
+ , ils sont aussi réaliser un détection de changement d’expression par une
+ régression linaire de l’évaluation de la bouche ( l’évaluation de la taille
+ de feature de la bouche détecter ) cette détection dépend a deux paramètre
+ (seuil de détection, nombre de évaluation ).
+\end_layout
+
+\begin_layout Paragraph*
+Suivi de visage et détection d’expression réaliser Roman Buisine et Oksana
+ Riou ils sont détecté les repères faciaux avec la bibliothèque Dlib ensuit
+ ils sont collecter des données pour construire sa base d’apprentissage
+ (35 image par expression) ensuit ils sont déterminer des caractéristiques
+ des expression ( trois expression surprise , joie , colère ) baser sur
+ les diamètre de plusieurs composant de visage (bouche,l’œil, sourcil) ensuit
+ ils sont réaliser une détection d’expression par une classification des
+ expression avec la méthode naı̈ve bayésienne il sont utiliser les données
+ collecté dans la phase d’apprentissage pour calculer les paramètre de modèle
+ (l’espérance et la variance des caractéristiques) et pour la validation
+ de modèle il sont utiliser la méthode de K-fold cross ,ils sont mesurer
+ un bon taux d’exactitude pour les expressions surprise (82.9%) et joie (97.1%)
+ et un faible taux d’exactitude pour la colère(31%).
+\end_layout
+
+\begin_layout Paragraph*
+Suivi de visage et détection de saillances réaliser par Julien NOWAK, Stéphane
+ RIMLINGER il sont fait l’état de l’art pour les méthode de détection faciale
+ ( Viola Jones ) et les base de donné (HELEN , AFLW , 300-W ) , ils sont
+ décidé d’utiliser la bibliothèque Dlib pour détecter les points de saillances
+ ensuit il sont tester différentes tailles du redimensionnement de l’image
+ pour choisir celle qui a un bon temps de calcule gardent les performance
+ de détection ils sont tester aussi la sensibilité de cette détection para
+ port a plusieurs critère ( la lumière , angles de vue ,autres conditions
+ particulières ) dans le cadre d’étudier l’impacte de ces critère a la détection
+ ils sont aussi proposer des utilisation possible de cette détection centré
+ sur les signe possible a détecter en suit il sont mettre on place la détection
+ d’un signe ( Ouverture des yeux) .
+\end_layout
+
+\end_body
+\end_document
