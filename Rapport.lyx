@@ -409,9 +409,9 @@ Pinokio
 \end_layout
 
 \begin_layout Standard
-Afin de répondre aux questions liées aux intéractions homme/machine et l'attribu
+Afin de répondre aux questions liées aux interactions homme/machine et l'attribu
 tion de conscience dans le cadre du projet, le groupe Psyphine a construit
- et developpé un prototype robotisé qui se présente sous la forme d'une
+ et développé un prototype robotisé qui se présente sous la forme d'une
  lampe dite 
 \begin_inset Quotes cld
 \end_inset
@@ -451,21 +451,14 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename lampe.png
-	lyxscale 60
-	scale 60
+	filename Lalampe.jpg
+	lyxscale 50
+	scale 50
 
 \end_inset
 
@@ -473,55 +466,6 @@ status collapsed
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename lampe_1.png
-	lyxscale 60
-	scale 60
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
@@ -557,8 +501,9 @@ Moteurs
 \end_layout
 
 \begin_layout Standard
-Cette lampe est équipée de cinq moteurs permettent cinq articulations (
- illustré par la figure 
+La lampe est équipée de cinq moteurs de la marque Robotis Dynamixel en deux
+ modèles, AX-12 et AX-18.
+ Ces moteurs permettent cinq articulations ( illustré par la figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Les-moteurs-de"
@@ -615,14 +560,70 @@ Moteur 5 :
 \begin_inset Float figure
 wide false
 sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
 status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename lampe_1.png
+	filename lampe_1.jpg
 	lyxscale 70
-	scale 70
+	height 200pt
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename motors.jpg
+	lyxscale 30
+	height 200pt
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -639,15 +640,11 @@ name "fig:Les-moteurs-de"
 
 \end_inset
 
-Les moteurs de la lampe
+Les moteurs de la lampe [ref]
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -657,7 +654,7 @@ Les moteurs de la lampe
 \end_layout
 
 \begin_layout Subsubsection
-Systeme
+Système
 \end_layout
 
 \begin_layout Standard
@@ -674,6 +671,83 @@ Travaux réalisés
 
 \begin_layout Section
 Problématique
+\end_layout
+
+\begin_layout Standard
+Plusieurs sujets ont été traité dans les travaux précédents du projet Psyphine.
+ Cependant, un sujet très intéressant ,qui n'a pas été abordé dans les anciens
+ travaux, est la reconnaissance du visage.
+ Cependant, explorer seulement ce dernier n'apporte pas autant de valeur
+ pour le projet.
+ Pour cela et pour enrichir les études liée au projet, nous avons jugé utile
+ d’explorer plusieurs sujets, à savoir la détection et reconnaissance du
+ visage, la détection d'émotions (qui sont fortement reliés), et en combinant
+ les résultats de ces derniers dans un système de décision qui choisie le
+ comportement à exécuter.
+\end_layout
+
+\begin_layout Standard
+Comme illustré dans la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Schéma-de-problématique."
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, Notre objectif est, concevoir un système qui permet à la lampe d’exécuter
+ des comportements suivant la reconnaissance d'un visage ainsi que selon
+ l'émotion détecté sur ce visage.
+ Autrement dit, donner la capacité à la lampe d’interagir (de se comporter)
+ conformément à la reconnaissance ou non d'un visage, et à l'émotion observé
+ sur ce dernier.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename problema.jpg
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Schéma-de-problématique."
+
+\end_inset
+
+Schéma de problématique.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section*
@@ -747,7 +821,7 @@ newpage
 \end_layout
 
 \begin_layout Section*
-Introdution
+Introduction
 \end_layout
 
 \begin_layout Standard
@@ -767,7 +841,7 @@ addcontentsline{toc}{section}{Introduction}
 \end_layout
 
 \begin_layout Section
-Reconaissance faciale
+Reconnaissance faciale
 \end_layout
 
 \begin_layout Section
@@ -850,7 +924,7 @@ newpage
 \end_layout
 
 \begin_layout Section*
-Introdution
+Introduction
 \end_layout
 
 \begin_layout Standard
@@ -972,7 +1046,7 @@ addcontentsline{toc}{section}{Introduction}
 \end_layout
 
 \begin_layout Section
-Calibrage des parametres
+Calibrage des paramètres
 \end_layout
 
 \begin_layout Section
