@@ -16,7 +16,7 @@ import cv2
 ap = argparse.ArgumentParser()
 ap.add_argument("-p", "--shape-predictor", required=True,
 	help="path to facial landmark predictor")
-ap.add_argument("-r", "--picamera", type=int, default=-1,
+ap.add_argument("-r", "--picamera", type=int, default=0,
 	help="whether or not the Raspberry Pi camera should be used")
 args = vars(ap.parse_args())
  
