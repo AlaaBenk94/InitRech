@@ -1,0 +1,235 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass report
+\begin_preamble
+\usepackage[bottom]{footmisc}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{minitoc}
+\usepackage{pgfplots}
+\usepackage{lmodern}
+
+\usepackage{titletoc}% http://ctan.org/pkg/titletoc
+\titlecontents{chapter}% <section-type>
+  [0pt]% <left>
+  {\bfseries}% <above-code>
+  {\chaptername\ \thecontentslabel:\quad}% <numbered-entry-format>
+  {}% <numberless-entry-format>
+  {\hfill\contentspage}% <filler-page-format>
+
+\fancyhead[R,C]{}
+\fancyhead[L]{\footnotesize\leftmark}
+\renewcommand{\headrulewidth}{1pt}
+\fancyfoot[L,C]{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\footrulewidth}{0pt}
+
+\oddsidemargin = 18pt
+\topmargin = 0pt
+\headheight = 22pt
+\headsep = 25pt
+\textheight = 609pt
+\textwidth = 424pt
+\marginparsep = 11pt
+\marginparwidth = 54pt
+\footskip = 50pt
+\marginparpush = 54pt
+\hoffset = 0pt
+\voffset = 0pt
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-bytype
+\end_modules
+\maintain_unincluded_children false
+\language french
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\headheight 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style swiss
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 1 0 8 -1
+\bullet 2 0 9 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\series bold
+Suivi de visage et détection de saillances
+\end_layout
+
+\begin_layout Author
+Alaa Eddine BENKARRAD
+\begin_inset Newline newline
+\end_inset
+
+Abdelaziz CHERIFI
+\begin_inset Newline newline
+\end_inset
+
+Walid HAFIANE
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+date{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter*
+Introduction générale
+\end_layout
+
+\begin_layout Standard
+L'expansion rapide de l'industrie de l'intelligence artificielle et de la
+ robotique est un facteur important qui influence et transforme divers aspects
+ de notre vie quotidienne.
+\end_layout
+
+\begin_layout Standard
+Aujourdhui, les machines intilligents sont omnipresent qu'ils sont devenus
+ indispensables pour les êtres humains.
+ Nous sommes de plus en plus souvent en relation avec des robots ou des
+ machines, que ce soit à des fins pratiques (thérapeutiques, professionnelles,
+ scientifiques, quotidien ménager) ou ludiques.
+ Par conséquent, ces relations, entre l'homme et la machine, entrainent
+ de nombreuses questions et plus particulièrement sur l’attribution d’intentions
+, d’intelligence voire de conscience à un objet robotisé non humanoïde.
+\end_layout
+
+\begin_layout Standard
+Autrement dit, L’aspect humanoïde de la machine est-il nécessaire pour que
+ nous soyons enclins à lui prêter des états mentaux?.
+ Afin de étudier ces interactions et dans le but de répondre aux divers
+ questions liée au sujet, le projet PsyPhINe a été mise en place.
+\end_layout
+
+\begin_layout Standard
+Le projet PsyPhine regroupe plusieurs desceplines dont la psychologie, la
+ philosophie, l'informatique et la neuroscience.
+ Il s’interroge sur les interactions homme/robot et cherche à répondre à
+ ces interrogations à travers plusieurs experiences.
+ Pour ce faire, il utilise un prototype robotisé qui se présente sous la
+ forme d’une lampe 
+\begin_inset Quotes cld
+\end_inset
+
+La lampe Psyphine
+\begin_inset Quotes crd
+\end_inset
+
+.
+ Cette dernière est un modèle unique qui a été construite et développée
+ par le groupe.
+ Elle dispose une webcam qui lui a permet de percevoir les objets qui se
+ trouve devant, ainsi que d'executer divers comportements à l'aide de ses
+ cinq moteurs.
+\end_layout
+
+\begin_layout Standard
+La lampe ne possede pas d'un systeme d'exploitation, d'où la nécessité de
+ la connecter, via usb ou wifi, a un ordinateur portable dans lequel les
+ traitements s'executent.
+ Notre objectif sera la conception d'un systeme qui permet de choisir le
+ comportement approprié aux differents expressions.
+ < cette partie > a refaire.
+\end_layout
+
+\begin_layout Standard
+Pour repondre a cet objetif, nous avons décidé d'organiser notre rapport
+ comme suit :
+\end_layout
+
+\begin_layout Standard
+Le premier chapitre...
+\end_layout
+
+\begin_layout Standard
+Le deuxieme chapitre...
+\end_layout
+
+\begin_layout Standard
+Le troisieme chpitre...
+\end_layout
+
+\begin_layout Standard
+Le dernier chapitre..
+\end_layout
+
+\end_body
+\end_document

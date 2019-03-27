@@ -1,4 +1,5 @@
 # USAGE
+# python main.py --predictor haarcascade_frontalface_default.xml
 # python main.py --predictor haarcascade_frontalface_default.xml --camera 0
 
 from imutils import face_utils
