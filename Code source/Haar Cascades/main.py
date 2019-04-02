@@ -8,7 +8,6 @@ import cv2
 import argparse
 import numpy as np 
 
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -17,6 +16,9 @@ ap.add_argument("-p", "--predictor", required=True,
 ap.add_argument("-r", "--camera", type=int, default=0,
 	help="choosing the camera that should be used")
 args = vars(ap.parse_args())
+
+# création de classifieur
+face_cascade = cv2.CascadeClassifier(args["predictor"])
 
 # initializing the camera
 cap = cv2.VideoCapture(args["camera"])

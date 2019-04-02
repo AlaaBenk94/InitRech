@@ -337,7 +337,16 @@ L'expansion rapide de l'industrie de l'intelligence artificielle et de la
  Autrement dit, L’aspect humanoïde de la machine est-il nécessaire pour
  que nous soyons enclins à lui prêter des états mentaux?.
  Afin d'étudier ces interactions et dans le but de répondre à ses questions
- liées au sujet, le projet PsyPhINe a été mis en place.
+ liées au sujet, le projet 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "PsyPhINe"
+description "Psycologie, Phylosophie, Informatique et Neuroscience."
+literal "false"
+
+\end_inset
+
+ PsyPhINe a été mis en place.
 \end_layout
 
 \begin_layout Standard
@@ -359,14 +368,41 @@ Le projet PsyPhine regroupe plusieurs desceplines, à savoir, la psychologie,
 \align block
 La lampe n'est pas équipée d'un système d'exploitation qui permet d'exécuter
  des programmes de traitements et de calculs, en revanche elle est connectée
- via USB ou Wi-Fi, à un ordinateur dans lequel les différents traitements
- s'exécutent.
+ via 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "USB"
+description "Universal Serial Bus"
+literal "false"
+
+\end_inset
+
+USB ou 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "Wi-Fi"
+description "Wireless Fidelity"
+literal "false"
+
+\end_inset
+
+Wi-Fi, à un ordinateur dans lequel les différents traitements s'exécutent.
  Notre objectif sera donc la conception d'un système qui permet de traiter
  un flux d'images, voire une vidéo, récupéré par la webcam, en vue de détecter
  les changements d'expressions ou de mouvements de sujets qui se trouve
  en face de la lampe.
  Par la suite, et en fonction des résultats de ces traitements, la lampe
  choisira le comportement approprié aux différentes expressions.
+ 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SOM"
+description "Self Organizing Map"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -479,358 +515,12 @@ addcontentsline{toc}{section}{Introduction}
 Projet PsyPhINe
 \end_layout
 
-\begin_layout Subsection
-Projet global
-\end_layout
-
-\begin_layout Subsection
-Pinokio
-\end_layout
-
 \begin_layout Section
 Étude de la lampe
 \end_layout
 
-\begin_layout Standard
-Afin de répondre aux questions liées aux interactions homme/machine et l'attribu
-tion de conscience dans le cadre du projet, le groupe Psyphine a construit
- et développé un prototype robotisé qui se présente sous la forme d'une
- lampe dite 
-\begin_inset Quotes cld
-\end_inset
-
-La lampe de Psyphine
-\begin_inset Quotes crd
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Subsection
-Description de la lampe
-\end_layout
-
-\begin_layout Standard
-Lampe de Psyphine, comme la montre la figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:La-lampe-de"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, est construite de contreplaqué léger dont les pièces ont été découpées
- au laser.
- Ces derniers sont assemblées autour de cinq moteurs.
- L’abat-jour a été découpé dans un carton jaune et contient une ampoule
- centrale et une petite caméra située juste au dessus de l’ampoule [ reference
- yann boniface ].
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Lalampe.jpg
-	lyxscale 50
-	scale 50
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:La-lampe-de"
-
-\end_inset
-
-La lampe de Psyphine.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Moteurs
-\end_layout
-
-\begin_layout Standard
-La lampe est équipée de cinq moteurs de la marque Robotis Dynamixel en deux
- modèles, AX-12 et AX-18.
- Ces moteurs permettent cinq articulations ( illustré par la figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Les-moteurs-de"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-) :
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Moteur 1 :
-\series default
- la base sur un axe vertical
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Moteur 2 :
-\series default
- le premier bras pour avancer ou éloigner la lampe
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Moteur 3 :
-\series default
- le deuxième bras pour monter ou descendre l’abat-jour
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Moteur 4 :
-\series default
- pour incliner l’abat-jour vers le bas ou vers le haut
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Moteur 5 :
-\series default
- pour tourner l’abat-jour à droite ou à gauche
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename lampe_1.jpg
-	lyxscale 70
-	height 200pt
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename motors.jpg
-	lyxscale 30
-	height 200pt
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Les-moteurs-de"
-
-\end_inset
-
-Les moteurs de la lampe [ref]
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Système
-\end_layout
-
-\begin_layout Standard
-La lampe robotisée est commandée par un ordinateur portable auquel les moteurs
- sont raccordés sur un port USB ou en wifi par l’intermédiaire d’un Raspberry
- Pi.
- Chaque mouvement de la lampe consiste en une séquence de positions pour
- chacun des moteurs.
-\end_layout
-
-\begin_layout Subsection
-Travaux réalisés
-\end_layout
-
 \begin_layout Section
 Problématique
-\end_layout
-
-\begin_layout Standard
-Plusieurs sujets ont été traité dans les travaux précédents du projet Psyphine.
- Cependant, un sujet très intéressant ,qui n'a pas été abordé dans les anciens
- travaux, est la reconnaissance du visage.
- Cependant, explorer seulement ce dernier n'apporte pas autant de valeur
- pour le projet.
- Pour cela et pour enrichir les études liée au projet, nous avons jugé utile
- d’explorer plusieurs sujets, à savoir la détection et reconnaissance du
- visage, la détection d'émotions (qui sont fortement reliés), et en combinant
- les résultats de ces derniers dans un système de décision qui choisie le
- comportement à exécuter.
-\end_layout
-
-\begin_layout Standard
-Comme illustré dans la figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Schéma-de-problématique."
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, Notre objectif est, concevoir un système qui permet à la lampe d’exécuter
- des comportements suivant la reconnaissance d'un visage ainsi que selon
- l'émotion détecté sur ce visage.
- Autrement dit, donner la capacité à la lampe d’interagir (de se comporter)
- conformément à la reconnaissance ou non d'un visage, et à l'émotion observé
- sur ce dernier.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename problema.jpg
-	lyxscale 50
-	scale 50
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Schéma-de-problématique."
-
-\end_inset
-
-Schéma de problématique.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section*

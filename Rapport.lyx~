@@ -321,6 +321,89 @@ mtcaddchapter[Introduction générale]
 
 \end_layout
 
+\begin_layout Standard
+\align block
+L'expansion rapide de l'industrie de l'intelligence artificielle et de la
+ robotique est un facteur important qui influence et transforme divers aspects
+ de notre vie quotidienne.
+ Aujourd'hui, les machines intelligentes sont omnipresentes et elles sont
+ devenues plus ou moins indispensables pour les êtres humains.
+ Nous sommes de plus en plus souvent en relation avec des robots et des
+ machines, que ce soit à des fins pratiques (thérapeutiques, professionnelles,
+ scientifiques, quotidien ménager) ou ludiques.
+ Par conséquent, ces relations, entre l'homme et la machine, entrainent
+ de nombreuses questions et plus particulièrement sur l’attribution d’intentions
+, d’intelligence voire de conscience à un objet robotisé non humanoïde.
+ Autrement dit, L’aspect humanoïde de la machine est-il nécessaire pour
+ que nous soyons enclins à lui prêter des états mentaux?.
+ Afin d'étudier ces interactions et dans le but de répondre à ses questions
+ liées au sujet, le projet PsyPhINe a été mis en place.
+\end_layout
+
+\begin_layout Standard
+\align block
+Le projet PsyPhine regroupe plusieurs desceplines, à savoir, la psychologie,
+ la philosophie, l'informatique et la neuroscience.
+ Il s’interroge sur les interactions homme-robot et cherche à répondre à
+ ces interrogations à travers plusieurs expériences.
+ Pour ce faire, il utilise un prototype robotisé qui se présente sous la
+ forme d’une lampe « La lampe Psyphine ».
+ Cette dernière est un modèle unique qui a été construit et développé par
+ le groupe.
+ Elle dispose d'une webcam qui lui a permet de percevoir les objets qui
+ se trouvent en face d'elle, ainsi elle est capable d'exécuter plusieurs
+ comportements à l'aide de ses cinq moteurs dont elle dispose.
+\end_layout
+
+\begin_layout Standard
+\align block
+La lampe n'est pas équipée d'un système d'exploitation qui permet d'exécuter
+ des programmes de traitements et de calculs, en revanche elle est connectée
+ via USB ou Wi-Fi, à un ordinateur dans lequel les différents traitements
+ s'exécutent.
+ Notre objectif sera donc la conception d'un système qui permet de traiter
+ un flux d'images, voire une vidéo, récupéré par la webcam, en vue de détecter
+ les changements d'expressions ou de mouvements de sujets qui se trouve
+ en face de la lampe.
+ Par la suite, et en fonction des résultats de ces traitements, la lampe
+ choisira le comportement approprié aux différentes expressions.
+\end_layout
+
+\begin_layout Standard
+\align block
+Pour répondre à cet objectif, nous avons décidés d'organiser notre rapport
+ en quatres chapitres, telque :
+\end_layout
+
+\begin_layout Itemize
+\align block
+Le premier chapitre sera une présentation du projet, de prototype utilisé
+ et des différents travaux réalisés.
+ A la fin de ce chapitre nous allons détaillés les différents aspects de
+ notre problématique.
+\end_layout
+
+\begin_layout Itemize
+\align block
+Le seconde chapitre regroupe plusieurs notions, méthodes et techniques existante
+s dans l'état de l'art et spécifiquement celles que nous utiliserons dans
+ notre méthode.
+\end_layout
+
+\begin_layout Itemize
+\align block
+Nous abordons, dans le troisième chapitre, les détails de notre solution
+ dans laquelle nous expliquerons nos différents choix conceptuels et théoriques.
+\end_layout
+
+\begin_layout Itemize
+\align block
+Le dernier chapitre du rapport sera une représentation des résultats obtenus.
+ Dans ce chapitre nous établirons une analyse objective de nos résultats
+ en vue de comprendre les avantages et les incovinients de notre méthode
+ et comment cette dernière poura-elle être améliorée.
+\end_layout
+
 \begin_layout Chapter
 Présentation du projet
 \end_layout
@@ -408,261 +491,16 @@ Pinokio
 Étude de la lampe
 \end_layout
 
-\begin_layout Standard
-Afin de répondre aux questions liées aux interactions homme/machine et l'attribu
-tion de conscience dans le cadre du projet, le groupe Psyphine a construit
- et développé un prototype robotisé qui se présente sous la forme d'une
- lampe dite 
-\begin_inset Quotes cld
-\end_inset
-
-La lampe de Psyphine
-\begin_inset Quotes crd
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Subsection
 Description de la lampe
-\end_layout
-
-\begin_layout Standard
-Lampe de Psyphine, comme la montre la figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:La-lampe-de"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, est construite de contreplaqué léger dont les pièces ont été découpées
- au laser.
- Ces derniers sont assemblées autour de cinq moteurs.
- L’abat-jour a été découpé dans un carton jaune et contient une ampoule
- centrale et une petite caméra située juste au dessus de l’ampoule [ reference
- yann boniface ].
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Lalampe.jpg
-	lyxscale 50
-	scale 50
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:La-lampe-de"
-
-\end_inset
-
-La lampe de Psyphine.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsubsection
 Moteurs
 \end_layout
 
-\begin_layout Standard
-La lampe est équipée de cinq moteurs de la marque Robotis Dynamixel en deux
- modèles, AX-12 et AX-18.
- Ces moteurs permettent cinq articulations ( illustré par la figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Les-moteurs-de"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-) :
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Moteur 1 :
-\series default
- la base sur un axe vertical
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Moteur 2 :
-\series default
- le premier bras pour avancer ou éloigner la lampe
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Moteur 3 :
-\series default
- le deuxième bras pour monter ou descendre l’abat-jour
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Moteur 4 :
-\series default
- pour incliner l’abat-jour vers le bas ou vers le haut
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Moteur 5 :
-\series default
- pour tourner l’abat-jour à droite ou à gauche
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename lampe_1.jpg
-	lyxscale 70
-	height 200pt
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename motors.jpg
-	lyxscale 30
-	height 200pt
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Les-moteurs-de"
-
-\end_inset
-
-Les moteurs de la lampe [ref]
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsubsection
 Système
-\end_layout
-
-\begin_layout Standard
-La lampe robotisée est commandée par un ordinateur portable auquel les moteurs
- sont raccordés sur un port USB ou en wifi par l’intermédiaire d’un Raspberry
- Pi.
- Chaque mouvement de la lampe consiste en une séquence de positions pour
- chacun des moteurs.
 \end_layout
 
 \begin_layout Subsection
@@ -671,83 +509,6 @@ Travaux réalisés
 
 \begin_layout Section
 Problématique
-\end_layout
-
-\begin_layout Standard
-Plusieurs sujets ont été traité dans les travaux précédents du projet Psyphine.
- Cependant, un sujet très intéressant ,qui n'a pas été abordé dans les anciens
- travaux, est la reconnaissance du visage.
- Cependant, explorer seulement ce dernier n'apporte pas autant de valeur
- pour le projet.
- Pour cela et pour enrichir les études liée au projet, nous avons jugé utile
- d’explorer plusieurs sujets, à savoir la détection et reconnaissance du
- visage, la détection d'émotions (qui sont fortement reliés), et en combinant
- les résultats de ces derniers dans un système de décision qui choisie le
- comportement à exécuter.
-\end_layout
-
-\begin_layout Standard
-Comme illustré dans la figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Schéma-de-problématique."
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, Notre objectif est, concevoir un système qui permet à la lampe d’exécuter
- des comportements suivant la reconnaissance d'un visage ainsi que selon
- l'émotion détecté sur ce visage.
- Autrement dit, donner la capacité à la lampe d’interagir (de se comporter)
- conformément à la reconnaissance ou non d'un visage, et à l'émotion observé
- sur ce dernier.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename problema.jpg
-	lyxscale 60
-	scale 60
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Schéma-de-problématique."
-
-\end_inset
-
-Schéma de problématique.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section*
@@ -841,11 +602,11 @@ addcontentsline{toc}{section}{Introduction}
 \end_layout
 
 \begin_layout Section
-Reconnaissance faciale
+Détection de visage
 \end_layout
 
 \begin_layout Section
-Détection d'émotions
+Extractions des saillances
 \end_layout
 
 \begin_layout Section
