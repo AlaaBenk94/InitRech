@@ -29,9 +29,10 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
-\papersize default
-\use_geometry false
+\papersize a4paper
+\use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -44,6 +45,7 @@
 \use_package undertilde 1
 \cite_engine basic
 \cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -55,6 +57,10 @@
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -83,7 +89,7 @@ Traveaux
  realiser
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Standard
 La pinokio Lampe : le travaille est réaliser par Dany Samy, Hugo Tram, Matthieu
  Nogatchewsky, Simon Bauer , ce travaille touche trois axe ( transmission
  des information , 
@@ -122,7 +128,7 @@ commande
 n mieux de pois par moteur.
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Standard
 Lampe Robot : réaliser par BARBILLON Stanislas, JULIO Marjorie, STAB Aurélien
  ,ils sont construire une nouvelle architecture a laide de la bibliothèque
  Poppy cette architecture facilite la définition des nouveaux mouvements
@@ -137,7 +143,7 @@ Lampe Robot : réaliser par BARBILLON Stanislas, JULIO Marjorie, STAB Aurélien
  ( en 2D ) avec 4 moteur ( MOT_head , MOT_bas_rot ,MOT_head_arm, MOT_arm).
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Standard
 Suivi de visages et détection de saillances réaliser par D’Alessandro Eva
  , Giovinazzo Augustin ils sont utiliser la bibliothèque OpenCV (méthode
  Viola et Jones ) pour la détection de visage et ces composant et comme
@@ -150,7 +156,7 @@ Suivi de visages et détection de saillances réaliser par D’Alessandro Eva
  (seuil de détection, nombre de évaluation ).
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Standard
 Suivi de visage et détection d’expression réaliser Roman Buisine et Oksana
  Riou ils sont détecté les repères faciaux avec la bibliothèque Dlib ensuit
  ils sont collecter des données pour construire sa base d’apprentissage
@@ -166,7 +172,7 @@ Suivi de visage et détection d’expression réaliser Roman Buisine et Oksana
  et un faible taux d’exactitude pour la colère(31%).
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Standard
 Suivi de visage et détection de saillances réaliser par Julien NOWAK, Stéphane
  RIMLINGER il sont fait l’état de l’art pour les méthode de détection faciale
  ( Viola Jones ) et les base de donné (HELEN , AFLW , 300-W ) , ils sont
@@ -178,7 +184,7 @@ Suivi de visage et détection de saillances réaliser par Julien NOWAK, Stéphan
  particulières ) dans le cadre d’étudier l’impacte de ces critère a la détection
  ils sont aussi proposer des utilisation possible de cette détection centré
  sur les signe possible a détecter en suit il sont mettre on place la détection
- d’un signe ( Ouverture des yeux) .
+ d’un signe ( Ouverture des yeux).
 \end_layout
 
 \end_body
