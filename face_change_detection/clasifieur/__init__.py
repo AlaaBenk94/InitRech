@@ -1,0 +1,2 @@
+from face_change_detection.clasifieur.KNN import KNN
+from face_change_detection.clasifieur.kmeans import kmeans
