@@ -1,5 +1,0 @@
-CAH : classification arbre hiérarchique
-choisir les classes selon le rapport Inertie inter/inertie totale ce qui veut dire, découpage ne nombre de groupes, si on a un raport proche de 1 alors le découpage est bon.
-couper l'arbre de plus longue hauteure.
-models génératifs
-extraction de caractéristiques image

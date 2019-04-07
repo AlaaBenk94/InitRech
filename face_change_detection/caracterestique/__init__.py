@@ -1,1 +1,0 @@
-from face_change_detection.caracterestique.caracterestique import caracterestique
