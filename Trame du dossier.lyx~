@@ -334,7 +334,7 @@ L'expansion rapide de l'industrie de l'intelligence artificielle et de la
  Par conséquent, ces relations, entre l'homme et la machine, entrainent
  de nombreuses questions et plus particulièrement sur l’attribution d’intentions
 , d’intelligence voire de conscience à un objet robotisé non humanoïde.
- Autrement dit, L’aspect humanoïde de la machine est-il nécessaire pour
+ Autrement dit, l’aspect humanoïde de la machine est-il nécessaire pour
  que nous soyons enclins à lui prêter des états mentaux?.
  Afin d'étudier ces interactions et dans le but de répondre à ses questions
  liées au sujet, le projet 
@@ -359,7 +359,7 @@ Le projet PsyPhine regroupe plusieurs desceplines, à savoir, la psychologie,
  forme d’une lampe « La lampe Psyphine ».
  Cette dernière est un modèle unique qui a été construit et développé par
  le groupe.
- Elle dispose d'une webcam qui lui a permet de percevoir les objets qui
+ Elle dispose d'une webcam qui lui a permis de percevoir les objets qui
  se trouvent en face d'elle, ainsi elle est capable d'exécuter plusieurs
  comportements à l'aide de ses cinq moteurs dont elle dispose.
 \end_layout
@@ -377,7 +377,16 @@ literal "false"
 
 \end_inset
 
-USB ou Wi-Fi, à un ordinateur dans lequel les différents traitements s'exécutent.
+USB ou 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "Wi-Fi"
+description "Wireless Fidelity"
+literal "false"
+
+\end_inset
+
+Wi-Fi, à un ordinateur dans lequel les différents traitements s'exécutent.
  Notre objectif sera donc la conception d'un système qui permet de traiter
  un flux d'images, voire une vidéo, récupéré par la webcam, en vue de détecter
  les changements d'expressions ou de mouvements de sujets qui se trouve
@@ -398,15 +407,15 @@ literal "false"
 
 \begin_layout Standard
 \align block
-Pour répondre à cet objectif, nous avons décidés d'organiser notre rapport
- en quatres chapitres, telque :
+Pour répondre à cet objectif, nous avons décidées d'organiser notre rapport
+ en quatres chapitres, tels que :
 \end_layout
 
 \begin_layout Itemize
 \align block
 Le premier chapitre sera une présentation du projet, de prototype utilisé
  et des différents travaux réalisés.
- A la fin de ce chapitre nous allons détaillés les différents aspects de
+ A la fin de ce chapitre nous allons détaillér les différents aspects de
  notre problématique.
 \end_layout
 
