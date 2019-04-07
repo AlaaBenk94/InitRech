@@ -4,11 +4,12 @@ from imutils import face_utils
 
 class landmarks:
 
-    def __init__(self, predictor):
+    def __init__(self, predictor=None):
         """
         constructeur
         :param predictor: le chemin complet vers le model entrainé
         """
+
         self.detector = dlib.get_frontal_face_detector()
         self.predictor = dlib.shape_predictor(predictor)
 
@@ -23,9 +24,9 @@ class landmarks:
         rect = self.target_face(self.detector(img, 0))
 
         if rect is not None:
-            shape = self.predictor(img, rect)
-            shape = face_utils.shape_to_np(shape)
-            return self.points_dict(shape)
+            shape = self.points_dict(face_utils.shape_to_np(self.predictor(img, rect)))
+            shape["facepos"] = [rect.center().x, rect.center().y]
+            return shape
 
         return {}
 
