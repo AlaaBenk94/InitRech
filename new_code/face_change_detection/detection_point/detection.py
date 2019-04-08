@@ -9,8 +9,8 @@ class facedetection:
             , 'left_eye': [0, 0, 255]
             , 'nose_bridge': [0, 255, 255]
             , 'nose_tip': [0, 255, 255]
-            , 'top_lip': [255,255,255]#[0, 0, 128]
-            , 'bottom_lip':[255,255,255] #[0, 0, 128]
+            , 'top_lip': [0, 0, 128]
+            , 'bottom_lip':[0, 0, 128]
             , 'chin': [255, 0, 0]
                }
 
@@ -40,12 +40,12 @@ class facedetection:
                  vecteur[y]=p
                  z = 0
                  for i in p:
-                     #z = z + 1
-                     #if ( z==4):
+                    #if(z==3 or z==0):
                         for j in range(-2, 3):
                             img[i[1] + j, i[0]] = self.col[y]
                         for j in range(-2, 3):
                             img[i[1], i[0] + j] = self.col[y]
+                    #z = z + 1
 
         if(len(facepos)>0):
          vecteur['facepos']=facepos

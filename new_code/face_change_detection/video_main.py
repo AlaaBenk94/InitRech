@@ -34,6 +34,8 @@ while(True):
             print("move haut")
         o=car.overture_bouche(vect)
         print("ouverture de bouche",o)
+       # s=car.sourir(vect)
+       # print("sourir",s)
         imgdeteg = aff.aff(imgdeteg,[o,zdis,dis])
     #cv2.imshow('',imgdet)
 

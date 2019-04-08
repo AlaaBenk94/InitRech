@@ -31,4 +31,9 @@ class normalisation:
         return res
 
     def val01(self,x):
-        return 1-(1/float(x+0.00000000000000001))
+        v= 1-(1/float(x+0.00000000000000001))
+        if(v<0):
+            return 0
+        if(v>1):
+            return 1
+        return v

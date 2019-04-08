@@ -33,11 +33,12 @@ class caracterestique :
 
     def overture_bouche(self,vecteur):
         d=distence()
-        facepos = vecteur['facepos']
+        eyel = vecteur['left_eye']
+        eyer = vecteur['right_eye']
         facetl = vecteur['top_lip']
         facebl = vecteur['bottom_lip']
-        disv=d.cartesienne(facebl[5],facetl[5])
-        dish=d.cartesienne(facebl[0],facetl[0])
-        dis=(disv+1)/((facepos[0][2]-facepos[0][0])/10) #(dish+1)
+        disv=d.cartesienne(facebl[3],facetl[3])
+        disv2=d.cartesienne(facebl[9],facetl[9])
+        dis=(disv*disv2+0.000001)/(d.cartesienne(eyel[3],eyer[0])*100+0.000001) #(dish+1)
         n=normalisation()
-        return n.val01(dis*2)
+        return n.val01(dis)
