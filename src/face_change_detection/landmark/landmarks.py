@@ -53,11 +53,12 @@ class landmarks:
         :return dictionnaires
         """
         return {
-            'right_eyebrow': points[22:26],
-            'right_eye': points[42:47],
-            'left_eyebrow': points[17:21],
-            'left_eye': points[36:41],
-            'nose': points[27:35],
-            'mouth': points[48:67],
-            'chin': points[0:16]
+            'right_eyebrow': points[22:27],
+            'right_eye': points[42:48],
+            'left_eyebrow': points[17:22],
+            'left_eye': points[36:42],
+            'nose_bridge': points[27:31],
+            'nose_tip': points[31:36],
+            'mouth': points[48:68],
+            'chin': points[0:17]
         }
