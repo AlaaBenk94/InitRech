@@ -59,8 +59,10 @@ class caracterestique:
     def h_rotation(self, vector):
         """
         extraire le taux de rotation du visage
+        valeur positive -> rotation droite,
+        valeur negative -> rotation gauche
         :param vector:  points de saillances
-        :return: valeurs de rotation (positive -> rotation droite, negative -> rotation gauche)
+        :return: valeurs de rotation
         """
 
         # calculer les distances entre le coté droite/gauche du menton et le nez

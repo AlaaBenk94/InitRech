@@ -42,6 +42,7 @@ while(True):
         for (x, y) in pt:
             cv2.circle(frame, (x, y), 1, (0, 0, 255), -1)
 
+
     # if(vect!={}):
     #     print(" la distence =",car.distence(vect))
     #     difx, dify, dis=car.mov(vect)
