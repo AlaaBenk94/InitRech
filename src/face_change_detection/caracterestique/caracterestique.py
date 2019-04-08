@@ -5,9 +5,16 @@ from Distence.distense import distence
 
 
 class caracterestique :
+
     def __init__(self,img_size):
-     self.surface=img_size[0]*img_size[1];
-     self.pos_precd=None;
+        """
+        constructeur
+        :param img_size: taille de l'image
+        """
+        self.surface=img_size[0]*img_size[1]
+        self.pos_precd=None
+
+
 
     def distence(self,vecteur):
         facepos=vecteur['facepos']
@@ -37,3 +44,33 @@ class caracterestique :
         dish=d.cartesienne(mouth[3], mouth[9])
         dis=(disv+1)/(dish+1)
         return dis
+
+
+    def sourcils(self, vector):
+        """
+        extraire la distance entre les points de sourcils et le les yeux
+        :param vector: points de saillances
+        :return: tuple des distances (droite, gauche)
+        """
+
+        vector[""]
+
+        return ()
+
+    def H_rotation(self, vector):
+        """
+        extraire le taux de rotation du visage
+        :param vector:  points de saillances
+        :return: valeurs de rotation
+        """
+
+        return None
+
+
+    def extract_features(self):
+        """
+        récuperer tous les caracteristiques du visage
+        :return: dictionnaire des caracteristiques
+        """
+
+        return {}

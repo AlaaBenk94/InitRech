@@ -12,12 +12,12 @@ print("[INFO] chargement du predicteur des points de saillances...")
 # lmk = LM(args["shape_predictor"])
 lmk = landmarks()
 
-# initialize the video stream and allow the cammera sensor to warmup
+# initialisation de flux video
 print("[INFO] preparation de la camera...")
 vs = VideoStream().start()
-time.sleep(2.0)
 
 seuil=10
+
 print("[INFO] En cours d'execution...")
 while(True):
     # récupération d'une image du flux video, la redimensionner

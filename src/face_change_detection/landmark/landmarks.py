@@ -12,10 +12,7 @@ class landmarks:
 
         self.DEFAULT_PREDICTOR = "shape_predictor_68_face_landmarks.dat"
         self.detector = dlib.get_frontal_face_detector()
-        if (predictor is not None):
-            self.predictor = dlib.shape_predictor(predictor)
-        else:
-            self.predictor = dlib.shape_predictor(self.DEFAULT_PREDICTOR)
+        self.predictor = dlib.shape_predictor( (self.DEFAULT_PREDICTOR, predictor)[predictor is not None] )
 
     def extract_landmarks(self, img):
         """
