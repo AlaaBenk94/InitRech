@@ -2,16 +2,17 @@ import math
 
 from normalisation.normalisation import normalisation
 from Distence.distense import distence
-
+from numpy.linalg import norm as dist
+from numpy import around as rd
 
 class caracterestique :
 
-    def __init__(self,img_size):
+    def __init__(self,img_size = 0):
         """
         constructeur
         :param img_size: taille de l'image
         """
-        self.surface=img_size[0]*img_size[1]
+        # self.surface=img_size[0]*img_size[1]
         self.pos_precd=None
 
 
@@ -57,14 +58,31 @@ class caracterestique :
 
         return ()
 
-    def H_rotation(self, vector):
+    def h_rotation(self, vector):
         """
         extraire le taux de rotation du visage
         :param vector:  points de saillances
         :return: valeurs de rotation
         """
 
+        chin = vector["chin"]
+        nose = vector["nose_bridge"]
+
         return None
+
+    def eyes(self, vector):
+        """
+        extraire le taux d'ouverture des yeux
+        :param vector: points de saillances
+        :return: tuple d'ouveture des yeux (droite, gauche)
+        """
+
+        # recupération des points des yeux
+        lt = vector["right_eye"]
+        rt = vector["left_eye"]
+
+        return (rd(dist(rt[1:3].mean(0) - rt[4:6].mean(0)) / dist(rt[3] - rt[0]), 2),
+                rd(dist(lt[1:3].mean(0) - lt[4:6].mean(0)) / dist(lt[3] - lt[0]), 2))
 
 
     def extract_features(self):

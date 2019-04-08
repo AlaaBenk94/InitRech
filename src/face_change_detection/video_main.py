@@ -6,6 +6,8 @@ import cv2
 import time
 import imutils
 from imutils.video import VideoStream
+
+from caracterestique.caracterestique import caracterestique
 from landmark import landmarks
 
 print("[INFO] chargement du predicteur des points de saillances...")
@@ -28,12 +30,14 @@ while(True):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     gray = cv2.equalizeHist(gray)
 
-    # car = caracterestique(frame.shape)
-
+    car = caracterestique()
     face, _ = lmk.extract_landmarks(gray)
 
+    print("EYES : {}".format(car.eyes(face)))
+
     # déssiner les points de saillances
-    for pt in face.values():
+    for k, pt in face.items():
+        # print("{} : {}".format(k, pt.shape[0]))
         for (x, y) in pt:
             cv2.circle(frame, (x, y), 1, (0, 0, 255), -1)
 
