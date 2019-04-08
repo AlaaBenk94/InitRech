@@ -34,6 +34,7 @@ while(True):
     face, _ = lmk.extract_landmarks(gray)
 
     print("EYES : {}".format(car.eyes(face)))
+    print("H_ROTATION : {}".format(car.h_rotation(face)))
 
     # déssiner les points de saillances
     for k, pt in face.items():
