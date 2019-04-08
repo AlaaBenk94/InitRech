@@ -10,25 +10,28 @@ class landmarks:
         :param predictor: le chemin complet vers le model entrainé
         """
 
+        self.DEFAULT_PREDICTOR = "shape_predictor_68_face_landmarks.dat"
         self.detector = dlib.get_frontal_face_detector()
-        self.predictor = dlib.shape_predictor(predictor)
+        if (predictor is not None):
+            self.predictor = dlib.shape_predictor(predictor)
+        else:
+            self.predictor = dlib.shape_predictor(self.DEFAULT_PREDICTOR)
 
     def extract_landmarks(self, img):
         """
         extraire les points de saillances du visage
         :param img l'image en greyscale
-        :return dictionnaire des composantes du visage
-        """
+        :return un couple contenant le dictionnaire des composantes du visage et son centre
+         """
 
         # detect faces in the grayscale frame)
         rect = self.target_face(self.detector(img, 0))
 
         if rect is not None:
             shape = self.points_dict(face_utils.shape_to_np(self.predictor(img, rect)))
-            shape["facepos"] = [rect.center().x, rect.center().y]
-            return shape
+            return (shape, (rect.center().x, rect.center().y))
 
-        return {}
+        return ()
 
     def target_face(self, rects: dlib.rectangles):
         """
