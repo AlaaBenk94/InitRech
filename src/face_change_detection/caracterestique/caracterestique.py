@@ -1,7 +1,6 @@
 import math
 from numpy import around as rd
 from numpy.linalg import norm as dist
-
 from Distence.distense import distence
 
 
@@ -59,7 +58,7 @@ class caracterestique:
         l_brow = vector["right_eyebrow"]
         r_brow = vector["left_eyebrow"]
 
-        return ()
+        return (red(dist(r_brow.mean(0)))
 
     def h_rotation(self, vector):
         """
@@ -75,7 +74,7 @@ class caracterestique:
         rt = dist(vector["chin"][13:17].mean(0) - nose)
         lt = dist(vector["chin"][0:4].mean(0) - nose)
 
-        return (rt / lt, -lt / rt)[rt > lt]
+        return rd((rt / lt, -lt / rt)[rt > lt], 2)
 
     def eyes(self, vector):
         """

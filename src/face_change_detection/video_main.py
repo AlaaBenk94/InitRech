@@ -5,7 +5,6 @@ programme principale
 import cv2
 import imutils
 from imutils.video import VideoStream
-
 from caracterestique.caracterestique import caracterestique
 from landmark import landmarks
 

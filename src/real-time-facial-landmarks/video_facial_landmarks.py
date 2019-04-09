@@ -43,8 +43,11 @@ while True:
 	# detect faces in the grayscale frame)
 	rects = detector(gray, 0)	
 
+	print(rects)
+
 	# loop over the face detections
 	for rect in rects:
+		print("===============================================")
 		# determine the facial landmarks for the face region, then
 		# convert the facial landmark (x, y)-coordinates to a NumPy
 		# array
@@ -52,11 +55,14 @@ while True:
 		shape = predictor(gray, rect)
 		shape = face_utils.shape_to_np(shape)
 
+		print(shape[0:17])
+
 		# loop over the (x, y)-coordinates for the facial landmarks
 		# and draw them on the image
 		for (x, y) in shape:
 			cv2.circle(frame, (x, y), 1, (0, 0, 255), -1)
-	  
+		print("===============================================")
+
 	# show the frame
 	cv2.imshow("Frame", frame)
 	key = cv2.waitKey(1) & 0xFF
