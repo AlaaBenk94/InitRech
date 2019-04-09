@@ -34,8 +34,11 @@ while (True):
     print("EYES : {}".format(car.eyes(face)))
     print("H_ROTATION : {}".format(car.h_rotation(face)))
     print("SOURCILS : {}".format(car.sourcils(face)))
-    # print("BOUCHE : {}".format(car.overture_bouche(face)))
-    # print("DISTANCE : {}".format(car.distence(face)))
+    print("BOUCHE : {}".format(car.overture_bouche(face)))
+    # print("DISTANCE : {}".format(car.distence(frame.shape, pos)))
+    # print("MOV : {}".format(car.mov(pos.center())))
+
+    # print(face)
 
     # dessiner les points de saillances
     for k, pt in face.items():

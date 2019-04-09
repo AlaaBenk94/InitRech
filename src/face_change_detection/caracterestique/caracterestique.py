@@ -11,15 +11,15 @@ class caracterestique:
         self.pos_precd = None
         self.surface = 0
 
-    def distence(self, vecteur, img_size):
+    def distence(self, img_size, facepos):
         self.surface = img_size[0] * img_size[1]
-        facepos = vecteur['facepos']
+        # facepos = vecteur['facepos']
         facesurface = (facepos[0][2] - facepos[0][0]) * (facepos[0][1] - facepos[0][3])
         n = normalisation()
         return n.val01(self.surface / (float(facesurface) * 5))
 
-    def mov(self, vecteur):
-        facepos = vecteur['facepos']
+    def mov(self, facepos):
+        # facepos = vecteur['facepos']
         dis = 0
         difx = 0
         dify = 0

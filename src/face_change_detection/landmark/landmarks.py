@@ -1,6 +1,6 @@
 import dlib
 from imutils import face_utils
-
+from numpy import concatenate as cat
 
 class landmarks:
 
@@ -26,11 +26,11 @@ class landmarks:
 
         if rect is not None:
             shape = self.points_dict(face_utils.shape_to_np(self.predictor(img, rect)))
-            return shape, (rect.center().x, rect.center().y)
+            return shape, rect
 
         return ()
 
-    def target_face(self, rects: dlib.rectangles):
+    def target_face(self, rects):
         """
         permet de recuperer le visage le cible parmi les visage detectes
         :param rects: les visages detectes
@@ -60,6 +60,6 @@ class landmarks:
             "nose_tip": points[31:36],
             "left_eye": points[36:42],
             "right_eye": points[42:48],
-            "top_lip": points[48:55] + [points[64]] + [points[63]] + [points[62]] + [points[61]] + [points[60]],
-            "bottom_lip": points[54:60] + [points[48]] + [points[60]] + [points[67]] + [points[66]] + [points[65]] + [points[64]]
+            "top_lip": cat((points[48:55], [points[64]], [points[63]], [points[62]], [points[61]], [points[60]])),
+            "bottom_lip": cat((points[54:60], [points[48]], [points[60]], [points[67]], [points[66]], [points[65]], [points[64]]))
         }
