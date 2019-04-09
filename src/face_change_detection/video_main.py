@@ -12,6 +12,9 @@ print("[INFO] chargement du predicteur des points de saillances...")
 # lmk = LM(args["shape_predictor"])
 lmk = landmarks()
 
+# instantiation du features extractor
+car = caracterestique()
+
 # initialisation de flux video
 print("[INFO] preparation de la camera...")
 vs = VideoStream().start()
@@ -28,17 +31,9 @@ while (True):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     gray = cv2.equalizeHist(gray)
 
-    car = caracterestique()
-    face, pos = lmk.extract_landmarks(gray)
+    face, rect = lmk.extract_landmarks(gray)
 
-    print("EYES : {}".format(car.eyes(face)))
-    print("H_ROTATION : {}".format(car.h_rotation(face)))
-    print("SOURCILS : {}".format(car.sourcils(face)))
-    print("BOUCHE : {}".format(car.overture_bouche(face)))
-    # print("DISTANCE : {}".format(car.distence(frame.shape, pos)))
-    # print("MOV : {}".format(car.mov(pos.center())))
-
-    # print(face)
+    print(car.extract_features(face, frame.shape, rect))
 
     # dessiner les points de saillances
     for k, pt in face.items():
