@@ -3,7 +3,6 @@ programme principale
 """
 
 import cv2
-import time
 import imutils
 from imutils.video import VideoStream
 
@@ -22,9 +21,9 @@ seuil=10
 
 print("[INFO] En cours d'execution...")
 while(True):
-    # récupération d'une image du flux video, la redimensionner
+    # recuperation d'une image du flux video, la redimensionner
     # pour avoir une largeur de 400 pixels, la convertir en
-    # grayscale, et y appliquer une égalisation d'histogramme.
+    # grayscale, et y appliquer une egalisation d'histogramme.
     frame = vs.read()
     frame = imutils.resize(frame, width=400)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -36,7 +35,7 @@ while(True):
     print("EYES : {}".format(car.eyes(face)))
     print("H_ROTATION : {}".format(car.h_rotation(face)))
 
-    # déssiner les points de saillances
+    # dessiner les points de saillances
     for k, pt in face.items():
         # print("{} : {}".format(k, pt.shape[0]))
         for (x, y) in pt:

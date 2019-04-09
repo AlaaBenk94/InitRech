@@ -7,7 +7,7 @@ class landmarks:
     def __init__(self, predictor=None):
         """
         constructeur
-        :param predictor: le chemin complet vers le model entrainé
+        :param predictor: le chemin complet vers le model entraine
         """
 
         self.DEFAULT_PREDICTOR = "shape_predictor_68_face_landmarks.dat"
@@ -32,8 +32,8 @@ class landmarks:
 
     def target_face(self, rects: dlib.rectangles):
         """
-        permet de recuperer le visage le cible parmi les visage detectés
-        :param rects: les visages detectés
+        permet de recuperer le visage le cible parmi les visage detectes
+        :param rects: les visages detectes
         :return: le visage cible le plus proche de la camera
         """
 

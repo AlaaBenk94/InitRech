@@ -1,9 +1,8 @@
 import math
-
-from normalisation.normalisation import normalisation
-from Distence.distense import distence
-from numpy.linalg import norm as dist
 from numpy import around as rd
+from numpy.linalg import norm as dist
+
+from Distence.distense import distence
 
 
 class caracterestique:
@@ -52,7 +51,13 @@ class caracterestique:
         :return: tuple des distances (droite, gauche)
         """
 
-        vector[""]
+        # recuperer les points des yeux
+        l_eye = vector["left_eye"]
+        r_eye = vector["right_eye"]
+
+        # recuperer les points des sourcils
+        l_brow = vector["right_eyebrow"]
+        r_brow = vector["left_eyebrow"]
 
         return ()
 
@@ -65,7 +70,7 @@ class caracterestique:
         :return: valeurs de rotation
         """
 
-        # calculer les distances entre le coté droite/gauche du menton et le nez
+        # calculer les distances entre le cote droite/gauche du menton et le nez
         nose = vector["nose_bridge"].mean(0)
         rt = dist(vector["chin"][13:17].mean(0) - nose)
         lt = dist(vector["chin"][0:4].mean(0) - nose)
@@ -79,7 +84,7 @@ class caracterestique:
         :return: tuple d'ouveture des yeux (droite, gauche)
         """
 
-        # recupération des points des yeux
+        # recuperation des points des yeux
         lt = vector["right_eye"]
         rt = vector["left_eye"]
 
@@ -88,7 +93,7 @@ class caracterestique:
 
     def extract_features(self):
         """
-        récuperer tous les caracteristiques du visage
+        recuperer tous les caracteristiques du visage
         :return: dictionnaire des caracteristiques
         """
 
