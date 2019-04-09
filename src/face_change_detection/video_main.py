@@ -16,10 +16,10 @@ lmk = landmarks()
 print("[INFO] preparation de la camera...")
 vs = VideoStream().start()
 
-seuil=10
+seuil = 10
 
 print("[INFO] En cours d'execution...")
-while(True):
+while (True):
     # recuperation d'une image du flux video, la redimensionner
     # pour avoir une largeur de 400 pixels, la convertir en
     # grayscale, et y appliquer une egalisation d'histogramme.
@@ -29,17 +29,18 @@ while(True):
     gray = cv2.equalizeHist(gray)
 
     car = caracterestique()
-    face, _ = lmk.extract_landmarks(gray)
+    face, pos = lmk.extract_landmarks(gray)
 
     print("EYES : {}".format(car.eyes(face)))
     print("H_ROTATION : {}".format(car.h_rotation(face)))
+    print("SOURCILS : {}".format(car.sourcils(face)))
+    # print("BOUCHE : {}".format(car.overture_bouche(face)))
+    # print("DISTANCE : {}".format(car.distence(face)))
 
     # dessiner les points de saillances
     for k, pt in face.items():
-        # print("{} : {}".format(k, pt.shape[0]))
         for (x, y) in pt:
             cv2.circle(frame, (x, y), 1, (0, 0, 255), -1)
-
 
     # if(vect!={}):
     #     print(" la distence =",car.distence(vect))
@@ -59,7 +60,7 @@ while(True):
 
     # Attendre la touche q pour sortir
     if cv2.waitKey(1) & 0xFF == ord('q'):
-     break
+        break
 
 print("[INFO] Sortir du programme...")
 

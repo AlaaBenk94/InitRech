@@ -26,8 +26,7 @@ class landmarks:
 
         if rect is not None:
             shape = self.points_dict(face_utils.shape_to_np(self.predictor(img, rect)))
-            shape["facepos"] = rect.center()
-            return shape
+            return shape, (rect.center().x, rect.center().y)
 
         return ()
 
@@ -54,13 +53,13 @@ class landmarks:
         :return dictionnaires
         """
         return {
-            'right_eyebrow': points[22:27],
-            'right_eye': points[42:48],
-            'left_eyebrow': points[17:22],
-            'left_eye': points[36:42],
-            'nose_bridge': points[27:31],
-            'nose_tip': points[31:36],
+            "chin": points[0:17],
+            "left_eyebrow": points[17:22],
+            "right_eyebrow": points[22:27],
+            "nose_bridge": points[27:31],
+            "nose_tip": points[31:36],
+            "left_eye": points[36:42],
+            "right_eye": points[42:48],
             "top_lip": points[48:55] + [points[64]] + [points[63]] + [points[62]] + [points[61]] + [points[60]],
-            "bottom_lip": points[54:60] + [points[48]] + [points[60]] + [points[67]] + [points[66]] + [points[65]] + [points[64]],
-            'chin': points[0:17]
+            "bottom_lip": points[54:60] + [points[48]] + [points[60]] + [points[67]] + [points[66]] + [points[65]] + [points[64]]
         }
