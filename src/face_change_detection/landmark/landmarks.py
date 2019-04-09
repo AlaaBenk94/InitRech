@@ -26,7 +26,8 @@ class landmarks:
 
         if rect is not None:
             shape = self.points_dict(face_utils.shape_to_np(self.predictor(img, rect)))
-            return (shape, (rect.center().x, rect.center().y))
+            shape["facepos"] = rect.center()
+            return shape
 
         return ()
 
