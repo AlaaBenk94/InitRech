@@ -59,6 +59,7 @@ class landmarks:
             'left_eye': points[36:42],
             'nose_bridge': points[27:31],
             'nose_tip': points[31:36],
-            'mouth': points[48:68],
+            "top_lip": points[48:55] + [points[64]] + [points[63]] + [points[62]] + [points[61]] + [points[60]],
+            "bottom_lip": points[54:60] + [points[48]] + [points[60]] + [points[67]] + [points[66]] + [points[65]] + [points[64]],
             'chin': points[0:17]
         }
