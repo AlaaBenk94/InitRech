@@ -67,10 +67,8 @@ class caracterestique:
     def h_rotation(self, vector):
         """
         extraire le taux de rotation du visage
-        valeur positive -> rotation droite,
-        valeur negative -> rotation gauche
         :param vector:  points de saillances
-        :return: valeurs de rotation
+        :return: couple de valeurs de rotation (gauche, droite)
         """
 
         # calculer les distances entre le cote droite/gauche du menton et le nez
@@ -78,7 +76,9 @@ class caracterestique:
         rt = dist(vector["chin"][13:17].mean(0) - nose)
         lt = dist(vector["chin"][0:4].mean(0) - nose)
 
-        return rd(((1 - (rt / lt), -(1 - (lt / rt)))[rt > lt]), 2)
+        return (rd(((0, 1 - (lt / rt))[rt > lt]), 2),
+                rd(((0, 1 - (rt / lt))[lt > rt]), 2))
+
 
     def eyes(self, vector):
         """
@@ -102,7 +102,7 @@ class caracterestique:
 
         return {"eyes": self.eyes(vect),
                 "rotation": self.h_rotation(vect),
-                "eyebrows": self.sourcils(vect),
-                "bouche": self.overture_bouche(vect),
-                "distance": self.distence(imgsize, rect.area()),
-                "move": self.mov((rect.center().x, rect.center().y))}
+                "eyebrows": self.sourcils(vect)}
+                # "bouche": self.overture_bouche(vect),
+                # "distance": self.distence(imgsize, rect.area()),
+                # "move": self.mov((rect.center().x, rect.center().y))}
