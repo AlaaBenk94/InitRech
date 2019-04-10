@@ -61,23 +61,30 @@ class caracterestique:
         l_brow = vector["right_eyebrow"]
         r_brow = vector["left_eyebrow"]
 
-        return (rd(dist(l_brow[2] - l_eye[1:3].mean(0)) / dist(l_brow[0] - l_brow[4]), 2),
-                rd(dist(r_brow[2] - r_eye[1:3].mean(0)) / dist(r_brow[0] - r_brow[4]), 2))
+        print("[DEBUG] dist(brow, eye) = {}".format(rd(dist(l_brow[2] - l_eye[1:3].mean(0)))))
+        print("[DEBUG] long(brow) = {}".format(rd(dist(l_brow[0] - l_brow[-1]))))
+
+        return (rd(dist(l_brow[2] - l_eye[1:3].mean(0)) / dist(l_brow[0] - l_brow[-1]), 2),
+                rd(dist(r_brow[2] - r_eye[1:3].mean(0)) / dist(r_brow[0] - r_brow[-1]), 2))
 
     def h_rotation(self, vector):
         """
         extraire le taux de rotation du visage
+        0.0 -> pas de rotation dans ce sens
+        1.0 -> retation maximale dans ce sens
         :param vector:  points de saillances
         :return: couple de valeurs de rotation (gauche, droite)
         """
 
         # calculer les distances entre le cote droite/gauche du menton et le nez
+        # on prend plusieurs points pour stabiliser la distance
         nose = vector["nose_bridge"].mean(0)
         rt = dist(vector["chin"][13:17].mean(0) - nose)
         lt = dist(vector["chin"][0:4].mean(0) - nose)
 
-        return (rd(((0, 1 - (lt / rt))[rt > lt]), 2),
-                rd(((0, 1 - (rt / lt))[lt > rt]), 2))
+        # la fonction ronde (rd) determine la sensibilité de rotation.
+        return (rd(((0.0, 1 - (lt / rt))[rt > lt]), 1),
+                rd(((0.0, 1 - (rt / lt))[lt > rt]), 1))
 
 
     def eyes(self, vector):
