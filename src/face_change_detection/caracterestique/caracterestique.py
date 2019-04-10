@@ -67,11 +67,12 @@ class caracterestique:
         return (rd(dist(l_brow[2] - l_eye[1:3].mean(0)) / dist(l_brow[0] - l_brow[-1]), 2),
                 rd(dist(r_brow[2] - r_eye[1:3].mean(0)) / dist(r_brow[0] - r_brow[-1]), 2))
 
-    def h_rotation(self, vector):
+    def h_rotation(self, vector, thd=0.20):
         """
         extraire le taux de rotation du visage
         0.0 -> pas de rotation dans ce sens
         1.0 -> retation maximale dans ce sens
+        :param thd: le seuil de sensibilité de rotation
         :param vector:  points de saillances
         :return: couple de valeurs de rotation (gauche, droite)
         """
@@ -82,14 +83,20 @@ class caracterestique:
         rt = dist(vector["chin"][13:17].mean(0) - nose)
         lt = dist(vector["chin"][0:4].mean(0) - nose)
 
-        # la fonction ronde (rd) determine la sensibilité de rotation.
-        return (rd(((0.0, 1 - (lt / rt))[rt > lt]), 1),
-                rd(((0.0, 1 - (rt / lt))[lt > rt]), 1))
+        # calculer le precentage de rotation
+        l_rot = (0, 1 - (lt / rt))[rt > lt]
+        r_rot = (0, 1 - (rt / lt))[lt > rt]
 
-
-    def eyes(self, vector):
+        # on ignore les valeurs < seuil
+        return ((0.0, l_rot)[l_rot > thd],
+                (0.0, r_rot)[r_rot > thd])
+    
+    def eyes(self, vector, thd=0.15):
         """
         extraire le taux d'ouverture des yeux
+        0.0 -> yeux fermés
+        1.0 -> yeux ouverts au max.
+        :param thd: seuil d'ouverture des yeux
         :param vector: points de saillances
         :return: tuple d'ouveture des yeux (gauche, droite)
         """
@@ -98,8 +105,13 @@ class caracterestique:
         lt = vector["right_eye"]
         rt = vector["left_eye"]
 
-        return (rd(dist(lt[1:3].mean(0) - lt[4:6].mean(0)) / dist(lt[3] - lt[0]), 2),
-                rd(dist(rt[1:3].mean(0) - rt[4:6].mean(0)) / dist(rt[3] - rt[0]), 2))
+        # calcule d'ouverture
+        l_eye = dist(lt[1:3].mean(0) - lt[4:6].mean(0)) / dist(lt[3] - lt[0])
+        r_eye = dist(rt[1:3].mean(0) - rt[4:6].mean(0)) / dist(rt[3] - rt[0])
+
+        # on ignore les valeurs < seuil
+        return ((0.0, l_eye)[l_eye > thd],
+                (0.0, r_eye)[r_eye > thd])
 
     def extract_features(self, vect, imgsize, rect):
         """
@@ -110,6 +122,6 @@ class caracterestique:
         return {"eyes": self.eyes(vect),
                 "rotation": self.h_rotation(vect),
                 "eyebrows": self.sourcils(vect)}
-                # "bouche": self.overture_bouche(vect),
-                # "distance": self.distence(imgsize, rect.area()),
-                # "move": self.mov((rect.center().x, rect.center().y))}
+        # "bouche": self.overture_bouche(vect),
+        # "distance": self.distence(imgsize, rect.area()),
+        # "move": self.mov((rect.center().x, rect.center().y))}

@@ -32,3 +32,14 @@ class normalisation:
 
     def val01(self, x):
         return 1 - (1 / float(x))
+
+    @staticmethod
+    def norm(x, mi, ma):
+        """
+        normaliser une valeurs sur l'intervale [0 1]
+        :param x: la valeur a normaliser
+        :param mi: la borne inferieure des valeurs
+        :param ma: la borne superieure des valeurs
+        :return: la valeur normalisé dans [0 1]
+        """
+        return (x - mi) / (ma - mi)
