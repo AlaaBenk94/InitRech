@@ -53,6 +53,8 @@ class caracterestique:
         :return: tuple des distances (gauche, groite)
         """
 
+        # print(vector)
+
         # recuperer les points des yeux
         l_eye = vector["left_eye"]
         r_eye = vector["right_eye"]
@@ -61,11 +63,11 @@ class caracterestique:
         l_brow = vector["right_eyebrow"]
         r_brow = vector["left_eyebrow"]
 
-        print("[DEBUG] dist(brow, eye) = {}".format(rd(dist(l_brow[2] - l_eye[1:3].mean(0)))))
-        print("[DEBUG] long(brow) = {}".format(rd(dist(l_brow[0] - l_brow[-1]))))
+        # print("[DEBUG] dist(brow, eye) = {}".format(rd(dist(l_brow[2] - l_eye[1:3].mean(0)))))
+        # print("[DEBUG] long(brow) = {}".format(rd(dist(l_brow[0] - l_brow[-1]))))
 
-        return (rd(dist(l_brow[2] - l_eye[1:3].mean(0)) / dist(l_brow[0] - l_brow[-1]), 2),
-                rd(dist(r_brow[2] - r_eye[1:3].mean(0)) / dist(r_brow[0] - r_brow[-1]), 2))
+        return (dist(l_brow[2] - l_eye[1:3].mean(0)) / dist(l_brow[0] - l_brow[-1]),
+                dist(r_brow[2] - r_eye[1:3].mean(0)) / dist(r_brow[0] - r_brow[-1]))
 
     def h_rotation(self, vector, thd=0.20):
         """
@@ -84,8 +86,8 @@ class caracterestique:
         lt = dist(vector["chin"][0:4].mean(0) - nose)
 
         # calculer le precentage de rotation
-        l_rot = (0, 1 - (lt / rt))[rt > lt]
-        r_rot = (0, 1 - (rt / lt))[lt > rt]
+        l_rot = (0.0, 1.0 - (lt / rt))[rt > lt]
+        r_rot = (0.0, 1.0 - (rt / lt))[lt > rt]
 
         # on ignore les valeurs < seuil
         return ((0.0, l_rot)[l_rot > thd],

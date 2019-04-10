@@ -3,6 +3,7 @@ programme principale
 """
 
 import cv2
+import dlib
 import imutils
 from imutils.video import VideoStream, FPS
 from caracterestique.caracterestique import caracterestique
@@ -42,14 +43,18 @@ while True:
     gray = cv2.equalizeHist(gray)
 
     # extraction des points de saillances
-    face, rect = lmk.extract_landmarks(gray)
+    ret, face, rect = lmk.extract_landmarks(gray)
 
-    print(car.extract_features(face, frame.shape, rect))
-
-    # dessiner les points de saillances
-    for k, pt in face.items():
-        for (x, y) in pt:
-            cv2.circle(frame, (x, y), 1, (0, 0, 255), -1)
+    # on fait le traitement si au moins un visage est detecte
+    if ret:
+        # print(car.extract_features(face, frame.shape, rect))
+        # dessiner les points de saillances
+        for k, pt in face.items():
+            i = 0
+            for (x, y) in pt:
+                cv2.circle(frame, (x, y), 1, (0, 0, 255), -1)
+                cv2.putText(frame, str(i), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.2, (255, 255, 255), lineType=cv2.LINE_AA)
+                i += 1
 
     # affichage de l'image
     cv2.imshow('BeCHa', frame)
