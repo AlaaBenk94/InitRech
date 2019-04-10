@@ -5,13 +5,14 @@ from numpy import concatenate as cat
 
 class landmarks:
 
+    DEFAULT_PREDICTOR = "shape_predictor_68_face_landmarks.dat"
+
     def __init__(self, predictor=None):
         """
         constructeur
         :param predictor: le chemin complet vers le model entraine
         """
 
-        self.DEFAULT_PREDICTOR = "shape_predictor_68_face_landmarks.dat"
         self.detector = dlib.get_frontal_face_detector()
         self.predictor = dlib.shape_predictor((self.DEFAULT_PREDICTOR, predictor)[predictor is not None])
 
@@ -38,30 +39,24 @@ class landmarks:
 
         # detect faces in the grayscale frame)
         rect = target_face()
-        ret = face_utils.shape_to_np(self.predictor(img, rect))
-        shape = self.points_dict(ret)
 
-        return True, shape, rect
+        # extraction des points de saillances
+        points = face_utils.shape_to_np(self.predictor(img, rect))
 
-    def points_dict(self, points):
-        """
-        regrouper les points de saillances dans un dictionnaires
-        reference : https://cdn-images-1.medium.com/max/1600/1*AbEg31EgkbXSQehuNJBlWg.png
-        :param points liste des points de saillances
-        :return dictionnaire
-        """
-        return {
-            "chin": points[0:17],
-            "left_eyebrow": points[17:22],
-            "right_eyebrow": points[22:27],
-            "nose_bridge": points[27:31],
-            "nose_tip": points[31:36],
-            "left_eye": points[36:42],
-            "right_eye": points[42:48],
-            "top_lip": cat((points[48:55], [points[64]], [points[63]], [points[62]], [points[61]], [points[60]])),
-            "bottom_lip": cat(
-                (points[54:60], [points[48]], [points[60]], [points[67]], [points[66]], [points[65]], [points[64]])),
-            # "facepos": [[rect.center().x, rect.center().y]]
-            "facepos": [points.mean(0, int)]  # plus robuste que l'utilisation du centre de rectangle
+        def points_dict():
+            return {
+                "chin": points[0:17],
+                "left_eyebrow": points[17:22],
+                "right_eyebrow": points[22:27],
+                "nose_bridge": points[27:31],
+                "nose_tip": points[31:36],
+                "left_eye": points[36:42],
+                "right_eye": points[42:48],
+                "top_lip": cat((points[48:55], [points[64]], [points[63]], [points[62]], [points[61]], [points[60]])),
+                "bottom_lip": cat((points[54:60], [points[48]], [points[60]], [points[67]], [points[66]], [points[65]], [points[64]])),
+                "facepos": [(int(rect.left()), int(rect.top()), int(rect.right()), int(rect.bottom()))]
+            }
 
-        }
+        return True, points_dict(), rect
+
+

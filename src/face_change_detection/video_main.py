@@ -34,23 +34,28 @@ while True:
     _, frame = vs.read()
 
     # redimensionner l'image pour avoir une largeur de 400 pixels
-    frame = imutils.resize(frame, width=400)
+    # frame = imutils.resize(frame, width=400)
 
     # convertir l'image en grayscale
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # appliquer une egalisation d'histogramme.
-    gray = cv2.equalizeHist(gray)
+    # gray = cv2.equalizeHist(gray)
 
     # extraction des points de saillances
     ret, face, rect = lmk.extract_landmarks(gray)
 
     # on fait le traitement si au moins un visage est detecte
     if ret:
-        # print(car.extract_features(face, frame.shape, rect))
+        print(car.extract_features(face, frame.shape, rect))
         # dessiner les points de saillances
         for k, pt in face.items():
             i = 0
+            if k == "facepos":
+                [(x1, y1, x2, y2)] = pt
+                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255))
+                continue
+
             for (x, y) in pt:
                 cv2.circle(frame, (x, y), 1, (0, 0, 255), -1)
                 cv2.putText(frame, str(i), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.2, (255, 255, 255), lineType=cv2.LINE_AA)

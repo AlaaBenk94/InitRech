@@ -9,23 +9,22 @@ class caracterestique:
 
     def __init__(self):
         self.pos_precd = None
-        self.surface = 0
 
-    def distence(self, img_size, facesurface):
-        self.surface = img_size[0] * img_size[1]
-        # facepos = vecteur['facepos']
-        # facesurface = (facepos[0][2] - facepos[0][0]) * (facepos[0][1] - facepos[0][3])
+    def distence(self, vecteur, img_size):
+        surface = img_size[0] * img_size[1]
+        facepos = vecteur['facepos']
+        facesurface = abs(facepos[0][2] - facepos[0][0]) * abs(facepos[0][1] - facepos[0][3])
         n = normalisation()
-        return n.val01(self.surface / (float(facesurface) * 5))
+        return n.val01(surface / (float(facesurface) * 5))
 
-    def mov(self, pos):
-        # facepos = vecteur['facepos']
+    def mov(self, vecteur):
+        facepos = vecteur['facepos']
         dis = 0
         difx = 0
         dify = 0
-        # pos = (facepos[0][0] + (facepos[0][2] - facepos[0][0]) / 2
-        #        , facepos[0][0] + (facepos[0][1] - facepos[0][3]) / 2)
-        if (self.pos_precd != None):
+        pos = (facepos[0][0] + (facepos[0][2] - facepos[0][0]) / 2
+               , facepos[0][0] + (facepos[0][1] - facepos[0][3]) / 2)
+        if self.pos_precd is not None:
             difx = (self.pos_precd[0] - pos[0])
             dify = (self.pos_precd[1] - pos[1])
             dis = math.sqrt((difx * difx) + (dify * dify))
@@ -53,8 +52,6 @@ class caracterestique:
         :return: tuple des distances (gauche, groite)
         """
 
-        # print(vector)
-
         # recuperer les points des yeux
         l_eye = vector["left_eye"]
         r_eye = vector["right_eye"]
@@ -63,11 +60,8 @@ class caracterestique:
         l_brow = vector["right_eyebrow"]
         r_brow = vector["left_eyebrow"]
 
-        # print("[DEBUG] dist(brow, eye) = {}".format(rd(dist(l_brow[2] - l_eye[1:3].mean(0)))))
-        # print("[DEBUG] long(brow) = {}".format(rd(dist(l_brow[0] - l_brow[-1]))))
-
-        return (dist(l_brow[2] - l_eye[1:3].mean(0)) / dist(l_brow[0] - l_brow[-1]),
-                dist(r_brow[2] - r_eye[1:3].mean(0)) / dist(r_brow[0] - r_brow[-1]))
+        return (dist(l_brow[2] - l_eye.mean(0)) / dist(l_brow[-1] - l_brow[0]),
+                dist(r_brow[2] - r_eye.mean(0)) / dist(r_brow[-1] - r_brow[0]))
 
     def h_rotation(self, vector, thd=0.20):
         """
@@ -123,7 +117,7 @@ class caracterestique:
 
         return {"eyes": self.eyes(vect),
                 "rotation": self.h_rotation(vect),
-                "eyebrows": self.sourcils(vect)}
-        # "bouche": self.overture_bouche(vect),
-        # "distance": self.distence(imgsize, rect.area()),
-        # "move": self.mov((rect.center().x, rect.center().y))}
+                "eyebrows": self.sourcils(vect),
+                "mouth": self.overture_bouche(vect),
+                "distance": self.distence(vect, imgsize)}
+                # "move": self.mov((rect.center().x, rect.center().y))}

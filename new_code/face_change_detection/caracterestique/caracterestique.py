@@ -11,6 +11,7 @@ class caracterestique :
 
     def distence(self,vecteur):
         facepos=vecteur['facepos']
+        print(facepos)
         facesurface=(facepos[0][2]-facepos[0][0])*(facepos[0][1]-facepos[0][3])
         n=normalisation()
         return n.val01(self.surface/(float(facesurface)*5))
