@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9352c8b0-3276-4aad-99e8-0d2c07486e3a" name="Default" comment="basic landmark extraction done + one face detection only.">
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9352c8b0-3276-4aad-99e8-0d2c07486e3a" name="Default" comment="gitignore">
+      <change beforePath="$PROJECT_DIR$/../database/att_faces.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database/faces.tar.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database/yalefaces.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../facial-landmarks-recognition" beforeDir="false" afterPath="$PROJECT_DIR$/../facial-landmarks-recognition" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,8 +43,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
+            <state relative-caret-position="15">
+              <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -129,25 +131,11 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Scope 'Default'; set:Default; class com.intellij.packageDependencies.ChangeListScope" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="Scope">
-        <subPane subId="Scope 'Default'; set:Default; class com.intellij.packageDependencies.ChangeListScope">
-          <expand>
-            <path>
-              <item name="face_change_detection" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/Documents/InitRech/src/face_change_detection" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="face_change_detection" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/Documents/InitRech/src/face_change_detection" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name=".idea" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
         <subPane subId="Scope 'Changed Files'; set:Changed Files; ALL; class com.intellij.packageDependencies.ChangeListScope">
           <expand>
             <path>
@@ -330,7 +318,7 @@
       <workItem from="1554808599311" duration="215000" />
       <workItem from="1554833772740" duration="1079000" />
       <workItem from="1554836642474" duration="1447000" />
-      <workItem from="1554899458366" duration="10046000" />
+      <workItem from="1554899458366" duration="10302000" />
     </task>
     <task id="LOCAL-00001" summary="basic landmark extraction done + one face detection only.">
       <created>1554674134588</created>
@@ -451,11 +439,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554913761452</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="gitignore">
+      <created>1554913995340</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1554913995340</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61193000" />
+    <option name="totallyTimeSpent" value="61449000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="39" y="25" width="1327" height="743" extended-state="6" />
@@ -686,10 +681,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
+        <state relative-caret-position="15">
+          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
         </state>
       </provider>
     </entry>
