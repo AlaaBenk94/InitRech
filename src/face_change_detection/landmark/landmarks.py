@@ -4,6 +4,15 @@ from numpy import concatenate as cat
 
 
 class landmarks:
+    COLORS = {'right_eyebrow': [255, 255, 0],
+              'right_eye': [0, 0, 255],
+              'left_eyebrow': [255, 255, 0],
+              'left_eye': [0, 0, 255],
+              'nose_bridge': [0, 255, 255],
+              'nose_tip': [0, 255, 255],
+              'top_lip': [0, 0, 128],
+              'bottom_lip': [0, 0, 128],
+              'chin': [255, 0, 0]}
 
     DEFAULT_PREDICTOR = "shape_predictor_68_face_landmarks.dat"
 

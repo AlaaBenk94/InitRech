@@ -34,7 +34,7 @@ while True:
     _, frame = vs.read()
 
     # redimensionner l'image pour avoir une largeur de 400 pixels
-    # frame = imutils.resize(frame, width=400)
+    frame = imutils.resize(frame, width=400)
 
     # convertir l'image en grayscale
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -57,8 +57,8 @@ while True:
                 continue
 
             for (x, y) in pt:
-                cv2.circle(frame, (x, y), 1, (0, 0, 255), -1)
-                cv2.putText(frame, str(i), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.2, (255, 255, 255), lineType=cv2.LINE_AA)
+                cv2.circle(frame, (x, y), 1, landmarks.COLORS[k], -1)
+                # cv2.putText(frame, str(i), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.2, (255, 255, 255), lineType=cv2.LINE_AA)
                 i += 1
 
     # affichage de l'image
