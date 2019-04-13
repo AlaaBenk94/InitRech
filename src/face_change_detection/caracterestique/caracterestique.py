@@ -1,5 +1,5 @@
 import math
-from numpy import around as rd
+import numpy as np
 from numpy.linalg import norm as dist
 from Distence.distense import distence
 from normalisation.normalisation import normalisation
@@ -57,8 +57,8 @@ class caracterestique:
         r_eye = vector["right_eye"]
 
         # recuperer les points des sourcils
-        l_brow = vector["right_eyebrow"]
-        r_brow = vector["left_eyebrow"]
+        l_brow = vector["left_eyebrow"]
+        r_brow = vector["right_eyebrow"]
 
         return (dist(l_brow[2] - l_eye.mean(0)) / dist(l_brow[-1] - l_brow[0]),
                 dist(r_brow[2] - r_eye.mean(0)) / dist(r_brow[-1] - r_brow[0]))
@@ -68,7 +68,7 @@ class caracterestique:
         extraire le taux de rotation du visage
         0.0 -> pas de rotation dans ce sens
         1.0 -> retation maximale dans ce sens
-        :param thd: le seuil de sensibilité de rotation
+        :param thd: le seuil de sensibilite de rotation
         :param vector:  points de saillances
         :return: couple de valeurs de rotation (gauche, droite)
         """
@@ -80,17 +80,17 @@ class caracterestique:
         lt = dist(vector["chin"][0:4].mean(0) - nose)
 
         # calculer le precentage de rotation
-        l_rot = (0.0, 1.0 - (lt / rt))[rt > lt]
-        r_rot = (0.0, 1.0 - (rt / lt))[lt > rt]
+        l_rot = (0.0, 1 - (lt / rt))[rt > lt]
+        r_rot = (0.0, 1 - (rt / lt))[lt > rt]
 
         # on ignore les valeurs < seuil
         return ((0.0, l_rot)[l_rot > thd],
                 (0.0, r_rot)[r_rot > thd])
-    
-    def eyes(self, vector, thd=0.15):
+
+    def eyes(self, vector, thd=0.22):
         """
         extraire le taux d'ouverture des yeux
-        0.0 -> yeux fermés
+        0.0 -> yeux fermes
         1.0 -> yeux ouverts au max.
         :param thd: seuil d'ouverture des yeux
         :param vector: points de saillances
@@ -102,8 +102,8 @@ class caracterestique:
         rt = vector["left_eye"]
 
         # calcule d'ouverture
-        l_eye = dist(lt[1:3].mean(0) - lt[4:6].mean(0)) / dist(lt[3] - lt[0])
-        r_eye = dist(rt[1:3].mean(0) - rt[4:6].mean(0)) / dist(rt[3] - rt[0])
+        l_eye = dist(lt[4:6].mean(0) - lt[1:3].mean(0)) / dist(lt[3] - lt[0])
+        r_eye = dist(rt[4:6].mean(0) - rt[1:3].mean(0)) / dist(rt[3] - rt[0])
 
         # on ignore les valeurs < seuil
         return ((0.0, l_eye)[l_eye > thd],
@@ -120,4 +120,19 @@ class caracterestique:
                 "eyebrows": self.sourcils(vect),
                 "mouth": self.overture_bouche(vect),
                 "distance": self.distence(vect, imgsize)}
-                # "move": self.mov((rect.center().x, rect.center().y))}
+        # "move": self.mov((rect.center().x, rect.center().y))}
+
+    @staticmethod
+    def print_features(dict):
+        """
+        affichage sophistique du dictionnaire des caracteristiques
+        :param dict: le dictionnaire
+        """
+        print("[INFO] FEATURES LIST")
+        for key, value in dict.items():
+            if key in ["eyes", "rotation", "eyebrows"]:
+                left, right = value
+                print("\t{} is {:.2f}".format(key + " left", left))
+                print("\t{} is {:.2f}".format(key + " right", right))
+            else:
+                print("\t{} is {:.2f}".format(key, value))

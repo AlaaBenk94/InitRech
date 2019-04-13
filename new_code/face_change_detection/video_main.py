@@ -14,6 +14,11 @@ fdet= facedetection()
 car=caracterestique(imgsize)
 seuil=10
 aff= affichage_car.affichage()
+
+# recupération du FPS de la camera
+fps = cap.get(cv2.CAP_PROP_FPS)
+print("[INFO] FPS = {}".format(fps))
+
 while(True):
     ret, img = cap.read()
     #imgdet=cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

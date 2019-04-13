@@ -2,16 +2,13 @@
 programme principale
 """
 
+import time as t
 import cv2
-import dlib
 import imutils
-from imutils.video import VideoStream, FPS
 from caracterestique.caracterestique import caracterestique
 from landmark import landmarks
-import time as t
 
 print("[INFO] chargement du predicteur des points de saillances...")
-# lmk = LM(args["shape_predictor"])
 lmk = landmarks()
 
 # instantiation du features extractor
@@ -20,12 +17,14 @@ car = caracterestique()
 # initialisation de flux video
 print("[INFO] preparation de la camera...")
 vs = cv2.VideoCapture(0)
-seuil = 10
 
-# recupération du FPS de la camera
+# recuperation du FPS de la camera
 fps = vs.get(cv2.CAP_PROP_FPS)
 print("[INFO] FPS = {}".format(fps))
 
+
+count = 1
+end = 0
 print("[INFO] En cours d'execution...")
 while True:
     start = int(round(t.time() * 1000))
@@ -47,26 +46,23 @@ while True:
 
     # on fait le traitement si au moins un visage est detecte
     if ret:
-        print(car.extract_features(face, frame.shape, rect))
+        caracterestique.print_features(car.extract_features(face, frame.shape, rect))
         # dessiner les points de saillances
         for k, pt in face.items():
-            i = 0
             if k == "facepos":
                 [(x1, y1, x2, y2)] = pt
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255))
                 continue
-
             for (x, y) in pt:
                 cv2.circle(frame, (x, y), 1, landmarks.COLORS[k], -1)
-                # cv2.putText(frame, str(i), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.2, (255, 255, 255), lineType=cv2.LINE_AA)
-                i += 1
+
+    # dissiner le numero de frame
+    end += (int(round(t.time() * 1000)) - start)
+    count += 1
+    cv2.putText(frame, "Process Time : {:.2f} ms".format(end/count), (5, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
 
     # affichage de l'image
     cv2.imshow('BeCHa', frame)
-
-    # le temps de traitement d'une image
-    end = int(round(t.time() * 1000))
-    # print("TIME : {}".format(end - start))
 
     # Attendre la touche q pour sortir
     if cv2.waitKey(1) & 0xFF == ord('q'):
