@@ -119,7 +119,8 @@ class caracterestique:
                 "rotation": self.h_rotation(vect),
                 "eyebrows": self.sourcils(vect),
                 "mouth": self.overture_bouche(vect),
-                "distance": self.distence(vect, imgsize)}
+                "distance": self.distence(vect, imgsize),
+                "position": vect["position"]}
         # "move": self.mov((rect.center().x, rect.center().y))}
 
     @staticmethod
@@ -134,5 +135,7 @@ class caracterestique:
                 left, right = value
                 print("\t{} is {:.2f}".format(key + " left", left))
                 print("\t{} is {:.2f}".format(key + " right", right))
+            elif key == "position":
+                print("\t{} is {}".format(key, value))
             else:
                 print("\t{} is {:.2f}".format(key, value))

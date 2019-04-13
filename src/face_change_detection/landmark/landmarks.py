@@ -12,7 +12,8 @@ class landmarks:
               'nose_tip': [0, 255, 255],
               'top_lip': [0, 0, 128],
               'bottom_lip': [0, 0, 128],
-              'chin': [255, 0, 0]}
+              'chin': [255, 0, 0],
+              "position": [0, 0, 0]}
 
     DEFAULT_PREDICTOR = "shape_predictor_68_face_landmarks.dat"
 
@@ -63,7 +64,8 @@ class landmarks:
                 "right_eye": points[42:48],
                 "top_lip": cat((points[48:55], [points[64]], [points[63]], [points[62]], [points[61]], [points[60]])),
                 "bottom_lip": cat((points[54:60], [points[48]], [points[60]], [points[67]], [points[66]], [points[65]], [points[64]])),
-                "facepos": [(int(rect.left()), int(rect.top()), int(rect.right()), int(rect.bottom()))]
+                "facepos": [(int(rect.left()), int(rect.top()), int(rect.right()), int(rect.bottom()))],
+                "position": [[rect.center().x, rect.center().y]]
             }
 
         return True, points_dict(), rect
