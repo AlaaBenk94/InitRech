@@ -8,24 +8,22 @@ import imutils
 from caracterestique.caracterestique import caracterestique
 from landmark import landmarks
 
-print("[INFO] chargement du predicteur des points de saillances...")
+print("[INFO SYS] chargement du predicteur des points de saillances...")
 lmk = landmarks()
 
 # instantiation du features extractor
+print("[INFO SYS] chargement d'extracteur des caracteristiques...")
 car = caracterestique()
 
 # initialisation de flux video
-print("[INFO] preparation de la camera...")
+print("[INFO SYS] preparation de la camera...")
 vs = cv2.VideoCapture(0)
 
 # recuperation du FPS de la camera
 fps = vs.get(cv2.CAP_PROP_FPS)
 print("[INFO] FPS = {}".format(fps))
 
-
-count = 1
-end = 0
-print("[INFO] En cours d'execution...")
+print("[INFO SYS] En cours d'execution...")
 while True:
     start = int(round(t.time() * 1000))
 
@@ -57,9 +55,8 @@ while True:
                 cv2.circle(frame, (x, y), 1, landmarks.COLORS[k], -1)
 
     # dissiner le numero de frame
-    end += (int(round(t.time() * 1000)) - start)
-    count += 1
-    cv2.putText(frame, "Process Time : {:.2f} ms".format(end/count), (5, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+    end = (int(round(t.time() * 1000)) - start)
+    cv2.putText(frame, "Process Time : {:.2f} ms".format(end), (5, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
 
     # affichage de l'image
     cv2.imshow('BeCHa', frame)
@@ -68,7 +65,7 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-print("[INFO] Sortir du programme...")
+print("[INFO SYS] Sortir du programme...")
 
 # cleaning up
 cv2.destroyAllWindows()
