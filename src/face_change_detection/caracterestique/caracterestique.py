@@ -109,18 +109,23 @@ class caracterestique:
         return ((0.0, l_eye)[l_eye > thd],
                 (0.0, r_eye)[r_eye > thd])
 
-    def extract_features(self, vect, imgsize, rect):
+    def extract_features(self, vect, imgsize):
         """
         recuperer tous les caracteristiques du visage
-        :return: dictionnaire des caracteristiques
+        :return: (dictionnaire et vecteur ) des caracteristiques
         """
+        leye, reye = self.eyes(vect)
+        lrot, rrot = self.h_rotation(vect)
+        lbrow, rbrow = self.sourcils(vect)
+        mouth = self.overture_bouche(vect)
+        di = self.distence(vect, imgsize)
 
-        return {"eyes": self.eyes(vect),
-                "rotation": self.h_rotation(vect),
-                "eyebrows": self.sourcils(vect),
-                "mouth": self.overture_bouche(vect),
-                "distance": self.distence(vect, imgsize),
-                "position": vect["position"]}
+        return {"eyes": (leye, reye),
+                "rotation": (lrot, rrot),
+                "eyebrows": (lbrow, rbrow),
+                "mouth": mouth,
+                "distance": di,
+                "position": vect["position"]}, [leye, reye, lrot, rrot, lbrow, rbrow, mouth, di]
         # "move": self.mov((rect.center().x, rect.center().y))}
 
     @staticmethod

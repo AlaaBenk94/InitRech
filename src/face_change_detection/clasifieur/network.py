@@ -22,12 +22,12 @@
 #           54506 VANDOEUVRE-LES-NANCY CEDEX 
 #           FRANCE
 
-import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+import numpy as np
 from mpl_toolkits.axes_grid import make_axes_locatable
-from mpl_toolkits.axes_grid import AxesGrid
-from progress import ProgressBar, Percentage, Bar
+
+from clasifieur.progress import ProgressBar, Percentage, Bar
 
 
 def fromdistance(fn, shape, center=None, dtype=float):
@@ -377,4 +377,4 @@ class DSOM_MODEL(DSOM):
         D = ((self.codebook - data) ** 2).sum(axis=-1)
 
         # Get index of nearest node (minimum distance)
-        return np.unravel_index(np.argmin(D), D.shape)
+        return np.argmin(D)

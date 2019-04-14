@@ -6,24 +6,32 @@ import time as t
 import cv2
 import imutils
 from caracterestique.caracterestique import caracterestique
+from clasifieur.network import DSOM_MODEL
 from landmark import landmarks
 
-print("[INFO SYS] chargement du predicteur des points de saillances...")
+print("[INFO] chargement du predicteur des points de saillances...")
 lmk = landmarks()
 
 # instantiation du features extractor
-print("[INFO SYS] chargement d'extracteur des caracteristiques...")
+print("[INFO] chargement d'extracteur des caracteristiques...")
 car = caracterestique()
 
+print("[INFO] chargement de classifieur...")
+N = 3 # order of net matrix
+FCount = 8 # number of features
+net = DSOM_MODEL((N, N, FCount), init_method="fixed")
+print(net.codebook)
+
 # initialisation de flux video
-print("[INFO SYS] preparation de la camera...")
+print("[INFO] preparation de la camera...")
 vs = cv2.VideoCapture(0)
 
 # recuperation du FPS de la camera
 fps = vs.get(cv2.CAP_PROP_FPS)
 print("[INFO] FPS = {}".format(fps))
 
-print("[INFO SYS] En cours d'execution...")
+print("[INFO] En cours d'execution...")
+
 while True:
     start = int(round(t.time() * 1000))
 
@@ -42,9 +50,11 @@ while True:
     # extraction des points de saillances
     ret, face, rect = lmk.extract_landmarks(gray)
 
+    vect = []
+
     # on fait le traitement si au moins un visage est detecte
     if ret:
-        caracterestique.print_features(car.extract_features(face, frame.shape, rect))
+        vect = car.extract_features(face, frame.shape)[1]
         # dessiner les points de saillances
         for k, pt in face.items():
             if k == "facepos":
@@ -54,18 +64,24 @@ while True:
             for (x, y) in pt:
                 cv2.circle(frame, (x, y), 1, landmarks.COLORS[k], -1)
 
-    # dissiner le numero de frame
+    # dessiner le numero de frame
     end = (int(round(t.time() * 1000)) - start)
     cv2.putText(frame, "Process Time : {:.2f} ms".format(end), (5, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
 
+    if ret:
+        cv2.putText(frame, "Class Number is : {}".format(net.cluster(vect)), (5, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+        net.learn_data(vect)
+
     # affichage de l'image
     cv2.imshow('BeCHa', frame)
+
+    print(net.codebook)
 
     # Attendre la touche q pour sortir
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-print("[INFO SYS] Sortir du programme...")
+print("[INFO] Sortir du programme...")
 
 # cleaning up
 cv2.destroyAllWindows()
