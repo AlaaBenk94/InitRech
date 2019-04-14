@@ -55,11 +55,16 @@ while True:
     # on fait le traitement si au moins un visage est detecte
     if ret:
         vect = car.extract_features(face, frame.shape)[1]
+        cluster = net.cluster(vect)
+        net.learn_data(vect)
+
         # dessiner les points de saillances
         for k, pt in face.items():
             if k == "facepos":
                 [(x1, y1, x2, y2)] = pt
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255))
+                cv2.rectangle(frame, (x1, y1), (x1+100, y1-18), (0, 0, 255), -1)
+                cv2.putText(frame, "Cluster #{}".format(cluster), (x1, y1-5), cv2.FONT_HERSHEY_DUPLEX, 0.5, (255, 255, 255), 1)
                 continue
             for (x, y) in pt:
                 cv2.circle(frame, (x, y), 1, landmarks.COLORS[k], -1)
@@ -67,10 +72,6 @@ while True:
     # dessiner le numero de frame
     end = (int(round(t.time() * 1000)) - start)
     cv2.putText(frame, "Process Time : {:.2f} ms".format(end), (5, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
-
-    if ret:
-        cv2.putText(frame, "Class Number is : {}".format(net.cluster(vect)), (5, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
-        net.learn_data(vect)
 
     # affichage de l'image
     cv2.imshow('BeCHa', frame)
