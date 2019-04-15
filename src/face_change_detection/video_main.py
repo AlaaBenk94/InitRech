@@ -3,6 +3,8 @@ programme principale
 """
 
 import time as t
+from multiprocessing import Queue
+
 import cv2
 import imutils
 from caracterestique.caracterestique import caracterestique
@@ -12,7 +14,9 @@ from landmark import landmarks
 
 print("[INFO] chargement du predicteur des points de saillances...")
 lmk = landmarks()
-dr = drawer()
+Q = Queue()
+dr = drawer(Q)
+dr.start()
 
 # instantiation du features extractor
 print("[INFO] chargement d'extracteur des caracteristiques...")
@@ -21,8 +25,7 @@ car = caracterestique()
 print("[INFO] chargement de classifieur...")
 N = 3 # order of net matrix
 FCount = 8 # number of features
-net = DSOM_MODEL((N, N, FCount), init_method="fixed")
-print(net.codebook)
+net = DSOM_MODEL((N, N, FCount))
 
 # initialisation de flux video
 print("[INFO] preparation de la camera...")
@@ -78,15 +81,16 @@ while True:
     # affichage de l'image
     cv2.imshow('BeCHa', frame)
 
-    print(net.codebook)
-    print("=========================================================")
-    print(dr.convert2d(net.codebook.reshape((N*N, FCount))))
+    # print(net.codebook)
+    Q.put(net.codebook.reshape((N*N, FCount)))
 
     # Attendre la touche q pour sortir
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
 print("[INFO] Sortir du programme...")
+
+dr.terminate()
 
 # cleaning up
 cv2.destroyAllWindows()
