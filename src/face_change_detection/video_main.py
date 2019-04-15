@@ -7,10 +7,12 @@ import cv2
 import imutils
 from caracterestique.caracterestique import caracterestique
 from clasifieur.network import DSOM_MODEL
+from draw.drawer import drawer
 from landmark import landmarks
 
 print("[INFO] chargement du predicteur des points de saillances...")
 lmk = landmarks()
+dr = drawer()
 
 # instantiation du features extractor
 print("[INFO] chargement d'extracteur des caracteristiques...")
@@ -77,6 +79,8 @@ while True:
     cv2.imshow('BeCHa', frame)
 
     print(net.codebook)
+    print("=========================================================")
+    print(dr.convert2d(net.codebook.reshape((N*N, FCount))))
 
     # Attendre la touche q pour sortir
     if cv2.waitKey(1) & 0xFF == ord('q'):
