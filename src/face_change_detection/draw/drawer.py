@@ -13,6 +13,10 @@ class drawer(Process):
     """
 
     def __init__(self, q=None):
+        """
+        initialisation
+        :param q: la file des donnees
+        """
         super(drawer, self).__init__()
         self.fig, self.ax = plt.subplots(figsize=(5, 4))
         self.queue = q
@@ -25,6 +29,7 @@ class drawer(Process):
         a savoir : lancez une animation
         :return:
         """
+
         def animate(i):
             mat = self.queue.get()
             return self.plot_matrix(mat),
@@ -35,8 +40,19 @@ class drawer(Process):
 
 
     def plot_matrix(self, mat):
+        """
+        dessinateur des neurones
+        :param mat: matrice des neurones
+        """
+
         mat = self.convert2d(mat)
         return self.ax.scatter(mat[:, 0], mat[:, 1], c='b', alpha=0.6, label="clusters")
 
     def convert2d(self, data):
+        """
+        reduction des dimensions en utilisant l'acp
+        :param data: donnees avec dimension n
+        :return: les memes donnee en dimension 2
+        """
+
         return self.pca.fit_transform(self.sc.fit_transform(data))
