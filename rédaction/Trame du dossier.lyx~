@@ -1169,19 +1169,8 @@ addcontentsline{toc}{section}{Introduction}
 
 \end_layout
 
-\begin_layout Standard
-Dans le but d’effectuer un comportement a cette lampe robotisée, nous avons
- besoins de passer par trois étapes dans le traitement de l’image qui a
- été capturée par la webcam de la lampe.
- Ces trois étapes viennent séquentiellement l’une après l’autre dans l’ordre
- suivant : Détection de l’image voire un flux d’image, ensuite l’extractions
- des points de saillances et à la fin faire de la classification pour ces
- points extraits ce qu’on appelle le Clustering.
- 
-\end_layout
-
 \begin_layout Section
-Méthodes de détections et de l'extraction
+Méthodes de détections et de l'extraction 
 \end_layout
 
 \begin_layout Section
