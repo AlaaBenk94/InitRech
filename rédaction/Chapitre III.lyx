@@ -1,0 +1,413 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass report
+\begin_preamble
+\usepackage[bottom]{footmisc}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{minitoc}
+\usepackage{pgfplots}
+\usepackage{lmodern}
+
+\usepackage{titletoc}% http://ctan.org/pkg/titletoc
+\titlecontents{chapter}% <section-type>
+  [0pt]% <left>
+  {\bfseries}% <above-code>
+  {\chaptername\ \thecontentslabel:\quad}% <numbered-entry-format>
+  {}% <numberless-entry-format>
+  {\hfill\contentspage}% <filler-page-format>
+
+\fancyhead[R,C]{}
+\fancyhead[L]{\footnotesize\leftmark}
+\renewcommand{\headrulewidth}{1pt}
+\fancyfoot[L,C]{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\footrulewidth}{0pt}
+
+\oddsidemargin = 18pt
+\topmargin = 0pt
+\headheight = 22pt
+\headsep = 25pt
+\textheight = 609pt
+\textwidth = 424pt
+\marginparsep = 11pt
+\marginparwidth = 54pt
+\footskip = 50pt
+\marginparpush = 54pt
+\hoffset = 0pt
+\voffset = 0pt
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-bytype
+\end_modules
+\maintain_unincluded_children false
+\language french
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\headheight 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style swiss
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 1 0 8 -1
+\bullet 2 0 9 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Analyse et réalisation
+\end_layout
+
+\begin_layout Quotation
+\align right
+
+\emph on
+\begin_inset Quotes cld
+\end_inset
+
+...si vous ne pouvez pas l'expliquer simplement, vous ne le comprenez pas assez
+ bien.
+\begin_inset Quotes crd
+\end_inset
+
+.
+ A.
+ Einstein.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+minitoc
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{Introduction}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Appoche globale
+\end_layout
+
+\begin_layout Standard
+Notre objectif, comme mentionné précédemment, est de concevoir un système
+ qui permet à la lampe de réagir en fonction des changements des expressions
+ du sujet qui se trouve en face.
+\end_layout
+
+\begin_layout Standard
+La réalisation de ce système nécessite de passer par plusieurs étapes indispensa
+bles en commençant par la détection de visage et l'extraction des points
+ de saillances.
+ Ensuite en passant par l'extraction des caractéristiques et l'encodage
+ des solutions.
+ En arrivant au regroupement (clustering) des différents changements est
+ la définition de comportement.
+\end_layout
+
+\begin_layout Standard
+Pour simplifier la compréhension du fonctionnement de l'approche suivie,
+ nous avons jugé utile de partitionner le travail en deux phases (figure)
+ :
+\end_layout
+
+\begin_layout Itemize
+La phase de préparation qui prend en entrée un flux vidéo (séquence d'images)
+ pour produire en sortie un vecteur caractérisant les changements sur les
+ différentes séquences.
+\end_layout
+
+\begin_layout Itemize
+La deuxième phase, dite de décision, qui consiste à regrouper les vecteurs
+ caractéristiques en entrée afin de décider le comportement à exécuter (les
+ commandes à envoyer à la lampe).
+ Nous verrons ses fins en détail dans les sections qui suit.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Structure globale du systèùme
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Phase de préparation
+\end_layout
+
+\begin_layout Subsection
+Détection du visage
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Détection de visage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Éxtraction des points de saillances
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Éxtraction des points de saillances
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Éxtraction des caracteristique
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Éxtraction des caractéristiques
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Encodage des informations
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Génération des vecteurs caractèristiques des changements
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Phase de décision
+\end_layout
+
+\begin_layout Subsection
+K-moyennes (Kmeans)
+\end_layout
+
+\begin_layout Subsection
+Carte auto-organisatrice dynamique
+\end_layout
+
+\begin_layout Subsection
+Définitions des comportements
+\end_layout
+
+\begin_layout Section*
+Conclusion
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{Conclusion}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

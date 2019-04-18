@@ -100,37 +100,6 @@ theorems-bytype
 
 \begin_body
 
-\begin_layout Title
-
-\series bold
-Suivi de visage et détection de saillances
-\end_layout
-
-\begin_layout Author
-Alaa Eddine BENKARRAD
-\begin_inset Newline newline
-\end_inset
-
-Abdelaziz CHERIFI
-\begin_inset Newline newline
-\end_inset
-
-Walid HAFIANE
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-date{}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Chapter*
 Introduction générale
 \end_layout
@@ -148,7 +117,7 @@ L'expansion rapide de l'industrie de l'intelligence artificielle et de la
  Par conséquent, ces relations, entre l'homme et la machine, entrainent
  de nombreuses questions et plus particulièrement sur l’attribution d’intentions
 , d’intelligence voire de conscience à un objet robotisé non humanoïde.
- Autrement dit, L’aspect humanoïde de la machine est-il nécessaire pour
+ Autrement dit, l’aspect humanoïde de la machine est-il nécessaire pour
  que nous soyons enclins à lui prêter des états mentaux?.
  Afin d'étudier ces interactions et dans le but de répondre à ses questions
  liées au sujet, le projet PsyPhINe a été mis en place.

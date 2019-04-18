@@ -1,0 +1,828 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass report
+\begin_preamble
+\usepackage[bottom]{footmisc}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{minitoc}
+\usepackage{pgfplots}
+\usepackage{lmodern}
+
+\usepackage{titletoc}% http://ctan.org/pkg/titletoc
+\titlecontents{chapter}% <section-type>
+  [0pt]% <left>
+  {\bfseries}% <above-code>
+  {\chaptername\ \thecontentslabel:\quad}% <numbered-entry-format>
+  {}% <numberless-entry-format>
+  {\hfill\contentspage}% <filler-page-format>
+
+\fancyhead[R,C]{}
+\fancyhead[L]{\footnotesize\leftmark}
+\renewcommand{\headrulewidth}{1pt}
+\fancyfoot[L,C]{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\footrulewidth}{0pt}
+
+\oddsidemargin = 18pt
+\topmargin = 0pt
+\headheight = 22pt
+\headsep = 25pt
+\textheight = 609pt
+\textwidth = 424pt
+\marginparsep = 11pt
+\marginparwidth = 54pt
+\footskip = 50pt
+\marginparpush = 54pt
+\hoffset = 0pt
+\voffset = 0pt
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-bytype
+\end_modules
+\maintain_unincluded_children false
+\language french
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\headheight 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style swiss
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 1 0 8 -1
+\bullet 2 0 9 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Présentation du projet
+\end_layout
+
+\begin_layout Quotation
+\align right
+
+\emph on
+\begin_inset Quotes cld
+\end_inset
+
+...la robotique et d'autres combinaisons rendront le monde assez fantastique
+ comparé à aujourd'hui.
+\begin_inset Quotes crd
+\end_inset
+
+.
+ B.
+ Gates.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+minitoc
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{Introduction}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dans ce chapitre, nous allons présentés le projet PsyPhINe et l'objectif
+ final de ce projet ainsi, le robot sur lequel nous allons appliquer le
+ travail que nous avons réaliser.
+\end_layout
+
+\begin_layout Section
+Projet PsyPhINe
+\end_layout
+
+\begin_layout Subsubsection
+Idée de base du projet
+\end_layout
+
+\begin_layout Standard
+L’idée fondatrice du projet Psyphine est partie de l’interaction entre l’humaine
+ et le robot de telle sorte que le robot peut se comporter de la même façon
+ que l’humain en laissant le robot apprendre à travers son interaction avec
+ l’humain et son environnement.
+ Le but donc est que le robot tente de percevoir les intentions de l’être-humain
+ avec lequel il interagit à partir d’indices multiples et d’expressions
+ variées.
+ Ainsi, cette perception s’étend aux interactions non verbales c’est-à-dire
+ aux interactions non seulement avec des êtres humains capable de parler
+ mais aussi avec des choses non humaines (animaux, objets).
+ Pour cela il va falloir attribuer des comportements d’intentions, une certaine
+ forme de volonté, et même des émotions dans certains cas à ce robot qui
+ est programmé par l’homme.
+ La diversité des différentes tâches du projet Psyphine a met en relation
+ de nombreux chercheurs des différentes disciplines, tels que des psychologues,
+ philosophes, roboticiens, cogniticiens, sociologues, et neuroscientifiques
+ d’où le nom « PsyPhINe » qui est l’abréviation de « Psychologie, Philosophie,
+ Informatique et neuroscience ».
+\end_layout
+
+\begin_layout Subsubsection
+Présentation du projet
+\end_layout
+
+\begin_layout Standard
+Le projet PsyPhINe est lancé officiellement le 01/04/2016 par des chercheurs
+ de l’université de lorraine, il vise à confronter et articuler les apports
+ de différentes disciplines à la question de l’attribution d’intentionnalité,
+ d’intelligence, de cognition voire d’émotions, à des entités naturelles
+ ou des dispositifs artificiels.
+ Il s’agit d’appréhender les questions naturellement posées par l’interaction
+ homme/robot, à savoir celles liées à l’interprétation du comportement du
+ robot jusqu’à la confiance qui peut lui être ou non accordée.
+ Le projet vise notamment à explorer la gradation des attributions d’intelligenc
+e ou d’intentionnalité, quand on passe par exemple d’une mouche à un chat,
+ en faisant l'hypothèse que l'intersubjectivité ainsi que notre tendance
+ naturelle à l'anthropomorphisme jouent des rôles centraux : on projette
+ dans l'autre énormément de notre propre cognition.
+ La perspective générale du groupe de recherche pluridisciplinaire est d’aboutir
+ à la définition d’un test de Turing non verbal qui permette d’appréhender
+ l’intelligence artificielle en évitant certains écueils de la formulation
+ d’origine dudit test.
+ Dans le cadre du présent projet, le groupe PsyPhINe conduira des expérimentatio
+ns à large échelle à l’aide d'un dispositif d'interaction basé sur un prototype
+ de lampe robotisée.
+ La mise en place des protocoles expérimentaux, des questionnaires et des
+ analyses de vidéos, doublées d’analyses « profanes », constituent le support
+ et le lieu des confrontations et réflexions interdisciplinaires sur la
+ cognition.
+ Les résultats attendus en sont principalement une clarification d’un champ
+ conceptuel riche et complexe, l’ébauche d’un langage commun et la production
+ d’un référentiel des comportements donnant lieu à des interprétations intention
+nelles.
+ La valorisation des travaux sera assurée par l’organisation d’ateliers
+ interdisciplinaires et par l’édition d’un ouvrage collectif [1].
+\end_layout
+
+\begin_layout Subsection
+Pinokio
+\end_layout
+
+\begin_layout Subsubsection
+Projet Pinokio
+\end_layout
+
+\begin_layout Standard
+Le nom Pinokio est venu de la lampe Luxo Jr, l’adorable petite lampe qui
+ apparait dans le logo Disney Pixar, illustre comment les animateurs peuvent
+ donner vie à des objets inanimés banals.
+ Le trio de l’Université Victoria de Wellington, en Nouvelle-Zélande se
+ sont inspiré de la lampe Luxo pour fabriquer leurs lampe robotisée grâce
+ à une combinaison de robotique facilement accessible et de technologie
+ de fabrication automatisée, combinée à des logiciels libres.
+ Le trio qui comporte un programmeur Shanshan Zhou, un ingénieur mécanique
+ Adam Ben-Dor qui travaillait sur les détails mécaniques de la lampe et
+ un designer Joss Dogget qui s’est chargé du design et tout l’esthétique
+ de la forme de la lampe, ce trio a donc décidé en 2012 d’embellir une lampe
+ de bureau avec un peu de personnalité appelée Pinokio.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/pinokio.jpg
+	lyxscale 50
+	scale 50
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Pinokio la lampe de bureau rebotisée
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Structure de la lampe Pinokio
+\end_layout
+
+\begin_layout Standard
+La lampe Pinokio est composée dans sa structure générale de son corps d’une
+ tête, d’un bras pliant et capable d’étirer et de rétrécir, et une base
+ sur laquelle le bras tourne et 6 servo-moteurs.
+ Sur la tête on trouve une webcam pour visualiser le visage en face d’elle,
+ un microphone, une iris mécanique, 2 servo-moteur pour lui permettre d’aller
+ dans tous les sens lors de son suivie de visage et un globe halogène à
+ l’arrière de son abat-jour.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/les compo interne.jpg
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+La plaque frontale de pinokio contenant
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/la plaque.jpg
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Les composantes cachées à l’intérieure de l’abat-jour
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/servo.jpg
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Servo-moteurs de Pinokio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+structure de Pinokio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sur le bras on trouve les 4 autres servo-moteurs servant à faire les différents
+ mouvements de la lampe.
+ Sur la base un insert en acier a été placé pour permettre au bras de de
+ la lampe de se glisser et à l’aide d’une boite de vitesses en acyclique
+ intégrée a l’intérieure de la base, la lampe est capable de pivoter à 190
+ degrés et une sorte d’interrupteur pour alimenter activer la lampe.
+ La lampe Pinokio comme c’est dit précédemment est lampe robotisée qui est
+ active (qui se déplace), ses actions sont principalement pilotées par Arduino
+ et le logiciel de traitement d’image OpenCV, qui recherche le visage dans
+ les images à partir de sa webcam.
+ Lorsqu’il trouve un visage, il tente de le suivre comme s’il essayait de
+ maintenir un contact visuel.
+\end_layout
+
+\begin_layout Section
+Étude de la lampe
+\end_layout
+
+\begin_layout Standard
+Afin de répondre aux questions liées aux interactions homme/machine et l'attribu
+tion de conscience dans le cadre du projet, le groupe Psyphine a construit
+ et développé un prototype robotisé qui se présente sous la forme d'une
+ lampe dite 
+\begin_inset Quotes cld
+\end_inset
+
+La lampe de Psyphine
+\begin_inset Quotes crd
+\end_inset
+
+.
+ La structure et le modèle de fonction de cette lampe est inspiré de la
+ lampe Pinokio décrite précédement.
+\end_layout
+
+\begin_layout Subsection
+Description de la lampe
+\end_layout
+
+\begin_layout Standard
+Lampe de Psyphine, comme la montre la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:La-lampe-de"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, est construite de contreplaqué léger dont les pièces ont été découpées
+ au laser.
+ Ces derniers sont assemblées autour de cinq moteurs.
+ L’abat-jour a été découpé dans un carton jaune et contient une ampoule
+ centrale et une petite caméra située juste au dessus de l’ampoule [ reference
+ yann boniface ].
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/Lalampe.jpg
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:La-lampe-de"
+
+\end_inset
+
+La lampe de Psyphine.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Moteurs
+\end_layout
+
+\begin_layout Standard
+La lampe est équipée de cinq moteurs de la marque Robotis Dynamixel en deux
+ modèles, AX-12 et AX-18.
+ Ces moteurs permettent cinq articulations ( illustré par la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Les-moteurs-de"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) :
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 1 :
+\series default
+ la base sur un axe vertical
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 2 :
+\series default
+ le premier bras pour avancer ou éloigner la lampe
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 3 :
+\series default
+ le deuxième bras pour monter ou descendre l’abat-jour
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 4 :
+\series default
+ pour incliner l’abat-jour vers le bas ou vers le haut
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 5 :
+\series default
+ pour tourner l’abat-jour à droite ou à gauche
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/lampe_1.jpg
+	lyxscale 70
+	height 200pt
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/motors.jpg
+	lyxscale 30
+	height 200pt
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Les-moteurs-de"
+
+\end_inset
+
+Les moteurs de la lampe [ref]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Système
+\end_layout
+
+\begin_layout Standard
+La lampe robotisée est commandée par un ordinateur portable auquel les moteurs
+ sont raccordés sur un port USB ou en wifi par l’intermédiaire d’un Raspberry
+ Pi.
+ Chaque mouvement de la lampe consiste en une séquence de positions pour
+ chacun des moteurs.
+\end_layout
+
+\begin_layout Subsection
+Travaux réalisés
+\end_layout
+
+\begin_layout Standard
+La lampe Pinokio : le travail est réalisé par Dany Samy, Hugo Tram, Matthieu
+ Nogatchewsky et Simon Bauer , ce travaille touche trois axes ( transmission
+ des information , traitement d’image et détection de visage , modification
+ de la lampe ) sur le plan de transmission ils ont mis on place un partage
+ de port USB de Raspberry qui est connecté directement aux moteurs pour
+ contrôler les moteur de la lampe à distance avec des commande envoyées
+ par l’ordinateur qui fait les calculs nécessaire de la vitesse pour chaque
+ moteur et pour transmettre les images qui ont été interceptées par la caméra
+ de la lampe aux ordinateurs.
+ Ils sont utilisés le protocole UDP pour réaliser cette transmission avec
+ des socket , ils ont programmés aussi des scriptes pour automatiser la
+ tâche de la configuration du client et du serveur ( ordinateur , Raspberry
+ ), et sur le plan traitement d’image et détection de visage ils ont utilisés
+ la bibliothèque OpenCV pour compresser les images en mode JPEG avant de
+ les envoyer et il ont utilisés cette bibliothèque aussi pour faire une
+ détection de visage avec la méthode Viola et Jones , à base des résultat
+ obtenus par les fonctions de la bibliothèque, ils ont définis comment calculer
+ les angles des moteurs 4 et 3 et le temp d’exécution pour faire bouger
+ la lampe dans la direction qui lui permettre de se rapprocher le maximum
+ au centre du visage détecté au centre de l’image (un suivi de visage ).
+ Sur le plan modification de la lampe ils ont fait des expériences pour
+ identifier la cause du problème de déconnexions des moteurs, ils ont fini
+ par trouver des retouches de connectique qui améliore légèrement la connexion.
+ Un autre problème a été posé c’est le problème d’échauffement des ces motrrus,
+ et ils ont proposés une solution consistant à modifier la position de la
+ base de telle sorte qu’on peut avoir une distribution meilleure du poids
+ des moteurs.
+\end_layout
+
+\begin_layout Standard
+Lampe Robot : réaliser par les étudiants BARBILLON Stanislas, JULIO Marjorie
+ et STAB Aurélien, ils ont construit une nouvelle architecture à l’aide
+ de la bibliothèque Poppy, cette architecture facilite la définition des
+ nouveaux mouvements (interface de haut niveaux), ils sont aussi transmis
+ les fonctions de l’architecture qu’existe déjà à la nouvelle architecture
+ et pour stocker ces primitives ils ont défini une structure de stockage
+ avec des fichiers JSON et CSV et ensuite ORM.
+ En ce qui concerne la partie du suivi de visage, ils ont réalisés la détection
+ de visage avec la bibliothèque OpenCV avec la méthode de Viola et Jones,
+ puis pour faire approcher le centre de la détection au centre de l’image
+ ils ont résolus le problème cinématique par la projection de l’espace 3D
+ en 2D puis résoudre le problème avec la méthode de le cinématique inversée
+ (en 2D) avec 4 moteur (MOT_head, MOT_bas_rot , MOT_head_arm, MOT_arm).
+ Suivi de visages et détection de saillances réaliser : réalisé par les
+ étudiants Alessandro Eva et Giovinazzo Augustin.
+ Ces derniers ont utilisé la bibliothèque OpenCV (avec la méthodeViola et
+ Jones) pour la détection de visage et ces composants et comme cette bibliothèqu
+e à un taux élevé des fausses détections pour la bouche, ils ont proposé
+ des solutions basées sur les caractéristiques du visage de l’humain pour
+ faire une segmentation utilisée pour éliminer les fausses détections.
+ Ils ont aussi réalisé une détection de changement d’expression par une
+ régression linaire de l’évaluation de la bouche (l’évaluation de la taille
+ des features de la bouche détectée), cette détection dépend de deux paramètres,
+ le seuil de la détection et le nombre d’évaluation.
+ Suivi de visage et détection d’expression : réalisé par Roman Buisine et
+ Oksana Riou.
+ Ils ont travaillé sur la détection des repères faciaux avec la bibliothèque
+ Dlib.
+ Ensuite ils ont collecté des données pour construire une base d’apprentissage
+ (environ 35 images par expression), ensuite ils ont déterminé des caractéristiq
+ues à des expressions (trois expressions : surprise, joie, colère) qui sont
+ basés sur le diamètre de plusieurs composant de visage (la bouche, l’œil
+ et les sourcils).
+ Ils ont aussi réalisés une détection d’expression par une classification
+ des expression avec la méthode naïve bayésienne, pour cela ils ont utilisés
+ les données collectées dans la phase d’apprentissage pour calculer les
+ paramètres du modèle (l’espérance et la variance des caractéristiques)
+ et pour la validation du modèle, il ont utilisés la méthode de K-fold cross
+ ils ont mesurés un bon taux d’exactitude pour les expressions de la surprise
+ (82.9%) et de la joie (97.1%) et un faible taux d’exactitude pour la colère(31%).
+ Suivi de visage et détection de saillances : réalisé par Julien NOWAK et
+ Stéphane RIMLINGER.
+ Ces deux-là ont fait l’état de l’art pour les méthodse de détection faciale
+ (Viola Jones) et les bases de données (HELEN, AFLW, 300-W), ils ont décidé
+ d’utiliser la bibliothèque Dlib pour détecter les points de saillances
+ ensuite ils ont testé les différentes tailles du redimensionnement de l’image
+ pour choisir celle qui a un bon temps de calcule capable de garder les
+ performances de la détection.
+ Ils ont aussi testé la sensibilité de cette détection vis-à-vis de plusieurs
+ critères : la lumière, l’angle de vue et autres conditions particulières.
+ Dans le cadre de l’étude sur l’impact des critères de la détection, ils
+ ont proposé une utilisation possible de cette détection centrée sur des
+ comportements qui sont possibles pour détecter, ensuite ils ont mis en
+ place la détection du signe de l’ouverture des yeux.
+ 
+\end_layout
+
+\begin_layout Section
+Problématique
+\end_layout
+
+\begin_layout Section*
+Conclusion
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{Conclusion}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
