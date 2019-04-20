@@ -176,6 +176,17 @@ Introduction
 \end_layout
 
 \begin_layout Standard
+Les chapitres 1 et 2 étaient une introduction au contexte du projet ainsi
+ q'une présentation de toutes les notions importantes pour la compréhension
+ de l'approche.
+\end_layout
+
+\begin_layout Standard
+Dans ce chapitre, nous présentrons les différentes étapes de l'approche
+ suivie et expliquerons ce que nous avons utilisé dans chacune de ces étapes.
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -218,7 +229,7 @@ Pour simplifier la compréhension du fonctionnement de l'approche suivie,
 \end_layout
 
 \begin_layout Itemize
-La phase de préparation qui prend en entrée un flux vidéo (séquence d'images)
+La phase de préparation qui prend en entrée un flux vidéo (séquences d'images)
  pour produire en sortie un vecteur caractérisant les changements sur les
  différentes séquences.
 \end_layout
@@ -227,7 +238,7 @@ La phase de préparation qui prend en entrée un flux vidéo (séquence d'images
 La deuxième phase, dite de décision, qui consiste à regrouper les vecteurs
  caractéristiques en entrée afin de décider le comportement à exécuter (les
  commandes à envoyer à la lampe).
- Nous verrons ses fins en détail dans les sections qui suit.
+ Nous verrons ses phases en détail dans les sections qui suit.
 \end_layout
 
 \begin_layout Standard
@@ -235,6 +246,17 @@ La deuxième phase, dite de décision, qui consiste à regrouper les vecteurs
 wide false
 sideways false
 status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/schema.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -261,20 +283,63 @@ Structure globale du systèùme
 Phase de préparation
 \end_layout
 
+\begin_layout Standard
+Dans cette section nous entamons la phase de préparation, cette phase a
+ pour but de définir les vecteurs caractéristiques des chagements pour les
+ passer à la phase suivante.
+\end_layout
+
 \begin_layout Subsection
 Détection du visage
+\end_layout
+
+\begin_layout Standard
+La détection de visage est la première étape de l’approche.
+ Comme illustré par la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Détection-de-visage"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ ci-dessous, elle s’agit de retrouver les zone des visage (la région d'interet
+ ROI) dans une image pour qu’on puisse y effectuer des traitements par la
+ suite.
+ La méthode utilisée pour cette étape est l’histogramme de gradient orienté
+ (HOG) décrit dans (section de chapitre précédent).
+ Elle est implémentée dans la bibliothèque dlib.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/detection.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Détection-de-visage"
+
+\end_inset
+
 Détection de visage
 \end_layout
 
@@ -297,10 +362,41 @@ Détection de visage
 \end_layout
 
 \begin_layout Standard
+Une fois l’étape de détection de visage est terminée, l’étape d’extraction
+ des points de saillances prend place.
+ Cette étape utilise la région (ROI) extraite de l’étape précédente pour
+ déterminer 68 points de saillances.
+ Nous allons utiliser un algorithme dite « algorithme d’estimations des
+ points de saillances ».
+ Il est basé sur une approche inventée par Vahid Kazemi et Josephine Sullivan
+ en 2014 [].
+\end_layout
+
+\begin_layout Standard
+L'idée de base est de définir 68 points spécifiques (appelés repères) qui
+ existent sur chaque visage - le haut du menton, le bord extérieur de chaque
+ œil, le bord intérieur de chaque sourcil, etc.
+ Ensuite, entraîner un algorithme d'apprentissage automatique pour pouvoir
+ trouver ces 68 points sur n'importe quel visage.
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/landmarks.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -320,14 +416,25 @@ status collapsed
 \end_layout
 
 \begin_layout Subsection
-Éxtraction des caracteristique
+Éxtraction et encodagedes caracteristique
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/features.jpg
+	scale 55
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -344,10 +451,6 @@ status collapsed
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsection
-Encodage des informations
 \end_layout
 
 \begin_layout Standard
@@ -375,6 +478,72 @@ Génération des vecteurs caractèristiques des changements
 
 \begin_layout Section
 Phase de décision
+\end_layout
+
+\begin_layout Standard
+La deuxième et dernière phase de l'approche, est celle de décision, dans
+ laquelle nous prenons les vecteurs caractéristiques issues de la phase
+ antérieure, et on y applique des algorithmes d’apprentissage pour avoir
+ en sortie le comportement approprié.
+\end_layout
+
+\begin_layout Standard
+Nous pouvons formuler cela sous un problème d’apprentissage non supervisé
+ discret où les des données sont les vecteurs caractéristiques et les clusters,
+ ou encore classes ou groupes, sont les comportements.
+ En effet, nous devons entrainer un model 
+\begin_inset Formula $f$
+\end_inset
+
+ (une fonction de 
+\begin_inset Formula $X$
+\end_inset
+
+ dans 
+\begin_inset Formula $Y$
+\end_inset
+
+) qui permet de retourner le pour chaque entrée 
+\begin_inset Formula $x\in X$
+\end_inset
+
+ le comportement approprié 
+\begin_inset Formula $y\in Y$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f:\ X\rightarrow Y
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Avec 
+\begin_inset Formula $X$
+\end_inset
+
+ ensemble des vecteurs caractéristiques et 
+\begin_inset Formula $Y$
+\end_inset
+
+ l’ensemble des comportements.
+\end_layout
+
+\begin_layout Standard
+De plus, l’algorithme doit être capable d’apprendre en temps réel en raffinant
+ le model à chaque nouvelle donnée d’entrée.
+ Ce qui rend la tache plus complexe.
+ Pour ce faire, nous avons décider d’employer deux algorithmes de clustering
+ : k-moyennes et la carte auto-organisatrice.
 \end_layout
 
 \begin_layout Subsection
