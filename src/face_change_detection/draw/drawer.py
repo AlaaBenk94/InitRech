@@ -32,21 +32,24 @@ class drawer(Process):
 
         def animate(i):
             mat = self.queue.get()
-            return self.plot_matrix(mat),
+            print(mat["data"])
+            return self.plot_matrix(mat["codebook"], "b"), self.plot_matrix(mat["data"], "r")
 
         ani = animation.FuncAnimation(self.fig, animate, frames=100, blit=True, interval=20, repeat=True)
         plt.show()
 
 
 
-    def plot_matrix(self, mat):
+    def plot_matrix(self, mat, col):
         """
         dessinateur des neurones
-        :param mat: matrice des neurones
+        :param mat: matrice des donnée (codebook ou data)
         """
 
+        if not np.all(mat[0]):
+            return self.ax.scatter(0, 0, c=col, alpha=0.6, label="clusters", marker="x")
         mat = self.convert2d(mat)
-        return self.ax.scatter(mat[:, 0], mat[:, 1], c='b', alpha=0.6, label="clusters")
+        return self.ax.scatter(mat[:, 0], mat[:, 1], c=col, alpha=0.6, label="clusters")
 
     def convert2d(self, data):
         """
