@@ -32,7 +32,6 @@ class drawer(Process):
 
         def animate(i):
             mat = self.queue.get()
-            print(mat["data"])
             return self.plot_matrix(mat["codebook"], "b"), self.plot_matrix(mat["data"], "r")
 
         ani = animation.FuncAnimation(self.fig, animate, frames=100, blit=True, interval=20, repeat=True)
@@ -43,7 +42,7 @@ class drawer(Process):
     def plot_matrix(self, mat, col):
         """
         dessinateur des neurones
-        :param mat: matrice des donnée (codebook ou data)
+        :param mat: matrice des donnee (codebook ou data)
         """
 
         if not np.all(mat[0]):
