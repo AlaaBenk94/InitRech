@@ -88,15 +88,15 @@ if __name__ == '__main__':
         mat = { "codebook": net.codebook.reshape((-1, FCount)), "data": np.reshape(vect, (-1, FCount))}
         Q.put(mat)
 
-        # Attendre la touche q pour sortir
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-
-        # ou la touche p pour suspendre le programme
-        if cv2.waitKey(1) & 0xFF == ord('p'):
+        # Attendre la touche 'q' pour sortir
+        # ou la touche 'p' pour suspendre le programme
+        key = cv2.waitKey(1)
+        if key == 112:
             while True:
-                if cv2.waitKey(1) & 0xFF == ord('p'):
+                if cv2.waitKey(1) == 112:
                     break
+        if key == 113:
+            break
 
 
     print("[INFO] Sortir du programme...")
