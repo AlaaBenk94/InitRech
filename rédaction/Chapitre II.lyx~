@@ -615,13 +615,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename img/hog_cnn.jpg
-	scale 60
-
-\end_inset
-
 
 \end_layout
 
@@ -629,7 +622,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-visages détectés par le détecteur HOG et CNN
+
 \end_layout
 
 \end_inset

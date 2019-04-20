@@ -373,8 +373,15 @@ Une fois l’étape de détection de visage est terminée, l’étape d’extrac
 \end_layout
 
 \begin_layout Standard
+L'idée de base est de définir 68 points spécifiques (appelés repères) qui
+ existent sur chaque visage - le haut du menton, le bord extérieur de chaque
+ œil, le bord intérieur de chaque sourcil, etc.
+ Ensuite, utiliser un algorithme d'apprentissage automatique pour avoir
+ un model capable de trouver ces 68 points sur n'importe quel visage.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
-placement H
 wide false
 sideways false
 status open
@@ -407,27 +414,15 @@ status open
 
 \end_layout
 
-\begin_layout Standard
-L'idée de base est de définir 68 points spécifiques (appelés repères) qui
- existent sur chaque visage - le haut du menton, le bord extérieur de chaque
- œil, le bord intérieur de chaque sourcil, etc.
- Ensuite, utiliser un algorithme d'apprentissage automatique pour avoir
- un model capable de trouver ces 68 points sur n'importe quel visage.
-\end_layout
-
 \begin_layout Subsection
 Éxtraction et encodagedes caracteristique
 \end_layout
 
 \begin_layout Standard
-Effectuer un apprentissage sur tous les 68 points extraits est, d'une part,
- trés couteux en terme du temps et d'espace ainsi, il peuvent générer de
- bruit qui affecte la qualité des résultat obtenus.
- Par conséquent, nous allons extraire, a partir de ces points, des caracteristiq
-ues qui nous permet de destinguer les differentes expressions de visage.
- Nous avons consideré 6 caracteristiques (à savoir : distance des sourcils,
- ouverture des yeux, position du visage, ouverture de la bouche et la rotation
- du visage), ils sont illustrés sur la figure ci-dessous.
+Effectuer un apprentissage sur tous les 68 points extraits est ,d'une part,
+ trés couteux en terme du temps et d'espace ainsi, il peuvents générer de
+ bruit qui affecte la qualité des résultat.
+ Par conséquent, nous 
 \end_layout
 
 \begin_layout Standard
@@ -440,7 +435,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename img/features.jpg
-	scale 50
+	scale 55
 
 \end_inset
 
@@ -462,24 +457,6 @@ status open
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Dans notre experience, la lampe rebotisé est mis devant differents personnes
- voire les mêmes perssonnes peuvent se retrouver à des distances differents
- de la lampe.
- Cela engendre une diversité de valeurs des caracteristiques définis ci-dessus
- pour chaque personne et aussi pour la meme personne avec des differents
- distances.
- De ce fait, il est nécéssaire de normaliser ce vecteur des caracteristique
- pour que la diversité des personnes (ou leurs distances de la camera) n'affecte
- pas les résultat retournés.
- Nous avons donc normaliser notre vecteur caracteristique, en prenant le
- rapports des caracteristiques sur des distance fixe dans le visage, par
- exemple le rapport entre la largeur et la longueur des yeux represente
- le proportion d'ouverture des yeux.
- En conséquence, la valeur de chacune des caracteristique est compris entre
- 0 et 1.
 \end_layout
 
 \begin_layout Standard
