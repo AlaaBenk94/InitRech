@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
 	# initialisation de flux video
 	print("[INFO] preparation de la camera...")
-	vs = cv2.VideoCapture(1)
+	vs = cv2.VideoCapture(0)
 
 	# recuperation du FPS de la camera
 	fps = vs.get(cv2.CAP_PROP_FPS)
@@ -86,6 +86,11 @@ if __name__ == '__main__':
 	    # print(net.codebook)
 	    Q.put(net.codebook.reshape((N*N, FCount)))
 
+	    if cv2.waitKey(1) & 0xFF == ord('p'):
+	        while True:
+	        	if cv2.waitKey(1) & 0xFF == ord('p'):
+	        		break
+	 
 	    # Attendre la touche q pour sortir
 	    if cv2.waitKey(1) & 0xFF == ord('q'):
 	        break
