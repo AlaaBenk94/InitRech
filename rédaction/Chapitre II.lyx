@@ -234,10 +234,7 @@ Les cascades de Haar est une méthode utilisée pour la détection d’objet
 La fonction cascade est formée à partir de nombreuses images positives et
  négatives.
  Il est par la suite utilisé pour détecter des objets dans d’autres images.
-\end_layout
-
-\begin_layout Standard
-Cette méthode travaille avec la détection de visage.
+ Cette méthode travaille avec la détection de visage.
  Initialement, l’algorithme nécessite beaucoup d’images positives (image
  de visage) et d’images négatives (images sans visages) pour former le classifie
 ur.
@@ -661,11 +658,396 @@ Une différence notable entre les deux modèles de détection, HOG fait un
 \end_layout
 
 \begin_layout Section
-Apprentissage automatique & Clustering
+Clustering
 \end_layout
 
-\begin_layout Section
-Carte auto-organisatrice
+\begin_layout Standard
+Le clustering ou la classification non supervisée en français, est une technique
+ de classification très parlante en apprentissage automatique, en analyse
+ et en fouille de donnée ainsi qu’en reconnaissance de formes.
+ Il fait une partie intégrante de tout un processus d’analyse exploratoire
+ de données permettant de produire ses outils de synthétisation, de prédiction,
+ de visualisation et d’interprétation d’un ensemble d’individus (personnes,
+ objets, processus, etc.).
+ L’objectif est, à partir de données constituées d’un ensemble d’individus
+ ou d’objets et d’une relation de proximité entre ceux-ci, de construire
+ des groupes d’individus homogènes dans les sens où :
+\end_layout
+
+\begin_layout Itemize
+Deux individus proches doivent appartenir à un même ensemble (groupe).
+\end_layout
+
+\begin_layout Itemize
+Deux individus éloignés doivent appartenir à des groupes différents.
+\end_layout
+
+\begin_layout Standard
+Afin de définir l’homogénéité d’un groupe d’observation, il est nécessaire
+ de mesurer une ressemblance entre deux observations.
+ D’où la notion de similarité et de dissimilarité [4]
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/clustering.jpg
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Clustering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ici, les points originaux ce sont les données constituées par exemple un
+ ensemble d’individus, le clustering les partitionne dans des groupes où
+ chaque groupe représente un ensemble d’individus qui partagent une même
+ caractéristique.
+ Le clustering comprend plusieurs algorithmes de classifications pour classifier
+ chaque point de données dans un groupe spécifique tels que : k-Means le
+ plus algorithme connu dans la classification non supervisée, Mean-Shift
+ un algorithme basé sur une fenêtre glissante qui tente de trouver des zones
+ senses de points de données, Density-Based Spatial Clustering of Applications
+ with Noise (DBSCAN), un algorithme basé sue la densité similaire au décalage
+ moyen, Expectation-Maximization (EM) à l’aide de Modèles de Mélange Gaussiens
+ (GMM) et Self Organisation Map (SOM).
+ Dans ce qui suit nous allons nous intéressés aux deux algorithmes suivent
+ k-Means et l’algorithme Safe Organizen Map (SOM).
+\end_layout
+
+\begin_layout Subsection
+K-means
+\end_layout
+
+\begin_layout Standard
+K-Means est probablement l’algorithme de classification le plus connu.
+ C’est un algorithme facile à comprendre et à implémenter.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/kmeans_avant.jpg
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+avant le clustering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/kmeans_apres.jpg
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+aprés le clustering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+K-means clustering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La figure ci-dessus montre un exemple de classification par l’algorithme
+ k-Means, tels que les points noirs à droites sont les points de données
+ de départs et à la fin on affecte chaque point dans son groupe, ici nous
+ avons trois groupes (groupes des points bleus, verts et rouges).
+\end_layout
+
+\begin_layout Standard
+Pour commencer, nous avons d’abord sélectionnés un certain nombre de classes
+ (groupes) à utiliser en initialisant aléatoirement leurs points centraux
+ respectifs.
+ Dans notre exemple nous avons trois classes.
+ Les points centraux sont des vecteurs de la même longueur que chaque vecteur
+ de points de données.
+\end_layout
+
+\begin_layout Standard
+Chaque point de données (points noirs) est classé en calculant la distance
+ entre ce point et chaque centre de groupe, puis en classant le point dans
+ le groupe dont le centre est le plus proche.
+ Sur la base de ces points classés, nous recalculons le centre du groupe
+ en prenant la moyenne de tous les vecteurs du groupe.
+\end_layout
+
+\begin_layout Standard
+Nous répétons cette étape pour un nombre défini d’itérations ou jusqu’à
+ ce que les centres de groupe ne changent plus beaucoup d’une itération
+ à une autre.
+ Comme il est possible de choisir d’initialiser plusieurs fois le centre
+ de groupe de manière aléatoire, puis de sélectionner le cycle qui donne
+ les meilleurs résultats.
+\end_layout
+
+\begin_layout Standard
+K-Means a l’avantage d’être assez rapide, car nous ne faisons que calculer
+ les distances entre les points et les centres de groupe.
+ Très peu de calculs, sa complexité linéaire est O (n).
+\end_layout
+
+\begin_layout Standard
+D’autres parts, K-Means présente quelques inconvénients.
+ Tout d’abord, nous devons sélectionner le nombre de groupes (classes).
+ Ce n’est pas toujours évident et idéalement avec un algorithme de classificatio
+n, nous aimerions qu’il soit mieux compris pas ceux-ci, car il s’agit là
+ d’obtenir un aperçu des données.
+ K-Means commence également par un choix aléatoire de centre de grappes
+ et peut donc donner différents résultats de frappes dur différentes exécutions
+ de l’algorithme.
+ Ainsi, les résultats peuvent ne pas être reproductible et manquer de cohérences.
+\end_layout
+
+\begin_layout Subsection
+Carte auto-organisatrice (SOM)
+\end_layout
+
+\begin_layout Standard
+Self Organizen Map ou la carte auto organisatrice (SOM), est un type de
+ réseau de neurones artificiels (RNA) formé à l’aide d’un apprentissage
+ non supervisé afin de produire une représentation discrète, généralement
+ bidimensionnelle, de l’espace d’entrée des échantillons d’apprentissage.
+ La carte est donc une méthode pour faire la réduction de dimensionnalité.
+ Les carte auto organisatrices différent des autres réseaux de neurones
+ artificiels par le fait qu’elles appliquent l’apprentissage compétitif
+ par opposition à l’apprentissage avec correction d’erreur et qu’elles utilisent
+ une fonction de voisinage pour préserver les propriétés topologiques de
+ l’espace d’entrée.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/som.jpg
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Réduction de la dimensionnalité dans la SOM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+SOM a été introduite par le professeur finlandais Teuvo Kohonen dans les
+ années 1980, elle est aussi appelée carte de Kohonen.
+\end_layout
+
+\begin_layout Standard
+Chaque point de données dans l’ensemble des points de données se reconnait
+ en compétition pour la représentation.
+ Les étapes de mappage SOM commencent par l’initialisation des vecteurs
+ de pondération.
+ A partir de là, un vecteur d’échantillon est sélectionné de manière aléatoire
+ et la carte des vecteurs de poids est explorée pour trouver quel poids
+ représente le mieux cet échantillon.
+ Chaque vecteur de poids a des poids voisins qui lui sont proches.
+ Le poids choisi est récompensé par sa capacité de ressembler davantage
+ à cet échantillon de vecteur sélectionné au hasard.
+ Les voisins de ce poids sont également récompensés par leur capacité à
+ ressembler davantage au vecteur échantillon choisi.
+ Cela permet à la carte de s’agrandir et de former différentes formes.
+ Plus généralement, ils forment des formes carrées, rectangulaires, hexagonales
+ et L dans un espace de fonction 2D.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/decision_som.jpg
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+: Illustration de la décision de base à prendre lors de la croissance
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+L’algorithme SOM :
+\end_layout
+
+\begin_layout Enumerate
+Initialiser chaque poids de chaque nœud.
+\end_layout
+
+\begin_layout Enumerate
+Choisir un vecteur au hasard dans l’ensemble des données d’apprentissages.
+\end_layout
+
+\begin_layout Enumerate
+Chaque nœud est examiné pour calculer les poids qui ressemblent le plus
+ au vecteur d’entrée.
+ Le nœud gagnant est généralement appelé unité de meilleure correspondance
+ ou Best Matching Unit (BMU)
+\end_layout
+
+\begin_layout Enumerate
+Le poids gagnant est récompensé par le fait de ressembler davantage au vecteur
+ échantillon.
+ Les voisins deviennent également davantage comme le vecteur échantillon.
+ Plus le nœud est proche du BMU, plus des poids sont modifiés et plus le
+ voisin est éloigné du BMU, moins il en apprend.
+\end_layout
+
+\begin_layout Enumerate
+Répéter l’étape 2 pour N itération.
+\end_layout
+
+\begin_layout Standard
+BMU est technique qui calcul la distance entre chaque poids et le vecteur
+ échantillon en parcourant tous les vecteurs de poids.
+ Le poids avec la distance la plus courte est le gagnant.
+ Il existe nombreuse façon de déterminer la distance, cependant la méthode
+ la plus couramment utilisée est la distance euclidienne.
 \end_layout
 
 \begin_layout Section*

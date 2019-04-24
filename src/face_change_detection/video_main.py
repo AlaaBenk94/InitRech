@@ -27,7 +27,7 @@ if __name__ == '__main__':
     print("[INFO] chargement de classifieur...")
     N = 3 # order of net matrix
     FCount = 8 # number of features
-    net = DSOM_MODEL((N, N, FCount), init_method='regular')
+    net = DSOM_MODEL((N, N, FCount), init_method='regular', elasticity=1.0)
 
     # initialisation de flux video
     print("[INFO] preparation de la camera...")
