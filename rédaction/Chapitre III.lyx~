@@ -315,7 +315,7 @@ Le prétraitement est l'étape avant-première (ou l'étape zéro), dans laquell
  Ensuite, nous les convertirons en niveaux de gris (grayscale) car nous
  n’avons pas besoin des couleurs dans nos prochains traitements (détection
  du visage, extraction des points de saillances…).
- Ces images seront ainsi redimensionnées pour diminuer le temps de traitements.
+ Ces images seront ainsi redimensionnées pour diminuer le temps des traitements.
 \end_layout
 
 \begin_layout Standard
@@ -333,6 +333,13 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/preprocessing.jpg
+	scale 50
+
+\end_inset
+
 
 \end_layout
 
@@ -781,13 +788,14 @@ Au départ, nous initialisons le poids des neurones aléatoirement.
  Puis, nous utilisons ce vecteur d'entrée et le BMU pour ajuster les poids
  des neurones.
  Cela correspond à l'entraînement de la DSOM.
- En effet, les poids de BMU seront modifiés par la formule suivante :
+ En effet, les poids de BMU et son voisinage, determiné par la fonction
+ gaussienne, seront modifiés par la formule suivante :
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-Formule
+\Delta w_{i}=\varepsilon\parallel v-w_{i}\parallel h_{η}(i,s,v)(v-w_{i})\tag{[ref]}
 \]
 
 \end_inset
@@ -796,20 +804,51 @@ Formule
 \end_layout
 
 \begin_layout Standard
-Par la suite, le voisinage de BMU est determiné par la fonction gaussienne
- puis les nouveaux poids de chaque voisin sont obtenu par la formule suivante
- :
+Avec :
 \end_layout
 
-\begin_layout Standard
-\begin_inset Formula 
-\[
-Formule
-\]
-
+\begin_layout Itemize
+\begin_inset Formula $\Delta w_{i}$
 \end_inset
 
+ : le nouveau poids et 
+\begin_inset Formula $w_{i}$
+\end_inset
 
+ l'ancien poids
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $v$
+\end_inset
+
+ : le vecteur d'entrée
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ : est la constante du taux d'apprentissage (learning rate)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $h_{η}(i,s,v)$
+\end_inset
+
+ : la fonction du voisinage où 
+\begin_inset Formula $i$
+\end_inset
+
+ l'indice du neurone, 
+\begin_inset Formula $s$
+\end_inset
+
+ représente le meilleure correspondant (BMU) et 
+\begin_inset Formula $η$
+\end_inset
+
+ l'élasticité 
 \end_layout
 
 \begin_layout Standard

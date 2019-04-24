@@ -797,9 +797,10 @@ avant le clustering
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename img/kmeans_apres.jpg
 	scale 60

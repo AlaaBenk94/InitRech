@@ -192,13 +192,13 @@ addcontentsline{toc}{section}{Introduction}
 \end_layout
 
 \begin_layout Standard
-Premierement et avant d'expliquer notre méthodologie, il necessaire d'introduire
- le contexte du projet et les moyens logiciels et matériels existante.
- Au cours de chapitre actuel, nous présentons le projet Psyphine et d'autres
- projets similaires.
- Nous decrivons la structure physique de la lampe rebotisé, ses caracteristiques
-, ainsi que les travaux réalisé dans le cadre du même projet.
- Nous cloturons ce chapitre par l'établissement de notre problématique sur
+Premièrement et avant d'expliquer notre méthode, il nécessaire d'introduire
+ le contexte du projet et les moyens logiciels et matériels existants.
+ Au cours du chapitre, nous présentons le projet Psyphine et d'autres projets
+ similaires.
+ Nous décrivons la structure physique de la lampe robotisée, ses caractéristique
+s, ainsi que les travaux réalisés dans le cadre du même projet.
+ Nous clôturons ce chapitre par l'établissement de notre problématique sur
  laquelle nous construisons notre solution.
 \end_layout
 
@@ -302,7 +302,7 @@ status open
 \begin_inset Graphics
 	filename img/pinokio.jpg
 	lyxscale 50
-	scale 50
+	scale 40
 	rotateOrigin center
 
 \end_inset
@@ -325,137 +325,6 @@ Pinokio la lampe de bureau rebotisée
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsubsection
-Structure de la lampe Pinokio
-\end_layout
-
-\begin_layout Standard
-La lampe Pinokio est composée dans sa structure générale de son corps d’une
- tête, d’un bras pliant et capable d’étirer et de rétrécir, et une base
- sur laquelle le bras tourne et 6 servo-moteurs.
- Sur la tête on trouve une webcam pour visualiser le visage en face d’elle,
- un microphone, une iris mécanique, 2 servo-moteur pour lui permettre d’aller
- dans tous les sens lors de son suivie de visage et un globe halogène à
- l’arrière de son abat-jour.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/les compo interne.jpg
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-La plaque frontale de pinokio contenant
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/la plaque.jpg
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Les composantes cachées à l’intérieure de l’abat-jour
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/servo.jpg
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Servo-moteurs de Pinokio
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-structure de Pinokio
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sur le bras on trouve les 4 autres servo-moteurs servant à faire les différents
- mouvements de la lampe.
- Sur la base un insert en acier a été placé pour permettre au bras de de
- la lampe de se glisser et à l’aide d’une boite de vitesses en acyclique
- intégrée a l’intérieure de la base, la lampe est capable de pivoter à 190
- degrés et une sorte d’interrupteur pour alimenter activer la lampe.
- La lampe Pinokio comme c’est dit précédemment est lampe robotisée qui est
- active (qui se déplace), ses actions sont principalement pilotées par Arduino
- et le logiciel de traitement d’image OpenCV, qui recherche le visage dans
- les images à partir de sa webcam.
- Lorsqu’il trouve un visage, il tente de le suivre comme s’il essayait de
- maintenir un contact visuel.
 \end_layout
 
 \begin_layout Section
@@ -706,11 +575,13 @@ Système
 \end_layout
 
 \begin_layout Standard
-La lampe robotisée est commandée par un ordinateur portable auquel les moteurs
- sont raccordés sur un port USB ou en wifi par l’intermédiaire d’un Raspberry
- Pi.
- Chaque mouvement de la lampe consiste en une séquence de positions pour
- chacun des moteurs.
+La lampe comporte un système qui permet de faire fonctionner les moteurs.
+ Cependant, la totalité des traitements couteux sont exécutés sur un ordinateur
+ auquel les moteurs sont raccordés sur un port USB ou en wifi par l’intermédiair
+e d’un Raspberry Pi.
+ Cet ordinateur s’occupe de commander la lampe rebotisé dont chaque mouvement
+ de cette dernière consiste en une séquence de positions pour chacun des
+ moteurs.
 \end_layout
 
 \begin_layout Subsection
@@ -718,99 +589,73 @@ Travaux réalisés
 \end_layout
 
 \begin_layout Standard
-La lampe Pinokio : le travail est réalisé par Dany Samy, Hugo Tram, Matthieu
- Nogatchewsky et Simon Bauer , ce travaille touche trois axes ( transmission
- des information , traitement d’image et détection de visage , modification
- de la lampe ) sur le plan de transmission ils ont mis on place un partage
- de port USB de Raspberry qui est connecté directement aux moteurs pour
- contrôler les moteur de la lampe à distance avec des commande envoyées
- par l’ordinateur qui fait les calculs nécessaire de la vitesse pour chaque
- moteur et pour transmettre les images qui ont été interceptées par la caméra
- de la lampe aux ordinateurs.
- Ils sont utilisés le protocole UDP pour réaliser cette transmission avec
- des socket , ils ont programmés aussi des scriptes pour automatiser la
- tâche de la configuration du client et du serveur ( ordinateur , Raspberry
- ), et sur le plan traitement d’image et détection de visage ils ont utilisés
- la bibliothèque OpenCV pour compresser les images en mode JPEG avant de
- les envoyer et il ont utilisés cette bibliothèque aussi pour faire une
- détection de visage avec la méthode Viola et Jones , à base des résultat
- obtenus par les fonctions de la bibliothèque, ils ont définis comment calculer
- les angles des moteurs 4 et 3 et le temp d’exécution pour faire bouger
- la lampe dans la direction qui lui permettre de se rapprocher le maximum
- au centre du visage détecté au centre de l’image (un suivi de visage ).
- Sur le plan modification de la lampe ils ont fait des expériences pour
- identifier la cause du problème de déconnexions des moteurs, ils ont fini
- par trouver des retouches de connectique qui améliore légèrement la connexion.
- Un autre problème a été posé c’est le problème d’échauffement des ces motrrus,
- et ils ont proposés une solution consistant à modifier la position de la
- base de telle sorte qu’on peut avoir une distribution meilleure du poids
- des moteurs.
+Dans le cadre du projet, une panoplie de travaux ont été réalisés par des
+ étudiants.
+ Nous en citons :
 \end_layout
 
 \begin_layout Standard
-Lampe Robot : réaliser par les étudiants BARBILLON Stanislas, JULIO Marjorie
- et STAB Aurélien, ils ont construit une nouvelle architecture à l’aide
- de la bibliothèque Poppy, cette architecture facilite la définition des
- nouveaux mouvements (interface de haut niveaux), ils sont aussi transmis
- les fonctions de l’architecture qu’existe déjà à la nouvelle architecture
- et pour stocker ces primitives ils ont défini une structure de stockage
- avec des fichiers JSON et CSV et ensuite ORM.
- En ce qui concerne la partie du suivi de visage, ils ont réalisés la détection
- de visage avec la bibliothèque OpenCV avec la méthode de Viola et Jones,
- puis pour faire approcher le centre de la détection au centre de l’image
- ils ont résolus le problème cinématique par la projection de l’espace 3D
- en 2D puis résoudre le problème avec la méthode de le cinématique inversée
- (en 2D) avec 4 moteur (MOT_head, MOT_bas_rot , MOT_head_arm, MOT_arm).
+Le travail réalisé par D.
+ SAMY, H.
+ TRAM, M.
+ NOGATCHEWSKY et S.
+ Bauer sur plusieurs axes.
+ En premier, Ils ont mis en place un système pour contrôler les moteurs
+ de la lampe à distance.
+ Ensuite, ils ont réalisé un suivi de visage dont la détection est basée
+ sur la méthode Viola et Jones implémenté dans la bibliothèque OpenCV.
+ Finalement, leur travail à révélé plusieurs problèmes comme la fluidité
+ de mouvement de suivi, qui a été réglé en modifiant le temps d’exécution,
+ ainsi que le problème persistant de réchauffement des moteurs.
 \end_layout
 
 \begin_layout Standard
-Suivi de visages et détection de saillances réaliser : réalisé par les étudiants
- Alessandro Eva et Giovinazzo Augustin.
- Ces derniers ont utilisé la bibliothèque OpenCV (avec la méthodeViola et
- Jones) pour la détection de visage et ces composants et comme cette bibliothèqu
-e à un taux élevé des fausses détections pour la bouche, ils ont proposé
- des solutions basées sur les caractéristiques du visage de l’humain pour
- faire une segmentation utilisée pour éliminer les fausses détections.
- Ils ont aussi réalisé une détection de changement d’expression par une
- régression linaire de l’évaluation de la bouche (l’évaluation de la taille
- des features de la bouche détectée), cette détection dépend de deux paramètres,
- le seuil de la détection et le nombre d’évaluation.
+S.
+ BARBILLON, M.
+ JULIO et A.
+ STAB ont construit une nouvelle architecture à l’aide de la bibliothèque
+ Poppy pour faciliter la définition des nouveaux mouvements (interface de
+ haut niveaux).
+ Ils ont adapté la même méthode que celle du travail précédent pour le suivi
+ de visage.
+ Ainsi, ils ont consacré une grande partie de leur travail pour la cinématique
+ inversé pour les mouvements de la lampe.
 \end_layout
 
 \begin_layout Standard
-Suivi de visage et détection d’expression : réalisé par Roman Buisine et
- Oksana Riou.
- Ils ont travaillé sur la détection des repères faciaux avec la bibliothèque
- Dlib.
- Ensuite ils ont collecté des données pour construire une base d’apprentissage
- (environ 35 images par expression), ensuite ils ont déterminé des caractéristiq
-ues à des expressions (trois expressions : surprise, joie, colère) qui sont
- basés sur le diamètre de plusieurs composant de visage (la bouche, l’œil
- et les sourcils).
- Ils ont aussi réalisés une détection d’expression par une classification
- des expression avec la méthode naïve bayésienne, pour cela ils ont utilisés
- les données collectées dans la phase d’apprentissage pour calculer les
- paramètres du modèle (l’espérance et la variance des caractéristiques)
- et pour la validation du modèle, il ont utilisés la méthode de K-fold cross
- ils ont mesurés un bon taux d’exactitude pour les expressions de la surprise
- (82.9%) et de la joie (97.1%) et un faible taux d’exactitude pour la colère(31%).
+Un autre travail de A.
+ Eva et G.
+ Augustin qui s’est concentré sur le suivi du visage et la détection des
+ changements d’expressions.
+ La méthode de Vila et Jones a été appliqué pour la détection du visage
+ avec des amélioration au niveau de la détection de la bouche.
+ Cette phase a été suivi par l’application de la régression linéaire pour
+ détecter l’ouverture de la bouche.
 \end_layout
 
 \begin_layout Standard
-Suivi de visage et détection de saillances : réalisé par Julien NOWAK et
- Stéphane RIMLINGER.
- Ces deux-là ont fait l’état de l’art pour les méthodse de détection faciale
- (Viola Jones) et les bases de données (HELEN, AFLW, 300-W), ils ont décidé
- d’utiliser la bibliothèque Dlib pour détecter les points de saillances
- ensuite ils ont testé les différentes tailles du redimensionnement de l’image
- pour choisir celle qui a un bon temps de calcule capable de garder les
- performances de la détection.
- Ils ont aussi testé la sensibilité de cette détection vis-à-vis de plusieurs
- critères : la lumière, l’angle de vue et autres conditions particulières.
- Dans le cadre de l’étude sur l’impact des critères de la détection, ils
- ont proposé une utilisation possible de cette détection centrée sur des
- comportements qui sont possibles pour détecter, ensuite ils ont mis en
- place la détection du signe de l’ouverture des yeux.
+R.
+ Buisine et O.
+ Riou ont exploré un axe de travail différents des autres travaux.
+ Il s’agit de la classification des émotions.
+ Ils ont commencé par l’utilisation d’une nouvelle bibliothèque (dlib) pour
+ la détection du visage et l’extraction des points de saillances.
+ Ensuite, l’application du classifieur bayésien pour détecter trois émotions
+ (joie, colère et surprise).
+ Le model a été validé par la validation croisée a k-plis avec une précision
+ de 82%, 97% et 31% pour la surprise, la joie et la colère respectivement.
+\end_layout
+
+\begin_layout Standard
+Le projet le plus récent est celui de J.
+ NOWAK et S.
+ RIMLINGER.
+ Il traite la détection du visage et l’extraction des points de saillances
+ dont une grande partie était consacrée à l’amélioration des performances
+ et l’évaluation de la détection, de la bibliothèque dlib, sur les différentes
+ contraintes (l’intensité de lumière, l’angle de rotation…).
+ Ils ont clôturé leur réalisation par la mise en place d’une méthode de
+ détection d’ouverture de bouche.
 \end_layout
 
 \begin_layout Section
@@ -819,18 +664,39 @@ Problématique
 
 \begin_layout Standard
 Plusieurs sujets ont été abordé dans les travaux précédents du projet Psyphine.
- Cependant, la deversité des domaine du projet Psyphine
+ Cependant, la diversité et la richesse des disciplines du projet Psyphine
+ ont rendu difficile de travailler sur tous les axes du projet.
+ Par conséquence, et puisque le but du projet est d’étudier les réactions
+ et le comportement des gens à travers des expériences d’une durée de 10
+ minutes dans laquelle Ils seront en interaction non verbale avec la lampe
+ rebotisé.
 \end_layout
 
 \begin_layout Standard
-Nous voulons affecter à la lampe la capacité d’interagir (de se comporter)
- conformément au changement d'expressions du visage de la personne en face.
- Donc notre objectif est de concevoir un système qui permet à la lampe d’exécute
-r des comportements suivant les differentes réactions des gens.
+Notre contribution est donc, d’affecter à la lampe la capacité d’interagir
+ (de se comporter) conformément au changement d'expressions du visage de
+ la personne en face.
+ En effet, problématique principale est comment concevons-nous un système
+ qui permet à la lampe d’exécuter des comportements suivant les différentes
+ réactions des gens perçues par le biais de sa webcam.
+\end_layout
+
+\begin_layout Standard
+Nous pouvons diviser cette problématique en deux sous problématiques dont
+ la première sera le choix de la méthode d’extraction et la représentation
+ des comportements des gens et la deuxième sera le regroupement (clustering)
+ de ces comportements afin de décider le comportement approprié.
 \end_layout
 
 \begin_layout Section*
 Conclusion
+\end_layout
+
+\begin_layout Standard
+Ce chapitre à servie comme introduction au projet et à notre problématique
+ sur laquelle notre contribution sera basée.
+ Dans le chapitre suivant nous plongeons dans les notions techniques des
+ méthodes existantes dans l’état de l’art.
 \end_layout
 
 \begin_layout Standard
