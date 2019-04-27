@@ -53,7 +53,7 @@ if __name__ == '__main__':
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         # appliquer une egalisation d'histogramme.
-        # gray = cv2.equalizeHist(gray)
+        gray = cv2.equalizeHist(gray)
 
         # extraction des points de saillances
         ret, face, rect = lmk.extract_landmarks(gray)

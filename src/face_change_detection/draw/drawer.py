@@ -22,6 +22,7 @@ class drawer(Process):
         self.queue = q
         self.sc = StandardScaler()
         self.pca = PCA(n_components=2)
+        self.data = None
 
     def run(self):
         """
@@ -32,9 +33,9 @@ class drawer(Process):
 
         def animate(i):
             mat = self.queue.get()
-            return self.plot_matrix(mat["codebook"], "b"), self.plot_matrix(mat["data"], "r", mark="x")
+            return self.plot_matrix(mat["codebook"], "b") #self.plot_matrix(self.data, "r", mark="x")
 
-        ani = animation.FuncAnimation(self.fig, animate, frames=None, blit=True, interval=5, repeat=False)
+        ani = animation.FuncAnimation(self.fig, animate, frames=None, blit=True, interval=40, repeat=False)
         plt.show()
 
 
@@ -45,10 +46,28 @@ class drawer(Process):
         :param mat: matrice des donnee (codebook ou data)
         """
 
-        if not np.all(mat[0]):
-            return self.ax.scatter(0, 0, c=col, alpha=0.6, label="clusters", marker=mark)
+        # if not np.all(mat[0]):
+        #     return self.ax.scatter(0, 0, c=col, alpha=0.6, label="clusters", marker=mark)
         mat = self.convert2d(mat)
-        return self.ax.scatter(mat[:, 0], mat[:, 1], c=col, alpha=0.6, label="clusters", marker=mark)
+        anots = self.anotations(mat)
+        anots = np.append(anots, self.ax.scatter(mat[:, 0], mat[:, 1], c=col, alpha=0.6, label="clusters", marker=mark))
+
+        return tuple(anots)
+
+    def anotations(self, data):
+        """
+        annoter les points dessines
+        :param data: les coordonnees des points a annoter
+        :return: annotations
+        """
+        i = 0
+        anots = np.array([])
+        for x, y in data:
+            anots = np.append(anots, plt.annotate(i, xy=(x, y)))
+            i = i + 1
+
+        return anots
+
 
     def convert2d(self, data):
         """
