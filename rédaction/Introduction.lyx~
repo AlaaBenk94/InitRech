@@ -7,7 +7,27 @@
 \textclass report
 \begin_preamble
 \usepackage[bottom]{footmisc}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{minitoc}
+\usepackage{pgfplots}
 \usepackage{lmodern}
+
+\usepackage{titletoc}% http://ctan.org/pkg/titletoc
+\titlecontents{chapter}% <section-type>
+  [0pt]% <left>
+  {\bfseries}% <above-code>
+  {\chaptername\ \thecontentslabel:\quad}% <numbered-entry-format>
+  {}% <numberless-entry-format>
+  {\hfill\contentspage}% <filler-page-format>
+
+\fancyhead[R,C]{}
+\fancyhead[L]{\footnotesize\leftmark}
+\renewcommand{\headrulewidth}{1pt}
+\fancyfoot[L,C]{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\footrulewidth}{0pt}
+
 \oddsidemargin = 18pt
 \topmargin = 0pt
 \headheight = 22pt
@@ -105,6 +125,36 @@ Introduction générale
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{1}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{arabic}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+mtcaddchapter[Introduction générale]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \align block
 L'expansion rapide de l'industrie de l'intelligence artificielle et de la
  robotique est un facteur important qui influence et transforme divers aspects
@@ -115,33 +165,74 @@ L'expansion rapide de l'industrie de l'intelligence artificielle et de la
  machines, que ce soit à des fins pratiques (thérapeutiques, professionnelles,
  scientifiques, quotidien ménager) ou ludiques.
  Par conséquent, ces relations, entre l'homme et la machine, entrainent
- de nombreuses questions et plus particulièrement sur l’attribution d’intentions
-, d’intelligence voire de conscience à un objet robotisé non humanoïde.
+ de nombreuses questions et plus particulièrement sur l’
+\series bold
+attribution d’intentions
+\series default
+, d’
+\series bold
+intelligence
+\series default
+ voire de 
+\series bold
+conscience
+\series default
+ à un objet robotisé non humanoïde.
  Autrement dit, l’aspect humanoïde de la machine est-il nécessaire pour
- que nous soyons enclins à lui prêter des états mentaux ? Afin d'étudier
- ces interactions et dans le but de répondre à ses questions liées au sujet,
- le projet Psyphine a été mis en place.
+ que nous soyons enclins à lui prêter des états mentaux ?.
+ Afin d'étudier ces interactions et dans le but de répondre à ses questions
+ liées au sujet, le projet 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "PsyPhINe"
+description "Psychologie, Philosophie, Informatique et Neuroscience"
+literal "false"
+
+\end_inset
+
+Psyphine a été mis en place.
 \end_layout
 
 \begin_layout Standard
 \align block
 Le projet Psyphine regroupe plusieurs disciplines, à savoir, la psychologie,
  la philosophie, l'informatique et la neuroscience.
- Il s’interroge sur les interactions homme-robot et cherche à répondre à
- ces interrogations à travers plusieurs expériences.
- Pour ce faire, il utilise un prototype robotisé qui se présente sous la
- forme d’une lampe « La lampe Psyphine ».
+ Il s’interroge sur les 
+\series bold
+interactions
+\series default
+ homme-robot et cherche à répondre à ces interrogations à travers plusieurs
+ expériences.
+ Pour ce faire, il utilise un 
+\series bold
+prototype robotisé
+\series default
+ qui se présente sous la forme d’une lampe « La lampe Psyphine ».
  Cette dernière est un modèle unique qui a été construit et développé par
  le groupe.
 \end_layout
 
 \begin_layout Standard
 \align block
-Puisque le but du projet est d’étudier les réactions et les comportements
+Puisque le but du projet est d’étudier les 
+\series bold
+réactions
+\series default
+ et les 
+\series bold
+comportements
+\series default
  des gens à travers des expériences dans laquelle les personnes seront en
  interaction non verbale avec la lampe rebotisé, notre objectif sera d'affecter
- à la lampe, la capacité d’interagir (de se comporter) conformément au changemen
-t d'expressions du visage de la personne dans l’expérience.
+ à la lampe, la 
+\series bold
+capacité d’interagir
+\series default
+ (de se comporter) conformément au 
+\series bold
+changement d'expressions du visage
+\series default
+ de la personne dans l’expérience.
  La question que nous essayons d’y répondre est comment concevons-nous un
  système qui permet à la lampe d’exécuter des comportements suivant les
  différentes réactions des gens perçues par le biais de sa webcam ?.

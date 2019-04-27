@@ -1,0 +1,156 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass report
+\begin_preamble
+\providecommand{\motscles}[1]{\textbf{\textit{mots clés :}} #1}
+\providecommand{\keywords}[1]{\textbf{\textit{Keywords :}} #1}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language french
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style french
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Abstract
+Dans le cadre du projet Psyphine qui vise à explorer et étudier les interactions
+ entre l'homme et la machine ainsi, que l'attribution d'intentions et de
+ conscience à cette dernière.
+ Ce rapport présente notre contribution au projet, à savoir, la conception
+ d'un système qui donne, à un prototype robotisé, la capacité d'interagir
+ suivant les différents changements d'expression perçues.
+ Le système comporte plusieurs phases dont la première s'agit de l'emploi
+ de la méthode d'histogramme des gradients orientés combinée avec l'apprentissag
+e automatique pour extraire des points de saillances qui seront par la suite
+ utilisés dans le calcul des vecteurs caractéristiques des changements pour
+ enfin effectuer un clustering utilisant la carte auto-organisatrice dynamique.
+\end_layout
+
+\begin_layout Abstract
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+motscles{Psyphine; intéractions; détection; HOG; dlib; apprentissage-automatique
+; carte auto-organisatrice dynamique} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+
+\lang english
+As part of the Psyphine project, which aims to explore and study the interaction
+s between man and machine as well as the attribution of intentions and conscious
+ness to the latter.
+ This report presents our contribution to the project, namely, the design
+ of a system that gives a robotic prototype the ability to interact according
+ to the different perceived changes in expression.
+ The system consists of several phases, the first of which is the use of
+ the oriented gradient histogram method combined with automatic learning
+ to extract salient points that will then be used to calculate the characteristi
+c vectors of the changes and finally perform clustering using the dynamic
+ self-organizing map.
+\end_layout
+
+\begin_layout Abstract
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+keywords{Psyphine; interactions; face-detection; HOG; machine-learning;
+ dlib; DSOM} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

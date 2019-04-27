@@ -245,9 +245,24 @@ La phase de préparation qui prend en entrée un flux vidéo (séquences d'image
 \end_layout
 
 \begin_layout Itemize
-La deuxième phase, dite de décision, qui consiste à regrouper les vecteurs
- caractéristiques en entrée afin de décider le comportement à exécuter (les
- commandes à envoyer à la lampe).
+La deuxième phase, dite d'extraction des vecteurs caracteristiques des changemen
+ts 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "VCC"
+description "Vecteurs Caracteristiques des Changements"
+literal "false"
+
+\end_inset
+
+VCC, comporte deux étapes : l'extraction des caracterisitques, puis, le
+ calcule des vecteurs caracteristiques des changements d'expressions.
+\end_layout
+
+\begin_layout Itemize
+La derniere phase est la phase de décision qui consiste à regrouper les
+ vecteurs caractéristiques en entrée afin de décider le comportement à exécuter
+ (les commandes à envoyer à la lampe).
  Nous verrons ses phases en détail dans les sections qui suit.
 \end_layout
 
@@ -260,8 +275,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/schema.jpg
-	scale 50
+	filename img/schema.svg
+	scale 70
 
 \end_inset
 
@@ -301,8 +316,8 @@ Phase de préparation
 
 \begin_layout Standard
 Dans cette section nous entamons la phase de préparation, cette phase a
- pour but de définir les vecteurs caractéristiques des chagements pour les
- faire passer à la phase suivante.
+ pour but d'extraire un vecteur de points de saillances pour les faire passer
+ à la phase suivante.
 \end_layout
 
 \begin_layout Subsection
@@ -443,8 +458,15 @@ Une fois l’étape de détection de visage est terminée, l’étape d’extrac
  déterminer 68 points de saillances.
  Nous allons utiliser un algorithme dite « algorithme d’estimations des
  points de saillances » qui est basé sur une approche inventée par Vahid
- Kazemi et Josephine Sullivan en 2014 [] basé sur des arbres de regressions
- (un type d'arbre de décision).
+ Kazemi et Josephine Sullivan en 2014 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kazemi2014one"
+literal "false"
+
+\end_inset
+
+ basé sur des arbres de regressions (un type d'arbre de décision).
 \end_layout
 
 \begin_layout Standard
@@ -490,6 +512,18 @@ L'idée de base est de définir 68 points spécifiques (appelés repères) qui
  un model capable de trouver ces 68 points sur n'importe quel visage.
 \end_layout
 
+\begin_layout Section
+Phase d'extraction des VCC
+\end_layout
+
+\begin_layout Standard
+Cette phase permet en premier, de définir des caracteristique d'expressions
+ ,choisis explicitement, a partir des vecteurs de points de saillances.
+ Ensuite, utiliser ces caractéristiques pour calculer les vecteurs caractéristiq
+ues des changements d'expressions qui seront utilisé pour le clustering
+ dans la phase qui suit.
+\end_layout
+
 \begin_layout Subsection
 Éxtraction et encodagedes caractéristique
 \end_layout
@@ -500,7 +534,7 @@ Effectuer un apprentissage sur tous les 68 points extraits est, d'une part,
  bruit qui affecte la qualité des résultat obtenus.
  Par conséquent, nous allons extraire, à partir de ces points, des caracteristiq
 ues qui nous permettent de destinguer les differentes expressions du visage.
- Nous avons consideré 6 caracteristiques (à savoir : distance des sourcils,
+ Nous avons consideré six caracteristiques (à savoir : distance des sourcils,
  ouverture des yeux, position du visage, ouverture de la bouche et la rotation
  du visage), ils sont illustrés sur la figure ci-dessous.
 \end_layout
@@ -633,10 +667,21 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/VCC.svg
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Génération des vecteurs caractèristiques des changements
+Calcul des vecteurs caractèristiques des changements
 \end_layout
 
 \end_inset
@@ -654,10 +699,10 @@ Phase de décision
 \end_layout
 
 \begin_layout Standard
-La deuxième et dernière phase de l'approche, est celle de décision, dans
- laquelle nous prenons les vecteurs caractéristiques issues de la phase
- antérieure, et on y applique des algorithmes d’apprentissage pour avoir
- en sortie le comportement approprié.
+La dernière phase de l'approche, est celle de décision, dans laquelle nous
+ prenons les vecteurs caractéristiques issues de la phase antérieure, et
+ on y applique des algorithmes d’apprentissage pour avoir en sortie le comportem
+ent approprié.
 \end_layout
 
 \begin_layout Standard
@@ -730,7 +775,15 @@ Nous avons vue en chapitre deux, la carte organisatrice de Kohonen et son
  Pour notre problème, nous utilisons une des variantes des cartes auto-organisat
 rices bi-dimensionnelle dite la carte auto-organisatrice dynamique (en anglais
  Dynamic Self Organizing Map - DSOM) proposé par Nicolas P.
- Rougier et Yann Boniface dans [DSOM_article].
+ Rougier et Yann Boniface dans 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rougier2011dynamic"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -740,7 +793,15 @@ Au contraire de l'algorithme original de la carte organisatrice qui est
  Cela permet un apprentissage en ligne et continu sur les distributions
  de données statiques et dynamiques.
  De plus, la densité obtenue par cette variante n'est pas directement proportion
-nelle à la densité de la distribution [DSOM_article].
+nelle à la densité de la distribution 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rougier2011dynamic"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -760,6 +821,13 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/DSOM.svg
+	scale 60
+
+\end_inset
+
 
 \end_layout
 
@@ -789,13 +857,21 @@ Au départ, nous initialisons le poids des neurones aléatoirement.
  des neurones.
  Cela correspond à l'entraînement de la DSOM.
  En effet, les poids de BMU et son voisinage, determiné par la fonction
- gaussienne, seront modifiés par la formule suivante :
+ gaussienne, seront modifiés par la formule suivante 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rougier2011dynamic"
+literal "false"
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\Delta w_{i}=\varepsilon\parallel v-w_{i}\parallel h_{η}(i,s,v)(v-w_{i})\tag{[ref]}
+\Delta w_{i}=\varepsilon\parallel v-w_{i}\parallel h_{η}(i,s,v)(v-w_{i})
 \]
 
 \end_inset
@@ -808,6 +884,16 @@ Avec :
 \end_layout
 
 \begin_layout Itemize
+\begin_inset Argument item:1
+status collapsed
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula $\Delta w_{i}$
 \end_inset
 
@@ -819,6 +905,16 @@ Avec :
 \end_layout
 
 \begin_layout Itemize
+\begin_inset Argument item:1
+status collapsed
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula $v$
 \end_inset
 
@@ -826,6 +922,16 @@ Avec :
 \end_layout
 
 \begin_layout Itemize
+\begin_inset Argument item:1
+status collapsed
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula $\varepsilon$
 \end_inset
 
@@ -833,18 +939,68 @@ Avec :
 \end_layout
 
 \begin_layout Itemize
+\begin_inset Argument item:1
+status collapsed
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula $h_{η}(i,s,v)$
 \end_inset
 
- : la fonction du voisinage où 
+ : la fonction du voisinage où
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Argument item:1
+status open
+
+\begin_layout Plain Layout
+•
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula $i$
 \end_inset
 
- l'indice du neurone, 
+ l'indice du neurone
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Argument item:1
+status open
+
+\begin_layout Plain Layout
+•
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula $s$
 \end_inset
 
- représente le meilleure correspondant (BMU) et 
+ représente le meilleure correspondant (BMU) et
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Argument item:1
+status open
+
+\begin_layout Plain Layout
+•
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula $η$
 \end_inset
 
@@ -852,20 +1008,12 @@ Avec :
  pour representer les données et donc les poids ne seront pas modifiés)
 \end_layout
 
+\end_deeper
 \begin_layout Standard
 Dans le cas où le neurone est suffisamment proche de la nouvelle entrée
  (distance < seuil), nous ne modifierons pas les poids car ce neurone est
  considéré comme représentant optimale du groupe dont cette donnée appartient.
  Nous répétons ces étapes tous le temps de l’exécution.
-\end_layout
-
-\begin_layout Section
-Définitions des comportements
-\end_layout
-
-\begin_layout Standard
-need to wait until the implementation is done, plus we're not sure we will
- add it.
 \end_layout
 
 \begin_layout Section*

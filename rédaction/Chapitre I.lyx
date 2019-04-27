@@ -206,7 +206,7 @@ s, ainsi que les travaux réalisés dans le cadre du même projet.
 Projet PsyPhINe
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Idée de base du projet
 \end_layout
 
@@ -228,10 +228,18 @@ L’idée fondatrice du projet Psyphine est partie de l’interaction entre l’
  de nombreux chercheurs des différentes disciplines, tels que des psychologues,
  philosophes, roboticiens, cogniticiens, sociologues, et neuroscientifiques
  d’où le nom « PsyPhINe » qui est l’abréviation de « Psychologie, Philosophie,
- Informatique et neuroscience ».
+ Informatique et neuroscience » 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "psyphine2016"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Présentation du projet
 \end_layout
 
@@ -264,16 +272,97 @@ ns à large échelle à l’aide d'un dispositif d'interaction basé sur un prot
  conceptuel riche et complexe, l’ébauche d’un langage commun et la production
  d’un référentiel des comportements donnant lieu à des interprétations intention
 nelles.
- La valorisation des travaux sera assurée par l’organisation d’ateliers
- interdisciplinaires et par l’édition d’un ouvrage collectif [1].
+ Comme présente la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Expreriences-du-projet"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ suivante, la valorisation des travaux sera assurée par l’organisation d’atelier
+s interdisciplinaires et par l’édition d’un ouvrage collectif 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "psyphine2016"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/participantsEnExperience.jpg
+	height 120bp
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/lampeSurMarche.jpg
+	height 120bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Expreriences-du-projet"
+
+\end_inset
+
+Expreriences du projet Psyphine 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "andre2018quelques"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
-Pinokio
-\end_layout
-
-\begin_layout Subsubsection
-Projet Pinokio
+Projet similaire - Pinokio
 \end_layout
 
 \begin_layout Standard
@@ -288,7 +377,18 @@ Le nom Pinokio est venu de la lampe Luxo Jr, l’adorable petite lampe qui
  Adam Ben-Dor qui travaillait sur les détails mécaniques de la lampe et
  un designer Joss Dogget qui s’est chargé du design et tout l’esthétique
  de la forme de la lampe, ce trio a donc décidé en 2012 d’embellir une lampe
- de bureau avec un peu de personnalité appelée Pinokio.
+ de bureau avec un peu de personnalité appelée Pinokio ( présente dans la
+ figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pinokio-la-lampe"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
@@ -314,6 +414,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Pinokio-la-lampe"
+
+\end_inset
+
 Pinokio la lampe de bureau rebotisée
 \end_layout
 
@@ -367,8 +473,15 @@ noprefix "false"
  au laser.
  Ces derniers sont assemblées autour de cinq moteurs.
  L’abat-jour a été découpé dans un carton jaune et contient une ampoule
- centrale et une petite caméra située juste au dessus de l’ampoule [ reference
- yann boniface ].
+ centrale et une petite caméra située juste au dessus de l’ampoule 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "andre2018quelques"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -376,7 +489,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -400,7 +513,15 @@ name "fig:La-lampe-de"
 
 \end_inset
 
-La lampe de Psyphine.
+La lampe de Psyphine 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "andre2018quelques"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -481,13 +602,6 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
 \begin_inset Graphics
 	filename img/lampe_1.jpg
 	lyxscale 70
@@ -496,51 +610,10 @@ status open
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
 \begin_inset Graphics
 	filename img/motors.jpg
 	lyxscale 30
 	height 200pt
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
 
 \end_inset
 
@@ -557,7 +630,15 @@ name "fig:Les-moteurs-de"
 
 \end_inset
 
-Les moteurs de la lampe [ref]
+Les moteurs de la lampe
+\begin_inset CommandInset citation
+LatexCommand cite
+key "andre2018quelques"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -595,15 +676,30 @@ Dans le cadre du projet, une panoplie de travaux ont été réalisés par des
 \end_layout
 
 \begin_layout Standard
-Le travail réalisé par D.
- SAMY, H.
- TRAM, M.
- NOGATCHEWSKY et S.
- Bauer sur plusieurs axes.
+Le travail 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PinokioLampe2016"
+literal "false"
+
+\end_inset
+
+ réalisé par D.
+ SAMY et al.
+ sur plusieurs axes.
  En premier, Ils ont mis en place un système pour contrôler les moteurs
  de la lampe à distance.
  Ensuite, ils ont réalisé un suivi de visage dont la détection est basée
- sur la méthode Viola et Jones implémenté dans la bibliothèque OpenCV.
+ sur la méthode Viola et Jones implémenté dans la bibliothèque 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "OpenCV"
+description "Open Computer Vision"
+literal "false"
+
+\end_inset
+
+ OpenCV.
  Finalement, leur travail à révélé plusieurs problèmes comme la fluidité
  de mouvement de suivi, qui a été réglé en modifiant le temps d’exécution,
  ainsi que le problème persistant de réchauffement des moteurs.
@@ -611,11 +707,17 @@ Le travail réalisé par D.
 
 \begin_layout Standard
 S.
- BARBILLON, M.
- JULIO et A.
- STAB ont construit une nouvelle architecture à l’aide de la bibliothèque
- Poppy pour faciliter la définition des nouveaux mouvements (interface de
- haut niveaux).
+ BARBILLON et al.
+ ont construit, dans 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "lampeRobotMines2017"
+literal "false"
+
+\end_inset
+
+, une nouvelle architecture à l’aide de la bibliothèque Poppy pour faciliter
+ la définition des nouveaux mouvements (interface de haut niveaux).
  Ils ont adapté la même méthode que celle du travail précédent pour le suivi
  de visage.
  Ainsi, ils ont consacré une grande partie de leur travail pour la cinématique
@@ -625,9 +727,17 @@ S.
 \begin_layout Standard
 Un autre travail de A.
  Eva et G.
- Augustin qui s’est concentré sur le suivi du visage et la détection des
- changements d’expressions.
- La méthode de Vila et Jones a été appliqué pour la détection du visage
+ Augustin 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "initRech2018"
+literal "false"
+
+\end_inset
+
+ qui s’est concentré sur le suivi du visage et la détection des changements
+ d’expressions.
+ La méthode de Viola et Jones a été appliqué pour la détection du visage
  avec des amélioration au niveau de la détection de la bouche.
  Cette phase a été suivi par l’application de la régression linéaire pour
  détecter l’ouverture de la bouche.
@@ -635,8 +745,16 @@ Un autre travail de A.
 
 \begin_layout Standard
 R.
- Buisine et O.
- Riou ont exploré un axe de travail différents des autres travaux.
+ BUISINE et O.
+ RIOU ont exploré, dans leur rapport 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "emotions2018"
+literal "false"
+
+\end_inset
+
+, un axe de travail différents des autres travaux.
  Il s’agit de la classification des émotions.
  Ils ont commencé par l’utilisation d’une nouvelle bibliothèque (dlib) pour
  la détection du visage et l’extraction des points de saillances.
@@ -649,7 +767,15 @@ R.
 \begin_layout Standard
 Le projet le plus récent est celui de J.
  NOWAK et S.
- RIMLINGER.
+ RIMLINGER 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "InitRechArt2018"
+literal "false"
+
+\end_inset
+
+.
  Il traite la détection du visage et l’extraction des points de saillances
  dont une grande partie était consacrée à l’amélioration des performances
  et l’évaluation de la détection, de la bibliothèque dlib, sur les différentes

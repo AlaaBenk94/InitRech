@@ -191,15 +191,10 @@ addcontentsline{toc}{section}{Introduction}
 \end_layout
 
 \begin_layout Standard
-Dans le but d’effectuer un comportement a cette lampe robotisée, nous avons
- besoins de passer par trois étapes dans le traitement de l’image qui a
- été capturée par la webcam de la lampe.
- Ces trois étapes viennent séquentiellement l’une après l’autre dans l’ordre
- suivant : Détection de l’image voire un flux d’image afin d’en extraire
- une ou plusieurs régions d’intérêt, ensuite l’extractions des points de
- saillances suivies des opérations de normalisation pour former des vecteurs
- descripteurs, et à la fin faire de la classification des caractéristiques
- pour ces points extraits ce qu’on appelle le Clustering.
+Dans le but de faciliter la compréhension de notre solution dans le chapitre
+ prochain, nous introduisons dans ce chapitre les differentes notions de
+ base employé, ainsi, nous présentons les méthodes existantes pour les different
+s phases, de la détection du visage jusqu'à la classification non supervisé.
 \end_layout
 
 \begin_layout Section
@@ -654,10 +649,6 @@ Une différence notable entre les deux modèles de détection, HOG fait un
 \end_layout
 
 \begin_layout Section
-Éxtractions des saillances
-\end_layout
-
-\begin_layout Section
 Clustering
 \end_layout
 
@@ -1068,6 +1059,14 @@ addcontentsline{toc}{section}{Conclusion}
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Nous avons exploré, dans ce chapitre, les différents notions, existantes,
+ liées à notre solution.
+ Cela nous permet d’entamer les détails de notre conception dans le chapitre
+ suivant.
+ 
 \end_layout
 
 \end_body
