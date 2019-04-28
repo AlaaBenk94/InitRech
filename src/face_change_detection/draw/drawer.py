@@ -56,24 +56,22 @@ class drawer(Process):
 
         def animate(i):
             mat = self.get_data()
-            print(mat)
-            return self.plot_matrix(mat)  # self.plot_matrix(self.data, "r", mark="x")
+            return self.plot_matrix(mat["data"], mat["target"])  # self.plot_matrix(self.data, "r", mark="x")
 
         ani = animation.FuncAnimation(self.fig, animate, frames=None, blit=True, interval=30, repeat=False)
         plt.show()
 
-    def plot_matrix(self, mat):
+    def plot_matrix(self, mat, target):
         """
         dessinateur des neurones
-        :param mat: matrice des donnee (codebook ou data)
+        :param mat: matrice des donnee (codebook et data)
         """
 
-        # if not np.all(mat[0]):
-        #     return self.ax.scatter(0, 0, c=col, alpha=0.6, label="clusters", marker=mark)
         mat = self.convert2d(mat)
         anots = self.anotations(mat[:9])
         anots = np.append(anots, self.links(mat[:9]))
         anots = np.append(anots, self.ax.scatter(mat[:9, 0], mat[:9, 1], c="b", label="clusters", marker="o"))
+        anots = np.append(anots, self.ax.scatter(mat[target, 0], mat[target, 1], c=("r", "b")[target == -1], label="data", marker="o"))
         anots = np.append(anots, self.ax.scatter(mat[9, 0], mat[9, 1], c="r", label="data", marker="x"))
 
         return tuple(anots)

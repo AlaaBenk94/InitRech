@@ -26,9 +26,9 @@ if __name__ == '__main__':
     car = caracterestique()
 
     print("[INFO] chargement de classifieur...")
-    N = 3 # order of net matrix
-    FCount = 8 # number of features
-    net = DSOM_MODEL((N, N, FCount), init_method='regular', elasticity=1.0)
+    N = 3  # order of net matrix
+    FCount = 8  # number of features
+    net = DSOM_MODEL((N, N, FCount), init_method='fixed', elasticity=1.0)
 
     print("[INFO] preparation de la camera...")
     vs = cv2.VideoCapture(0)
@@ -38,6 +38,7 @@ if __name__ == '__main__':
 
     print("[INFO] En cours d'execution...")
     vect = [0, 0, 0, 0, 0, 0, 0, 0]
+    cluster = -1
 
     while True:
         start = int(round(t.time() * 1000))
@@ -52,33 +53,35 @@ if __name__ == '__main__':
         # extraction des points de saillances
         ret, face, rect = lmk.extract_landmarks(gray)
 
-
         # on fait le traitement si au moins un visage est detecte
         if ret:
             vect = np.array(car.extract_features(face, frame.shape)[1])
             vect = np.around(vect, 2)
             cluster = net.cluster(vect)
-            net.learn_data(vect, lrate=5, sigma=1)
+            net.learn_data(vect, lrate=1, sigma=1)
 
             # dessiner les points de saillances
             for k, pt in face.items():
                 if k == "facepos":
                     [(x1, y1, x2, y2)] = pt
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255))
-                    cv2.rectangle(frame, (x1, y1), (x1+100, y1-18), (0, 0, 255), -1)
-                    cv2.putText(frame, "Cluster #{}".format(cluster), (x1, y1-5), cv2.FONT_HERSHEY_DUPLEX, 0.5, (255, 255, 255), 1)
+                    cv2.rectangle(frame, (x1, y1), (x1 + 100, y1 - 18), (0, 0, 255), -1)
+                    cv2.putText(frame, "Cluster #{}".format(cluster), (x1, y1 - 5), cv2.FONT_HERSHEY_DUPLEX, 0.5,
+                                (255, 255, 255), 1)
                     continue
                 for (x, y) in pt:
                     cv2.circle(frame, (x, y), 1, landmarks.COLORS[k], -1)
 
         # passer les donnee au processus de plotting
-        mat = np.concatenate((net.codebook.reshape((-1, FCount)), np.reshape(vect, (-1, FCount))))
+        mat = {"data": np.concatenate((net.codebook.reshape((-1, FCount)), np.reshape(vect, (-1, FCount)))),
+               "target": cluster}
         with open(f, "wb") as plot_data:
             pk.dump(mat, plot_data)
 
         # dessiner le numero de frame
         end = (int(round(t.time() * 1000)) - start)
-        cv2.putText(frame, "Process Time : {:.2f} ms".format(end), (5, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+        cv2.putText(frame, "Process Time : {:.2f} ms".format(end), (5, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.4,
+                    (255, 255, 255), 1)
 
         # affichage de l'image
         cv2.imshow('BeCHa', frame)
