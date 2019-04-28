@@ -50,6 +50,7 @@ class drawer(Process):
         #     return self.ax.scatter(0, 0, c=col, alpha=0.6, label="clusters", marker=mark)
         mat = self.convert2d(mat)
         anots = self.anotations(mat)
+        anots = np.append(anots, self.links(mat))
         anots = np.append(anots, self.ax.scatter(mat[:, 0], mat[:, 1], c=col, alpha=0.6, label="clusters", marker=mark))
 
         return tuple(anots)
@@ -68,6 +69,21 @@ class drawer(Process):
 
         return anots
 
+    def links(self, data):
+        """
+        dissiner les lien entre les neurones
+        :return: dessin des liens
+        """
+
+        link = np.array([])
+        link = np.append(link, plt.plot(data[:3, 0], data[:3, 1], color='b', linewidth=.5))
+        link = np.append(link, plt.plot(data[3:6, 0], data[3:6, 1], color='b', linewidth=.5))
+        link = np.append(link, plt.plot(data[6:, 0], data[6:, 1], color='b', linewidth=.5))
+        link = np.append(link, plt.plot(data[(0, 3, 6), 0], data[(0, 3, 6), 1], color='b', linewidth=.5))
+        link = np.append(link, plt.plot(data[(1, 4, 7), 0], data[(1, 4, 7), 1], color='b', linewidth=.5))
+        link = np.append(link, plt.plot(data[(2, 5, 8), 0], data[(2, 5, 8), 1], color='b', linewidth=.5))
+
+        return link
 
     def convert2d(self, data):
         """
