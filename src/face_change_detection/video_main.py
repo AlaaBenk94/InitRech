@@ -14,6 +14,42 @@ from clasifieur.network import DSOM_MODEL
 from draw.drawer import drawer
 from landmark import landmarks
 
+
+def update_display(frame, face, cluster):
+    """
+    dessiner les points de saillances, le cadre du visage et le cluster
+    :param frame: l'image
+    :param face: les points de saillances
+    :param cluster: le resultat de clustering
+    :return: l'image modifie
+    """
+    for k, pt in face.items():
+        if k == "facepos":
+            [(x1, y1, x2, y2)] = pt
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255))
+            cv2.rectangle(frame, (x1, y1), (x1 + 100, y1 - 18), (0, 0, 255), -1)
+            cv2.putText(frame, "Cluster #{}".format(cluster), (x1, y1 - 5), cv2.FONT_HERSHEY_DUPLEX, 0.5,
+                        (255, 255, 255), 1)
+            continue
+        for (x, y) in pt:
+            cv2.circle(frame, (x, y), 1, landmarks.COLORS[k], -1)
+
+    return frame
+
+
+def send_ploting_data(codebook, vect, FCount):
+    """
+    envoyer les donnees au processus du plotting
+    :param net: codebook
+    :param vect: la nouvelle donnee
+    :param FCount: nombre des features
+    """
+    mat = {"data": np.concatenate((codebook.reshape((-1, FCount)), np.reshape(vect, (-1, FCount)))),
+           "target": cluster}
+    with open(f, "wb") as plot_data:
+        pk.dump(mat, plot_data)
+
+
 if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
     lmk = landmarks()
@@ -57,26 +93,14 @@ if __name__ == '__main__':
         if ret:
             vect = np.array(car.extract_features(face, frame.shape)[1])
             vect = np.around(vect, 2)
+
             cluster = net.cluster(vect)
             net.learn_data(vect, lrate=1, sigma=1)
 
-            # dessiner les points de saillances
-            for k, pt in face.items():
-                if k == "facepos":
-                    [(x1, y1, x2, y2)] = pt
-                    cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255))
-                    cv2.rectangle(frame, (x1, y1), (x1 + 100, y1 - 18), (0, 0, 255), -1)
-                    cv2.putText(frame, "Cluster #{}".format(cluster), (x1, y1 - 5), cv2.FONT_HERSHEY_DUPLEX, 0.5,
-                                (255, 255, 255), 1)
-                    continue
-                for (x, y) in pt:
-                    cv2.circle(frame, (x, y), 1, landmarks.COLORS[k], -1)
+            frame = update_display(frame, face, cluster)
 
         # passer les donnee au processus de plotting
-        mat = {"data": np.concatenate((net.codebook.reshape((-1, FCount)), np.reshape(vect, (-1, FCount)))),
-               "target": cluster}
-        with open(f, "wb") as plot_data:
-            pk.dump(mat, plot_data)
+        send_ploting_data(net.codebook, vect, FCount)
 
         # dessiner le numero de frame
         end = (int(round(t.time() * 1000)) - start)

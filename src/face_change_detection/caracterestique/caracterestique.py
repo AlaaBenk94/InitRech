@@ -144,3 +144,7 @@ class caracterestique:
                 print("\t{} is {}".format(key, value))
             else:
                 print("\t{} is {:.2f}".format(key, value))
+
+    @staticmethod
+    def calculate_vcc(f1, f2):
+        return np.append(f2[:-1] - f1[:-1], dist(f2[-1] - f1[-1]))
