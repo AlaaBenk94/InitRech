@@ -68,13 +68,13 @@ class drawer(Process):
         """
 
         mat = self.convert2d(mat)
-        anots = self.anotations(mat[:9])
-        anots = np.append(anots, self.links(mat[:9]))
-        anots = np.append(anots, self.ax.scatter(mat[:9, 0], mat[:9, 1], c="b", label="clusters", marker="o"))
-        anots = np.append(anots, self.ax.scatter(mat[target, 0], mat[target, 1], c=("r", "b")[target == -1], label="data", marker="o"))
-        anots = np.append(anots, self.ax.scatter(mat[9, 0], mat[9, 1], c="r", label="data", marker="x"))
+        plots = self.anotations(mat[:9])
+        plots = np.append(plots, self.links(mat[:9]))
+        plots = np.append(plots, self.ax.scatter(mat[:9, 0], mat[:9, 1], c="b", label="clusters", marker="o"))
+        plots = np.append(plots, self.ax.scatter(mat[target, 0], mat[target, 1], c=("r", "b")[target == -1], label="target", marker="o"))
+        plots = np.append(plots, self.ax.scatter(mat[9, 0], mat[9, 1], c="r", label="data", marker="x"))
 
-        return tuple(anots)
+        return tuple(plots)
 
     def anotations(self, data):
         """
