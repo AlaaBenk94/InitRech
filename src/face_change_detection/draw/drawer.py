@@ -51,7 +51,7 @@ class drawer(Process):
         mat = self.convert2d(mat)
         anots = self.anotations(mat)
         anots = np.append(anots, self.links(mat))
-        anots = np.append(anots, self.ax.scatter(mat[:, 0], mat[:, 1], c=col, alpha=0.6, label="clusters", marker=mark))
+        anots = np.append(anots, self.ax.scatter(mat[:, 0], mat[:, 1], c=col, label="clusters", marker=mark))
 
         return tuple(anots)
 
@@ -71,17 +71,20 @@ class drawer(Process):
 
     def links(self, data):
         """
-        dissiner les lien entre les neurones
+        dissiner les lien entre les 9 neurones
+        remarque : actuellement defini que pour 9 neurones
         :return: dessin des liens
         """
 
+        target = (1, 2, 5, 8, 7, 6, 3, 0, 1, 4, 7, 8, 5, 4, 3)
         link = np.array([])
-        link = np.append(link, plt.plot(data[:3, 0], data[:3, 1], color='b', linewidth=.5))
-        link = np.append(link, plt.plot(data[3:6, 0], data[3:6, 1], color='b', linewidth=.5))
-        link = np.append(link, plt.plot(data[6:, 0], data[6:, 1], color='b', linewidth=.5))
-        link = np.append(link, plt.plot(data[(0, 3, 6), 0], data[(0, 3, 6), 1], color='b', linewidth=.5))
-        link = np.append(link, plt.plot(data[(1, 4, 7), 0], data[(1, 4, 7), 1], color='b', linewidth=.5))
-        link = np.append(link, plt.plot(data[(2, 5, 8), 0], data[(2, 5, 8), 1], color='b', linewidth=.5))
+        # link = np.append(link, self.ax.plot(data[:3, 0], data[:3, 1], 'b--', linewidth=.5))
+        # link = np.append(link, self.ax.plot(data[3:6, 0], data[3:6, 1], 'b--', linewidth=.5))
+        # link = np.append(link, self.ax.plot(data[6:, 0], data[6:, 1], 'b--', linewidth=.5))
+        # link = np.append(link, self.ax.plot(data[(0, 3, 6), 0], data[(0, 3, 6), 1], 'b--', linewidth=.5))
+        # link = np.append(link, self.ax.plot(data[(1, 4, 7), 0], data[(1, 4, 7), 1], 'b--', linewidth=.5))
+        # link = np.append(link, self.ax.plot(data[(2, 5, 8), 0], data[(2, 5, 8), 1], 'b--', linewidth=.5))
+        link = np.append(link, self.ax.plot(data[target, 0], data[target, 1], 'b--', linewidth=.5))
 
         return link
 
