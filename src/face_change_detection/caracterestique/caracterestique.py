@@ -147,4 +147,4 @@ class caracterestique:
 
     @staticmethod
     def calculate_vcc(f1, f2):
-        return np.append(f2[:-1] - f1[:-1], dist(f2[-1] - f1[-1]))
+        return np.subtract(f2, f1)

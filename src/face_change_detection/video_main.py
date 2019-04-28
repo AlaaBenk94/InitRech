@@ -53,7 +53,6 @@ def send_ploting_data(codebook, vect, FCount):
 if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
     lmk = landmarks()
-    # Q = Queue()
     f = "/tmp/data.plt"
     dr = drawer.fromFile(f)
     dr.start()
@@ -64,7 +63,7 @@ if __name__ == '__main__':
     print("[INFO] chargement de classifieur...")
     N = 3  # order of net matrix
     FCount = 8  # number of features
-    net = DSOM_MODEL((N, N, FCount), init_method='fixed', elasticity=1.0)
+    net = DSOM_MODEL((N, N, FCount), init_method='regular', elasticity=1.0)
 
     print("[INFO] preparation de la camera...")
     vs = cv2.VideoCapture(0)
@@ -73,8 +72,13 @@ if __name__ == '__main__':
     print("[INFO] FPS = {}".format(fps))
 
     print("[INFO] En cours d'execution...")
-    vect = [0, 0, 0, 0, 0, 0, 0, 0]
+    vect = np.zeros((1, FCount))
+    vcc = np.zeros((1, FCount))
     cluster = -1
+    pred = None
+    i = 0
+    delta = 20
+    minidisp = np.full((150, 400, 3), 200, np.uint8)
 
     while True:
         start = int(round(t.time() * 1000))
@@ -92,15 +96,24 @@ if __name__ == '__main__':
         # on fait le traitement si au moins un visage est detecte
         if ret:
             vect = np.array(car.extract_features(face, frame.shape)[1])
-            vect = np.around(vect, 2)
+            if i % delta == 0:
+                if pred is None:
+                    pred = vect
+                    predimg = np.copy(frame)
+                else:
+                    vcc = caracterestique.calculate_vcc(pred, vect)
+                    cluster = net.cluster(vcc)
+                    net.learn_data(vcc, lrate=5, sigma=1)
+                    minidisp = imutils.resize(np.hstack((predimg, np.copy(frame))), width=400)
+                    pred = None
+                    predimg = None
 
-            cluster = net.cluster(vect)
-            net.learn_data(vect, lrate=1, sigma=1)
+            i = i + 1
+            print("VCC[{}] : {}".format(i, vcc))
+            print("\a")
 
             frame = update_display(frame, face, cluster)
-
-        # passer les donnee au processus de plotting
-        send_ploting_data(net.codebook, vect, FCount)
+            send_ploting_data(net.codebook, vcc, FCount)
 
         # dessiner le numero de frame
         end = (int(round(t.time() * 1000)) - start)
@@ -108,7 +121,7 @@ if __name__ == '__main__':
                     (255, 255, 255), 1)
 
         # affichage de l'image
-        cv2.imshow('BeCHa', frame)
+        cv2.imshow('BeCHa', np.vstack((frame, minidisp)))
 
         # Attendre la touche 'q' pour sortir
         # ou la touche 'p' pour suspendre le programme
