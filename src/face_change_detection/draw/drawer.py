@@ -59,7 +59,7 @@ class drawer(Process):
             print(mat)
             return self.plot_matrix(mat)  # self.plot_matrix(self.data, "r", mark="x")
 
-        ani = animation.FuncAnimation(self.fig, animate, frames=None, blit=True, interval=20, repeat=False)
+        ani = animation.FuncAnimation(self.fig, animate, frames=None, blit=True, interval=30, repeat=False)
         plt.show()
 
     def plot_matrix(self, mat):
@@ -102,13 +102,6 @@ class drawer(Process):
         target = (1, 2, 5, 8, 7, 6, 3, 0, 1, 4, 7, 8, 5, 4, 3)
         link = np.array([])
         link = np.append(link, self.ax.plot(data[target, 0], data[target, 1], 'b', linewidth=.5))
-        # link = np.append(link, self.ax.plot(data[:3, 0], data[:3, 1], 'b--', linewidth=.5))
-        # link = np.append(link, self.ax.plot(data[3:6, 0], data[3:6, 1], 'b--', linewidth=.5))
-        # link = np.append(link, self.ax.plot(data[6:, 0], data[6:, 1], 'b--', linewidth=.5))
-        # link = np.append(link, self.ax.plot(data[(0, 3, 6), 0], data[(0, 3, 6), 1], 'b--', linewidth=.5))
-        # link = np.append(link, self.ax.plot(data[(1, 4, 7), 0], data[(1, 4, 7), 1], 'b--', linewidth=.5))
-        # link = np.append(link, self.ax.plot(data[(2, 5, 8), 0], data[(2, 5, 8), 1], 'b--', linewidth=.5))
-
         return link
 
     def convert2d(self, data):

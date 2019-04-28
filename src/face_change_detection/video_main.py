@@ -2,17 +2,17 @@
 programme principale
 """
 
+import pickle as pk
 import time as t
-from multiprocessing import Queue
 
 import cv2
 import imutils
+import numpy as np
+
 from caracterestique.caracterestique import caracterestique
 from clasifieur.network import DSOM_MODEL
 from draw.drawer import drawer
 from landmark import landmarks
-import numpy as np
-import pickle as pk
 
 if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
@@ -56,7 +56,7 @@ if __name__ == '__main__':
         # on fait le traitement si au moins un visage est detecte
         if ret:
             vect = np.array(car.extract_features(face, frame.shape)[1])
-            vect = vect*100
+            vect = np.around(vect, 2)
             cluster = net.cluster(vect)
             net.learn_data(vect, lrate=5, sigma=1)
 
@@ -71,24 +71,17 @@ if __name__ == '__main__':
                 for (x, y) in pt:
                     cv2.circle(frame, (x, y), 1, landmarks.COLORS[k], -1)
 
+        # passer les donnee au processus de plotting
+        mat = np.concatenate((net.codebook.reshape((-1, FCount)), np.reshape(vect, (-1, FCount))))
+        with open(f, "wb") as plot_data:
+            pk.dump(mat, plot_data)
+
         # dessiner le numero de frame
         end = (int(round(t.time() * 1000)) - start)
         cv2.putText(frame, "Process Time : {:.2f} ms".format(end), (5, 15), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
 
         # affichage de l'image
         cv2.imshow('BeCHa', frame)
-
-        # passer les donnee au processus de plotting
-        # mat = {"codebook": net.codebook.reshape((-1, FCount)), "data": np.reshape(vect, (-1, FCount))}
-        mat = np.concatenate((net.codebook.reshape((-1, FCount)), np.reshape(vect, (-1, FCount))))
-
-        print()
-
-        with open(f, "wb") as plot_data:
-            pk.dump(mat, plot_data)
-        # Q.put(mat)
-
-
 
         # Attendre la touche 'q' pour sortir
         # ou la touche 'p' pour suspendre le programme
