@@ -12,15 +12,16 @@ from clasifieur.network import DSOM_MODEL
 from draw.drawer import drawer
 from landmark import landmarks
 import numpy as np
+import pickle as pk
 
 if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
     lmk = landmarks()
-    Q = Queue()
-    dr = drawer(Q)
+    # Q = Queue()
+    f = "/tmp/data.plt"
+    dr = drawer.fromFile(f)
     dr.start()
 
-    # instantiation du features extractor
     print("[INFO] chargement d'extracteur des caracteristiques...")
     car = caracterestique()
 
@@ -29,30 +30,23 @@ if __name__ == '__main__':
     FCount = 8 # number of features
     net = DSOM_MODEL((N, N, FCount), init_method='regular', elasticity=1.0)
 
-    # initialisation de flux video
     print("[INFO] preparation de la camera...")
     vs = cv2.VideoCapture(0)
 
-    # recuperation du FPS de la camera
     fps = vs.get(cv2.CAP_PROP_FPS)
     print("[INFO] FPS = {}".format(fps))
 
     print("[INFO] En cours d'execution...")
-
     vect = [0, 0, 0, 0, 0, 0, 0, 0]
+
     while True:
         start = int(round(t.time() * 1000))
 
-        # recuperation d'une image du flux video,
+        # recuperation d'une image du flux video, la redimensionner pour avoir une largeur de 400 pixels
+        # ensuite la convertir l'image en grayscale et y appliquer une egalisation d'histogramme.
         _, frame = vs.read()
-
-        # redimensionner l'image pour avoir une largeur de 400 pixels
         frame = imutils.resize(frame, width=400)
-
-        # convertir l'image en grayscale
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-        # appliquer une egalisation d'histogramme.
         gray = cv2.equalizeHist(gray)
 
         # extraction des points de saillances
@@ -86,7 +80,11 @@ if __name__ == '__main__':
 
         # passer les donnee au processus de plotting
         mat = { "codebook": net.codebook.reshape((-1, FCount)), "data": np.reshape(vect, (-1, FCount))}
-        Q.put(mat)
+        with open(f, "wb") as plot_data:
+            pk.dump(mat, plot_data)
+        # Q.put(mat)
+
+
 
         # Attendre la touche 'q' pour sortir
         # ou la touche 'p' pour suspendre le programme
@@ -97,7 +95,6 @@ if __name__ == '__main__':
                     break
         if key == 113:
             break
-
 
     print("[INFO] Sortir du programme...")
 
