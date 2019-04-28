@@ -79,7 +79,11 @@ if __name__ == '__main__':
         cv2.imshow('BeCHa', frame)
 
         # passer les donnee au processus de plotting
-        mat = { "codebook": net.codebook.reshape((-1, FCount)), "data": np.reshape(vect, (-1, FCount))}
+        # mat = {"codebook": net.codebook.reshape((-1, FCount)), "data": np.reshape(vect, (-1, FCount))}
+        mat = np.concatenate((net.codebook.reshape((-1, FCount)), np.reshape(vect, (-1, FCount))))
+
+        print()
+
         with open(f, "wb") as plot_data:
             pk.dump(mat, plot_data)
         # Q.put(mat)
