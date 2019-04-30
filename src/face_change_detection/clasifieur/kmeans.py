@@ -3,6 +3,10 @@ import random
 from Distence.distense import distence
 
 class kmeans:
+
+    def __init__(self):
+        self.kmoy = []
+
     def getKclass(self,base,K):
         self.kmoy=[]
 

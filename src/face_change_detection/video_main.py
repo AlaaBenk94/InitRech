@@ -13,7 +13,9 @@ from caracterestique.caracterestique import caracterestique
 from clasifieur.network import DSOM_MODEL
 from draw.drawer import drawer
 from landmark import landmarks
+from clasifieur import kmeans
 
+f = "/tmp/data.plt"
 
 def update_display(frame, face, cluster):
     """
@@ -37,7 +39,7 @@ def update_display(frame, face, cluster):
     return frame
 
 
-def send_ploting_data(codebook, vect, FCount):
+def send_ploting_data(f, codebook, vect, FCount):
     """
     envoyer les donnees au processus du plotting
     :param net: codebook
@@ -48,15 +50,25 @@ def send_ploting_data(codebook, vect, FCount):
            "target": cluster}
     with open(f, "wb") as plot_data:
         pk.dump(mat, plot_data)
+        plot_data.close()
+
+def read_precessing(vs):
+    """
+    recuperation d'une image du flux video, la redimensionner pour avoir une largeur de 400 pixels
+    ensuite la convertir l'image en grayscale et y appliquer une egalisation d'histogramme.
+    :param vs: le flux video
+    :return: l'image (RGB, Greyscale)
+    """
+    _, frm = vs.read()
+    frm = imutils.resize(frm, width=400)
+    gray = cv2.cvtColor(frm, cv2.COLOR_BGR2GRAY)
+    gray = cv2.equalizeHist(gray)
+    return frm, gray
 
 
 if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
     lmk = landmarks()
-    # Q = Queue()
-    f = "/tmp/data.plt"
-    dr = drawer.fromFile(f)
-    dr.start()
 
     print("[INFO] chargement d'extracteur des caracteristiques...")
     car = caracterestique()
@@ -65,9 +77,12 @@ if __name__ == '__main__':
     N = 3  # order of net matrix
     FCount = 8  # number of features
     net = DSOM_MODEL((N, N, FCount), init_method='fixed', elasticity=1.0)
+    kmeans_model = kmeans()
+
 
     print("[INFO] preparation de la camera...")
     vs = cv2.VideoCapture(0)
+
 
     fps = vs.get(cv2.CAP_PROP_FPS)
     print("[INFO] FPS = {}".format(fps))
@@ -75,16 +90,18 @@ if __name__ == '__main__':
     print("[INFO] En cours d'execution...")
     vect = [0, 0, 0, 0, 0, 0, 0, 0]
     cluster = -1
+    send_ploting_data(f, net.codebook, vect, FCount)
+
+    print("[INFO] lancement de plotter")
+    dr = drawer.fromFile(f)
+
+    base = np.array([])
+    dbsize = 10
 
     while True:
         start = int(round(t.time() * 1000))
 
-        # recuperation d'une image du flux video, la redimensionner pour avoir une largeur de 400 pixels
-        # ensuite la convertir l'image en grayscale et y appliquer une egalisation d'histogramme.
-        _, frame = vs.read()
-        frame = imutils.resize(frame, width=400)
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        gray = cv2.equalizeHist(gray)
+        frame, gray = read_precessing(vs)
 
         # extraction des points de saillances
         ret, face, rect = lmk.extract_landmarks(gray)
@@ -95,12 +112,24 @@ if __name__ == '__main__':
             vect = np.around(vect, 2)
 
             cluster = net.cluster(vect)
-            net.learn_data(vect, lrate=1, sigma=1)
+
+            # batch learning
+            if base.shape[0] < dbsize:
+                base = np.append(base, vect)
+                base = base.reshape((-1, FCount))
+                print("dkhel 1 : {}".format(base))
+            elif base.shape[0] == dbsize:
+                send_ploting_data(f, kmeans_model.getKclass(base, FCount), vect, FCount)
+                print("dkhel 2 : {}".format(base))
+            else:
+                print("dkhel 3 : {}".format(base))
+                cluster = kmeans_model.prediction(vect)
+                kmeans_model.raffiner(vect)
+                send_ploting_data(f, kmeans_model.kmoy, vect, FCount)
+                if not dr.is_alive():
+                    dr.start()
 
             frame = update_display(frame, face, cluster)
-
-        # passer les donnee au processus de plotting
-        send_ploting_data(net.codebook, vect, FCount)
 
         # dessiner le numero de frame
         end = (int(round(t.time() * 1000)) - start)
