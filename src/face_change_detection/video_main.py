@@ -50,7 +50,7 @@ def send_ploting_data(codebook, vect, FCount):
         pk.dump(mat, plot_data)
 
 
-def read_precessing(vs):
+def read_process(vs):
     """
     recuperation d'une image du flux video, la redimensionner pour avoir une largeur de 400 pixels
     ensuite la convertir l'image en grayscale et y appliquer une egalisation d'histogramme.
@@ -91,7 +91,7 @@ if __name__ == '__main__':
 
     while True:
         start = int(round(t.time() * 1000))
-        frame, gray = read_precessing(vs)
+        frame, gray = read_process(vs)
 
         # extraction des points de saillances
         ret, face, rect = lmk.extract_landmarks(gray)
