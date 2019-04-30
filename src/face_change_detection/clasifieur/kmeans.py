@@ -4,17 +4,19 @@ from Distence.distense import distence
 
 class kmeans:
     def getKclass(self,base,K):
-        kmoy=[]
-        calcdis = distence()
+        self.kmoy=[]
+
+        for i in range(len(base)):
+            base[i]=[0]+base[i]
 
         for i in range(K):
             elem=random.choice(base)
 
-            while elem in kmoy:
+            while elem in self.kmoy:
                 elem=random.choice(base)
 
             elem[0] = i
-            kmoy.append(elem)
+            self.kmoy.append(elem)
 
 
         stop=False
@@ -22,21 +24,20 @@ class kmeans:
         while not stop :
           stop=True
           for i in base:
-             kmin=kmoy[0]
-             mindis=calcdis.cartesienne(kmin,i)
-             for k in kmoy :
-                 dis=calcdis.cartesienne(i,k)
-                 if(dis<mindis):
-                     mindis=dis
-                     kmin=k
-             if(i[0]!=kmin[0]):
-              i[0]=kmin[0]
+             kp=self.class_plus_proche(i)
+             if(i[0]!=kp):
+              i[0]=kp
               stop=False
 
           for i in range(K):
               m=self.moyclasse(base, i)
               if m!=[]:
-               kmoy[i]=m
+               self.kmoy[i]=m
+
+        self.nb=[0]*K
+        for i in base:
+            self.nb[i[0]]+=1
+            i.pop(0)
 
     def moyclasse(self,base,y):
         moy=[]
@@ -58,3 +59,24 @@ class kmeans:
             moy[i]=moy[i]/nby
 
           return moy
+
+    def class_plus_proche(self,i):
+        calcdis = distence()
+        kmin = self.kmoy[0]
+        mindis = calcdis.cartesienne(kmin, i)
+        for k in self.kmoy:
+            dis = calcdis.cartesienne(i, k)
+            if (dis < mindis):
+                mindis = dis
+                kmin = k
+        return kmin[0]
+
+    def raffiner(self,X):
+        X=[0]+X
+        k=self.class_plus_proche(X)
+        self.kmoy[k]=[k]+[((self.kmoy[k][i]*self.nb[k])+X[i])/(self.nb[k]+1)for i in range(1,len(self.kmoy[k]))]
+        self.nb[k]+=1
+        X.pop(0)
+
+    def prediction(self,x):
+        return self.class_plus_proche([0]+x)
