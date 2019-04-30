@@ -50,13 +50,26 @@ def send_ploting_data(codebook, vect, FCount):
         pk.dump(mat, plot_data)
 
 
+def read_precessing(vs):
+    """
+    recuperation d'une image du flux video, la redimensionner pour avoir une largeur de 400 pixels
+    ensuite la convertir l'image en grayscale et y appliquer une egalisation d'histogramme.
+    :param vs: le flux video
+    :return: l'image (RGB, Greyscale)
+    """
+    _, frm = vs.read()
+    frm = imutils.resize(frm, width=400)
+    gray = cv2.cvtColor(frm, cv2.COLOR_BGR2GRAY)
+    gray = cv2.equalizeHist(gray)
+    return frm, gray
+
+
 if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
     lmk = landmarks()
     # Q = Queue()
     f = "/tmp/data.plt"
     dr = drawer.fromFile(f)
-    dr.start()
 
     print("[INFO] chargement d'extracteur des caracteristiques...")
     car = caracterestique()
@@ -64,7 +77,7 @@ if __name__ == '__main__':
     print("[INFO] chargement de classifieur...")
     N = 3  # order of net matrix
     FCount = 8  # number of features
-    net = DSOM_MODEL((N, N, FCount), init_method='fixed', elasticity=1.0)
+    net = DSOM_MODEL((N, N, FCount), init_method='regular', elasticity=1.0)
 
     print("[INFO] preparation de la camera...")
     vs = cv2.VideoCapture(0)
@@ -78,13 +91,7 @@ if __name__ == '__main__':
 
     while True:
         start = int(round(t.time() * 1000))
-
-        # recuperation d'une image du flux video, la redimensionner pour avoir une largeur de 400 pixels
-        # ensuite la convertir l'image en grayscale et y appliquer une egalisation d'histogramme.
-        _, frame = vs.read()
-        frame = imutils.resize(frame, width=400)
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        gray = cv2.equalizeHist(gray)
+        frame, gray = read_precessing(vs)
 
         # extraction des points de saillances
         ret, face, rect = lmk.extract_landmarks(gray)
@@ -101,6 +108,8 @@ if __name__ == '__main__':
 
         # passer les donnee au processus de plotting
         send_ploting_data(net.codebook, vect, FCount)
+        if not dr.is_alive():
+            dr.start()
 
         # dessiner le numero de frame
         end = (int(round(t.time() * 1000)) - start)
