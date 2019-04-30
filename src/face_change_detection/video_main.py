@@ -8,12 +8,11 @@ import time as t
 import cv2
 import imutils
 import numpy as np
+from sklearn.cluster import KMeans
 
 from caracterestique.caracterestique import caracterestique
-from clasifieur.network import DSOM_MODEL
 from draw.drawer import drawer
 from landmark import landmarks
-from clasifieur import kmeans
 
 f = "/tmp/data.plt"
 
@@ -39,7 +38,7 @@ def update_display(frame, face, cluster):
     return frame
 
 
-def send_ploting_data(f, codebook, vect, FCount):
+def send_ploting_data(f, codebook, vect, cluster, FCount):
     """
     envoyer les donnees au processus du plotting
     :param net: codebook
@@ -76,8 +75,7 @@ if __name__ == '__main__':
     print("[INFO] chargement de classifieur...")
     N = 3  # order of net matrix
     FCount = 8  # number of features
-    net = DSOM_MODEL((N, N, FCount), init_method='fixed', elasticity=1.0)
-    kmeans_model = kmeans()
+    kmeans = KMeans(n_clusters=N*N, random_state=0)
 
 
     print("[INFO] preparation de la camera...")
@@ -90,14 +88,13 @@ if __name__ == '__main__':
     print("[INFO] En cours d'execution...")
     vect = [0, 0, 0, 0, 0, 0, 0, 0]
     cluster = -1
-    send_ploting_data(f, net.codebook, vect, FCount)
 
     print("[INFO] lancement de plotter")
     dr = drawer.fromFile(f)
+    off = True
 
     base = np.array([])
-    dbsize = 10
-
+    dbsize = 20
     while True:
         start = int(round(t.time() * 1000))
 
@@ -111,25 +108,28 @@ if __name__ == '__main__':
             vect = np.array(car.extract_features(face, frame.shape)[1])
             vect = np.around(vect, 2)
 
-            cluster = net.cluster(vect)
-
             # batch learning
-            if base.shape[0] < dbsize:
+            if off and base.shape[0] < dbsize:
                 base = np.append(base, vect)
                 base = base.reshape((-1, FCount))
-                print("dkhel 1 : {}".format(base))
-            elif base.shape[0] == dbsize:
-                send_ploting_data(f, kmeans_model.getKclass(base, FCount), vect, FCount)
-                print("dkhel 2 : {}".format(base))
             else:
-                print("dkhel 3 : {}".format(base))
-                cluster = kmeans_model.prediction(vect)
-                kmeans_model.raffiner(vect)
-                send_ploting_data(f, kmeans_model.kmoy, vect, FCount)
-                if not dr.is_alive():
+                if base.shape[0] % dbsize == 0:
+                    kmeans = kmeans.fit(base)
+                    base = np.array([])
+                cluster = kmeans.predict(vect.reshape(-1, FCount))[0]
+                print(cluster)
+                base = np.append(base, vect)
+                base = base.reshape((-1, FCount))
+                send_ploting_data(f, kmeans.cluster_centers_, vect, cluster, FCount)
+                print(kmeans.cluster_centers_)
+                if off:
                     dr.start()
+                    off = False
 
             frame = update_display(frame, face, cluster)
+
+        if not off:
+            send_ploting_data(f, kmeans.cluster_centers_, vect, cluster, FCount)
 
         # dessiner le numero de frame
         end = (int(round(t.time() * 1000)) - start)

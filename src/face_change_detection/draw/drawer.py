@@ -13,7 +13,7 @@ class drawer(Process):
     la class qui gere l'affichage des donnees et du model en temps reel
     """
 
-    def __init__(self):
+    def __init__(self, interval):
         """
         constructeur par default
         """
@@ -24,24 +24,25 @@ class drawer(Process):
         self.queue = None
         self.file = None
         self.last = None
+        self.interval = interval
 
     @classmethod
-    def fromQueue(cls, q):
+    def fromQueue(cls, q, interval=100):
         """
         initialisation
         :param q: la file des donnees
         """
-        draw = drawer()
+        draw = drawer(interval)
         draw.queue = q
         return draw
 
     @classmethod
-    def fromFile(cls, file):
+    def fromFile(cls, file, interval=100):
         """
         initialisation
         :param file: fichier des donnees
         """
-        draw = drawer()
+        draw = drawer(interval)
         draw.file = file
         return draw
 
@@ -58,7 +59,7 @@ class drawer(Process):
             mat = self.get_data()
             return self.plot_matrix(mat["data"], mat["target"])  # self.plot_matrix(self.data, "r", mark="x")
 
-        ani = animation.FuncAnimation(self.fig, animate, frames=None, blit=True, interval=30, repeat=False)
+        ani = animation.FuncAnimation(self.fig, animate, frames=None, blit=True, interval=self.interval, repeat=False)
         plt.show()
 
     def plot_matrix(self, mat, target):
