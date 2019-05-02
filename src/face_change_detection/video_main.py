@@ -53,7 +53,7 @@ def send_ploting_data(codebook, vect, FCount):
 if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
     lmk = landmarks()
-    f = "/tmp/data.plt"
+    f = "data.plt"
     dr = drawer.fromFile(f)
     dr.start()
 

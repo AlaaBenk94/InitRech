@@ -392,13 +392,30 @@ Une fois le visage détecté, il faut en extraire les saillances.
 \end_layout
 
 \begin_layout Subsection
-DNN
+Réseau de neurones profond (DNN)
 \end_layout
 
 \begin_layout Standard
-La méthode DNN ou Deep Neural Network (réseau de neurones profond) est une
- méthode de détection de visage plus performante basée sur l’apprentissage
- profond aussi appelé deep-learning [2].
+La méthode 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "DNN"
+description "Deep Neural Network"
+literal "false"
+
+\end_inset
+
+DNN ou Deep Neural Network (réseau de neurones profond) est une méthode
+ de détection de visage plus performante basée sur l’apprentissage profond
+ aussi appelé deep-learning 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CNN_functionning"
+literal "false"
+
+\end_inset
+
+.
  Elle repose sur l’apprentissage, par un ordinateur d’un modèle de données
  servant à remplir une tâche.
  Pour ce faire, un réseau de neurones est modélisé dans l’ordinateur.
@@ -426,20 +443,54 @@ La méthode DNN ou Deep Neural Network (réseau de neurones profond) est une
 \end_layout
 
 \begin_layout Subsection
-HOG
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Histogrammes-de-gradients"
+
+\end_inset
+
+Histogrammes de gradients orientées (HOG)
 \end_layout
 
 \begin_layout Standard
-Il s’agit d’un modèle de détection de visage largement utilisé, basé sur
- les fonctionnalités HOG (Histogram of Oriented Gradients) et SVM (Support
- Vector Machine).
+Il s’agit d’un modèle de détection de visage largement utilisé, inventé
+ en 2005, basé sur les fonctionnalités 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "HOG"
+description "Histogram of Oriented Gradients"
+literal "false"
+
+\end_inset
+
+HOG (Histogram of Oriented Gradients) et 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SVM"
+description "Support Vector Machine"
+literal "false"
+
+\end_inset
+
+SVM (Support Vector Machine).
  Dans le descripteur de caractéristiques HOG, la distribution (histogrammes)
  des directions de gradients (gradients orientés) est utilisé comme caractéristi
 que.
- Le calcul de l’histogramme des gradients se déroule en quatre étapes.
- La première étape est l’étape de prétraitement, tout d’abord il faut sélectionn
-er un patch d’image de l’image initiale et ensuite redimensionner ce patch
- de l’image à une taille plus petite comme le montre la figure suivante.
+ Le calcul de l’histogramme des gradients se déroule en différentes étapes.
+\end_layout
+
+\begin_layout Standard
+Tout abord, nous allons mettre l’image en noir et blanc, nous enlevons toutes
+ les autres couleurs car nous n’avons pas besoins de couleurs pour trouver
+ un visage.
+ Ensuite, sélectionner un patch d’image de l’image initiale et redimensionner
+ ce patch de l’image à une taille plus petite dans le but de regarder chaque
+ pixel de notre image.
+ Pour chaque pixel, nous voulons regarder les pixels qui l’entourent directement.
+ Le but est de déterminer l’obscurité du pixel courant par rapport aux pixels
+ qui l’entourent.
+ Ensuite dessiner une flèche pour montrer dans quelle direction l’image
+ devient plus sombre comme le montre la figure ci-dessous :
 \end_layout
 
 \begin_layout Standard
@@ -451,8 +502,19 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/resize.jpg
-	scale 70
+	filename img/gradient1.jpg
+	height 100bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/gradient2.jpg
+	height 100bp
 
 \end_inset
 
@@ -463,7 +525,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
+construction du gradient orienté
 \end_layout
 
 \end_inset
@@ -477,21 +539,48 @@ status open
 \end_layout
 
 \begin_layout Standard
-La deuxième étape consiste à faire le calcul de dégradé, pour calculer un
- descripteur de HOG, il faut d’abord calculer les gradients horizontaux
- et verticaux.
- Le but est de calculer l’histogramme des gradients.
- Ensuite trouver la magnitude et la direction du gradient.
+En répétant ce processus, chaque pixel sera remplacé par une flèche.
+ Ces flèches sont appelées gradients et elles montrent l’écoulement de la
+ lumière à l’obscurité sur toute l’image.
 \end_layout
 
 \begin_layout Standard
-La troisième étape consiste à faire le calcul de l’histogramme des gradients
- dans 8 x 8 cellules.
- Dans cette étape, l’image est divisée en 8 x 8 cellules et un histogramme
- de gradients est calculé pour chaque 8 x 8 cellules.
- L’histogramme est essentiellement un vecteur de 9 nombres correspondant
- aux angles 0, 20, 40, …, 160.
- La figure suivante illustre le processus.
+La raison majeure pour laquelle cette méthode remplace les pixels par des
+ flèches est pour avoir une représentation exacte des images.
+ En analysant directement les pixels, pour la même personne, les images
+ vraiment sombres et les images vraiment claires auront des valeurs de pixels
+ totalement différentes.
+ En revanche, en considérant seulement la direction dans laquelle la direction
+ change, nous arrivons à une représentation exacte.
+\end_layout
+
+\begin_layout Standard
+Cependant, sauvegarder le gradient pour chaque pixel nous donne beaucoup
+ de détails et cela fait beaucoup de données, pour cela, nous allons découper
+ l’image en petits carrés de 16x16 pixels chacun.
+ Et pout chaque case, on comptera combien de pentes dans chaque direction
+ principale (vers le haut, haut droit, haut gauche, etc.…).
+ Ensuite, nous remplaçons ce carré dans l’image par la direction des flèches.
+ A la fin, on arrive à transformer l’image originale en une représentation
+ très simple qui capture la structure de base d’un visage de manière très
+ simple.
+\end_layout
+
+\begin_layout Standard
+A la fin, on calcule le vecteur de caractéristiques HOG, ce dernier est
+ un géant vecteur qui concatène plusieurs vecteurs de caractéristique de
+ l’ensemble de l’image pour chaque carré de cette image comme il est illustré
+ dans la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Processus-de-la"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ ci-aprés.
 \end_layout
 
 \begin_layout Standard
@@ -503,8 +592,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/hist_construction.jpg
-	scale 70
+	filename img/hist_gradients.jpg
 
 \end_inset
 
@@ -515,6 +603,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Processus-de-la"
+
+\end_inset
+
 Processus de la construction de l’histogramme des gradients
 \end_layout
 
@@ -526,25 +620,6 @@ Processus de la construction de l’histogramme des gradients
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Ici, le pixel encerclé par le bleu a un angle de 80 degrés et une magnitude
- de 2, donc ajouter 2 à la cinquième case.
- Le dégradé au niveau du pixel entouré de rouge a un angle de 10 degrés
- et une amplitude de 4.
- Comme 10 se situe entre 0 et 20, le pixel se divise dans les deux emplacements
- aux deux premières cases.
-\end_layout
-
-\begin_layout Standard
-La quatrième étape est la normalisation de bloc 16 x 16, puisque les degrés
- de l’image qui compose l’histogramme construit dans l’étape précédente
- est sensible à la luminosité, il est préférable de normaliser l’histogramme
- afin qu’il ne soit pas affecté par les variations de luminosité.
- Chaque histogramme est un vecteur de 9 x 1, et on peut concaténer 4 histogramme
-s donc dans cette étape la normalisation se fait sur un vecteur de 36 x
- 1 éléments.
 \end_layout
 
 \begin_layout Standard
@@ -560,7 +635,7 @@ La méthode HOG est la méthode la plus rapide sur le processeur, elle fonctionn
  est léger par rapport aux méthodes précédentes et elle fonctionne sous
  petit occlusion.
  Cependant, l’inconvénient majeur de cette méthode est qu’elle ne détecte
- pas les petit visages, car elle est conçue pour une taille minimale de
+ pas les petits visages, car elle est conçue pour une taille minimale de
  80 x 80, la boite englobante exclut souvent une partie du front et même
  une partie menton parfois, elle ne fonctionne pas très bien sous occlusion
  importante et elle ne fonctionne pas pour les faces latérales et les faces
@@ -569,7 +644,7 @@ La méthode HOG est la méthode la plus rapide sur le processeur, elle fonctionn
 \end_layout
 
 \begin_layout Subsection
-Détection de visage avec CNN
+Réseau de neurones convolutionnel (CNN)
 \end_layout
 
 \begin_layout Standard
@@ -578,7 +653,16 @@ C’est une méthode qui est aussi très utilisée dans cette dernière décenni
  aux utilisateurs de se libérer des tâches fastidieuses telles que l’extraction
  minière négative.
  Cette méthode repose sur un algorithme de détection d’objets à marge maximale
- MMOD (Max Margin Object Detection en anglais) Pour Dlib.
+ 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "MMOD"
+description "Max Margin Object Detection"
+literal "false"
+
+\end_inset
+
+MMOD (Max Margin Object Detection en anglais) Pour Dlib.
  Ce modèle produit des détecteurs de haute qualité à partir de quantités
  relativement faibles de donnée d’entrainement (à partir de 4 images seulement)
  en utilisant un ensemble de données étiqueté manuellement par son auteur.
@@ -587,8 +671,15 @@ C’est une méthode qui est aussi très utilisée dans cette dernière décenni
  Cela signifie qu’il capable d’apprendre à détecter des objets présentant
  une variation complexe de pose ou une grande variété d’apparences, ce qui
  a conduit à utiliser au cours des dernières années, les réseaux de neurones
- convolutifs CNN (3) capable de traiter tous ces problèmes dans un seul
- modèle.
+ convolutifs CNN 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CNN_functionning"
+literal "false"
+
+\end_inset
+
+ capable de traiter tous ces problèmes dans un seul modèle.
  L’idée est donc d’ajouter une implémentation de MMOD avec l’extraction
  de la fonctionnalité HOG remplacée par un réseau de neurones convolutifs.
  Le résultat obtenu avec la version CNN de MMOD était inattendu en travaillant
@@ -649,6 +740,118 @@ Une différence notable entre les deux modèles de détection, HOG fait un
 \end_layout
 
 \begin_layout Section
+Methode d'extraction des points de saillances
+\end_layout
+
+\begin_layout Standard
+Le processus qui est capable d’explorer un ensemble de points clés à partir
+ d’une image de visage donnée, est appelée Localisation du repère du visage
+ ou Face Landmark Localization en anglais (alignement du visage).
+\end_layout
+
+\begin_layout Standard
+Les repères (points clés) qui nous intéressent sont ceux qui décrivent la
+ forme des attributs du visage comme : les yeux, les sourcils, le nez, la
+ bouche, et le menton.
+ Ces points ont donné un excellent aperçu de la structure faciale analysée,
+ qui peut être très utile pour un large éventail d’applications.
+\end_layout
+
+\begin_layout Standard
+De nombreuses méthodes permettent de détecter ces points : certaines d’entres
+ elles atteignent une précision et une robuste supérieures en analysant
+ un modèle de visage 3D extrait d’une image 2D, d’autres s’appuient sur
+ la puissance des CNN et d’autres utilisent des fonctions simples (mais
+ rapides) pour estimer l’emplacement des points.
+\end_layout
+
+\begin_layout Standard
+L’Algorithme de détection des repères de visage reposé par Dlib est l’implémenta
+tion de l’Ensemble of Regression Trees (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "ERT"
+description "Ensemble of Regression Trees"
+literal "false"
+
+\end_inset
+
+ERT) présenté en 2014 par Kazemi et Sullivan 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kazemi2014one"
+literal "false"
+
+\end_inset
+
+.
+ Cette technique utilise une fonction simple et rapide (différence d’intensité
+ des pixels) pour estimer directement la position des points de repère.
+ Ces positions estimées sont ensuite affinées au moyen d’un processus itératif
+ effectué par une cascade de variables explicatives.
+ Les régresseurs produisent une nouvelle estimation à partir de la précédente,
+ en essayant de réduire l’erreur d’alignement des points estimés à chaque
+ itération.
+ L’algorithme est très rapide, en fait, il faut environ 1 à 3 ms pour détecter
+ un ensemble de 68 points de repère sur un visage donné.
+ La figure suivante présente l’ensemble des points de visage extrait par
+ l’algorithme :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/68pointsdlib.jpg
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+L'ensemble des 68 points détectés par Dlib pré-entraîné
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Fondamentalement, un prédicteur de forme peut être généré à partir d’un
+ ensemble d’images, d’annotations et d’options de formation.
+ Une seule annotation se compose de la région du visage et des points marqués
+ que nous voulons localiser.
+ La région du visage peut être facilement obtenue par n’importe quel algorithme
+ de détection de visage (OpenCV Haar Cascade, Dlib HOG Detector, CNN, …),
+ au lieu de cela les points doivent être marqués manuellement ou détectés
+ par des détecteurs et modèles déjà disponible.
+ Enfin, les options de formation sont un ensemble de paramètres qui définissent
+ les caractéristiques du modèle formé.
+ Ces paramètres peuvent être correctement ajustés afin d’obtenir le comportement
+ souhaité du modèle généré.
+\end_layout
+
+\begin_layout Section
 Clustering
 \end_layout
 
@@ -676,14 +879,22 @@ Deux individus éloignés doivent appartenir à des groupes différents.
 \begin_layout Standard
 Afin de définir l’homogénéité d’un groupe d’observation, il est nécessaire
  de mesurer une ressemblance entre deux observations.
- D’où la notion de similarité et de dissimilarité [4]
+ D’où la notion de similarité et de dissimilarité 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ClassNonSup"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -896,9 +1107,18 @@ Carte auto-organisatrice (SOM)
 
 \begin_layout Standard
 Self Organizen Map ou la carte auto organisatrice (SOM), est un type de
- réseau de neurones artificiels (RNA) formé à l’aide d’un apprentissage
- non supervisé afin de produire une représentation discrète, généralement
- bidimensionnelle, de l’espace d’entrée des échantillons d’apprentissage.
+ réseau de neurones artificiels (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "RNA"
+description "réseau de neurones artificiels"
+literal "false"
+
+\end_inset
+
+RNA) formé à l’aide d’un apprentissage non supervisé afin de produire une
+ représentation discrète, généralement bidimensionnelle, de l’espace d’entrée
+ des échantillons d’apprentissage.
  La carte est donc une méthode pour faire la réduction de dimensionnalité.
  Les carte auto organisatrices différent des autres réseaux de neurones
  artificiels par le fait qu’elles appliquent l’apprentissage compétitif
@@ -943,7 +1163,15 @@ Réduction de la dimensionnalité dans la SOM
 
 \begin_layout Standard
 SOM a été introduite par le professeur finlandais Teuvo Kohonen dans les
- années 1980, elle est aussi appelée carte de Kohonen.
+ années 1980, elle est aussi appelée carte de Kohonen 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kohonen1990self"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1018,7 +1246,16 @@ Choisir un vecteur au hasard dans l’ensemble des données d’apprentissages.
 Chaque nœud est examiné pour calculer les poids qui ressemblent le plus
  au vecteur d’entrée.
  Le nœud gagnant est généralement appelé unité de meilleure correspondance
- ou Best Matching Unit (BMU)
+ ou Best Matching Unit (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "BMU"
+description "Best Matching Unit"
+literal "false"
+
+\end_inset
+
+BMU)
 \end_layout
 
 \begin_layout Enumerate
@@ -1066,7 +1303,6 @@ Nous avons exploré, dans ce chapitre, les différents notions, existantes,
  liées à notre solution.
  Cela nous permet d’entamer les détails de notre conception dans le chapitre
  suivant.
- 
 \end_layout
 
 \end_body
