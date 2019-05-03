@@ -77,7 +77,8 @@ if __name__ == '__main__':
     cluster = -1
     pred = None
     i = 0
-    delta = 20
+    delta = 30
+    coef = 10
     minidisp = np.full((150, 400, 3), 200, np.uint8)
 
     while True:
@@ -102,6 +103,7 @@ if __name__ == '__main__':
                     predimg = np.copy(frame)
                 else:
                     vcc = caracterestique.calculate_vcc(pred, vect)
+                    vcc = vcc*coef
                     cluster = net.cluster(vcc)
                     net.learn_data(vcc, lrate=5, sigma=1)
                     minidisp = imutils.resize(np.hstack((predimg, np.copy(frame))), width=400)
