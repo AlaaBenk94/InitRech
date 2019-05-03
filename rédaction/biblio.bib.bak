@@ -91,19 +91,4 @@
   pages     = {1867--1874},
 }
 
-@Article{zhao2019object,
-  author    = {Zhao, Zhong-Qiu and Zheng, Peng and Xu, Shou-tao and Wu, Xindong},
-  title     = {Object detection with deep learning: A review},
-  journal   = {IEEE transactions on neural networks and learning systems},
-  year      = {2019},
-  publisher = {IEEE},
-}
-
-@Misc{CNN_functionning,
-  author = {Charles Crouspeyre},
-  title  = {Comment les Réseaux de neurones à convolution fonctionnent},
-  month  = jul,
-  year   = {2017},
-}
-
 @Comment{jabref-meta: databaseType:bibtex;}

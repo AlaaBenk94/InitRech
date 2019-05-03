@@ -28,9 +28,6 @@
 \fancyfoot[R]{\thepage}
 \renewcommand{\footrulewidth}{0pt}
 
-\providecommand{\motscles}[1]{\textbf{\textit{mots clés :}} #1}
-\providecommand{\keywords}[1]{\textbf{\textit{Keywords :}} #1}
-
 \oddsidemargin = 18pt
 \topmargin = 0pt
 \headheight = 22pt
@@ -331,13 +328,6 @@ btprint "btPrintCited"
 bibfiles "biblio"
 options "bibtotoc,plain"
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage pagebreak
 \end_inset
 
 

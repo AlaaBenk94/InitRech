@@ -129,9 +129,9 @@ ness to the latter.
  of a system that gives a robotic prototype the ability to interact according
  to the different perceived changes in expression.
  The system consists of several phases, the first of which is the use of
- the oriented gradient histogram method combined with machine learning model
- to extract landmark points that will then be used to calculate the characterist
-ic vectors of the changes and finally perform clustering using the dynamic
+ the oriented gradient histogram method combined with automatic learning
+ to extract salient points that will then be used to calculate the characteristi
+c vectors of the changes and finally perform clustering using the dynamic
  self-organizing map.
 \end_layout
 

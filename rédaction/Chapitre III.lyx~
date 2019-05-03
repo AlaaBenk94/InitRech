@@ -394,16 +394,20 @@ noprefix "false"
 
 \end_inset
 
- ci-dessous, l'étape de détection du visage s’agit de retrouver la zone
+ ci-dessous, l'étape de détection du visage s’agit de retrouver les zone
  du visage (la région d'interet ROI) dans une image pour qu’on puisse y
  effectuer des traitements par la suite.
+ La méthode utilisée pour cette étape est l’histogramme de gradient orienté
+ (HOG) décrit dans (section de chapitre précédent).
+ Nous avons utiliser sont implémentation dans la bibliothèque dlib pour
+ extraire la région d'interet des images de flux video.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -434,26 +438,13 @@ Détection de visage
 
 \end_layout
 
-\end_inset
-
+\begin_layout Plain Layout
 
 \end_layout
 
-\begin_layout Standard
-La méthode utilisée pour cette étape est l’histogramme de gradient orienté
- (HOG) décrit dans (section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Histogrammes-de-gradients"
-plural "false"
-caps "false"
-noprefix "false"
-
 \end_inset
 
-).
- Nous avons utiliser son implémentation dans la bibliothèque dlib pour extraire
- la région d'interet des images de flux video.
+
 \end_layout
 
 \begin_layout Subsection
@@ -970,7 +961,7 @@ status collapsed
 status open
 
 \begin_layout Plain Layout
-•
++
 \end_layout
 
 \end_inset
@@ -979,7 +970,7 @@ status open
 \begin_inset Formula $i$
 \end_inset
 
- l'indice du neurone
+ : l'indice du neurone
 \end_layout
 
 \begin_layout Itemize
@@ -987,7 +978,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-•
++
 \end_layout
 
 \end_inset
@@ -996,7 +987,11 @@ status open
 \begin_inset Formula $s$
 \end_inset
 
+<<<<<<< HEAD
  représente le meilleure correspondant (BMU)
+=======
+ : représente le meilleure correspondant (BMU) et
+>>>>>>> 508af5f9904d44cb3d337946f46f09d80083a266
 \end_layout
 
 \begin_layout Itemize
@@ -1004,7 +999,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-•
++
 \end_layout
 
 \end_inset
@@ -1013,7 +1008,7 @@ status open
 \begin_inset Formula $η$
 \end_inset
 
- l'élasticité (un seuil pour considéré qu'un neurone et suffisament proche
+ : l'élasticité (un seuil pour considéré qu'un neurone et suffisament proche
  pour representer les données et donc les poids ne seront pas modifiés)
 \end_layout
 
@@ -1043,16 +1038,6 @@ addcontentsline{toc}{section}{Conclusion}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Nous avons présenté, dans ce chapitre, notre solution à la problématique
- posée au début de rapport.
- Nous avons obtenu de bons résultats.
- Cependant, certaines méthodes, utilisées dans les différentes étapes de
- la solution, présente des capacités assez limitées.
- Ces méthodes peuvent être subi à des amélioration et servir à améliorer
- les résultats.
 \end_layout
 
 \end_body

@@ -53,9 +53,8 @@ def send_ploting_data(codebook, vect, FCount):
 if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
     lmk = landmarks()
-    f = "data.plt"
+    f = "/tmp/data.plt"
     dr = drawer.fromFile(f)
-    dr.start()
 
     print("[INFO] chargement d'extracteur des caracteristiques...")
     car = caracterestique()
@@ -75,10 +74,11 @@ if __name__ == '__main__':
     vect = np.zeros((1, FCount))
     vcc = np.zeros((1, FCount))
     cluster = -1
-    pred = None
-    i = 0
-    delta = 20
-    minidisp = np.full((150, 400, 3), 200, np.uint8)
+    pred = None # le frame (l'image) precedent
+    i = 0 # compteur de frame
+    delta = 10 # l'intervale entre les 2 frame a prendre
+    coef = 10 # coefficient pour normaliser le vecteur d'entree
+    minidisp = np.full((150, 400, 3), 200, np.uint8) # remplissage avant le debut de detection.
 
     while True:
         start = int(round(t.time() * 1000))
@@ -102,6 +102,7 @@ if __name__ == '__main__':
                     predimg = np.copy(frame)
                 else:
                     vcc = caracterestique.calculate_vcc(pred, vect)
+                    vcc = vcc*coef
                     cluster = net.cluster(vcc)
                     net.learn_data(vcc, lrate=5, sigma=1)
                     minidisp = imutils.resize(np.hstack((predimg, np.copy(frame))), width=400)
@@ -114,6 +115,8 @@ if __name__ == '__main__':
 
             frame = update_display(frame, face, cluster)
             send_ploting_data(net.codebook, vcc, FCount)
+            if not dr.is_alive():
+                dr.start()
 
         # dessiner le numero de frame
         end = (int(round(t.time() * 1000)) - start)

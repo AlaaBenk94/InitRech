@@ -402,7 +402,7 @@ status open
 \begin_inset Graphics
 	filename img/pinokio.jpg
 	lyxscale 50
-	scale 30
+	scale 40
 	rotateOrigin center
 
 \end_inset
@@ -431,17 +431,6 @@ Pinokio la lampe de bureau rebotisée
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-La lampe Pinokio est composée dans sa structure générale de son corps d’une
- tête, d’un bras pliant et capable d’étirer et de rétrécir, une base sur
- laquelle le bras tourne et 6 servo-moteurs.
- Elle est également dite une lampe active (qui se déplace), ses actions
- sont principalement pilotées par Arduino et le logiciel de traitement d’image
- OpenCV, qui recherche le visage dans les images à partir de sa webcam.
- Lorsqu’il trouve un visage, il tente de le suivre comme s’il essayait de
- maintenir un contact visuel.
 \end_layout
 
 \begin_layout Section

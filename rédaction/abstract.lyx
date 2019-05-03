@@ -6,13 +6,44 @@
 \origin unavailable
 \textclass report
 \begin_preamble
-\providecommand{\motscles}[1]{\textbf{\textit{mots clés :}} #1}
+\usepackage[bottom]{footmisc}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{minitoc}
+\usepackage{pgfplots}
+\usepackage{lmodern}
 
-\providecommand{\keywords}[1]{\textbf{\textit{Keywords :}} #1}
+\usepackage{titletoc}% http://ctan.org/pkg/titletoc
+\titlecontents{chapter}% <section-type>
+  [0pt]% <left>
+  {\bfseries}% <above-code>
+  {\chaptername\ \thecontentslabel:\quad}% <numbered-entry-format>
+  {}% <numberless-entry-format>
+  {\hfill\contentspage}% <filler-page-format>
+
+\fancyhead[R,C]{}
+\fancyhead[L]{\footnotesize\leftmark}
+\renewcommand{\headrulewidth}{1pt}
+\fancyfoot[L,C]{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\footrulewidth}{0pt}
+
+\oddsidemargin = 18pt
+\topmargin = 0pt
+\headheight = 22pt
+\headsep = 25pt
+\textheight = 609pt
+\textwidth = 424pt
+\marginparsep = 11pt
+\marginparwidth = 54pt
+\footskip = 50pt
+\marginparpush = 54pt
+\hoffset = 0pt
+\voffset = 0pt
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
-\language french
+\language english
 \language_package default
 \inputencoding utf8
 \fontencoding global
@@ -68,7 +99,7 @@
 \paragraph_indentation default
 \is_math_indent 0
 \math_numbering_side default
-\quotes_style french
+\quotes_style english
 \dynamic_quotes 0
 \papercolumns 1
 \papersides 1
@@ -83,46 +114,6 @@
 \begin_body
 
 \begin_layout Abstract
-Dans le cadre du projet Psyphine qui vise à explorer et étudier les interactions
- entre l'homme et la machine ainsi, que l'attribution d'intentions et de
- conscience à cette dernière.
- Ce rapport présente notre contribution au projet, à savoir, la conception
- d'un système qui donne, à un prototype robotisé, la capacité d'interagir
- suivant les différents changements d'expression perçues.
- Le système comporte plusieurs phases dont la première s'agit de l'emploi
- de la méthode d'histogramme des gradients orientés combinée avec l'apprentissag
-e automatique pour extraire des points de saillances qui seront par la suite
- utilisés dans le calcul des vecteurs caractéristiques des changements pour
- enfin effectuer un clustering utilisant la carte auto-organisatrice dynamique.
-\end_layout
-
-\begin_layout Abstract
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-motscles{Psyphine; intéractions; détection; HOG; dlib; apprentissage-automatique
-; carte auto-organisatrice dynamique} 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Abstract
-
-\lang english
 As part of the Psyphine project, which aims to explore and study the interaction
 s between man and machine as well as the attribution of intentions and conscious
 ness to the latter.
@@ -134,23 +125,6 @@ ness to the latter.
  to extract salient points that will then be used to calculate the characteristi
 c vectors of the changes and finally perform clustering using the dynamic
  self-organizing map.
-\end_layout
-
-\begin_layout Abstract
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-keywords{Psyphine; interactions; face-detection; HOG; machine-learning;
- dlib; DSOM} 
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_body
