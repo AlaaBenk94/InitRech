@@ -183,7 +183,7 @@ n de l'approche.
 
 \begin_layout Standard
 Dans ce chapitre, nous présentrons les différentes étapes de l'approche
- suivie et expliquerons ce que nous avons utilisé dans chacune de ces étapes.
+ suivie en expliquant ce que nous avons utilisé dans chacune de ces étapes.
 \end_layout
 
 \begin_layout Standard
@@ -209,17 +209,17 @@ Appoche globale
 \begin_layout Standard
 Notre objectif, comme mentionné précédemment, est de concevoir un système
  qui permet à la lampe de réagir en fonction des changements des expressions
- du sujet qui se trouve en face.
+ du sujet qui se trouve en face d'elle.
 \end_layout
 
 \begin_layout Standard
 La réalisation de ce système nécessite de passer par plusieurs étapes indispensa
 bles en commençant par la détection de visage et l'extraction des points
  de saillances.
- Ensuite en passant par l'extraction des caractéristiques et l'encodage
+ Ensuite nous allons passer à l'extraction des caractéristiques et l'encodage
  des solutions.
- En arrivant au regroupement (clustering) des différents changements est
- la définition de comportement.
+ Enfin, nous arrivons au regroupement (clustering) des différents changements
+ et à la définition du comportement.
 \end_layout
 
 \begin_layout Standard
@@ -239,9 +239,9 @@ noprefix "false"
 \end_layout
 
 \begin_layout Itemize
-La phase de préparation qui prend en entrée un flux vidéo (séquences d'images)
- pour produire en sortie un vecteur caractérisant les changements sur les
- différentes séquences.
+La phase de préparation qui prend en entrée un flux d'image sous forme d'une
+ vidéo (séquences d'images) pour produire en sortie un vecteur caractérisant
+ les changements sur les différentes séquences.
 \end_layout
 
 \begin_layout Itemize
@@ -465,9 +465,9 @@ Une fois l’étape de détection de visage est terminée, l’étape d’extrac
  des points de saillances prend place.
  Cette étape utilise la région (ROI) extraite de l’étape précédente pour
  déterminer 68 points de saillances.
- Nous allons utiliser un algorithme dite « algorithme d’estimations des
- points de saillances » qui est basé sur une approche inventée par Vahid
- Kazemi et Josephine Sullivan en 2014 
+ Nous allons utiliser un algorithme dit « algorithme d’estimations des points
+ de saillances » qui est basé sur une approche inventée par Vahid Kazemi
+ et Josephine Sullivan en 2014 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "kazemi2014one"
@@ -527,7 +527,7 @@ Phase d'extraction des VCC
 
 \begin_layout Standard
 Cette phase permet en premier, de définir des caracteristique d'expressions
- ,choisis explicitement, a partir des vecteurs de points de saillances.
+ ,choisis explicitement, à partir des vecteurs de points de saillances.
  Ensuite, utiliser ces caractéristiques pour calculer les vecteurs caractéristiq
 ues des changements d'expressions qui seront utilisé pour le clustering
  dans la phase qui suit.

@@ -198,7 +198,7 @@ s phases, de la détection du visage jusqu'à la classification non supervisé.
 \end_layout
 
 \begin_layout Section
-Détection de visage
+Méthodes de détection de visage
 \end_layout
 
 \begin_layout Standard
@@ -214,7 +214,7 @@ La détection de visage est un type d’application classé dans la technologie
 \end_layout
 
 \begin_layout Subsection
-Haar cascade
+Détection avec la méthode Haar cascade
 \end_layout
 
 \begin_layout Standard
@@ -392,7 +392,7 @@ Une fois le visage détecté, il faut en extraire les saillances.
 \end_layout
 
 \begin_layout Subsection
-Réseau de neurones profond (DNN)
+Détection avec les réseaux de neurones profonds (DNN)
 \end_layout
 
 \begin_layout Standard
@@ -767,8 +767,16 @@ De nombreuses méthodes permettent de détecter ces points : certaines d’entre
 
 \begin_layout Standard
 L’Algorithme de détection des repères de visage reposé par Dlib est l’implémenta
-tion de l’Ensemble of Regression Trees (ERT) présenté en 2014 par Kazemi
- et Sullivan 
+tion de l’Ensemble of Regression Trees (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "ERT"
+description "Ensemble of Regression Trees"
+literal "false"
+
+\end_inset
+
+ERT) présenté en 2014 par Kazemi et Sullivan 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "kazemi2014one"

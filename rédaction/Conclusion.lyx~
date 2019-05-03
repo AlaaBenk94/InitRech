@@ -142,16 +142,16 @@ mtcaddchapter[Conclusion générale]
 
 \begin_layout Standard
 Au cours de ce projet, notre contribution consiste en l’affectation, à la
- lampe rebotisé, la capacité de régir (effectuer des comportement) en fonction
- des différents changements d’expressions des personnes à travers des expérience
-s.
+ lampe rebotisée, la capacité de réagir (effectuer des comportement) en
+ fonction des différents changements d’expressions des personnes à travers
+ des expériences.
 \end_layout
 
 \begin_layout Standard
-La solution que nous avons proposée comporte plusieurs étapes.
+La solution que nous avons proposé comporte plusieurs étapes.
  Nous avons commencé par le prétraitement pour améliorer les résultats.
- Puis, la détection du vissage par le choix de la méthode basé sur l’histogramme
- de gradients orientées qui donne de meilleurs résultats comparés aux autres
+ Puis, la détection du vissage par le choix de la méthode basée sur l’histogramm
+e de gradients orientés qui donne de meilleurs résultats comparé aux autres
  méthodes mais avec quelques limitations.
  Par la suite, nous avons utilisé un model basé sur les arbres de régressions
  pour extraire 68 points de saillances.
@@ -166,10 +166,10 @@ La solution que nous avons proposée comporte plusieurs étapes.
 \end_layout
 
 \begin_layout Standard
-Notre solution a montré de très bonnes performances.
- Cependant, elle peut être subi à plusieurs améliorations que nous avons
- envisagées, mais malheureusement et par faute du temps, nous n’avons pas
- pu les mettre en place.
+Notre solution a montrée de très bonnes performances.
+ Cependant, elle peut être sous réserve de plusieurs améliorations que nous
+ avons envisagés de faire, mais malheureusement et par faute du temps, nous
+ n’avons pas pu les mettre en place.
  Parmi ces perspectives nous citons :
 \end_layout
 
@@ -184,7 +184,7 @@ status collapsed
 \end_inset
 
  Entrainer un nouveau model pour l’extraction des points de saillances sur
- des données plus adaptés à notre application.
+ des données plus adaptées à notre application.
 \end_layout
 
 \begin_layout Itemize
@@ -212,7 +212,7 @@ status collapsed
 \end_inset
 
  Mettre en place des méthodes d’évaluation de performances de model du clusterin
-g et implémenter d’autre méthode performantes afin de les comparer.
+g et implémenter d’autres méthodes performantes afin d'en comparer.
 \end_layout
 
 \end_body
