@@ -110,8 +110,7 @@ if __name__ == '__main__':
                     predimg = None
 
             i = i + 1
-            print("VCC[{}] : {}".format(i, vcc))
-            print("\a")
+            # print("VCC[{}] : {}".format(i, vcc))
 
             frame = update_display(frame, face, cluster)
             send_ploting_data(net.codebook, vcc, FCount)
