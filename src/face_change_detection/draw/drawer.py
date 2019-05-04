@@ -28,7 +28,8 @@ class drawer(Process):
 
         # preparing figures
         # self.main_fig, self.ax = plt.subplots(figsize=(5, 4))
-        self.dim_fig, self.dim_ax = plt.subplots(self.f, 1, True)
+        # self.dim_fig, self.dim_ax = plt.subplots(self.f, 1, True)
+        self.hist_fig, self.hist_ax = plt.subplots(3, 1)
 
         # initialization
         self.sc = StandardScaler()
@@ -41,6 +42,8 @@ class drawer(Process):
         self.neurones = np.array([]).reshape((-1, self.n, self.f))
         self.inputs = np.array([[]]).reshape((-1, self.f))
         self.targets = np.array([])
+        self.dists = np.array([])
+        self.hist = [0] * self.n
 
     @classmethod
     def fromQueue(cls, q):
@@ -80,13 +83,49 @@ class drawer(Process):
 
             handles, labels = plt.gca().get_legend_handles_labels()
             by_label = OrderedDict(zip(labels, handles))
-            self.dim_ax[-1].legend(by_label.values(), by_label.keys(), bbox_to_anchor=(1.01, 5), loc=2, borderaxespad=0.)
+            self.dim_ax[-1].legend(by_label.values(), by_label.keys(), bbox_to_anchor=(1.01, 5), loc=2,
+                                   borderaxespad=0.)
 
             return self.plot_dimensions(mat["data"][:self.n], mat["target"])
 
+        def hist_animation(i):
+            mat = self.get_data()
+            return self.plot_histogram(mat["data"][-1], 0, mat["target"])
+
         # ani = animation.FuncAnimation(self.main_fig, main_animation, frames=None, blit=True, interval=30, repeat=False)
-        ani2 = animation.FuncAnimation(self.dim_fig, dim_animation, frames=None, blit=True, interval=30, repeat=False)
+        # ani2 = animation.FuncAnimation(self.dim_fig, dim_animation, frames=None, blit=True, interval=30, repeat=False)
+        ani3 = animation.FuncAnimation(self.hist_fig, hist_animation, frames=None, blit=True, interval=30, repeat=False)
         plt.show()
+
+    def plot_histogram(self, vcc, dist, nwinner):
+        """
+        dessinateur d'histogramme
+        :param vcc: vecteur d'entree
+        :param dist: la distance entre l'entree et le gangant
+        :param nwinner: l'indice du gagnant
+        """
+
+        self.inputs = np.append(self.inputs, vcc.reshape(-1, self.f), 0)
+
+        if self.inputs.shape[0] > self.n_first:
+            self.inputs = np.delete(self.inputs, 0, 0)
+
+        if nwinner != -1:
+            self.hist[nwinner] = self.hist[nwinner] + 1
+
+        # plotting input
+        plots = np.array([])
+        for i in range(self.f):
+            plots = np.append(plots,
+                              self.hist_ax[0].plot(range(self.inputs.shape[0]), self.inputs[:, i], "C{}".format(i)))
+
+        # plotting distances
+
+
+        # ploting histogram
+        plots = np.append(plots, self.hist_ax[2].bar(range(self.n), self.hist, color=["C{}".format(c) for c in range(self.n)]))
+
+        return tuple(plots)
 
     def plot_dimensions(self, neurones, target):
         """
@@ -105,11 +144,14 @@ class drawer(Process):
 
         plots = np.array([])
         for i in range(self.f):
-            plots = np.append(plots, self.dim_ax[i].vlines(range(self.neurones.shape[0]), -2, 2, ["C{}".format(i) for i in self.targets.astype('int32')], alpha=0.3))
+            plots = np.append(plots, self.dim_ax[i].vlines(range(self.neurones.shape[0]), -2, 2,
+                                                           ["C{}".format(i) for i in self.targets.astype('int32')],
+                                                           alpha=0.3))
 
         for n in range(self.n):
             for i in range(self.f):
-                plots = np.append(plots, self.dim_ax[i].plot(range(self.neurones.shape[0]), self.neurones[:, n, i], "C{}".format(n), label="N{}".format(n)))
+                plots = np.append(plots, self.dim_ax[i].plot(range(self.neurones.shape[0]), self.neurones[:, n, i],
+                                                             "C{}".format(n), label="N{}".format(n)))
 
         return tuple(plots)
 
