@@ -83,20 +83,22 @@ class drawer(Process):
             by_label = OrderedDict(zip(labels, handles))
             self.dim_ax[-1].legend(by_label.values(), by_label.keys(), bbox_to_anchor=(1.01, 5), loc=2, borderaxespad=0.)
 
-            return self.plot_dimensions(mat["data"][:self.n])
+            return self.plot_dimensions(mat["data"][:self.n], mat["target"])
 
         # ani = animation.FuncAnimation(self.main_fig, main_animation, frames=None, blit=True, interval=30, repeat=False)
         ani2 = animation.FuncAnimation(self.dim_fig, dim_animation, frames=None, blit=True, interval=30, repeat=False)
         plt.show()
 
-    def plot_dimensions(self, neurones):
+    def plot_dimensions(self, neurones, target):
         """
         dessinateur des neurones
         :param t: le temps
         :param neurones: la matrice des neurones
         """
 
+        # adding current data to datasets
         self.neurones = np.append(self.neurones, neurones.reshape((-1, self.n, self.f)), 0)
+        self.targets = np.append(self.targets, target)
 
         plots = np.array([])
         for n in range(self.n):
