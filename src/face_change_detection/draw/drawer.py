@@ -15,7 +15,7 @@ class drawer(Process):
     la class qui gere l'affichage des donnees et du model en temps reel
     """
 
-    def __init__(self, _n=9, _f=8):
+    def __init__(self, _n=9, _f=8, n_first=50):
         """
         constructeur par default
         """
@@ -24,6 +24,7 @@ class drawer(Process):
         # params
         self.n = _n
         self.f = _f
+        self.n_first = n_first
 
         # preparing figures
         # self.main_fig, self.ax = plt.subplots(figsize=(5, 4))
@@ -77,8 +78,6 @@ class drawer(Process):
         def dim_animation(i):
             mat = self.get_data()
 
-            fontP = FontProperties()
-            fontP.set_size('small')
             handles, labels = plt.gca().get_legend_handles_labels()
             by_label = OrderedDict(zip(labels, handles))
             self.dim_ax[-1].legend(by_label.values(), by_label.keys(), bbox_to_anchor=(1.01, 5), loc=2, borderaxespad=0.)
@@ -100,7 +99,14 @@ class drawer(Process):
         self.neurones = np.append(self.neurones, neurones.reshape((-1, self.n, self.f)), 0)
         self.targets = np.append(self.targets, target)
 
+        if self.targets.shape[0] > self.n_first:
+            self.neurones = np.delete(self.neurones, 0, 0)
+            self.targets = np.delete(self.targets, 0, 0)
+
         plots = np.array([])
+        for i in range(self.f):
+            plots = np.append(plots, self.dim_ax[i].vlines(range(self.neurones.shape[0]), -2, 2, ["C{}".format(i) for i in self.targets.astype('int32')], alpha=0.3))
+
         for n in range(self.n):
             for i in range(self.f):
                 plots = np.append(plots, self.dim_ax[i].plot(range(self.neurones.shape[0]), self.neurones[:, n, i], "C{}".format(n), label="N{}".format(n)))
