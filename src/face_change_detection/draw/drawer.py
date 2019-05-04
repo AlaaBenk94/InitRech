@@ -15,20 +15,21 @@ class drawer(Process):
     la class qui gere l'affichage des donnees et du model en temps reel
     """
 
-    def __init__(self, _n=9, _f=8, n_first=50):
+    def __init__(self, _n=9, _f=8, n_first=200, _speed=30):
         """
         constructeur par default
         """
         super(drawer, self).__init__()
 
         # params
-        self.n = _n
-        self.f = _f
-        self.n_first = n_first
+        self.n = _n # nombre de clusters
+        self.f = _f # dimension des entrees
+        self.n_first = n_first # champs de plotting
+        self.speed = _speed # vitesse de plotting
 
         # preparing figures
         # self.main_fig, self.ax = plt.subplots(figsize=(5, 4))
-        # self.dim_fig, self.dim_ax = plt.subplots(self.f, 1, True)
+        self.dim_fig, self.dim_ax = plt.subplots(self.f, 1, True)
         self.hist_fig, self.hist_ax = plt.subplots(3, 1)
 
         # initialization
@@ -90,11 +91,18 @@ class drawer(Process):
 
         def hist_animation(i):
             mat = self.get_data()
-            return self.plot_histogram(mat["data"][-1], 0, mat["target"])
+            return self.plot_histogram(mat["data"][-1], mat["dist"], mat["target"])
 
-        # ani = animation.FuncAnimation(self.main_fig, main_animation, frames=None, blit=True, interval=30, repeat=False)
-        # ani2 = animation.FuncAnimation(self.dim_fig, dim_animation, frames=None, blit=True, interval=30, repeat=False)
-        ani3 = animation.FuncAnimation(self.hist_fig, hist_animation, frames=None, blit=True, interval=30, repeat=False)
+        # ani = animation.FuncAnimation(self.main_fig, main_animation, frames=None, blit=True, interval=self.speed, repeat=False)
+        ani2 = animation.FuncAnimation(self.dim_fig, dim_animation, frames=None, blit=True, interval=self.speed, repeat=False)
+        ani3 = animation.FuncAnimation(self.hist_fig, hist_animation, frames=None, blit=True, interval=self.speed, repeat=False)
+
+        def onClick(event):
+            global pause
+            pause ^= True
+
+        self.dim_fig.canvas.mpl_connect('button_press_event', onClick)
+
         plt.show()
 
     def plot_histogram(self, vcc, dist, nwinner):
@@ -106,9 +114,11 @@ class drawer(Process):
         """
 
         self.inputs = np.append(self.inputs, vcc.reshape(-1, self.f), 0)
+        self.dists = np.append(self.dists, dist)
 
         if self.inputs.shape[0] > self.n_first:
             self.inputs = np.delete(self.inputs, 0, 0)
+            self.dists = np.delete(self.dists, 0)
 
         if nwinner != -1:
             self.hist[nwinner] = self.hist[nwinner] + 1
@@ -120,7 +130,7 @@ class drawer(Process):
                               self.hist_ax[0].plot(range(self.inputs.shape[0]), self.inputs[:, i], "C{}".format(i)))
 
         # plotting distances
-
+        plots = np.append(plots, self.hist_ax[1].plot(range(self.dists.shape[0]), self.dists, "C0"))
 
         # ploting histogram
         plots = np.append(plots, self.hist_ax[2].bar(range(self.n), self.hist, color=["C{}".format(c) for c in range(self.n)]))

@@ -375,6 +375,7 @@ class DSOM_MODEL(DSOM):
 
         # Compute distances to data
         D = ((self.codebook - data) ** 2).sum(axis=-1)
+        winner = np.argmin(D)
 
         # Get index of nearest node (minimum distance)
-        return np.argmin(D)
+        return winner, D[np.unravel_index(np.argmin(D), D.shape)]

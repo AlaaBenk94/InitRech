@@ -37,7 +37,7 @@ def update_display(frame, face, cluster):
     return frame
 
 
-def send_ploting_data(codebook, vect, FCount):
+def send_ploting_data(codebook, vect, FCount, dist):
     """
     envoyer les donnees au processus du plotting
     :param net: codebook
@@ -45,7 +45,8 @@ def send_ploting_data(codebook, vect, FCount):
     :param FCount: nombre des features
     """
     mat = {"data": np.concatenate((codebook.reshape((-1, FCount)), np.reshape(vect, (-1, FCount)))),
-           "target": cluster}
+           "target": winner,
+           "dist": dist}
     with open(f, "wb") as plot_data:
         pk.dump(mat, plot_data)
 
@@ -73,10 +74,11 @@ if __name__ == '__main__':
     print("[INFO] En cours d'execution...")
     vect = np.zeros((1, FCount))
     vcc = np.zeros((1, FCount))
-    cluster = -1
+    winner = -1
+    win_dist = 0
     pred = None # le frame (l'image) precedent
     i = 0 # compteur de frame
-    delta = 10 # l'intervale entre les 2 frame a prendre
+    delta = 5 # l'intervale entre les 2 frame a prendre
     coef = 10 # coefficient pour normaliser le vecteur d'entree
     minidisp = np.full((150, 400, 3), 200, np.uint8) # remplissage avant le debut de detection.
 
@@ -103,7 +105,8 @@ if __name__ == '__main__':
                 else:
                     vcc = caracterestique.calculate_vcc(pred, vect)
                     vcc = vcc*coef
-                    cluster = net.cluster(vcc)
+                    winner, win_dist = net.cluster(vcc)
+                    print("distance ({}) = {}".format(winner, win_dist))
                     net.learn_data(vcc, lrate=5, sigma=1)
                     minidisp = imutils.resize(np.hstack((predimg, np.copy(frame))), width=400)
                     pred = None
@@ -112,8 +115,8 @@ if __name__ == '__main__':
             i = i + 1
             # print("VCC[{}] : {}".format(i, vcc))
 
-            frame = update_display(frame, face, cluster)
-            send_ploting_data(net.codebook, vcc, FCount)
+            frame = update_display(frame, face, winner)
+            send_ploting_data(net.codebook, vcc, FCount, win_dist)
             if not dr.is_alive():
                 dr.start()
 
