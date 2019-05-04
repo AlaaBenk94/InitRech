@@ -1,13 +1,12 @@
+import pickle as pk
 import time
 from collections import OrderedDict
+from multiprocessing import Process
 
-from matplotlib.font_manager import FontProperties
-from sklearn.preprocessing import StandardScaler
+import numpy as np
 from matplotlib import pyplot as plt, animation
 from sklearn.decomposition import PCA
-from multiprocessing import Process
-import pickle as pk
-import numpy as np
+from sklearn.preprocessing import StandardScaler
 
 
 class drawer(Process):
@@ -15,7 +14,7 @@ class drawer(Process):
     la class qui gere l'affichage des donnees et du model en temps reel
     """
 
-    def __init__(self, _n=9, _f=8, n_first=200, _speed=30):
+    def __init__(self, _n, _f, n_first, _speed):
         """
         constructeur par default
         """
@@ -24,13 +23,14 @@ class drawer(Process):
         # params
         self.n = _n # nombre de clusters
         self.f = _f # dimension des entrees
-        self.n_first = n_first # champs de plotting
+        self.n_first = n_first # plage de plotting
         self.speed = _speed # vitesse de plotting
+        self.paused = False # state of plotting process
 
         # preparing figures
-        # self.main_fig, self.ax = plt.subplots(figsize=(5, 4))
-        self.dim_fig, self.dim_ax = plt.subplots(self.f, 1, True)
-        self.hist_fig, self.hist_ax = plt.subplots(3, 1)
+        # self.main_fig, self.ax = plt.subplots(figsize=(5, 4), num='Main Plot')
+        # self.dim_fig, self.dim_ax = plt.subplots(self.f, 1, True, num='Neurones Dimensions')
+        self.hist_fig, self.hist_ax = plt.subplots(3, 1, num='Histogram Distances Inputs')
 
         # initialization
         self.sc = StandardScaler()
@@ -47,22 +47,30 @@ class drawer(Process):
         self.hist = [0] * self.n
 
     @classmethod
-    def fromQueue(cls, q):
+    def fromQueue(cls, q, _n=9, _f=8, n_first=20, _speed=30):
         """
         initialisation
         :param q: la file des donnees
+        :param _n: nombre de clusters
+        :param _f: dimension des entrees
+        :param n_first: plage de plotting
+        :param _speed: vitesse de plotting
         """
-        draw = drawer()
+        draw = drawer(_n, _f, n_first, _speed)
         draw.queue = q
         return draw
 
     @classmethod
-    def fromFile(cls, file):
+    def fromFile(cls, file, _n=9, _f=8, n_first=20, _speed=30):
         """
         initialisation
         :param file: fichier des donnees
+        :param _n: nombre de clusters
+        :param _f: dimension des entrees
+        :param n_first: plage de plotting
+        :param _speed: vitesse de plotting
         """
-        draw = drawer()
+        draw = drawer(_n, _f, n_first, _speed)
         draw.file = file
         return draw
 
@@ -77,54 +85,63 @@ class drawer(Process):
 
         def main_animation(i):
             mat = self.get_data()
+            self.paused = mat["pause"]
             return self.plot_matrix(mat["data"], mat["target"])  # self.plot_matrix(self.data, "r", mark="x")
 
         def dim_animation(i):
             mat = self.get_data()
-
             handles, labels = plt.gca().get_legend_handles_labels()
             by_label = OrderedDict(zip(labels, handles))
             self.dim_ax[-1].legend(by_label.values(), by_label.keys(), bbox_to_anchor=(1.01, 5), loc=2,
                                    borderaxespad=0.)
-
+            self.paused = mat["pause"]
             return self.plot_dimensions(mat["data"][:self.n], mat["target"])
 
         def hist_animation(i):
             mat = self.get_data()
+            self.paused = mat["pause"]
             return self.plot_histogram(mat["data"][-1], mat["dist"], mat["target"])
 
         # ani = animation.FuncAnimation(self.main_fig, main_animation, frames=None, blit=True, interval=self.speed, repeat=False)
-        ani2 = animation.FuncAnimation(self.dim_fig, dim_animation, frames=None, blit=True, interval=self.speed, repeat=False)
+        # ani2 = animation.FuncAnimation(self.dim_fig, dim_animation, frames=None, blit=True, interval=self.speed, repeat=False)
         ani3 = animation.FuncAnimation(self.hist_fig, hist_animation, frames=None, blit=True, interval=self.speed, repeat=False)
-
-        def onClick(event):
-            global pause
-            pause ^= True
-
-        self.dim_fig.canvas.mpl_connect('button_press_event', onClick)
 
         plt.show()
 
-    def plot_histogram(self, vcc, dist, nwinner):
+
+    def plot_histogram(self, input, dist, target):
         """
         dessinateur d'histogramme
-        :param vcc: vecteur d'entree
+        :param input: vecteur d'entree
         :param dist: la distance entre l'entree et le gangant
-        :param nwinner: l'indice du gagnant
+        :param target: l'indice du gagnant
         """
 
-        self.inputs = np.append(self.inputs, vcc.reshape(-1, self.f), 0)
-        self.dists = np.append(self.dists, dist)
+        # adding current data to datasets
+        if not self.paused:
+            self.inputs = np.append(self.inputs, input.reshape(-1, self.f), 0)
+            self.dists = np.append(self.dists, dist)
+            self.targets = np.append(self.targets, target)
+            if target != -1:
+                self.hist[target] = self.hist[target] + 1
 
+        # checking range
         if self.inputs.shape[0] > self.n_first:
             self.inputs = np.delete(self.inputs, 0, 0)
             self.dists = np.delete(self.dists, 0)
+            self.targets = np.delete(self.targets, 0, 0)
 
-        if nwinner != -1:
-            self.hist[nwinner] = self.hist[nwinner] + 1
 
-        # plotting input
+        # plotting winners
         plots = np.array([])
+        plots = np.append(plots, self.hist_ax[0].vlines(range(self.targets.shape[0]), -2, 2,
+                                                        ["C{}".format(i) for i in self.targets.astype('int32')],
+                                                        alpha=0.8))
+        plots = np.append(plots, self.hist_ax[1].vlines(range(self.targets.shape[0]), 0, np.max(self.dists, initial=20),
+                                                        ["C{}".format(i) for i in self.targets.astype('int32')],
+                                                        alpha=0.8))
+
+        # plotting inputs
         for i in range(self.f):
             plots = np.append(plots,
                               self.hist_ax[0].plot(range(self.inputs.shape[0]), self.inputs[:, i], "C{}".format(i)))
@@ -132,7 +149,7 @@ class drawer(Process):
         # plotting distances
         plots = np.append(plots, self.hist_ax[1].plot(range(self.dists.shape[0]), self.dists, "C0"))
 
-        # ploting histogram
+        # plotting histogram
         plots = np.append(plots, self.hist_ax[2].bar(range(self.n), self.hist, color=["C{}".format(c) for c in range(self.n)]))
 
         return tuple(plots)
@@ -148,16 +165,18 @@ class drawer(Process):
         self.neurones = np.append(self.neurones, neurones.reshape((-1, self.n, self.f)), 0)
         self.targets = np.append(self.targets, target)
 
+        # checking range
         if self.targets.shape[0] > self.n_first:
             self.neurones = np.delete(self.neurones, 0, 0)
             self.targets = np.delete(self.targets, 0, 0)
 
+        # plotting winners
         plots = np.array([])
         for i in range(self.f):
             plots = np.append(plots, self.dim_ax[i].vlines(range(self.neurones.shape[0]), -2, 2,
                                                            ["C{}".format(i) for i in self.targets.astype('int32')],
                                                            alpha=0.3))
-
+        # plotting neurones dimensions
         for n in range(self.n):
             for i in range(self.f):
                 plots = np.append(plots, self.dim_ax[i].plot(range(self.neurones.shape[0]), self.neurones[:, n, i],
@@ -171,7 +190,9 @@ class drawer(Process):
         :param mat: matrice des donnee (codebook et data)
         """
 
+        # dimension reduction using PCA
         mat = self.convert2d(mat)
+
         plots = self.anotations(mat[:self.n])
         plots = np.append(plots, self.links(mat[:self.n]))
         plots = np.append(plots, self.ax.scatter(mat[:self.n, 0], mat[:self.n, 1], c="b", label="clusters", marker="o"))

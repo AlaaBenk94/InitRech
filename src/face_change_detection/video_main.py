@@ -37,7 +37,7 @@ def update_display(frame, face, cluster):
     return frame
 
 
-def send_ploting_data(codebook, vect, FCount, dist):
+def send_ploting_data(codebook, vect, FCount, dist, pause=False):
     """
     envoyer les donnees au processus du plotting
     :param net: codebook
@@ -46,7 +46,8 @@ def send_ploting_data(codebook, vect, FCount, dist):
     """
     mat = {"data": np.concatenate((codebook.reshape((-1, FCount)), np.reshape(vect, (-1, FCount)))),
            "target": winner,
-           "dist": dist}
+           "dist": dist,
+           "pause": pause}
     with open(f, "wb") as plot_data:
         pk.dump(mat, plot_data)
 
@@ -81,6 +82,7 @@ if __name__ == '__main__':
     delta = 5 # l'intervale entre les 2 frame a prendre
     coef = 10 # coefficient pour normaliser le vecteur d'entree
     minidisp = np.full((150, 400, 3), 200, np.uint8) # remplissage avant le debut de detection.
+    started = False
 
     while True:
         start = int(round(t.time() * 1000))
@@ -106,7 +108,6 @@ if __name__ == '__main__':
                     vcc = caracterestique.calculate_vcc(pred, vect)
                     vcc = vcc*coef
                     winner, win_dist = net.cluster(vcc)
-                    print("distance ({}) = {}".format(winner, win_dist))
                     net.learn_data(vcc, lrate=5, sigma=1)
                     minidisp = imutils.resize(np.hstack((predimg, np.copy(frame))), width=400)
                     pred = None
@@ -117,8 +118,9 @@ if __name__ == '__main__':
 
             frame = update_display(frame, face, winner)
             send_ploting_data(net.codebook, vcc, FCount, win_dist)
-            if not dr.is_alive():
+            if not started:
                 dr.start()
+                started = True
 
         # dessiner le numero de frame
         end = (int(round(t.time() * 1000)) - start)
@@ -132,9 +134,11 @@ if __name__ == '__main__':
         # ou la touche 'p' pour suspendre le programme
         key = cv2.waitKey(1)
         if key == 112:
+            send_ploting_data(net.codebook, vcc, FCount, win_dist, True)
             while True:
                 if cv2.waitKey(1) == 112:
                     break
+            send_ploting_data(net.codebook, vcc, FCount, win_dist)
         if key == 113:
             break
 
