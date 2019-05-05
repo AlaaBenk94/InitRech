@@ -14,7 +14,7 @@ class drawer(Process):
     la class qui gere l'affichage des donnees et du model en temps reel
     """
 
-    def __init__(self, _n, _f, n_first, _speed, _disp):
+    def __init__(self, _n, _f, n_first, _speed, _disp, pca_samples):
         """
         constructeur par default
         """
@@ -50,9 +50,11 @@ class drawer(Process):
         self.targets = np.array([])
         self.dists = np.array([])
         self.hist = [0] * self.n
+        self.matrix = np.array([[]]).reshape((-1, self.f))
+        self.pca_samples = pca_samples
 
     @classmethod
-    def fromQueue(cls, q, _n=9, _f=8, n_first=20, _speed=30, _disp="001"):
+    def fromQueue(cls, q, _n=9, _f=8, n_first=20, _speed=30, _disp="001", pca_samples=300):
         """
         initialisation
         :param q: la file des donnees
@@ -62,12 +64,12 @@ class drawer(Process):
         :param _speed: vitesse de plotting
         :param _disp: les figures a afficher
         """
-        draw = drawer(_n, _f, n_first, _speed, _disp)
+        draw = drawer(_n, _f, n_first, _speed, _disp, pca_samples)
         draw.queue = q
         return draw
 
     @classmethod
-    def fromFile(cls, file, _n=9, _f=8, n_first=20, _speed=30, _disp="001"):
+    def fromFile(cls, file, _n=9, _f=8, n_first=20, _speed=30, _disp="001", pca_samples=300):
         """
         initialisation
         :param file: fichier des donnees
@@ -77,7 +79,7 @@ class drawer(Process):
         :param _speed: vitesse de plotting
         :param _disp: les figures a afficher
         """
-        draw = drawer(_n, _f, n_first, _speed, _disp)
+        draw = drawer(_n, _f, n_first, _speed, _disp, pca_samples)
         draw.file = file
         return draw
 
@@ -233,10 +235,10 @@ class drawer(Process):
 
         plots = self.anotations(mat[:self.n])
         plots = np.append(plots, self.links(mat[:self.n]))
-        plots = np.append(plots, self.ax.scatter(mat[:self.n, 0], mat[:self.n, 1], c="b", label="clusters", marker="o"))
+        plots = np.append(plots, self.ax.scatter(mat[:self.n, 0], mat[:self.n, 1], c="b", label="clusters", marker="o", s=10))
         plots = np.append(plots,
                           self.ax.scatter(mat[target, 0], mat[target, 1], c=("r", "b")[target == -1], label="target",
-                                          marker="o"))
+                                          marker="o", s=10))
         plots = np.append(plots, self.ax.scatter(mat[self.n, 0], mat[self.n, 1], c="r", label="data", marker="x"))
 
         return tuple(plots)
@@ -274,7 +276,10 @@ class drawer(Process):
         :return: les memes donnee en dimension 2
         """
 
-        return self.pca.fit_transform(self.sc.fit_transform(data))
+        self.matrix = np.concatenate((self.matrix, data), 0).reshape(-1, self.f)
+        if self.matrix.shape[0] > self.pca_samples:
+            self.matrix = self.matrix[-self.pca_samples:]
+        return self.pca.fit_transform(self.sc.fit_transform(self.matrix))[-10:]
 
     def get_data(self):
         """
