@@ -16,8 +16,10 @@ from landmark import landmarks
 
 # recuperation des parametres du programme
 ap = argparse.ArgumentParser()
-ap.add_argument("-fx", "--flux", required=False, default="0", type=str,
-                help="chemin de la video ou numero de webcam")
+ap.add_argument("-v", "--video", required=False, default=None, type=str,
+                help="chemin de la video")
+ap.add_argument("-c", "--camera", required=False, default=0, type=int,
+                help="numero de la webcam")
 ap.add_argument("-f", "--file", required=False, default="/tmp/data.plt", type=str,
                 help="chemin dans lequel on sauvgarde le fichier de plotting")
 ap.add_argument("-e", "--elasticity", required=False, default=1.0, type=float,
@@ -92,7 +94,7 @@ if __name__ == '__main__':
     net = DSOM_MODEL((N, N, FCount), init_method=args["initial_method"], elasticity=args["elasticity"])
 
     print("[INFO] preparation de flux video...")
-    vs = cv2.VideoCapture((args["flux"], int(args["flux"]))[str.isdigit(args["flux"])])
+    vs = cv2.VideoCapture((args["video"], args["camera"])[args["video"] is None])
     if not vs.isOpened():
         print("[ERROR] impossible de demarer le flux")
         exit(1)
