@@ -1,7 +1,7 @@
 """
 programme principale
 """
-
+import argparse
 import pickle as pk
 import time as t
 
@@ -13,6 +13,24 @@ from caracterestique.caracterestique import caracterestique
 from clasifieur.network import DSOM_MODEL
 from draw.drawer import drawer
 from landmark import landmarks
+
+# recuperation des parametres du programme
+ap = argparse.ArgumentParser()
+ap.add_argument("-fx", "--flux", required=False, default=0,
+                help="chemin de la video ou numero de webcam")
+ap.add_argument("-f", "--file", required=False, default="/tmp/data.plt", type=str,
+                help="chemin dans lequel on sauvgarde le fichier de plotting")
+ap.add_argument("-e", "--elasticity", required=False, default=1.0, type=float,
+                help="elasticity de la DSOM")
+ap.add_argument("-im", "--initial-method", required=False, default='regular', type=str,
+                help="methode d'initialisation de la DSOM (regular, fixed or random)")
+ap.add_argument("-lr", "--learning-rate", required=False, default=5, type=float,
+                help="le taux d'apprentissage de la DSOM")
+ap.add_argument("-sig", "--sigma", required=False, default=1, type=float,
+                help="le parametre sigma de la DSOM")
+ap.add_argument("-dt", "--delta", required=False, default=10, type=int,
+                help="intervale du temps entres les images prises pour les traitements")
+args = vars(ap.parse_args())
 
 
 def update_display(frame, face, cluster):
@@ -41,7 +59,7 @@ def send_ploting_data(codebook, vect, FCount, dist, pause=False):
     """
     envoyer les donnees au processus du plotting
     :param net: codebook
-    :param vect: la nouvelle donnee
+    :param vect: la nouvelle donnee "/tmp/data.plt"
     :param FCount: nombre des features
     """
     mat = {"data": np.concatenate((codebook.reshape((-1, FCount)), np.reshape(vect, (-1, FCount)))),
@@ -55,7 +73,7 @@ def send_ploting_data(codebook, vect, FCount, dist, pause=False):
 if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
     lmk = landmarks()
-    f = "/tmp/data.plt"
+    f = args["file"]
     dr = drawer.fromFile(f)
 
     print("[INFO] chargement d'extracteur des caracteristiques...")
@@ -64,10 +82,14 @@ if __name__ == '__main__':
     print("[INFO] chargement de classifieur...")
     N = 3  # order of net matrix
     FCount = 8  # number of features
-    net = DSOM_MODEL((N, N, FCount), init_method='regular', elasticity=1.0)
+    net = DSOM_MODEL((N, N, FCount), init_method=args["initial_method"], elasticity=args["elasticity"])
 
-    print("[INFO] preparation de la camera...")
-    vs = cv2.VideoCapture(0)
+    print("[INFO] preparation de flux video...")
+    vs = cv2.VideoCapture(args["flux"])
+    if not vs.isOpened():
+        print("impossible de demarer le flux")
+        exit(1)
+
 
     fps = vs.get(cv2.CAP_PROP_FPS)
     print("[INFO] FPS = {}".format(fps))
@@ -77,14 +99,14 @@ if __name__ == '__main__':
     vcc = np.zeros((1, FCount))
     winner = -1
     win_dist = 0
-    pred = None # le frame (l'image) precedent
-    i = 0 # compteur de frame
-    delta = 5 # l'intervale entre les 2 frame a prendre
-    coef = 10 # coefficient pour normaliser le vecteur d'entree
-    minidisp = np.full((150, 400, 3), 200, np.uint8) # remplissage avant le debut de detection.
+    pred = None  # le frame (l'image) precedent
+    i = 0  # compteur de frame
+    delta = args["delta"]  # l'intervale entre les 2 frame a prendre
+    coef = 10  # coefficient pour normaliser le vecteur d'entree
+    minidisp = np.full((150, 400, 3), 200, np.uint8)  # remplissage avant le debut de detection.
     started = False
 
-    while True:
+    while vs.isOpened():
         start = int(round(t.time() * 1000))
 
         # recuperation d'une image du flux video, la redimensionner pour avoir une largeur de 400 pixels
@@ -106,9 +128,9 @@ if __name__ == '__main__':
                     predimg = np.copy(frame)
                 else:
                     vcc = caracterestique.calculate_vcc(pred, vect)
-                    vcc = vcc*coef
+                    vcc = vcc * coef
                     winner, win_dist = net.cluster(vcc)
-                    net.learn_data(vcc, lrate=5, sigma=1)
+                    net.learn_data(vcc, lrate=args["learning_rate"], sigma=args["sigma"])
                     minidisp = imutils.resize(np.hstack((predimg, np.copy(frame))), width=400)
                     pred = None
                     predimg = None
