@@ -90,6 +90,7 @@ class drawer(Process):
 
         time.sleep(1)
 
+        # defining animation functions
         def main_animation(i):
             mat = self.get_data()
             self.paused = mat["pause"]
@@ -99,8 +100,7 @@ class drawer(Process):
             mat = self.get_data()
             handles, labels = plt.gca().get_legend_handles_labels()
             by_label = OrderedDict(zip(labels, handles))
-            self.dim_ax[-1].legend(by_label.values(), by_label.keys(), bbox_to_anchor=(1.01, 5), loc=2,
-                                   borderaxespad=0.)
+            self.dim_ax[-1].legend(by_label.values(), by_label.keys(), bbox_to_anchor=(1.01, 5), loc=2, borderaxespad=0.)
             self.paused = mat["pause"]
             return self.plot_dimensions(mat["data"][:self.n], mat["target"])
 
@@ -109,14 +109,36 @@ class drawer(Process):
             self.paused = mat["pause"]
             return self.plot_histogram(mat["data"][-1], mat["dist"], mat["target"])
 
+
         if self.disp[0] == "1":
+            # creating figure and axes
             self.main_fig, self.ax = plt.subplots(figsize=(5, 4), num='Main Plot')
+
+            # starting animation
             main_ani = animation.FuncAnimation(self.main_fig, main_animation, frames=None, blit=True, interval=self.speed, repeat=False)
+
         if self.disp[1] == "1":
+            # creating figure and axes
             self.dim_fig, self.dim_ax = plt.subplots(self.f, 1, True, num='Neurones Dimensions')
+
+            # naming axes
+            names = ["leye", "reye", "lrot", "rrot", "lbrow", "rbrow", "mouth", "dist"]
+            for i in range(names.__len__()):
+                self.dim_ax[i].set_ylabel(names[i])
+
+            # starting animation
             dim_ani = animation.FuncAnimation(self.dim_fig, dim_animation, frames=None, blit=True, interval=self.speed, repeat=False)
+
         if self.disp[2] == "1":
+            # creating figure and axes
             self.hist_fig, self.hist_ax = plt.subplots(3, 1, num='Histogram Distances Inputs')
+
+            # naming axes
+            names = ["Input", "Dist.", "Hist."]
+            for i in range(names.__len__()):
+                self.hist_ax[i].set_ylabel(names[i])
+
+            # starting animation
             hist_ani = animation.FuncAnimation(self.hist_fig, hist_animation, frames=None, blit=True, interval=self.speed, repeat=False)
 
         plt.show()
@@ -159,6 +181,7 @@ class drawer(Process):
 
         # plotting distances
         plots = np.append(plots, self.hist_ax[1].plot(range(self.dists.shape[0]), self.dists, "C0"))
+        plots = np.append(plots, self.hist_ax[1].text(self.dists.shape[0] - 1, self.dists[-1], str(self.dists[-1])))
 
         # plotting histogram
         plots = np.append(plots,
@@ -173,16 +196,17 @@ class drawer(Process):
         :param neurones: la matrice des neurones
         """
 
-        # adding current data to datasets
-        self.neurones = np.append(self.neurones, neurones.reshape((-1, self.n, self.f)), 0)
-        if self.disp[2] != "1":
-            self.targets = np.append(self.targets, target)
-
-        # checking range
-        if self.targets.shape[0] > self.n_first:
-            self.neurones = np.delete(self.neurones, 0, 0)
+        if not self.paused:
+            # adding current data to datasets
+            self.neurones = np.append(self.neurones, neurones.reshape((-1, self.n, self.f)), 0)
             if self.disp[2] != "1":
-                self.targets = np.delete(self.targets, 0, 0)
+                self.targets = np.append(self.targets, target)
+
+            # checking range
+            if self.targets.shape[0] > self.n_first:
+                self.neurones = np.delete(self.neurones, 0, 0)
+                if self.disp[2] != "1":
+                    self.targets = np.delete(self.targets, 0, 0)
 
         # plotting winners
         plots = np.array([])
