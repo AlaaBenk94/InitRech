@@ -1,8 +1,8 @@
-## suivi de visage et détection de saillance
+# suivi de visage et détection de saillance
 ce projet présente un système qui permet de détecter des visages sur un flux video
 et d'extraire par la suite des caracteristiques pour les classifier en 9 comportements
 
-# dépendances 
+## dépendances 
 vous devez installer les packages python 3 suivants
 - numpy (1.16.2)
 - matplotlib (3.0.3)
@@ -11,7 +11,16 @@ vous devez installer les packages python 3 suivants
 - opencv-python (4.0.0)
 - imutils (0.5.2)
 
-# Usage
+vous pouvez les installer en utilisant pip \
+`pip install <package-name>`
+
+pour connaitre la version du package (par exmple dlib) \
+```
+import dlib
+dlib.__version__
+```
+
+## Usage
 ```
 usage: video_main.py [-h] [-v VIDEO] [-c CAMERA] [-f FILE] [-e ELASTICITY]
                      [-im INITIAL_METHOD] [-lr LEARNING_RATE] [-sig SIGMA]
