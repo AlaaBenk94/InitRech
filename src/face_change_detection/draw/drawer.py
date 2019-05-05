@@ -14,23 +14,28 @@ class drawer(Process):
     la class qui gere l'affichage des donnees et du model en temps reel
     """
 
-    def __init__(self, _n, _f, n_first, _speed):
+    def __init__(self, _n, _f, n_first, _speed, _disp):
         """
         constructeur par default
         """
         super(drawer, self).__init__()
 
         # params
-        self.n = _n # nombre de clusters
-        self.f = _f # dimension des entrees
-        self.n_first = n_first # plage de plotting
-        self.speed = _speed # vitesse de plotting
-        self.paused = False # state of plotting process
+        self.n = _n  # nombre de clusters
+        self.f = _f  # dimension des entrees
+        self.n_first = n_first  # plage de plotting
+        self.speed = _speed  # vitesse de plotting
+        self.paused = False  # state of plotting process
+        self.disp = _disp # les figures a afficher
 
         # preparing figures
         # self.main_fig, self.ax = plt.subplots(figsize=(5, 4), num='Main Plot')
         # self.dim_fig, self.dim_ax = plt.subplots(self.f, 1, True, num='Neurones Dimensions')
-        self.hist_fig, self.hist_ax = plt.subplots(3, 1, num='Histogram Distances Inputs')
+        # self.hist_fig, self.hist_ax = plt.subplots(3, 1, num='Histogram Distances Inputs')
+
+        self.main_fig, self.ax = None, None
+        self.dim_fig, self.dim_ax = None, None
+        self.hist_fig, self.hist_ax = None, None
 
         # initialization
         self.sc = StandardScaler()
@@ -47,7 +52,7 @@ class drawer(Process):
         self.hist = [0] * self.n
 
     @classmethod
-    def fromQueue(cls, q, _n=9, _f=8, n_first=20, _speed=30):
+    def fromQueue(cls, q, _n=9, _f=8, n_first=20, _speed=30, _disp="001"):
         """
         initialisation
         :param q: la file des donnees
@@ -55,13 +60,14 @@ class drawer(Process):
         :param _f: dimension des entrees
         :param n_first: plage de plotting
         :param _speed: vitesse de plotting
+        :param _disp: les figures a afficher
         """
-        draw = drawer(_n, _f, n_first, _speed)
+        draw = drawer(_n, _f, n_first, _speed, _disp)
         draw.queue = q
         return draw
 
     @classmethod
-    def fromFile(cls, file, _n=9, _f=8, n_first=20, _speed=30):
+    def fromFile(cls, file, _n=9, _f=8, n_first=20, _speed=30, _disp="001"):
         """
         initialisation
         :param file: fichier des donnees
@@ -69,8 +75,9 @@ class drawer(Process):
         :param _f: dimension des entrees
         :param n_first: plage de plotting
         :param _speed: vitesse de plotting
+        :param _disp: les figures a afficher
         """
-        draw = drawer(_n, _f, n_first, _speed)
+        draw = drawer(_n, _f, n_first, _speed, _disp)
         draw.file = file
         return draw
 
@@ -102,12 +109,17 @@ class drawer(Process):
             self.paused = mat["pause"]
             return self.plot_histogram(mat["data"][-1], mat["dist"], mat["target"])
 
-        # ani = animation.FuncAnimation(self.main_fig, main_animation, frames=None, blit=True, interval=self.speed, repeat=False)
-        # ani2 = animation.FuncAnimation(self.dim_fig, dim_animation, frames=None, blit=True, interval=self.speed, repeat=False)
-        ani3 = animation.FuncAnimation(self.hist_fig, hist_animation, frames=None, blit=True, interval=self.speed, repeat=False)
+        if self.disp[0] == "1":
+            self.main_fig, self.ax = plt.subplots(figsize=(5, 4), num='Main Plot')
+            main_ani = animation.FuncAnimation(self.main_fig, main_animation, frames=None, blit=True, interval=self.speed, repeat=False)
+        if self.disp[1] == "1":
+            self.dim_fig, self.dim_ax = plt.subplots(self.f, 1, True, num='Neurones Dimensions')
+            dim_ani = animation.FuncAnimation(self.dim_fig, dim_animation, frames=None, blit=True, interval=self.speed, repeat=False)
+        if self.disp[2] == "1":
+            self.hist_fig, self.hist_ax = plt.subplots(3, 1, num='Histogram Distances Inputs')
+            hist_ani = animation.FuncAnimation(self.hist_fig, hist_animation, frames=None, blit=True, interval=self.speed, repeat=False)
 
         plt.show()
-
 
     def plot_histogram(self, input, dist, target):
         """
@@ -131,7 +143,6 @@ class drawer(Process):
             self.dists = np.delete(self.dists, 0)
             self.targets = np.delete(self.targets, 0, 0)
 
-
         # plotting winners
         plots = np.array([])
         plots = np.append(plots, self.hist_ax[0].vlines(range(self.targets.shape[0]), -2, 2,
@@ -150,7 +161,8 @@ class drawer(Process):
         plots = np.append(plots, self.hist_ax[1].plot(range(self.dists.shape[0]), self.dists, "C0"))
 
         # plotting histogram
-        plots = np.append(plots, self.hist_ax[2].bar(range(self.n), self.hist, color=["C{}".format(c) for c in range(self.n)]))
+        plots = np.append(plots,
+                          self.hist_ax[2].bar(range(self.n), self.hist, color=["C{}".format(c) for c in range(self.n)]))
 
         return tuple(plots)
 

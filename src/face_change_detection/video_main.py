@@ -16,7 +16,7 @@ from landmark import landmarks
 
 # recuperation des parametres du programme
 ap = argparse.ArgumentParser()
-ap.add_argument("-fx", "--flux", required=False, default=0, type=str,
+ap.add_argument("-fx", "--flux", required=False, default="0", type=str,
                 help="chemin de la video ou numero de webcam")
 ap.add_argument("-f", "--file", required=False, default="/tmp/data.plt", type=str,
                 help="chemin dans lequel on sauvgarde le fichier de plotting")
@@ -30,6 +30,13 @@ ap.add_argument("-sig", "--sigma", required=False, default=1, type=float,
                 help="le parametre sigma de la DSOM")
 ap.add_argument("-dt", "--delta", required=False, default=10, type=int,
                 help="intervale du temps entres les images prises pour les traitements")
+ap.add_argument("-t", "--time", required=False, default=30, type=int,
+                help="vitesse du plotting (1 = la vitesse maximale)")
+ap.add_argument("-r", "--range", required=False, default=20, type=int,
+                help="taille de la plage de plotting")
+ap.add_argument("-d", "--display", required=False, default="001", type=str,
+                help="les figres de plotting a afficher \n - (000) n'affiche aucune figure \n - (010) affiche la 2eme "
+                     "figure \n - (111) affiche toutes les figures ...")
 args = vars(ap.parse_args())
 
 
@@ -74,7 +81,7 @@ if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
     lmk = landmarks()
     f = args["file"]
-    dr = drawer.fromFile(f)
+    dr = drawer.fromFile(f, n_first=args["range"], _speed=args["range"], _disp=args["display"][:3])
 
     print("[INFO] chargement d'extracteur des caracteristiques...")
     car = caracterestique()
