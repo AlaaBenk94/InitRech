@@ -175,12 +175,14 @@ class drawer(Process):
 
         # adding current data to datasets
         self.neurones = np.append(self.neurones, neurones.reshape((-1, self.n, self.f)), 0)
-        self.targets = np.append(self.targets, target)
+        if self.disp[2] != "1":
+            self.targets = np.append(self.targets, target)
 
         # checking range
         if self.targets.shape[0] > self.n_first:
             self.neurones = np.delete(self.neurones, 0, 0)
-            self.targets = np.delete(self.targets, 0, 0)
+            if self.disp[2] != "1":
+                self.targets = np.delete(self.targets, 0, 0)
 
         # plotting winners
         plots = np.array([])
@@ -224,7 +226,7 @@ class drawer(Process):
         i = 0
         anots = np.array([])
         for x, y in data:
-            anots = np.append(anots, plt.annotate(i, xy=(x, y)))
+            anots = np.append(anots, self.ax.annotate(i, xy=(x, y)))
             i = i + 1
 
         return anots
