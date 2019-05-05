@@ -276,9 +276,12 @@ class drawer(Process):
         :return: les memes donnee en dimension 2
         """
 
-        self.matrix = np.concatenate((self.matrix, data), 0).reshape(-1, self.f)
+        if not self.paused:
+            self.matrix = np.concatenate((self.matrix, data), 0).reshape(-1, self.f)
+
         if self.matrix.shape[0] > self.pca_samples:
             self.matrix = self.matrix[-self.pca_samples:]
+
         return self.pca.fit_transform(self.sc.fit_transform(self.matrix))[-10:]
 
     def get_data(self):
