@@ -25,15 +25,13 @@ dlib.__version__
 usage: video_main.py [-h] [-v VIDEO] [-c CAMERA] [-f FILE] [-e ELASTICITY]
                      [-im INITIAL_METHOD] [-lr LEARNING_RATE] [-sig SIGMA]
                      [-dt DELTA] [-s SPEED] [-r RANGE] [-pca PCA_SAMPLES]
-                     [-d DISPLAY]
+                     [-n ORDER_N] [-d DISPLAY]
 
 optional arguments:
-  -h, --help            
-                        show this help message and exit
-  
+  -h, --help            show this help message and exit
   -v VIDEO, --video VIDEO
                         chemin de la video
-  
+
   -c CAMERA, --camera CAMERA
                         numero de la webcam
 
@@ -66,9 +64,24 @@ optional arguments:
   -pca PCA_SAMPLES, --pca-samples PCA_SAMPLES
                         taille de la plage de l'ACP pour le plotting
 
+  -n ORDER_N, --order-n ORDER_N
+                        ordre de la map. ex: n = 3 implique que le nombre de
+                        neurones n*n = 3*3 = 9
+
   -d DISPLAY, --display DISPLAY
-                        les figres de plotting a afficher - (000) n'affiche
-                        aucune figure - (010) affiche la 2eme figure - (111)
-                        affiche toutes les figures ...
+                        les figres de plotting a afficher c'est une chaine de
+                        trois bits XXX où chaque chiffre correspond à une
+                        figure (1 pour afficher la figure et 0 pour ne pas
+                        l'afficher)
 
 ```
+
+## Plottings
+#### Fenetre de flux video
+![fentre video](../../rédaction/img/video_window.png)
+#### Première figure : l'affichage 2D
+![fentre video](../../rédaction/img/fig1.png)
+#### Deuxième figure : les dimensions
+![fentre video](../../rédaction/img/fig2.png)
+#### Troisième figure : Les entrées, les distance et les clusters
+![fentre video](../../rédaction/img/fig3.png)
