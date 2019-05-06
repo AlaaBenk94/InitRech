@@ -1,3 +1,4 @@
+import colorsys
 import pickle as pk
 import time
 from collections import OrderedDict
@@ -45,6 +46,7 @@ class drawer(Process):
         self.last = None
 
         # plotting data
+        self.colors = None
         self.neurones = np.array([]).reshape((-1, self.n, self.f))
         self.inputs = np.array([[]]).reshape((-1, self.f))
         self.targets = np.array([])
@@ -81,6 +83,7 @@ class drawer(Process):
         """
         draw = drawer(_n, _f, n_first, _speed, _disp, pca_samples)
         draw.file = file
+        draw.colors = cls.get_N_HexCol(_n)
         return draw
 
     def run(self):
@@ -170,16 +173,16 @@ class drawer(Process):
         # plotting winners
         plots = np.array([])
         plots = np.append(plots, self.hist_ax[0].vlines(range(self.targets.shape[0]), -2, 2,
-                                                        ["C{}".format(i) for i in self.targets.astype('int32')],
+                                                        [self.colors[i] for i in self.targets.astype('int32')],
                                                         alpha=0.8))
         plots = np.append(plots, self.hist_ax[1].vlines(range(self.targets.shape[0]), 0, np.max(self.dists, initial=20),
-                                                        ["C{}".format(i) for i in self.targets.astype('int32')],
+                                                        [self.colors[i] for i in self.targets.astype('int32')],
                                                         alpha=0.8))
 
         # plotting inputs
         for i in range(self.f):
             plots = np.append(plots,
-                              self.hist_ax[0].plot(range(self.inputs.shape[0]), self.inputs[:, i], "C{}".format(i)))
+                              self.hist_ax[0].plot(range(self.inputs.shape[0]), self.inputs[:, i], self.colors[i]))
 
         # plotting distances
         plots = np.append(plots, self.hist_ax[1].plot(range(self.dists.shape[0]), self.dists, "C0"))
@@ -187,7 +190,7 @@ class drawer(Process):
 
         # plotting histogram
         plots = np.append(plots,
-                          self.hist_ax[2].bar(range(self.n), self.hist, color=["C{}".format(c) for c in range(self.n)]))
+                          self.hist_ax[2].bar(range(self.n), self.hist, color=self.colors))
 
         return tuple(plots)
 
@@ -214,13 +217,13 @@ class drawer(Process):
         plots = np.array([])
         for i in range(self.f):
             plots = np.append(plots, self.dim_ax[i].vlines(range(self.neurones.shape[0]), -2, 2,
-                                                           ["C{}".format(i) for i in self.targets.astype('int32')],
+                                                           [self.colors[i] for i in self.targets.astype('int32')],
                                                            alpha=0.3))
         # plotting neurones dimensions
         for n in range(self.n):
             for i in range(self.f):
                 plots = np.append(plots, self.dim_ax[i].plot(range(self.neurones.shape[0]), self.neurones[:, n, i],
-                                                             "C{}".format(n), label="N{}".format(n)))
+                                                             self.colors[n], label="N{}".format(n)))
 
         return tuple(plots)
 
@@ -283,7 +286,7 @@ class drawer(Process):
         if self.matrix.shape[0] > self.pca_samples:
             self.matrix = self.matrix[-self.pca_samples:]
 
-        return self.pca.fit_transform(self.sc.fit_transform(self.matrix))[-10:]
+        return self.pca.fit_transform(self.sc.fit_transform(self.matrix))[-(self.n+1):]
 
     def get_data(self):
         """
@@ -300,3 +303,16 @@ class drawer(Process):
                 return self.last
         except:
             return self.last
+
+    @staticmethod
+    def get_N_HexCol(N=5):
+        """
+        generer une list de N couleurs differentes
+        :return: la list des couleurs
+        """
+        HSV_tuples = [(x * 1.0 / N, 0.5, 0.5) for x in range(N)]
+        hex_out = []
+        for rgb in HSV_tuples:
+            rgb = map(lambda x: int(x * 255), colorsys.hsv_to_rgb(*rgb))
+            hex_out.append('#%02x%02x%02x' % tuple(rgb))
+        return hex_out

@@ -85,7 +85,7 @@ def send_ploting_data(codebook, vect, FCount, dist, pause=False):
 
 if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
-    N = 2  # order of net matrix
+    N = args["order_n"] # order of net matrix
     FCount = 8  # number of features
     lmk = landmarks()
     f = args["file"]
