@@ -305,12 +305,16 @@ class drawer(Process):
             return self.last
 
     @staticmethod
-    def get_N_HexCol(N=5):
+    def get_N_HexCol(N):
         """
         generer une list de N couleurs differentes
         :return: la list des couleurs
         """
-        HSV_tuples = [(x * 1.0 / N, 0.5, 0.5) for x in range(N)]
+
+        if N <= 9:
+            return ["C{}".format(i) for i in range(N)]
+
+        HSV_tuples = [(x * 1.0 / N, 0.5, 0.8) for x in range(N)]
         hex_out = []
         for rgb in HSV_tuples:
             rgb = map(lambda x: int(x * 255), colorsys.hsv_to_rgb(*rgb))
