@@ -26,9 +26,9 @@ ap.add_argument("-e", "--elasticity", required=False, default=1.0, type=float,
                 help="elasticity de la DSOM")
 ap.add_argument("-im", "--initial-method", required=False, default='regular', type=str,
                 help="methode d'initialisation de la DSOM (regular, fixed or random)")
-ap.add_argument("-lr", "--learning-rate", required=False, default=5, type=float,
+ap.add_argument("-lr", "--learning-rate", required=False, default=0.1, type=float,
                 help="le taux d'apprentissage de la DSOM")
-ap.add_argument("-sig", "--sigma", required=False, default=1, type=float,
+ap.add_argument("-sig", "--sigma", required=False, default=0.5, type=float,
                 help="le parametre sigma de la DSOM")
 ap.add_argument("-dt", "--delta", required=False, default=10, type=int,
                 help="intervale du temps entres les images prises pour les traitements")
@@ -38,6 +38,8 @@ ap.add_argument("-r", "--range", required=False, default=20, type=int,
                 help="taille de la plage de plotting")
 ap.add_argument("-pca", "--pca-samples", required=False, default=300, type=int,
                 help="taille de la plage de l'ACP pour le plotting")
+ap.add_argument("-n", "--order-n", required=False, default=300, type=int,
+                help="ordre de la map. ex: n = 3 implique que le nombre de neurones n*n = 3*3 = 9")
 ap.add_argument("-d", "--display", required=False, default="001", type=str,
                 help="les figres de plotting a afficher \n - (000) n'affiche aucune figure \n - (010) affiche la 2eme "
                      "figure \n - (111) affiche toutes les figures ...")
@@ -83,16 +85,16 @@ def send_ploting_data(codebook, vect, FCount, dist, pause=False):
 
 if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
+    N = 2  # order of net matrix
+    FCount = 8  # number of features
     lmk = landmarks()
     f = args["file"]
-    dr = drawer.fromFile(f, n_first=args["range"], _speed=args["speed"], _disp=args["display"][:3], pca_samples=args["pca_samples"])
+    dr = drawer.fromFile(f, _n=(N*N),  n_first=args["range"], _speed=args["speed"], _disp=args["display"][:3], pca_samples=args["pca_samples"])
 
     print("[INFO] chargement d'extracteur des caracteristiques...")
     car = caracterestique()
 
     print("[INFO] chargement de classifieur...")
-    N = 3  # order of net matrix
-    FCount = 8  # number of features
     net = DSOM_MODEL((N, N, FCount), init_method=args["initial_method"], elasticity=args["elasticity"])
 
     print("[INFO] preparation de flux video...")

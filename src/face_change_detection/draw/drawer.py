@@ -234,7 +234,8 @@ class drawer(Process):
         mat = self.convert2d(mat)
 
         plots = self.anotations(mat[:self.n])
-        plots = np.append(plots, self.links(mat[:self.n]))
+        if self.n == 9:
+            plots = np.append(plots, self.links(mat[:self.n]))
         plots = np.append(plots, self.ax.scatter(mat[:self.n, 0], mat[:self.n, 1], c="b", label="clusters", marker="o", s=10))
         plots = np.append(plots,
                           self.ax.scatter(mat[target, 0], mat[target, 1], c=("r", "b")[target == -1], label="target",
