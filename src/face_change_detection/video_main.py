@@ -38,7 +38,7 @@ ap.add_argument("-r", "--range", required=False, default=20, type=int,
                 help="taille de la plage de plotting")
 ap.add_argument("-pca", "--pca-samples", required=False, default=300, type=int,
                 help="taille de la plage de l'ACP pour le plotting")
-ap.add_argument("-n", "--order-n", required=False, default=300, type=int,
+ap.add_argument("-n", "--order-n", required=False, default=3, type=int,
                 help="ordre de la map. ex: n = 3 implique que le nombre de neurones n*n = 3*3 = 9")
 ap.add_argument("-d", "--display", required=False, default="001", type=str,
                 help="les figres de plotting a afficher \n - (000) n'affiche aucune figure \n - (010) affiche la 2eme "
