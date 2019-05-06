@@ -182,7 +182,7 @@ class drawer(Process):
         # plotting inputs
         for i in range(self.f):
             plots = np.append(plots,
-                              self.hist_ax[0].plot(range(self.inputs.shape[0]), self.inputs[:, i], self.colors[i]))
+                              self.hist_ax[0].plot(range(self.inputs.shape[0]), self.inputs[:, i], "C{}".format(i)))
 
         # plotting distances
         plots = np.append(plots, self.hist_ax[1].plot(range(self.dists.shape[0]), self.dists, "C0"))
