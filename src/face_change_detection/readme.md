@@ -22,13 +22,13 @@ dlib.__version__
 
 ## Usage
 ```
-usage: video_main.py [-h] [-v VIDEO] [-c CAMERA] [-f FILE] [-e ELASTICITY]
-                     [-im INITIAL_METHOD] [-lr LEARNING_RATE] [-sig SIGMA]
-                     [-dt DELTA] [-s SPEED] [-r RANGE] [-pca PCA_SAMPLES]
-                     [-n ORDER_N] [-d DISPLAY]
+usage: video_main.py [-h] [-v VIDEO] [-c CAMERA] [-f FILE] [-dt DELTA]
+                     [-s SPEED] [-r RANGE] [-pca PCA_SAMPLES]
+                     [-n NUMBER_CLUSTERS] [-sz DB_SIZE] [-d DISPLAY]
 
 optional arguments:
   -h, --help            show this help message and exit
+
   -v VIDEO, --video VIDEO
                         chemin de la video
 
@@ -37,19 +37,6 @@ optional arguments:
 
   -f FILE, --file FILE  
                         chemin dans lequel on sauvgarde le fichier de plotting
-
-  -e ELASTICITY, --elasticity ELASTICITY
-                        elasticity de la DSOM
-
-  -im INITIAL_METHOD, --initial-method INITIAL_METHOD
-                        methode d'initialisation de la DSOM (regular, fixed or
-                        random)
-
-  -lr LEARNING_RATE, --learning-rate LEARNING_RATE
-                        le taux d'apprentissage de la DSOM
-
-  -sig SIGMA, --sigma SIGMA
-                        le parametre sigma de la DSOM
 
   -dt DELTA, --delta DELTA
                         intervale du temps entres les images prises pour les
@@ -64,9 +51,12 @@ optional arguments:
   -pca PCA_SAMPLES, --pca-samples PCA_SAMPLES
                         taille de la plage de l'ACP pour le plotting
 
-  -n ORDER_N, --order-n ORDER_N
-                        ordre de la map. ex: n = 3 implique que le nombre de
-                        neurones n*n = 3*3 = 9
+  -n NUMBER_CLUSTERS, --number-clusters NUMBER_CLUSTERS
+                        nombre de clusters pour le Kmeans
+
+  -sz DB_SIZE, --db-size DB_SIZE
+                        la taille de la base initial de Kmeans avant le
+                        raffinnement
 
   -d DISPLAY, --display DISPLAY
                         les figres de plotting a afficher c'est une chaine de
