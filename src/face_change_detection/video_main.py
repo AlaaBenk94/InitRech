@@ -153,7 +153,7 @@ if __name__ == '__main__':
                             started = True
 
                         net.raffiner(vcc.tolist())
-                        winner, win_dist = net.prediction(vcc.tolist()), 5
+                        winner, win_dist = net.prediction(vcc.tolist())
                         send_ploting_data(np.array(net.kmoy)[:, 1:].reshape(-1, FCount), vcc, FCount, win_dist)
 
                     minidisp = imutils.resize(np.hstack((predimg, np.copy(frame))), width=400)
@@ -175,11 +175,11 @@ if __name__ == '__main__':
         # ou la touche 'p' pour suspendre le programme
         key = cv2.waitKey(1)
         if key == 112:
-            send_ploting_data(net.kmoy, vcc, FCount, win_dist, True)
+            send_ploting_data(np.array(net.kmoy)[:, 1:].reshape(-1, FCount), vcc, FCount, win_dist, True)
             while True:
                 if cv2.waitKey(1) == 112:
                     break
-            send_ploting_data(net.kmoy, vcc, FCount, win_dist)
+            send_ploting_data(np.array(net.kmoy)[:, 1:].reshape(-1, FCount), vcc, FCount, win_dist)
         if key == 113:
             break
 

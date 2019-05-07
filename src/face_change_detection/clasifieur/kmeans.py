@@ -28,7 +28,7 @@ class kmeans:
         while not stop :
           stop=True
           for i in base:
-             kp=self.class_plus_proche(i)
+             kp=self.class_plus_proche(i)[0]
              if(i[0]!=kp):
               i[0]=kp
               stop=False
@@ -73,11 +73,11 @@ class kmeans:
             if (dis < mindis):
                 mindis = dis
                 kmin = k
-        return kmin[0]
+        return kmin[0], mindis
 
     def raffiner(self,X):
         X=[0]+X
-        k=self.class_plus_proche(X)
+        k=self.class_plus_proche(X)[0]
         self.kmoy[k]=[k]+[((self.kmoy[k][i]*self.nb[k])+X[i])/(self.nb[k]+1)for i in range(1,len(self.kmoy[k]))]
         self.nb[k]+=1
         X.pop(0)
