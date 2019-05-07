@@ -1,12 +1,14 @@
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
+
 gs = gridspec.GridSpec(3,1)
-plt.figure(facecolor='#008080',figsize=(10,10))
+plt.figure(facecolor='#008080',figsize=(50,50))
 plt.subplots_adjust(
     bottom =0.05,top = 0.95,
     left  = 0.05 ,right = 0.95,
     wspace = 0.2,hspace = 0.3)
 
+plt.ion()
 colclass=['red', 'green', 'blue','yellow','violet','grey','orange']
 colline=[]
 
@@ -32,3 +34,8 @@ def afficheline(x,y):
 
 def finaffichage():
     plt.show()
+
+def update(s):
+        plt.draw()
+        plt.pause(s)
+        plt.clf()
