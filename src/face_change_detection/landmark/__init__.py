@@ -1,1 +1,0 @@
-from landmark.landmarks import landmarks
