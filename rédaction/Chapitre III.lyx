@@ -770,8 +770,105 @@ Avec
 De plus, l’algorithme doit être capable d’apprendre en temps réel en raffinant
  le model à chaque nouvelle donnée d’entrée.
  Ce qui rend la tache plus complexe.
- Pour ce faire, nous avons décider d’employer une variante de la carte auto-orga
-nisatrice.
+ Pour ce faire, nous avons décider de mettre en place deux modéles, une
+ variante du k-moyennes (k-means) et une variante de la carte auto-organisatrice.
+\end_layout
+
+\begin_layout Subsection
+K-Means
+\end_layout
+
+\begin_layout Standard
+L’algorithme de base de k-means (expliqué dans le chapitre précedent section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:K-means"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) prend en entrée une base de vecteurs d’entrée et le nombre clusters qu’ils
+ représente dans notre cas d’étude les comportements souhaités.
+ Cependant, notre application est en temps réel, c.-à-d.
+ nous aurons une nouvelle entrée chaque intervalle du temps, tout au long
+ du flux vidéo.
+ De plus, le model doit être capable de s’adapter avec les différentes entrées
+ à n’importe quel instant.
+ L’utilisation de l’algorithme de base pour l’application n’est pas le bon
+ choix, car il nécessite un espace mémoire important due à la l’extension
+ de la base en temps réel, et les temps d’exécution augmente en fonction
+ de la taille de la base ce qui résulte un temps de réponse très long.
+\end_layout
+
+\begin_layout Standard
+Pour pallier ce problème, nous avons pensé en premier à une approche qui
+ consiste à construire une base, chaque une période du temps, et la passer
+ à l’algorithme.
+ Cette approche permet d’économiser l’espace mémoire en conservant qu’une
+ petite base chaque période.
+ Néanmoins, on aura un nouveau modèle pour chaque base diffèrent totalement
+ au modèle qui le précède car les bases d’entrées sont différentes.
+\end_layout
+
+\begin_layout Standard
+Les inconvénients de l’approche précédente nous ont amené à penser à une
+ deuxième approche plus performante.
+ Cette dernière, et comme illustré par la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Variante-de-l'algorithme"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, commence par la collection d’une base initial de taille n prédéfinie,
+ ensuite, passer cette base pour l’algorithme k-moyennes qui permet de produire
+ un model initial.
+ Par la suite, nous gardons en mémoire que les poids des prototypes des
+ classes (les points centres représentant les clusters), puis, nous raffinons
+ ce modèle pour chaque vecteur d’entrée.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Variante-de-l'algorithme"
+
+\end_inset
+
+Variante de l'algorithme k-moyennes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection

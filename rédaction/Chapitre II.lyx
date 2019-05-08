@@ -945,6 +945,12 @@ Ici, les points originaux ce sont les données constituées par exemple un
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:K-means"
+
+\end_inset
+
 K-means
 \end_layout
 
