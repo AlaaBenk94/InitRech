@@ -125,7 +125,7 @@ class caracterestique:
                 "eyebrows": (lbrow, rbrow),
                 "mouth": mouth,
                 "distance": di,
-                "position": vect["position"]}, [leye, reye, lrot, rrot, lbrow, rbrow, mouth, di]
+                "position": vect["position"]}, [leye, reye, lrot, rrot, lbrow, rbrow, mouth, di, vect["position"]]
         # "move": self.mov((rect.center().x, rect.center().y))}
 
     @staticmethod
@@ -146,5 +146,6 @@ class caracterestique:
                 print("\t{} is {:.2f}".format(key, value))
 
     @staticmethod
-    def calculate_vcc(f1, f2):
-        return np.subtract(f2, f1)
+    def calculate_vcc(f1, f2, h=400, w=300):
+        diag = np.sqrt(h**2 + w**2)
+        return np.append(np.subtract(f2[:-1], f1[:-1]), dist(np.reshape(f2[-1], -1) - np.reshape(f1[-1], -1)) / diag).astype(np.float64)

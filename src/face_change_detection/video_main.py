@@ -32,6 +32,8 @@ ap.add_argument("-pca", "--pca-samples", required=False, default=300, type=int,
                 help="taille de la plage de l'ACP pour le plotting")
 ap.add_argument("-n", "--number-clusters", required=False, default=9, type=int,
                 help="nombre de clusters pour le Kmeans")
+ap.add_argument("-a", "--coef", required=False, default=1, type=int,
+                help="coeficient de normalisation des vecteurs VCC")
 ap.add_argument("-sz", "--db-size", required=False, default=10, type=int,
                 help="la taille de la base initial de Kmeans avant le raffinnement")
 ap.add_argument("-d", "--display", required=False, default="001", type=str,
@@ -80,10 +82,10 @@ def send_ploting_data(codebook, vect, FCount, dist, pause=False):
 if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
     N = args["number_clusters"] # order of net matrix
-    FCount = 8  # number of features
+    FCount = 9  # number of features
     lmk = landmarks()
     f = args["file"]
-    dr = drawer.fromFile(f, _n=N,  n_first=args["range"], _speed=args["speed"], _disp=args["display"][:3], pca_samples=args["pca_samples"])
+    dr = drawer.fromFile(f, _n=N, _f=FCount, n_first=args["range"], _speed=args["speed"], _disp=args["display"][:3], pca_samples=args["pca_samples"])
 
     print("[INFO] chargement d'extracteur des caracteristiques...")
     car = caracterestique()
@@ -109,7 +111,7 @@ if __name__ == '__main__':
     pred = None  # le frame (l'image) precedent
     i = 0  # compteur de frame
     delta = args["delta"]  # l'intervale entre les 2 frame a prendre
-    coef = 10  # coefficient pour normaliser le vecteur d'entree
+    coef = args["coef"]  # coefficient pour normaliser le vecteur d'entree
     minidisp = np.full((150, 400, 3), 200, np.uint8)  # remplissage avant le debut de detection.
     started = False
 
