@@ -124,7 +124,11 @@ if __name__ == '__main__':
 
         # recuperation d'une image du flux video, la redimensionner pour avoir une largeur de 400 pixels
         # ensuite la convertir l'image en grayscale et y appliquer une egalisation d'histogramme.
-        _, frame = vs.read()
+        playing, frame = vs.read()
+
+        if not playing:
+            break
+
         frame = imutils.resize(frame, width=400)
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         gray = cv2.equalizeHist(gray)
@@ -189,7 +193,7 @@ if __name__ == '__main__':
 
     # killing the drawer process
     print("[INFO] terminaison du processus de plotting...")
-    dr.terminate()
+    dr.join()
 
     # cleaning up
     cv2.destroyAllWindows()
