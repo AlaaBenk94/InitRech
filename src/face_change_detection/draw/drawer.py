@@ -170,7 +170,7 @@ class drawer(Process):
         plots = np.append(plots, self.hist_ax[0].vlines(range(self.targets.shape[0]), -1, 1,
                                                         [self.colors[i] for i in self.targets.astype('int32')],
                                                         alpha=0.8))
-        plots = np.append(plots, self.hist_ax[1].vlines(range(self.targets.shape[0]), 0, np.max(self.dists, initial=20),
+        plots = np.append(plots, self.hist_ax[1].vlines(range(self.targets.shape[0]), 0, np.max(self.dists, initial=1),
                                                         [self.colors[i] for i in self.targets.astype('int32')],
                                                         alpha=0.8))
 
@@ -178,10 +178,12 @@ class drawer(Process):
         for i in range(self.f):
             plots = np.append(plots,
                               self.hist_ax[0].plot(range(self.inputs.shape[0]), self.inputs[:, i], "C{}".format(i)))
+            plots = np.append(plots,
+                              self.hist_ax[0].text(self.inputs.shape[0] - 1, self.inputs[-1, i], str(i), size='xx-small'))
 
         # plotting distances
         plots = np.append(plots, self.hist_ax[1].plot(range(self.dists.shape[0]), self.dists, "C0"))
-        plots = np.append(plots, self.hist_ax[1].text(self.dists.shape[0] - 1, self.dists[-1], str(self.dists[-1])))
+        plots = np.append(plots, self.hist_ax[1].text(self.dists.shape[0] - 1, self.dists[-1], str(self.dists[-1]), size='x-small'))
 
         # plotting histogram
         plots = np.append(plots,
