@@ -816,9 +816,9 @@ Pour pallier ce problème, nous avons pensé en premier temps à une approche
 \begin_layout Standard
 Les inconvénients de l’approche précédente nous ont amené à penser à une
  deuxième approche plus performante.
- Cette dernière commence par la collection d’une base initial de taille
- n prédéfinie, ensuite, elle passe cette base à l’algorithme k-moyennes
- qui permet de produire un model initial.
+ Cette dernière, commencer par la collection d’une base initial de taille
+ n prédéfinie, ensuite, passer cette base pour l’algorithme k-moyennes qui
+ permet de produire un model initial.
  Par la suite, nous gardons en mémoire que les poids des prototypes des
  classes (les points centres représentant les clusters), puis, nous raffinons
  ce modèle pour chaque vecteur d’entrée.
