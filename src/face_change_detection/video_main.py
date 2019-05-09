@@ -38,11 +38,14 @@ ap.add_argument("-r", "--range", required=False, default=20, type=int,
                 help="taille de la plage de plotting")
 ap.add_argument("-pca", "--pca-samples", required=False, default=300, type=int,
                 help="taille de la plage de l'ACP pour le plotting")
+ap.add_argument("-a", "--alpha-coef", required=False, default=300, type=int,
+                help="coeficient de normalisation des vecteurs VCC")
 ap.add_argument("-n", "--order-n", required=False, default=3, type=int,
                 help="ordre de la map. ex: n = 3 implique que le nombre de neurones n*n = 3*3 = 9")
 ap.add_argument("-d", "--display", required=False, default="001", type=str,
                 help="les figres de plotting a afficher \n c'est une chaine de trois bits XXX où chaque chiffre "
                      "correspond à une figure (1 pour afficher la figure et 0 pour ne pas l'afficher)")
+
 args = vars(ap.parse_args())
 
 
@@ -86,10 +89,10 @@ def send_ploting_data(codebook, vect, FCount, dist, pause=False):
 if __name__ == '__main__':
     print("[INFO] chargement du predicteur des points de saillances...")
     N = args["order_n"] # order of net matrix
-    FCount = 8  # number of features
+    FCount = 9  # number of features
     lmk = landmarks()
     f = args["file"]
-    dr = drawer.fromFile(f, _n=(N*N),  n_first=args["range"], _speed=args["speed"], _disp=args["display"][:3], pca_samples=args["pca_samples"])
+    dr = drawer.fromFile(f, _n=(N*N), _f=FCount, n_first=args["range"], _speed=args["speed"], _disp=args["display"][:3], pca_samples=args["pca_samples"])
 
     print("[INFO] chargement d'extracteur des caracteristiques...")
     car = caracterestique()
@@ -115,7 +118,7 @@ if __name__ == '__main__':
     pred = None  # le frame (l'image) precedent
     i = 0  # compteur de frame
     delta = args["delta"]  # l'intervale entre les 2 frame a prendre
-    coef = 10  # coefficient pour normaliser le vecteur d'entree
+    coef = 1  # coefficient pour normaliser le vecteur d'entree
     minidisp = np.full((150, 400, 3), 200, np.uint8)  # remplissage avant le debut de detection.
     started = False
 
@@ -140,8 +143,9 @@ if __name__ == '__main__':
                     pred = vect
                     predimg = np.copy(frame)
                 else:
-                    vcc = caracterestique.calculate_vcc(pred, vect)
+                    vcc = caracterestique.calculate_vcc(pred, vect, frame.shape[0], frame.shape[1])
                     vcc = vcc * coef
+                    print(vcc)
                     winner, win_dist = net.cluster(vcc)
                     net.learn_data(vcc, lrate=args["learning_rate"], sigma=args["sigma"])
                     minidisp = imutils.resize(np.hstack((predimg, np.copy(frame))), width=400)
