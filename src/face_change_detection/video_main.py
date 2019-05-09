@@ -38,7 +38,7 @@ ap.add_argument("-r", "--range", required=False, default=20, type=int,
                 help="taille de la plage de plotting")
 ap.add_argument("-pca", "--pca-samples", required=False, default=300, type=int,
                 help="taille de la plage de l'ACP pour le plotting")
-ap.add_argument("-a", "--alpha-coef", required=False, default=300, type=int,
+ap.add_argument("-a", "--coef", required=False, default=300, type=int,
                 help="coeficient de normalisation des vecteurs VCC")
 ap.add_argument("-n", "--order-n", required=False, default=3, type=int,
                 help="ordre de la map. ex: n = 3 implique que le nombre de neurones n*n = 3*3 = 9")
