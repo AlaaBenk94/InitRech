@@ -118,7 +118,7 @@ if __name__ == '__main__':
     pred = None  # le frame (l'image) precedent
     i = 0  # compteur de frame
     delta = args["delta"]  # l'intervale entre les 2 frame a prendre
-    coef = 1  # coefficient pour normaliser le vecteur d'entree
+    coef = args["coef"]  # coefficient pour normaliser le vecteur d'entree
     minidisp = np.full((150, 400, 3), 200, np.uint8)  # remplissage avant le debut de detection.
     started = False
 
