@@ -179,9 +179,9 @@ conscience
 \series default
  à un objet robotisé non humanoïde.
  Autrement dit, l’aspect humanoïde de la machine est-il nécessaire pour
- que nous soyons enclins à lui prêter des états mentaux ?.
- Afin d'étudier ces interactions et dans le but de répondre à ses questions
- liées au sujet, le projet 
+ que nous soyons enclins à lui prêter des états mentaux ? Afin d'étudier
+ ces interactions et dans le but de répondre à ces questions liées au sujet,
+ le projet 
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "PsyPhINe"
@@ -233,14 +233,14 @@ capacité d’interagir
 changement d'expressions du visage
 \series default
  de la personne dans l’expérience.
- La question que nous essayons d’y répondre est comment concevons-nous un
- système qui permet à la lampe d’exécuter des comportements suivant les
- différentes réactions des gens perçues par le biais de sa webcam ?.
+ La question à laquelle nous essayons de répondre est comment concevons-nous
+ un système qui permet à la lampe d’exécuter des comportements suivant les
+ différentes réactions des gens perçues par le biais de sa webcam ?
 \end_layout
 
 \begin_layout Standard
 \align block
-Pour répondre à cet objectif, nous avons décidés d'organiser notre rapport
+Pour répondre à cet objectif, nous avons décidé d'organiser notre rapport
  en trois chapitres, tels que :
 \end_layout
 
@@ -255,9 +255,9 @@ status collapsed
 
 \end_inset
 
- Le premier chapitre sera une présentation du projet, de prototype utilisé
+ Le premier chapitre sera une présentation du projet, du prototype utilisé
  et des différents travaux réalisés.
- A la fin de ce chapitre nous allons détaillés les différents aspects de
+ A la fin de ce chapitre nous allons détailler les différents aspects de
  notre problématique.
 \end_layout
 
@@ -272,9 +272,9 @@ status collapsed
 
 \end_inset
 
- Le seconde chapitre regroupe plusieurs notions, méthodes et techniques
- existantes dans l'état de l'art et spécifiquement celles que nous utiliserons
- dans notre méthode.
+ Le second chapitre regroupe plusieurs notions, méthodes et techniques existante
+s dans l'état de l'art et spécifiquement celles que nous utiliserons dans
+ notre méthode.
 \end_layout
 
 \begin_layout Itemize
