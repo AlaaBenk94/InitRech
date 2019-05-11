@@ -215,17 +215,14 @@ L’idée fondatrice du projet Psyphine est partie de l’interaction entre l’
  et le robot de telle sorte que le robot peut se comporter de la même façon
  que l’humain en laissant le robot apprendre à travers son interaction avec
  l’humain et son environnement.
- Le but donc est que le robot tente de percevoir les intentions de l’être-humain
- avec lequel il interagit à partir d’indices multiples et d’expressions
+ Le but donc est que le robot tente de percevoir les expressions de l’être-humai
+n avec lequel il interagit à partir d’indices multiples et d’expressions
  variées.
- Ainsi, cette perception s’étend aux interactions non verbales c’est-à-dire
- aux interactions non seulement avec des êtres humains capable de parler
- mais aussi avec des choses non humaines (animaux, objets).
  Pour cela il va falloir attribuer des comportements d’intentions, une certaine
  forme de volonté, et même des émotions dans certains cas à ce robot qui
  est programmé par l’homme.
- La diversité des différentes tâches du projet Psyphine a met en relation
- de nombreux chercheurs des différentes disciplines, tels que des psychologues,
+ La diversité des différentes tâches du projet Psyphine a mis en relation
+ de nombreux chercheurs de différentes disciplines, tels que des psychologues,
  philosophes, roboticiens, cogniticiens, sociologues, et neuroscientifiques
  d’où le nom « PsyPhINe » qui est l’abréviation de « Psychologie, Philosophie,
  Informatique et neuroscience » 
@@ -244,11 +241,19 @@ Présentation du projet
 \end_layout
 
 \begin_layout Standard
-Le projet PsyPhINe est lancé officiellement le premier avril 2016 par des
- chercheurs de l’université de lorraine, il vise à confronter et articuler
- les apports de différentes disciplines à la question de l’attribution d’intenti
-onnalité, d’intelligence, de cognition voire d’émotions, à des entités naturelle
-s ou des dispositifs artificiels.
+Le projet PsyPhINe, comme présenté dans le site officiel du projet 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "psyphine2016"
+literal "false"
+
+\end_inset
+
+, est lancé officiellement le premier avril 2016 par des chercheurs de l’univers
+ité de lorraine, il vise à confronter et articuler les apports de différentes
+ disciplines à la question de l’attribution d’intentionnalité, d’intelligence,
+ de cognition voire d’émotions, à des entités naturelles ou des dispositifs
+ artificiels.
  Il s’agit d’appréhender les questions naturellement posées par l’interaction
  homme/robot, à savoir celles liées à l’interprétation du comportement du
  robot jusqu’à la confiance qui peut lui être ou non accordée.
@@ -698,7 +703,7 @@ literal "false"
  réalisé par D.
  SAMY et al.
  sur plusieurs axes.
- En premier, Ils ont mis en place un système pour contrôler les moteurs
+ En premier, ils ont mis en place un système pour contrôler les moteurs
  de la lampe à distance.
  Ensuite, ils ont réalisé un suivi de visage dont la détection est basée
  sur la méthode Viola et Jones implémenté dans la bibliothèque 
@@ -731,12 +736,12 @@ literal "false"
  la définition des nouveaux mouvements (interface de haut niveaux).
  Ils ont adapté la même méthode que celle du travail précédent pour le suivi
  de visage.
- Ainsi, ils ont consacré une grande partie de leur travail pour la cinématique
+ Ainsi, ils ont consacré une grande partie de leur travail à la cinématique
  inversé pour les mouvements de la lampe.
 \end_layout
 
 \begin_layout Standard
-Un autre travail de A.
+Dans un autre travail, de A.
  Eva et G.
  Augustin 
 \begin_inset CommandInset citation
@@ -746,9 +751,9 @@ literal "false"
 
 \end_inset
 
- qui s’est concentré sur le suivi du visage et la détection des changements
+, le sujet abordé est le suivi du visage et la détection des changements
  d’expressions.
- La méthode de Viola et Jones a été appliqué pour la détection du visage
+ La méthode de Viola et Jones a été appliquée pour la détection du visage
  avec des amélioration au niveau de la détection de la bouche.
  Cette phase a été suivi par l’application de la régression linéaire pour
  détecter l’ouverture de la bouche.
@@ -766,12 +771,12 @@ literal "false"
 \end_inset
 
 , un axe de travail différents des autres travaux.
- Il s’agit de la classification des émotions.
- Ils ont commencé par l’utilisation d’une nouvelle bibliothèque (dlib) pour
- la détection du visage et l’extraction des points de saillances.
- Ensuite, l’application du classifieur bayésien pour détecter trois émotions
- (joie, colère et surprise).
- Le model a été validé par la validation croisée a k-plis avec une précision
+ Il s’agit de la classification des émotions.Initialement, ils ont utilisé
+ la bibliothèque (dlib) pour détecter les visage et extraire des points
+ de saillances.
+ Ensuite, ils ont classifé les émotions en trois classe (joie, colère et
+ surprise) à l'aide du model bayésien.
+ Ce dernier a été validé par la validation croisée a k-plis avec une précision
  de 82%, 97% et 31% pour la surprise, la joie et la colère respectivement.
 \end_layout
 
@@ -803,26 +808,46 @@ Problématique
 Plusieurs sujets ont été abordé dans les travaux précédents du projet Psyphine.
  Cependant, la diversité et la richesse des disciplines du projet Psyphine
  ont rendu difficile de travailler sur tous les axes du projet.
- Par conséquence, et puisque le but du projet est d’étudier les réactions
- et le comportement des gens à travers des expériences d’une durée de 10
- minutes dans laquelle Ils seront en interaction non verbale avec la lampe
- rebotisé.
+ En effet, une panoplie des thématiques peuvent être traitées dans le cadre
+ du projet Psyphine.
+ Celles proposées sont, la détection des objets, la détection des émotions,
+ la reconnaissance du visage, le problème du réchauffement des moteurs,
+ le raffinement du mouvement de la lampe rebotisé, etc.
+ Cependant, nous voulions travailler sur des thématiques [qui nous sembles
+ plus proches de notre formation et de nos prérequis], ce qui nous amené
+ à réduire l’ensemble des thématiques mentionnées aux trois premières.
+ Néanmoins, puisque le but du projet est d’étudier les réactions des gens,
+ la détection des objets ne peut pas apporter une grande valeur au but du
+ projet.
+ De plus, les études sont effectuées à travers des expériences d’une durée
+ maximale de 10 minutes dans les différents salons et évènement scientifiques,
+ ce qui implique que les participants, des différentes expériences, seront
+ en interaction non verbale avec la lampe rebotisé qu’une seul fois.
+ Donc, la reconnaissance du visage ne sera pas très utile à ces études.
+ Par conséquent, la détection des émotions semble la plus intéressante des
+ thématiques.
+ Mais, le but du projet, c’est de permettre à la lampe réagir aux différentes
+ expressions, des participants, sans avoir besoin de les interpréter.
 \end_layout
 
 \begin_layout Standard
-Notre contribution est donc, d’affecter à la lampe la capacité d’interagir
+Tout cela nous à permet d’en sortir avec la problématique que nous allons
+ traiter.
+ Notre contribution est donc d’affecter à la lampe la capacité d’interagir
  (de se comporter) conformément au changement d'expressions du visage de
  la personne en face.
- En effet, problématique principale est comment concevons-nous un système
- qui permet à la lampe d’exécuter des comportements suivant les différentes
+ En effet, la problématique principale est comment concevons-nous un système
+ qui permet à la lampe d’exécuter des comportements en fonction des différentes
  réactions des gens perçues par le biais de sa webcam.
 \end_layout
 
 \begin_layout Standard
-Nous pouvons diviser cette problématique en deux sous problématiques dont
- la première sera le choix de la méthode d’extraction et la représentation
- des comportements des gens et la deuxième sera le regroupement (clustering)
- de ces comportements afin de décider le comportement approprié.
+Nous pouvons diviser cette problématique en trois sous problématiques dont
+ la première sera le choix de la méthode de détection du visage et d’extraction
+ des points de saillances.
+ La deuxième, c’est le choix de la représentation des comportements des
+ gens et la dernière sera le regroupement (clustering) de ces comportements
+ afin de décider le comportement approprié.
 \end_layout
 
 \begin_layout Section*
@@ -830,7 +855,7 @@ Conclusion
 \end_layout
 
 \begin_layout Standard
-Ce chapitre à servie comme introduction au projet et à notre problématique
+Ce chapitre a servi comme introduction au projet et à notre problématique
  sur laquelle notre contribution sera basée.
  Dans le chapitre suivant nous plongeons dans les notions techniques des
  méthodes existantes dans l’état de l’art.
