@@ -240,12 +240,12 @@ noprefix "false"
 
 \begin_layout Itemize
 La phase de préparation qui prend en entrée un flux d'image sous forme d'une
- vidéo (séquences d'images) pour produire en sortie un vecteur caractérisant
- les changements sur les différentes séquences.
+ vidéo (séquences d'images) pour produire en sortie un vecteur de 68 points
+ de saillances.
 \end_layout
 
 \begin_layout Itemize
-La deuxième phase, dite d'extraction des vecteurs caracteristiques des changemen
+La deuxième phase, dite d'extraction des vecteurs caractéristiques des changemen
 ts 
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
@@ -255,15 +255,29 @@ literal "false"
 
 \end_inset
 
-VCC, comporte deux étapes : l'extraction des caracterisitques, puis, le
- calcule des vecteurs caracteristiques des changements d'expressions.
+VCC, comporte deux étapes : l'extraction des caractéristiques des 
+\emph on
+expressions
+\emph default
+ 
+\emph on
+statiques
+\emph default
+, puis, le calcul des vecteurs caractéristiques des 
+\emph on
+changements d'expressions
+\emph default
+.
 \end_layout
 
 \begin_layout Itemize
-La derniere phase est la phase de décision qui consiste à regrouper les
+La dernière phase est la phase de décision qui consiste à regrouper les
  vecteurs caractéristiques en entrée afin de décider le comportement à exécuter
  (les commandes à envoyer à la lampe).
- Nous verrons ses phases en détail dans les sections qui suit.
+\end_layout
+
+\begin_layout Standard
+Nous verrons ces phases en détail dans les sections qui suit.
 \end_layout
 
 \begin_layout Standard
@@ -395,7 +409,7 @@ noprefix "false"
 \end_inset
 
  ci-dessous, l'étape de détection du visage s’agit de retrouver la zone
- du visage (la région d'interet ROI) dans une image pour qu’on puisse y
+ du visage (la région d'intérêt ROI) dans une image pour qu’on puisse y
  effectuer des traitements par la suite.
 \end_layout
 
@@ -453,7 +467,7 @@ noprefix "false"
 
 ).
  Nous avons utiliser son implémentation dans la bibliothèque dlib pour extraire
- la région d'interet des images de flux video.
+ la région d'intérêt des images de flux vidéo.
 \end_layout
 
 \begin_layout Subsection
@@ -475,7 +489,7 @@ literal "false"
 
 \end_inset
 
- basé sur des arbres de regressions (un type d'arbre de décision).
+ basé sur des arbres de régressions (un type d'arbre de décision).
 \end_layout
 
 \begin_layout Standard
@@ -526,8 +540,8 @@ Phase d'extraction des VCC
 \end_layout
 
 \begin_layout Standard
-Cette phase permet en premier, de définir des caracteristique d'expressions
- ,choisis explicitement, à partir des vecteurs de points de saillances.
+Cette phase permet en premier, de définir des caractéristiques d’expressions,
+ choisis explicitement, à partir des vecteurs de points de saillances.
  Ensuite, utiliser ces caractéristiques pour calculer les vecteurs caractéristiq
 ues des changements d'expressions qui seront utilisé pour le clustering
  dans la phase qui suit.
@@ -539,11 +553,11 @@ ues des changements d'expressions qui seront utilisé pour le clustering
 
 \begin_layout Standard
 Effectuer un apprentissage sur tous les 68 points extraits est, d'une part,
- trés couteux en terme du temps et d'espace ainsi, il peuvent générer de
+ très couteux en terme du temps et d'espace ainsi, il peuvent générer du
  bruit qui affecte la qualité des résultat obtenus.
- Par conséquent, nous allons extraire, à partir de ces points, des caracteristiq
-ues qui nous permettent de destinguer les differentes expressions du visage.
- Nous avons consideré six caracteristiques (à savoir : distance des sourcils,
+ Par conséquent, nous allons extraire, à partir de ces points, des caractéristiq
+ues qui nous permettent de distinguer les différentes expressions du visage.
+ Nous avons considéré neuf caractéristiques (à savoir : distance des sourcils,
  ouverture des yeux, position du visage, ouverture de la bouche et la rotation
  du visage), ils sont illustrés sur la figure ci-dessous.
 \end_layout
@@ -583,21 +597,21 @@ status open
 \end_layout
 
 \begin_layout Standard
-Dans notre experience, la lampe rebotisé est mis devant differents personnes
- voire les mêmes perssonnes peuvent se retrouver à des distances differents
+Dans notre expérience, la lampe robotisée est mise devant différentes personnes
+ voire les mêmes personnes peuvent se retrouver à des distances différentes
  de la lampe.
- Cela engendre une diversité de valeurs des caracteristiques définis ci-dessus
- pour chaque personne et aussi pour la meme personne avec des differents
+ Cela engendre une diversité de valeurs des caractéristiques définis ci-dessus
+ pour chaque personne et aussi pour la même personne avec des différentes
  distances.
- De ce fait, il est nécéssaire de normaliser ce vecteur des caracteristique
- pour que la diversité des personnes (ou leurs distances de la camera) n'affecte
- pas les résultat retournés.
- Nous avons donc normaliser notre vecteur caracteristique, en prenant le
- rapports des caracteristiques sur des distance fixe dans le visage, par
- exemple le rapport entre la largeur et la longueur des yeux represente
- le proportion d'ouverture des yeux.
- En conséquence, la valeur de chacune des caracteristique est compris entre
- 0 et 1.
+ De ce fait, il est nécessaire de normaliser ce vecteur des caractéristiques
+ pour que la diversité des personnes (ou leurs distances de la caméra) n'affecte
+ pas les résultats retournés.
+ Nous avons donc normalisé notre vecteur caractéristique, en prenant le
+ rapport des caractéristiques sur des distances fixes dans le visage, par
+ exemple le rapport entre la largeur et la longueur des yeux représente
+ la proportion d'ouverture des yeux.
+ En conséquence, la valeur de chacune des caractéristiques est comprise
+ entre 0 et 1.
 \end_layout
 
 \begin_layout Subsection
@@ -605,33 +619,30 @@ Vecteurs caractéristiques des changements d'expressions
 \end_layout
 
 \begin_layout Standard
-Jusqu'à la, nous avons pu extraire les points des saillances et en définir
- des caracteristique avec.
+Jusqu'à là, nous avons pu extraire les points de saillances et en définir
+ des caractéristiques avec.
  Donc on peut passer ces vecteurs pour la prochaine phase pour le clustering
  des expressions.
- Cependant, nous nous intéressons du 
-\emph on
-chagement des expressions
-\emph default
- et non plus des expressions uniques.
+ Cependant, nous nous intéressons au changement des expressions et non plus
+ aux expressions statiques.
  Pour cela, il faut traiter plusieurs images (séquence d'images) pour qu'on
- puisse calculer le vecteur caractérisant les changements d'expressions
- sur cette séquence.
+ puisse calculer le vecteur caractérisant le changement d'expressions sur
+ cette séquence.
 \end_layout
 
 \begin_layout Standard
-Une approche simple pour le faire, est de prendre les images du flux video
+Une approche simple pour le faire, est de prendre les images du flux vidéo
  deux à deux.
  Puis, on calcule le changement entre ces deux images.
- Soientt deux images i et j, extraites de flux video dans deux instant diffèrent
+ Soient deux images i et j, extraites de flux vidéo dans deux instants différent
 s tel que 
 \begin_inset Formula $temps(i)<temps(j)$
 \end_inset
 
  .
- D'abord, les étapes de détéction du visage, d'éxtraction des points de
- saillances et d'extraction des caracteristiques sont effectués sur ces
- deux images pour avoir les vecteurs caracteristiques 
+ D'abord, les étapes de détection du visage, d'extraction des points de
+ saillances et d'extraction des caractéristiques sont effectués sur ces
+ deux images pour avoir les vecteurs caractéristiques 
 \begin_inset Formula $Vi$
 \end_inset
 
@@ -650,14 +661,14 @@ s tel que
 ).
  Ensuite, nous calculons le 
 \emph on
-vecteur caracteristique des changments 
+vecteur caractéristique des changements
 \emph default
-en appliquant une simple soustraction 
+ en appliquant une simple soustraction 
 \begin_inset Formula $Vj-Vi$
 \end_inset
 
  sauf pour la position, nous calculons la distance euclidienne.
- Nous obtenons finalement un vecteur caracterisant les chagments entre entre
+ Nous obtenons finalement un vecteur caractérisant les changements entre
  l'image 
 \begin_inset Formula $i$
 \end_inset
@@ -710,8 +721,8 @@ Phase de décision
 \begin_layout Standard
 La dernière phase de l'approche, est celle de décision, dans laquelle nous
  prenons les vecteurs caractéristiques issues de la phase antérieure, et
- on y applique des algorithmes d’apprentissage pour avoir en sortie le comportem
-ent approprié.
+ on y applique les algorithmes d’apprentissage KMeans et DSOM pour avoir
+ en sortie le comportement approprié.
 \end_layout
 
 \begin_layout Standard
