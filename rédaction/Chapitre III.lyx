@@ -777,7 +777,7 @@ name "fig:Exemple-du-problème"
 
 \end_inset
 
-Exemple du problème de representation des distances sans normalisation
+Exemple du problème de représentation des distances sans normalisation
 \end_layout
 
 \end_inset
@@ -986,6 +986,49 @@ et
 
 \begin_layout Subsubsection
 Ouverture de la bouche
+\end_layout
+
+\begin_layout Standard
+L'ouverture de bouche est calculé par la formule suivante :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+OuvertureBouche=\frac{\left\Vert P_{62}\cdot P_{66}\right\Vert \times\left\Vert P_{51}\cdot P_{57}\right\Vert +\varepsilon}{\left\Vert P_{39}\cdot P_{42}\right\Vert +\varepsilon}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+avec : 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+: le point numero 
+\begin_inset Formula $i$
+\end_inset
+
+, 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ est une constante, et 
+\begin_inset Formula $\left\Vert x\cdot y\right\Vert $
+\end_inset
+
+ : est la distance euclidienne entre 
+\begin_inset Formula $x$
+\end_inset
+
+ et 
+\begin_inset Formula $y$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard

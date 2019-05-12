@@ -241,7 +241,7 @@ changement d'expressions du visage
 \begin_layout Standard
 \align block
 Pour répondre à cet objectif, nous avons décidé d'organiser notre rapport
- en trois chapitres, tels que :
+ en quatre chapitres, tels que :
 \end_layout
 
 \begin_layout Itemize
@@ -290,6 +290,20 @@ status collapsed
 
  Nous abordons, dans le troisième chapitre, les détails de notre solution
  dans laquelle nous expliquerons nos différents choix conceptuels et théoriques.
+\end_layout
+
+\begin_layout Itemize
+\align block
+\begin_inset Argument item:1
+status collapsed
+
+\begin_layout Plain Layout
+•
+\end_layout
+
+\end_inset
+
+ Le dernier chapitre sera consacré à l'implémentation et aux divers tests.
 \end_layout
 
 \end_body

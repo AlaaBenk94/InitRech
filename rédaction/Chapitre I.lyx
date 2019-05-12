@@ -245,9 +245,16 @@ Présentation du projet
 \end_layout
 
 \begin_layout Standard
-Le projet PsyPhINe d'apès [http://www.msh-lorraine.fr/index.php?id=846] est
- lancé officiellement le premier avril 2016 par des chercheurs de l’université
- de lorraine, il vise à confronter et articuler les apports de différentes
+Le projet PsyPhINe, d'après 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "psyphine2016"
+literal "false"
+
+\end_inset
+
+, est lancé officiellement le premier avril 2016 par des chercheurs de l’univers
+ité de lorraine, il vise à confronter et articuler les apports de différentes
  disciplines à la question de l’attribution d’intentionnalité, d’intelligence,
  de cognition voire d’émotions, à des entités naturelles ou des dispositifs
  artificiels.
@@ -811,9 +818,8 @@ Plusieurs sujets ont été abordé dans les travaux précédents du projet Psyph
  Celles proposées sont, la détection des objets, la détection des émotions,
  la reconnaissance du visage, le problème du réchauffement des moteurs,
  le raffinement du mouvement de la lampe rebotisé, etc.
- Cependant, nous voulions travailler sur des thématiques [qui nous sembles
- plus proches de notre formation et de nos prérequis], ce qui nous amené
- à réduire l’ensemble des thématiques mentionnées aux trois premières.
+ Cependant, nous voulions travailler sur l’ensemble des trois premières
+ thématiques mentionnées.
  Néanmoins, puisque le but du projet est d’étudier les 
 \emph on
 réactions des gens

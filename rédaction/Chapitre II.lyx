@@ -374,9 +374,15 @@ Cette méthode consiste à parcourir l’intégralité de l’image pour extrair
  quatre pixels.
  Parmi les caractéristiques calculées, il y’en a celles qui sont sans importance
 , pour sélectionner que le nombre de caractéristiques importantes Haar Cascade
- utilise l’algorithme d’apprentissage Adaboost [https://www.vocal.com/video/adaboo
-st-training-algorithm-for-viola-jones-object-detection/] pour à la fin obtenir
- un résultat efficace des classifieurs.
+ utilise l’algorithme d’apprentissage Adaboost 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vocaltechnologies"
+literal "false"
+
+\end_inset
+
+ pour à la fin obtenir un résultat efficace des classifieurs.
 \end_layout
 
 \begin_layout Standard
@@ -407,11 +413,18 @@ name "subsec:Histogrammes-de-gradients"
 \begin_layout Standard
 L'Histogramme des Gradients Orientés (HOG) est un descripteur de caractéristique
 s utilisé dans la vision pas ordinateur et le traitement d'images pour la
- détection d'objets [https://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf].
+ détection d'objets.
  Il s’agit d’un modèle de détection de visage largement utilisé, inventé
  en 2005 par N.
- Dalal et B.Triggs [https://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf],
- basé sur SVM (Support Vector Machine).
+ Dalal et B.Triggs 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dalal2005histograms"
+literal "false"
+
+\end_inset
+
+, basé sur SVM (Support Vector Machine).
 \end_layout
 
 \begin_layout Standard
@@ -580,10 +593,16 @@ La dernière étape consiste à calculer le vecteur de caractéristique HOG,
 \end_layout
 
 \begin_layout Standard
-La méthode HOG est la méthode la plus rapide sur le processeur d'après [https://
-www.learnopencv.com/face-detection-opencv-dlib-and-deep-learning-c-python/],
- elle fonctionne très bien pour les faces frontales et légèrement pour les
- non frontales et elle fonctionne sous petit occlusion.
+La méthode HOG est la méthode la plus rapide sur le processeur d'après 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "gupta_2018"
+literal "false"
+
+\end_inset
+
+, elle fonctionne très bien pour les faces frontales et légèrement pour
+ les non frontales et elle fonctionne sous petit occlusion.
  Cependant, l’inconvénient majeur de cette méthode est qu’elle ne détecte
  pas les petits visages, car elle est conçue pour une taille minimale de
  80 x 80, la région d'interêt exclut souvent une partie du front et même
@@ -601,14 +620,28 @@ Autre méthodes de détection
 Il existe d'autres méthodes de détection de visage parmis ces méthodes,
  la méthode de Single Shot MultiBox Detector (SSD) proposé par W.
  Liu et all.
- dans [https://arxiv.org/pdf/1512.02325.pdf].
+ dans 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "liu2016ssd"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
 Ce descripteur surmonte tous les défauts de la détection avec la méthode
- à cascade de Haar selon [https://www.learnopencv.com/face-detection-opencv-dlib-a
-nd-deep-learning-c-python/], sans compromettre aucun avantage fourni par
- Haar.
+ à cascade de Haar selon 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "gupta_2018"
+literal "false"
+
+\end_inset
+
+, sans compromettre aucun avantage fourni par Haar.
  En plus de ça, c’est la méthode la plus précise dans la détection, elle
  fonctionne en temps réel sur le processeur ainsi elle détecte les visages
  à différentes échelles (visage grand et petit) et elle fonctionne pour
@@ -622,7 +655,15 @@ nd-deep-learning-c-python/], sans compromettre aucun avantage fourni par
 \begin_layout Standard
 Un autre méthode aussi impourante dans la détection de visage, la méthode
  Max Margin Object Detection (MMOD) proposé par Davis E.
- King dans [https://arxiv.org/pdf/1502.00046.pdf].
+ King dans 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "king2015max"
+literal "false"
+
+\end_inset
+
+.
  Son modèle est le plus rapide sur les GPUs (45 ms par images), il est aussi
  robuste à l’occlusion et son processus de formation est très facile.
  En revanche, ce dernier, reste lent sur les processus (370 ms pour traiter
@@ -636,8 +677,15 @@ Un autre méthode aussi impourante dans la détection de visage, la méthode
 \end_layout
 
 \begin_layout Section
-Methode d'extraction des points de saillances [https://arxiv.org/pdf/1709.08127.pdf
-]
+Methode d'extraction des points de saillances 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kazemi2014one"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -855,7 +903,15 @@ name "subsec:K-means"
 
 \end_inset
 
-K-means [https://www.ijcsmc.com/docs/papers/May2016/V5I5201647.pdf]
+K-means 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "raval2016implementing"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
