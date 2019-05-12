@@ -245,12 +245,11 @@ Présentation du projet
 \end_layout
 
 \begin_layout Standard
-Le projet PsyPhINe d'apès [http://www.msh-lorraine.fr/index.php?id=846] est
- lancé officiellement le premier avril 2016 par des chercheurs de l’université
- de lorraine, il vise à confronter et articuler les apports de différentes
- disciplines à la question de l’attribution d’intentionnalité, d’intelligence,
- de cognition voire d’émotions, à des entités naturelles ou des dispositifs
- artificiels.
+Le projet PsyPhINe est lancé officiellement le premier avril 2016 par des
+ chercheurs de l’université de lorraine, il vise à confronter et articuler
+ les apports de différentes disciplines à la question de l’attribution d’intenti
+onnalité, d’intelligence, de cognition voire d’émotions, à des entités naturelle
+s ou des dispositifs artificiels.
  Il s’agit d’appréhender les questions naturellement posées par l’interaction
  homme/robot, à savoir celles liées à l’interprétation du comportement du
  robot jusqu’à la confiance qui peut lui être ou non accordée.
@@ -772,8 +771,8 @@ literal "false"
  Il s’agit de la classification des émotions.
  Ils ont commencé par l’utilisation d’une nouvelle bibliothèque (dlib) pour
  la détection du visage et l’extraction des points de saillances.
- Ensuite, ils ont passé à l’application du classifieur bayésien pour détecter
- trois émotions (joie, colère et surprise).
+ Ensuite, l’application du classifieur bayésien pour détecter trois émotions
+ (joie, colère et surprise).
  Le model a été validé par la validation croisée a k-plis avec une précision
  de 82%, 97% et 31% pour la surprise, la joie et la colère respectivement.
 \end_layout
