@@ -1116,7 +1116,7 @@ Vecteurs caractéristiques des changements d'expressions
 \begin_layout Standard
 Jusqu'à là, nous avons pu extraire les points de saillances et en définir
  des caractéristiques avec.
- Donc on peut passer ces vecteurs pour la prochaine phase pour le clustering
+ Donc on peut passer ces vecteurs à la prochaine phase pour le clustering
  des expressions.
  Cependant, puisque les gens ont des proportions du visages diffèrentes,
  nous pouvons avoir deux comportements differents pour deux personnes avec
@@ -1193,7 +1193,7 @@ vecteur caractéristique des changements
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1211,6 +1211,197 @@ status open
 
 \begin_layout Plain Layout
 Calcul des vecteurs caractèristiques des changements
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour simplifier la compréhension, la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Exemples-VCC"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ ci-après présentes deux exemples concrets des VCC.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/vcc_changed.jpg
+	width 150bp
+	height 150bp
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Graphics
+	filename img/tab_changed.JPG
+	width 150bp
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Changement détecté
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/vcc_unchanged.jpg
+	width 150bp
+	height 150bp
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Graphics
+	filename img/tab_unchanged.JPG
+	width 150bp
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Aucun changement détecté
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Exemples-VCC"
+
+\end_inset
+
+Exemples VCC
 \end_layout
 
 \end_inset
@@ -1622,7 +1813,6 @@ addcontentsline{toc}{section}{Conclusion}
 \begin_layout Standard
 Nous avons présenté, dans ce chapitre, notre solution à la problématique
  posée au début de rapport.
- Nous avons obtenu de bons résultats.
  Cependant, certaines méthodes, utilisées dans les différentes étapes de
  la solution, présente des capacités assez limitées.
  Ces méthodes peuvent être subi à des amélioration et servir à améliorer
