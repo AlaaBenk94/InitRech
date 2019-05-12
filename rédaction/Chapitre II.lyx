@@ -202,11 +202,11 @@ Méthodes de détection de visage
 \end_layout
 
 \begin_layout Standard
-La détection de visage est d’identifier quels visages se trouvent à l’intérieur
+La détection d'objet est d’identifier quels vobjets se trouvent à l’intérieur
  d’une image et où ils se trouvent.
- C'est un type d’application classé dans la technologie de vision par ordinateur.
- C’est le processus aux cours duquel des algorithmes sont développés et
- formés pour localiser correctement les visages ou les objets.
+ C'est un type d’application classé dans la technologie de vision par ordinateur
+, et aussi le processus au cours duquel des algorithmes sont développés
+ et formés pour localiser correctement les visages ou les objets.
  Celles-ci peuvent être en tems réel à partir d’une caméra vidéo.
  Afin de détecter la position des visages dans les images de sorte à obtenir
  une région d’intérêt sur laquelle l’extraction des vecteurs de caractéristiques
@@ -215,7 +215,7 @@ La détection de visage est d’identifier quels visages se trouvent à l’int�
 \end_layout
 
 \begin_layout Subsection
-Détection avec la méthode Haar cascade
+Détection avec la méthode de Viola et Jones
 \end_layout
 
 \begin_layout Standard
@@ -374,60 +374,24 @@ Cette méthode consiste à parcourir l’intégralité de l’image pour extrair
  quatre pixels.
  Parmi les caractéristiques calculées, il y’en a celles qui sont sans importance
 , pour sélectionner que le nombre de caractéristiques importantes Haar Cascade
- utilise l’algorithme d’apprentissage Adaboost pour à la fin obtenir un
- résultat efficace des classifieurs.
+ utilise l’algorithme d’apprentissage Adaboost [https://www.vocal.com/video/adaboo
+st-training-algorithm-for-viola-jones-object-detection/] pour à la fin obtenir
+ un résultat efficace des classifieurs.
 \end_layout
 
 \begin_layout Standard
 Une fois le visage détecté, il faut en extraire les saillances.
- L’utilisation des caractéristiques rectangulaires de cette méthode permet
- de détecter les yeux ou la bouche sur un visage, et cette fonction est
- disponible dans OpenCV.
- Cette méthode a résolue beaucoup de problèmes rencontrés auparavant dans
- la détection de visage tel que, cette méthode fonctionne presque en temps
- réel sur le processeur, elle en dispose d’une architecture simple et elle
- détecte les visages à différentes échelles.
+ L’utilisation des caractéristiques rectangulaires (caractéristiques calculées
+ par la différence des sommes des pixels de deux ou plusieurs zones rectangulair
+es adjacentes) de cette méthode permet de détecter les yeux ou la bouche
+ sur un visage, et cette fonction est disponible dans OpenCV.
+ Cette méthode des Haar a résolu beaucoup de problèmes rencontrés auparavant
+ dans la détection de visage tel que, cette méthode fonctionne presque en
+ temps réel sur le processeur, elle en dispose d’une architecture simple
+ et elle détecte les visages à différentes échelles.
  Cependant cette méthode reste imprécise, elle donne beaucoup de fausses
  prédictions, elle ne fonctionne pas sur les images non frontales et elle
  ne fonctionne pas sous occlusion.
-\end_layout
-
-\begin_layout Subsection
-Détection avec la méthode Single Shot MultiBox Detector (SSD)
-\end_layout
-
-\begin_layout Standard
-La méthode Single Shot MultiBox Detector (SSD) est essentiellement une méthode
- de détection à fenêtre coulissante multi-échelle qui exploite les CNN [3]
- en profondeur pour effectuer les deux tâches de la détection (classification,
- localisation).
- Une détection de fenêtre glissante fait glisser une fenêtre locale sur
- l’image et identifie à chaque emplacement si la fenêtre contient un objet
- présentant un intérêt ou non.
- La technique de multi-échelle augmente la robustesse de la détection en
- prenant en compte des fenêtres de différentes taille.
- La détection d’objet SSD se compose de deux parties :
-\end_layout
-
-\begin_layout Standard
-- Extraction des cartes de caractéristique, et
-\end_layout
-
-\begin_layout Standard
-- Appliquer des filtres de convolution pour détecter les objets.
-\end_layout
-
-\begin_layout Standard
-Le descripteur SSD surmonte tous les défauts de la détection avec la méthode
- à cascade de Haar, sans compromettre aucun avantage fourni par Haar.
- En plus de ça, c’est la méthode la plus précise dans la détection, elle
- fonctionne en temps réel sur le processeur ainsi elle détecte les visages
- à différentes échelles (visage grand et petit) et elle fonctionne pour
- les différentes orientations du visage (haut, bas, gauche, droite, côté,
- etc) voire même sous occlusion importante.
- Actuellement le méthode SSD ne présente aucun inconvénient majeur par rapport
- à toutes les méthodes de détection de visage dans OpenCV sauf qu’elle est
- plus au moins lente que celle basée sur Dlib HOG avec les CNN.
 \end_layout
 
 \begin_layout Subsection
@@ -437,13 +401,17 @@ name "subsec:Histogrammes-de-gradients"
 
 \end_inset
 
- Détection avec la méthode de l'Histogrammes des gradients orientées (HOG)
+ Détection avec la l'Histogrammes de gradients orientées (HOG)
 \end_layout
 
 \begin_layout Standard
 L'Histogramme des Gradients Orientés (HOG) est un descripteur de caractéristique
 s utilisé dans la vision pas ordinateur et le traitement d'images pour la
- détection d'objets.
+ détection d'objets [https://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf].
+ Il s’agit d’un modèle de détection de visage largement utilisé, inventé
+ en 2005 par N.
+ Dalal et B.Triggs [https://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf],
+ basé sur SVM (Support Vector Machine).
 \end_layout
 
 \begin_layout Standard
@@ -520,12 +488,20 @@ En répétant ce processus, chaque pixel sera remplacé par une flèche.
 
 \begin_layout Standard
 La raison majeure pour laquelle cette méthode remplace les pixels par des
- flèches est pour avoir une représentation exacte des images.
+ flèches est pour avoir une représentation plus 
+\begin_inset Quotes cld
+\end_inset
+
+robuste
+\begin_inset Quotes crd
+\end_inset
+
+ aux conditions des images.
  En analysant directement les pixels, pour la même personne, les images
  vraiment sombres et les images vraiment claires auront des valeurs de pixels
  totalement différentes.
  En revanche, en considérant seulement la direction dans laquelle la direction
- change, nous arrivons à une représentation exacte.
+ change, nous arrivons à une seule représentation finale.
 \end_layout
 
 \begin_layout Standard
@@ -541,10 +517,10 @@ Cependant, sauvegarder le gradient pour chaque pixel nous donne beaucoup
 \end_layout
 
 \begin_layout Standard
-A la fin, on calcule le vecteur de caractéristiques HOG, ce dernier est
- un géant vecteur qui concatène plusieurs vecteurs de caractéristique de
- l’ensemble de l’image pour chaque carré de cette image comme il est illustré
- dans la figure 
+Enfin, on calcule le vecteur de caractéristiques HOG, ce dernier est un
+ grand vecteur qui concatène plusieurs vecteurs de caractéristique de l’ensemble
+ de l’image pour chaque carré de cette image comme il est illustré dans
+ la figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Processus-de-la"
@@ -603,53 +579,65 @@ La dernière étape consiste à calculer le vecteur de caractéristique HOG,
  géant.
 \end_layout
 
-\begin_layout Subsubsection
-Méthodes basées sur le desripteur HOG
+\begin_layout Standard
+La méthode HOG est la méthode la plus rapide sur le processeur d'après [https://
+www.learnopencv.com/face-detection-opencv-dlib-and-deep-learning-c-python/],
+ elle fonctionne très bien pour les faces frontales et légèrement pour les
+ non frontales et elle fonctionne sous petit occlusion.
+ Cependant, l’inconvénient majeur de cette méthode est qu’elle ne détecte
+ pas les petits visages, car elle est conçue pour une taille minimale de
+ 80 x 80, la région d'interêt exclut souvent une partie du front et même
+ une partie du menton parfois, elle ne fonctionne pas très bien sous occlusion
+ importante et elle ne fonctionne pas pour les faces latérales et les faces
+ extrêmes non frontales, comme par exemple regarder vers le bas ou vers
+ le haut.
+\end_layout
+
+\begin_layout Subsection
+Autre méthodes de détection
 \end_layout
 
 \begin_layout Standard
-Il existe plusieurs modèles qui reposent sur le descripteur HOG, parmi ces
- modèles il y a le modèle SVM (Support Vector Machine).
- Il s’agit d’un modèle de détection de visage largement utilisé, inventé
- en 2005, basé sur les fonctionnalités HOG.
+Il existe d'autres méthodes de détection de visage parmis ces méthodes,
+ la méthode de Single Shot MultiBox Detector (SSD) proposé par W.
+ Liu et all.
+ dans [https://arxiv.org/pdf/1512.02325.pdf].
 \end_layout
 
 \begin_layout Standard
-Ce modèle est le modèle le plus rapide sur le processeur, il fonctionne
- très bien pour les faces frontales et légèrement non frontales, il est
- également léger par rapport aux méthodes précédentes et elle fonctionne
- sous petit occlusion.
- Cependant, l’inconvénient majeur de ce modèle est qu’il ne détecte pas
- les petits visages, la boite englobante exclut souvent une partie du front
- et même une partie menton parfois, elle ne fonctionne pas très bien sous
- occlusion importante et elle ne fonctionne pas pour les faces latérales
- et les faces extrêmes non frontales, comme par exemple regarder vers le
- bas ou vers le haut.
+Ce descripteur surmonte tous les défauts de la détection avec la méthode
+ à cascade de Haar selon [https://www.learnopencv.com/face-detection-opencv-dlib-a
+nd-deep-learning-c-python/], sans compromettre aucun avantage fourni par
+ Haar.
+ En plus de ça, c’est la méthode la plus précise dans la détection, elle
+ fonctionne en temps réel sur le processeur ainsi elle détecte les visages
+ à différentes échelles (visage grand et petit) et elle fonctionne pour
+ les différentes orientations du visage (haut, bas, gauche, droite, côté,
+ etc) voire même sous occlusion importante.
+ Actuellement le méthode SSD ne présente aucun inconvénient majeur par rapport
+ à toutes les méthodes de détection de visage dans OpenCV sauf qu’elle est
+ plus au moins lente que celle basée sur Dlib HOG avec les CNN.
 \end_layout
 
 \begin_layout Standard
-Les défauts de cette méthode ont conduit à l’utilisation d’un nouveau modèle
- qui se base sur un réseau de neurones convolutifs CNN.
- Ce modèle repose sur un algorithme de détection d’objets à marge maximale
- ou Max Margin Objetc Detection (MMOD) [5] qui est utilisé pour apprendre
- le descripteur de HOG.
- Cela signifie qu’il est capable d’apprendre à détecter des objets présentant
- une variation complexe de pose ou une grande variété d’apparences, ce qui
- a conduit à utiliser les réseaux de neurones convolutifs CNN, chose qui
- permet de détecter les visages dans n’importe quelle position.
-\end_layout
-
-\begin_layout Standard
-Ce modèle est aussi robuste à l’occlusion, rapide sur les GPUs (45 ms par
- images) et son processus de formation est très facile.
+Un autre méthode aussi impourante dans la détection de visage, la méthode
+ Max Margin Object Detection (MMOD) proposé par Davis E.
+ King dans [https://arxiv.org/pdf/1502.00046.pdf].
+ Son modèle est le plus rapide sur les GPUs (45 ms par images), il est aussi
+ robuste à l’occlusion et son processus de formation est très facile.
  En revanche, ce dernier, reste lent sur les processus (370 ms pour traiter
  une seule image), il est entrainé pour une taille minimale de 80 x 80,
  ce qui fait qu’il ne détecte pas les petits visages et sa boite englobante
  est encore plus petite que le détecteur HOG avec SVM.
 \end_layout
 
+\begin_layout Standard
+.
+\end_layout
+
 \begin_layout Section
-Methode d'extraction des points de saillances
+Methode d'extraction des points de saillances [https://arxiv.org/pdf/1709.08127.pdf
+]
 \end_layout
 
 \begin_layout Standard
@@ -675,8 +663,8 @@ De nombreuses méthodes permettent de détecter ces points : certaines d’entre
 \end_layout
 
 \begin_layout Standard
-L’Algorithme de détection des repères de visage reposé par Dlib est l’implémenta
-tion de l’Ensemble of Regression Trees (
+L’Algorithme de détection des repères de visage proposé par Dlib est l’implément
+ation de l’Ensemble of Regression Trees (
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "ERT"
@@ -752,18 +740,19 @@ L'ensemble des 68 points détectés par Dlib pré-entraîné
 \end_layout
 
 \begin_layout Standard
-Fondamentalement, un prédicteur de forme peut être généré à partir d’un
- ensemble d’images, d’annotations et d’options de formation.
- Une seule annotation se compose de la région du visage et des points marqués
- que nous voulons localiser.
- La région du visage peut être facilement obtenue par n’importe quel algorithme
- de détection de visage (OpenCV Haar Cascade, Dlib HOG Detector, CNN, …),
- au lieu de cela les points doivent être marqués manuellement ou détectés
- par des détecteurs et modèles déjà disponible.
- Enfin, les options de formation sont un ensemble de paramètres qui définissent
- les caractéristiques du modèle formé.
- Ces paramètres peuvent être correctement ajustés afin d’obtenir le comportement
- souhaité du modèle généré.
+Ici, les points originaux sont les données constituées par exemple un ensemble
+ d’individus, le clustering les partitionne dans des groupes où chaque groupe
+ représente un ensemble d’individus qui partagent une même caractéristique.
+ Le clustering comprend plusieurs algorithmes de classifications pour classifier
+ chaque point de données dans un groupe spécifique tels que : k-Means le
+ plus algorithme connu dans la classification non supervisée, Mean-Shift
+ un algorithme basé sur une fenêtre glissante qui tente de trouver des zones
+ senses de points de données, Density-Based Spatial Clustering of Applications
+ with Noise (DBSCAN), un algorithme basé sur la densité similaire au décalage
+ moyen, Expectation-Maximization (EM) à l’aide de Modèles de Mélange Gaussiens
+ (GMM) et Self Organising Map (SOM).
+ Dans ce qui suit nous allons nous intéresser aux deux algorithmes suivant
+ : k-Means et l’algorithme Salf Organising Map (SOM).
 \end_layout
 
 \begin_layout Section
@@ -772,8 +761,8 @@ Clustering
 
 \begin_layout Standard
 Le clustering ou la classification non supervisée en français, est une technique
- de classification très parlante en apprentissage automatique, en analyse
- et en fouille de donnée ainsi qu’en reconnaissance de formes.
+ de classification en apprentissage automatique, en analyse et en fouille
+ de donnée ainsi qu’en reconnaissance de formes.
  Il fait une partie intégrante de tout un processus d’analyse exploratoire
  de données permettant de produire ses outils de synthétisation, de prédiction,
  de visualisation et d’interprétation d’un ensemble d’individus (personnes,
@@ -866,7 +855,7 @@ name "subsec:K-means"
 
 \end_inset
 
-K-means
+K-means [https://www.ijcsmc.com/docs/papers/May2016/V5I5201647.pdf]
 \end_layout
 
 \begin_layout Standard
@@ -1017,8 +1006,8 @@ D’autres parts, K-Means présente quelques inconvénients.
 n, nous aimerions qu’il soit mieux compris pas ceux-ci, car il s’agit là
  d’obtenir un aperçu des données.
  K-Means commence également par un choix aléatoire de centre de grappes
- et peut donc donner différents résultats de frappes dur différentes exécutions
- de l’algorithme.
+ et peut donc donner différents résultats des différentes exécutions de
+ l’algorithme.
  Ainsi, les résultats peuvent ne pas être reproductible et manquer de cohérences.
 \end_layout
 
@@ -1027,8 +1016,8 @@ Carte auto-organisatrice (SOM)
 \end_layout
 
 \begin_layout Standard
-Self Organizen Map ou la carte auto organisatrice (SOM), est un type de
- réseau de neurones artificiels (
+Self Orgasing Map ou la carte auto organisatrice (SOM), est un type de réseau
+ de neurones artificiels (
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "RNA"
@@ -1046,6 +1035,8 @@ RNA) formé à l’aide d’un apprentissage non supervisé afin de produire une
  par opposition à l’apprentissage avec correction d’erreur et qu’elles utilisent
  une fonction de voisinage pour préserver les propriétés topologiques de
  l’espace d’entrée.
+ La figure ci-dessous montre la construction de la map à partir d'un ensemble
+ de vecteurs d'entrés : 
 \end_layout
 
 \begin_layout Standard
@@ -1057,7 +1048,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/som.jpg
+	filename D:/E/InitRec/som.jpg
 	scale 70
 
 \end_inset
@@ -1111,44 +1102,6 @@ Chaque point de données dans l’ensemble des points de données se reconnait
  Cela permet à la carte de s’agrandir et de former différentes formes.
  Plus généralement, ils forment des formes carrées, rectangulaires, hexagonales
  et L dans un espace de fonction 2D.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename img/decision_som.jpg
-	scale 70
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Illustration de la décision de base à prendre lors de la croissance
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsubsection*

@@ -215,13 +215,17 @@ L’idée fondatrice du projet Psyphine est partie de l’interaction entre l’
  et le robot de telle sorte que le robot peut se comporter de la même façon
  que l’humain en laissant le robot apprendre à travers son interaction avec
  l’humain et son environnement.
- Le but donc est que le robot tente de percevoir les expressions de l’être-humai
-n avec lequel il interagit à partir d’indices multiples et d’expressions
- variées.
+ Le but donc est que le robot tente de percevoir les diffèrents comportements
+ de l’être-humain avec lequel il interagit à partir d’indices multiples
+ et d’expressions variées.
+ Ainsi, cette perception s’étend aux interactions non verbales c’est-à-dire
+ aux interactions non seulement avec des êtres humains capable de parler
+ ou entre les humains non verbalement, mais aussi avec des choses non humaines
+ (animaux, objets).
  Pour cela il va falloir attribuer des comportements d’intentions, une certaine
  forme de volonté, et même des émotions dans certains cas à ce robot qui
  est programmé par l’homme.
- La diversité des différentes tâches du projet Psyphine a mis en relation
+ La diversité des différentes tâches du projet Psyphine a met en relation
  de nombreux chercheurs de différentes disciplines, tels que des psychologues,
  philosophes, roboticiens, cogniticiens, sociologues, et neuroscientifiques
  d’où le nom « PsyPhINe » qui est l’abréviation de « Psychologie, Philosophie,
@@ -241,16 +245,9 @@ Présentation du projet
 \end_layout
 
 \begin_layout Standard
-Le projet PsyPhINe, comme présenté dans le site officiel du projet 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "psyphine2016"
-literal "false"
-
-\end_inset
-
-, est lancé officiellement le premier avril 2016 par des chercheurs de l’univers
-ité de lorraine, il vise à confronter et articuler les apports de différentes
+Le projet PsyPhINe d'apès [http://www.msh-lorraine.fr/index.php?id=846] est
+ lancé officiellement le premier avril 2016 par des chercheurs de l’université
+ de lorraine, il vise à confronter et articuler les apports de différentes
  disciplines à la question de l’attribution d’intentionnalité, d’intelligence,
  de cognition voire d’émotions, à des entités naturelles ou des dispositifs
  artificiels.
@@ -741,7 +738,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Dans un autre travail, de A.
+Un autre travail est celui de A.
  Eva et G.
  Augustin 
 \begin_inset CommandInset citation
@@ -751,8 +748,9 @@ literal "false"
 
 \end_inset
 
-, le sujet abordé est le suivi du visage et la détection des changements
- d’expressions.
+.
+ Ce travail s’est concentré sur le suivi du visage et la détection des changemen
+ts d’expressions.
  La méthode de Viola et Jones a été appliquée pour la détection du visage
  avec des amélioration au niveau de la détection de la bouche.
  Cette phase a été suivi par l’application de la régression linéaire pour
