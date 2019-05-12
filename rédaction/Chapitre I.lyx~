@@ -1,0 +1,899 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass report
+\begin_preamble
+\usepackage[bottom]{footmisc}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{minitoc}
+\usepackage{pgfplots}
+\usepackage{lmodern}
+
+\usepackage{titletoc}% http://ctan.org/pkg/titletoc
+\titlecontents{chapter}% <section-type>
+  [0pt]% <left>
+  {\bfseries}% <above-code>
+  {\chaptername\ \thecontentslabel:\quad}% <numbered-entry-format>
+  {}% <numberless-entry-format>
+  {\hfill\contentspage}% <filler-page-format>
+
+\fancyhead[R,C]{}
+\fancyhead[L]{\footnotesize\leftmark}
+\renewcommand{\headrulewidth}{1pt}
+\fancyfoot[L,C]{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\footrulewidth}{0pt}
+
+\oddsidemargin = 18pt
+\topmargin = 0pt
+\headheight = 22pt
+\headsep = 25pt
+\textheight = 609pt
+\textwidth = 424pt
+\marginparsep = 11pt
+\marginparwidth = 54pt
+\footskip = 50pt
+\marginparpush = 54pt
+\hoffset = 0pt
+\voffset = 0pt
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-bytype
+\end_modules
+\maintain_unincluded_children false
+\language french
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\headheight 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style swiss
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 1 0 8 -1
+\bullet 2 0 9 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Présentation du projet
+\end_layout
+
+\begin_layout Quotation
+\align right
+
+\emph on
+\begin_inset Quotes cld
+\end_inset
+
+...la robotique et d'autres combinaisons rendront le monde assez fantastique
+ comparé à aujourd'hui.
+\begin_inset Quotes crd
+\end_inset
+
+.
+ B.
+ Gates.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+minitoc
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{Introduction}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Premièrement et avant d'expliquer notre méthode, il nécessaire d'introduire
+ le contexte du projet et les moyens logiciels et matériels existants.
+ Au cours du chapitre, nous présentons le projet Psyphine et d'autres projets
+ similaires.
+ Nous décrivons la structure physique de la lampe robotisée, ses caractéristique
+s, ainsi que les travaux réalisés dans le cadre du même projet.
+ Nous clôturons ce chapitre par l'établissement de notre problématique sur
+ laquelle nous construisons notre solution.
+\end_layout
+
+\begin_layout Section
+Projet PsyPhINe
+\end_layout
+
+\begin_layout Subsection
+Idée de base du projet
+\end_layout
+
+\begin_layout Standard
+L’idée fondatrice du projet Psyphine est partie de l’interaction entre l’humaine
+ et le robot de telle sorte que le robot peut se comporter de la même façon
+ que l’humain en laissant le robot apprendre à travers son interaction avec
+ l’humain et son environnement.
+ Le but donc est que le robot tente de percevoir les expressions de l’être-humai
+n avec lequel il interagit à partir d’indices multiples et d’expressions
+ variées.
+ Pour cela il va falloir attribuer des comportements d’intentions, une certaine
+ forme de volonté, et même des émotions dans certains cas à ce robot qui
+ est programmé par l’homme.
+ La diversité des différentes tâches du projet Psyphine a mis en relation
+ de nombreux chercheurs de différentes disciplines, tels que des psychologues,
+ philosophes, roboticiens, cogniticiens, sociologues, et neuroscientifiques
+ d’où le nom « PsyPhINe » qui est l’abréviation de « Psychologie, Philosophie,
+ Informatique et neuroscience » 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "psyphine2016"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Présentation du projet
+\end_layout
+
+\begin_layout Standard
+Le projet PsyPhINe, comme présenté dans le site officiel du projet 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "psyphine2016"
+literal "false"
+
+\end_inset
+
+, est lancé officiellement le premier avril 2016 par des chercheurs de l’univers
+ité de lorraine, il vise à confronter et articuler les apports de différentes
+ disciplines à la question de l’attribution d’intentionnalité, d’intelligence,
+ de cognition voire d’émotions, à des entités naturelles ou des dispositifs
+ artificiels.
+ Il s’agit d’appréhender les questions naturellement posées par l’interaction
+ homme/robot, à savoir celles liées à l’interprétation du comportement du
+ robot jusqu’à la confiance qui peut lui être ou non accordée.
+ Le projet vise notamment à explorer la gradation des attributions d’intelligenc
+e ou d’intentionnalité, quand on passe par exemple d’une mouche à un chat,
+ en faisant l'hypothèse que l'intersubjectivité ainsi que notre tendance
+ naturelle à l'anthropomorphisme jouent des rôles centraux : on projette
+ dans l'autre énormément de notre propre cognition.
+ La perspective générale du groupe de recherche pluridisciplinaire est d’aboutir
+ à la définition d’un test de Turing non verbal qui permette d’appréhender
+ l’intelligence artificielle en évitant certains écueils de la formulation
+ d’origine dudit test.
+ Dans le cadre du présent projet, le groupe PsyPhINe conduira des expérimentatio
+ns à large échelle à l’aide d'un dispositif d'interaction basé sur un prototype
+ de lampe robotisée.
+ La mise en place des protocoles expérimentaux, des questionnaires et des
+ analyses de vidéos, doublées d’analyses « profanes », constituent le support
+ et le lieu des confrontations et réflexions interdisciplinaires sur la
+ cognition.
+ Les résultats attendus en sont principalement une clarification d’un champ
+ conceptuel riche et complexe, l’ébauche d’un langage commun et la production
+ d’un référentiel des comportements donnant lieu à des interprétations intention
+nelles.
+ Comme présente la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Expreriences-du-projet"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ suivante, la valorisation des travaux sera assurée par l’organisation d’atelier
+s interdisciplinaires et par l’édition d’un ouvrage collectif 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "psyphine2016"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/participantsEnExperience.jpg
+	height 120bp
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/lampeSurMarche.jpg
+	height 120bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Expreriences-du-projet"
+
+\end_inset
+
+Expreriences du projet Psyphine 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "andre2018quelques"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Projet similaire - Pinokio
+\end_layout
+
+\begin_layout Standard
+Le nom Pinokio est venu de la lampe Luxo Jr, l’adorable petite lampe qui
+ apparait dans le logo Disney Pixar, illustre comment les animateurs peuvent
+ donner vie à des objets inanimés banals.
+ Le trio de l’Université Victoria de Wellington, en Nouvelle-Zélande se
+ sont inspiré de la lampe Luxo pour fabriquer leurs lampe robotisée grâce
+ à une combinaison de robotique facilement accessible et de technologie
+ de fabrication automatisée, combinée à des logiciels libres.
+ Le trio qui comporte un programmeur Shanshan Zhou, un ingénieur mécanique
+ Adam Ben-Dor qui travaillait sur les détails mécaniques de la lampe et
+ un designer Joss Dogget qui s’est chargé du design et tout l’esthétique
+ de la forme de la lampe, ce trio a donc décidé en 2012 d’embellir une lampe
+ de bureau avec un peu de personnalité appelée Pinokio ( présente dans la
+ figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pinokio-la-lampe"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/pinokio.jpg
+	lyxscale 50
+	scale 30
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Pinokio-la-lampe"
+
+\end_inset
+
+Pinokio la lampe de bureau rebotisée
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La lampe Pinokio est composée dans sa structure générale de son corps d’une
+ tête, d’un bras pliant et capable d’étirer et de rétrécir, une base sur
+ laquelle le bras tourne et 6 servo-moteurs.
+ Elle est également dite une lampe active (qui se déplace), ses actions
+ sont principalement pilotées par Arduino et le logiciel de traitement d’image
+ OpenCV, qui recherche le visage dans les images à partir de sa webcam.
+ Lorsqu’il trouve un visage, il tente de le suivre comme s’il essayait de
+ maintenir un contact visuel.
+\end_layout
+
+\begin_layout Section
+Étude de la lampe
+\end_layout
+
+\begin_layout Standard
+Afin de répondre aux questions liées aux interactions homme/machine et l'attribu
+tion de conscience dans le cadre du projet, le groupe Psyphine a construit
+ et développé un prototype robotisé qui se présente sous la forme d'une
+ lampe dite 
+\begin_inset Quotes cld
+\end_inset
+
+La lampe de Psyphine
+\begin_inset Quotes crd
+\end_inset
+
+.
+ La structure et le modèle de fonction de cette lampe est inspiré de la
+ lampe Pinokio décrite précédement.
+\end_layout
+
+\begin_layout Subsection
+Description de la lampe
+\end_layout
+
+\begin_layout Standard
+Lampe de Psyphine, comme la montre la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:La-lampe-de"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, est construite de contreplaqué léger dont les pièces ont été découpées
+ au laser.
+ Ces derniers sont assemblées autour de cinq moteurs.
+ L’abat-jour a été découpé dans un carton jaune et contient une ampoule
+ centrale et une petite caméra située juste au dessus de l’ampoule 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "andre2018quelques"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/Lalampe.jpg
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:La-lampe-de"
+
+\end_inset
+
+La lampe de Psyphine 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "andre2018quelques"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Moteurs
+\end_layout
+
+\begin_layout Standard
+La lampe est équipée de cinq moteurs de la marque Robotis Dynamixel en deux
+ modèles, AX-12 et AX-18.
+ Ces moteurs permettent cinq articulations ( illustré par la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Les-moteurs-de"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) :
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 1 :
+\series default
+ la base sur un axe vertical
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 2 :
+\series default
+ le premier bras pour avancer ou éloigner la lampe
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 3 :
+\series default
+ le deuxième bras pour monter ou descendre l’abat-jour
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 4 :
+\series default
+ pour incliner l’abat-jour vers le bas ou vers le haut
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moteur 5 :
+\series default
+ pour tourner l’abat-jour à droite ou à gauche
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/lampe_1.jpg
+	lyxscale 70
+	height 200pt
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/motors.jpg
+	lyxscale 30
+	height 200pt
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Les-moteurs-de"
+
+\end_inset
+
+Les moteurs de la lampe
+\begin_inset CommandInset citation
+LatexCommand cite
+key "andre2018quelques"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Système
+\end_layout
+
+\begin_layout Standard
+La lampe comporte un système qui permet de faire fonctionner les moteurs.
+ Cependant, la totalité des traitements couteux sont exécutés sur un ordinateur
+ auquel les moteurs sont raccordés sur un port USB ou en wifi par l’intermédiair
+e d’un Raspberry Pi.
+ Cet ordinateur s’occupe de commander la lampe rebotisé dont chaque mouvement
+ de cette dernière consiste en une séquence de positions pour chacun des
+ moteurs.
+\end_layout
+
+\begin_layout Subsection
+Travaux réalisés
+\end_layout
+
+\begin_layout Standard
+Dans le cadre du projet, une panoplie de travaux ont été réalisés par des
+ étudiants.
+ Nous en citons :
+\end_layout
+
+\begin_layout Standard
+Le travail 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PinokioLampe2016"
+literal "false"
+
+\end_inset
+
+ réalisé par D.
+ SAMY et al.
+ sur plusieurs axes.
+ En premier, ils ont mis en place un système pour contrôler les moteurs
+ de la lampe à distance.
+ Ensuite, ils ont réalisé un suivi de visage dont la détection est basée
+ sur la méthode Viola et Jones implémenté dans la bibliothèque 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "OpenCV"
+description "Open Computer Vision"
+literal "false"
+
+\end_inset
+
+ OpenCV.
+ Finalement, leur travail à révélé plusieurs problèmes comme la fluidité
+ de mouvement de suivi, qui a été réglé en modifiant le temps d’exécution,
+ ainsi que le problème persistant de réchauffement des moteurs.
+\end_layout
+
+\begin_layout Standard
+S.
+ BARBILLON et al.
+ ont construit, dans 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "lampeRobotMines2017"
+literal "false"
+
+\end_inset
+
+, une nouvelle architecture à l’aide de la bibliothèque Poppy pour faciliter
+ la définition des nouveaux mouvements (interface de haut niveaux).
+ Ils ont adapté la même méthode que celle du travail précédent pour le suivi
+ de visage.
+ Ainsi, ils ont consacré une grande partie de leur travail à la cinématique
+ inversé pour les mouvements de la lampe.
+\end_layout
+
+\begin_layout Standard
+Dans un autre travail, de A.
+ Eva et G.
+ Augustin 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "initRech2018"
+literal "false"
+
+\end_inset
+
+, le sujet abordé est le suivi du visage et la détection des changements
+ d’expressions.
+ La méthode de Viola et Jones a été appliquée pour la détection du visage
+ avec des amélioration au niveau de la détection de la bouche.
+ Cette phase a été suivi par l’application de la régression linéaire pour
+ détecter l’ouverture de la bouche.
+\end_layout
+
+\begin_layout Standard
+R.
+ BUISINE et O.
+ RIOU ont exploré, dans leur rapport 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "emotions2018"
+literal "false"
+
+\end_inset
+
+, un axe de travail différents des autres travaux.
+ Il s’agit de la classification des émotions.Initialement, ils ont utilisé
+ la bibliothèque (dlib) pour détecter les visage et extraire des points
+ de saillances.
+ Ensuite, ils ont classifé les émotions en trois classe (joie, colère et
+ surprise) à l'aide du model bayésien.
+ Ce dernier a été validé par la validation croisée a k-plis avec une précision
+ de 82%, 97% et 31% pour la surprise, la joie et la colère respectivement.
+\end_layout
+
+\begin_layout Standard
+Le projet le plus récent est celui de J.
+ NOWAK et S.
+ RIMLINGER 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "InitRechArt2018"
+literal "false"
+
+\end_inset
+
+.
+ Il traite la détection du visage et l’extraction des points de saillances
+ dont une grande partie était consacrée à l’amélioration des performances
+ et l’évaluation de la détection, de la bibliothèque dlib, sur les différentes
+ contraintes (l’intensité de lumière, l’angle de rotation…).
+ Ils ont clôturé leur réalisation par la mise en place d’une méthode de
+ détection d’ouverture de bouche.
+\end_layout
+
+\begin_layout Section
+Problématique
+\end_layout
+
+\begin_layout Standard
+Plusieurs sujets ont été abordé dans les travaux précédents du projet Psyphine.
+ Cependant, la diversité et la richesse des disciplines du projet Psyphine
+ ont rendu difficile de travailler sur tous les axes du projet.
+ En effet, une panoplie des thématiques peuvent être traitées dans le cadre
+ du projet Psyphine.
+ Celles proposées sont, la détection des objets, la détection des émotions,
+ la reconnaissance du visage, le problème du réchauffement des moteurs,
+ le raffinement du mouvement de la lampe rebotisé, etc.
+ Cependant, nous voulions travailler sur des thématiques [qui nous sembles
+ plus proches de notre formation et de nos prérequis], ce qui nous amené
+ à réduire l’ensemble des thématiques mentionnées aux trois premières.
+ Néanmoins, puisque le but du projet est d’étudier les 
+\emph on
+réactions des gens
+\emph default
+, la détection des objets ne peut pas apporter une grande valeur au but
+ du projet.
+ De plus, les études sont effectuées à travers des expériences d’une 
+\series bold
+durée
+\series default
+ maximale de 
+\emph on
+10 minutes
+\emph default
+ dans les différents salons et évènement scientifiques, ce qui implique
+ que les participants, des différentes expériences, seront en interaction
+ non verbale avec la lampe rebotisé qu’
+\emph on
+une seul fois
+\emph default
+.
+ Donc, la reconnaissance du visage ne sera pas très utile à ces études.
+ Par conséquent, la détection des émotions semble la plus intéressante des
+ thématiques.
+ Mais, le but du projet, c’est de permettre à la lampe réagir aux différentes
+ expressions, des participants, 
+\emph on
+sans avoir besoin de les interpréter
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Tout cela nous à permet d’en sortir avec la problématique que nous allons
+ traiter.
+ Notre contribution est donc d’affecter à la lampe la capacité d’interagir
+ (de se comporter) conformément au changement d'expressions du visage de
+ la personne en face.
+ En effet, la problématique principale est comment concevons-nous un système
+ qui permet à la lampe d’exécuter des comportements en fonction des différentes
+ réactions des gens perçues par le biais de sa webcam.
+\end_layout
+
+\begin_layout Standard
+Nous pouvons diviser cette problématique en trois sous problématiques dont
+ la première sera le choix de la méthode de détection du visage et d’extraction
+ des points de saillances.
+ La deuxième, c’est le choix de la représentation des comportements des
+ gens et la dernière sera le regroupement (clustering) de ces comportements
+ afin de décider le comportement approprié.
+\end_layout
+
+\begin_layout Section*
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Ce chapitre a servi comme introduction au projet et à notre problématique
+ sur laquelle notre contribution sera basée.
+ Dans le chapitre suivant nous plongeons dans les notions techniques des
+ méthodes existantes dans l’état de l’art.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{section}{Conclusion}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
