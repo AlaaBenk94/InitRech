@@ -576,7 +576,7 @@ DSOM
 \end_layout
 
 \begin_layout Standard
-Tout d'abord, nous allons commencer par la méthode d'initialisation (regular,
+Tout d'abors, nous allons commencer par la mèthode d'initialisation (regular,
  fixed or random) avec le paramètre Initial_Method (im), les résultat obtenu
  sont illustrés dans la figure suivante :
 \end_layout
@@ -707,7 +707,7 @@ t pas chose que nous aimerions éviter d'avoir dans nos résultats.
 \end_layout
 
 \begin_layout Standard
-Ensuite, nous avons tester le paramètre de l'élasticité de la map, la figure
+Esuite, nous avons tester le paramètre de l'élasticité de la map, la figure
  suivante montre les résultats du test avec les valeurs : 0, 0.5, 1, 1.5 et
  2 comme suit :
 \end_layout
@@ -875,19 +875,19 @@ test avec le paramètre d'élacticité
 
 \begin_layout Standard
 La valeur de l'élasticité sur les images (a), (b), (c), (d) et (e) est 0,
- 0.5, 1, 1.5, et 2 respectivement.
+ 0.5, 1, 1.5, et 2 repectivement.
  Les résultats se ressemblent beaucoup mis à part pour élasticité=0 où on
- peut voir que les neurones ne sont pas très réactifs avec le vecteur d'entrée,
+ peut voir que les neurones sont pas très réactifs avec le vecteur d'entrée,
  cependant le résultat avec l'élasticité=0.5 donne un résultat plus au moins
  meilleur en comparant aussi avec les histogrammes des clusters gagnants
- où nous avons remarqués qu'il y avait plus d'équilibre.
+ où nous avons remarqués qu'il y avait plus d'équiliblre.
 \end_layout
 
 \begin_layout Standard
-Dans le test suivant, nous avons essayé de fixer la taille de la map avec
+Dans le test suivant, nous avons essayer de fixer la taille de la map avec
  le nombre de neurones (n=n*n) qui donne le meilleur résultat, pour cela,
- nous avons essayé de tester avec n=2 donc 4 neurones (2*2), puis avec n=3,
- n=4 et n=5.
+ nous avons essayer de tester avec n=2 donc 4 neurones (2*2), puis avec
+ n=3, n=4 et n=5.
  Les résultats sont comme ceci dans la figure ci-dessous :
 \end_layout
 
@@ -1038,23 +1038,20 @@ test avec le paramèrte
 Avec ce test, on remarque qu'avec 4 neurones on a une meilleure distribution
  au niveau des clusters gagnants par rapport à la distribution avec 9 neurones,
  tandis qu'avec 16 ou 25 neurones, on des clusters qui ne sont jamais apparus
- et la distribution est encore plus faible dans les clusters gagnants.
- Chose qui est inattendue, car la méthode est censée donner un résultat
- équilibrer peu importe le nombre de neurones.
-\end_layout
-
-\begin_layout Standard
-Pour la suite de nos tests, nous allons fixer le nombre de neurones à 4
- (n=4).
+ et la distribution est encore plus faible dans les clusters gagants.
+ Chose qui est inatendue, car la méthode est sencé donner un résultat équilibrer
+ peut importe le nombre de neurones.
+ Pour la suite de nos testes, nous allons fixer le nombre de neurones à
+ 4 (n=4).
 \end_layout
 
 \begin_layout Standard
 Il ne nous reste qu'un seul paramètre, nous avons essayés de tester le paramètre
- concernant le taux d'apprentissage de la méthode DSOM (LEARNING_RATE ),
+ concernant le taux d'apprentissage de la mèthode DSOM (LEARNING_RATE ),
  nous nous sommes rendus compte que ce n'était pas évident et que c'était
- très difficile de tester sur une vidéo avec des valeurs différentes, même
+ très difficile de tester sur une vidéo avec des valeurs diffirentes, même
  avec un écart très grand entre ces valeurs.
- Alors, nous avons préférés le laisser à 0.1.
+ Alors, nous avons prégérés le laisser à 0.1.
 \end_layout
 
 \begin_layout Section
