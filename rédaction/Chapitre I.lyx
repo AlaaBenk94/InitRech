@@ -816,18 +816,32 @@ Plusieurs sujets ont été abordé dans les travaux précédents du projet Psyph
  Cependant, nous voulions travailler sur des thématiques [qui nous sembles
  plus proches de notre formation et de nos prérequis], ce qui nous amené
  à réduire l’ensemble des thématiques mentionnées aux trois premières.
- Néanmoins, puisque le but du projet est d’étudier les réactions des gens,
- la détection des objets ne peut pas apporter une grande valeur au but du
- projet.
- De plus, les études sont effectuées à travers des expériences d’une durée
- maximale de 10 minutes dans les différents salons et évènement scientifiques,
- ce qui implique que les participants, des différentes expériences, seront
- en interaction non verbale avec la lampe rebotisé qu’une seul fois.
+ Néanmoins, puisque le but du projet est d’étudier les 
+\emph on
+réactions des gens
+\emph default
+, la détection des objets ne peut pas apporter une grande valeur au but
+ du projet.
+ De plus, les études sont effectuées à travers des expériences d’une 
+\emph on
+durée maximale de 10 minutes
+\emph default
+ dans les différents salons et évènement scientifiques, ce qui implique
+ que les participants, des différentes expériences, seront en interaction
+ non verbale avec la lampe rebotisé qu’
+\emph on
+une seul fois
+\emph default
+.
  Donc, la reconnaissance du visage ne sera pas très utile à ces études.
  Par conséquent, la détection des émotions semble la plus intéressante des
  thématiques.
  Mais, le but du projet, c’est de permettre à la lampe réagir aux différentes
- expressions, des participants, sans avoir besoin de les interpréter.
+ expressions, des participants, 
+\emph on
+sans avoir besoin de les interpréter
+\emph default
+.
 \end_layout
 
 \begin_layout Standard

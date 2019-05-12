@@ -317,6 +317,16 @@ filename "Chapitre III.lyx"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
+filename "Chapitre IV.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
 filename "Conclusion.lyx"
 
 \end_inset
@@ -330,6 +340,16 @@ LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "biblio"
 options "bibtotoc,plain"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "Annexe.lyx"
 
 \end_inset
 

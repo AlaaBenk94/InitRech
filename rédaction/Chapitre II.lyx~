@@ -441,27 +441,13 @@ name "subsec:Histogrammes-de-gradients"
 \end_layout
 
 \begin_layout Standard
-Il s’agit d’un modèle de détection de visage largement utilisé, inventé
- en 2005, basé sur les fonctionnalités 
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "HOG"
-description "Histogram of Oriented Gradients"
-literal "false"
+L'Histogramme des Gradients Orientés (HOG) est un descripteur de caractéristique
+s utilisé dans la vision pas ordinateur et le traitement d'images pour la
+ détection d'objets.
+\end_layout
 
-\end_inset
-
-HOG (Histogram of Oriented Gradients) et 
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "SVM"
-description "Support Vector Machine"
-literal "false"
-
-\end_inset
-
-SVM (Support Vector Machine).
- Dans le descripteur de caractéristiques HOG, la distribution (histogrammes)
+\begin_layout Standard
+Dans le descripteur de caractéristiques HOG, la distribution (histogrammes)
  des directions de gradients (gradients orientés) est utilisé comme caractéristi
 que.
  Le calcul de l’histogramme des gradients se déroule en différentes étapes.

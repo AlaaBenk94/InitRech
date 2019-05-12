@@ -728,6 +728,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:L'ensemble-des-68"
+
+\end_inset
+
 L'ensemble des 68 points détectés par Dlib pré-entraîné
 \end_layout
 

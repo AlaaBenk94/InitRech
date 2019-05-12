@@ -224,7 +224,7 @@ bles en commençant par la détection de visage et l'extraction des points
 
 \begin_layout Standard
 Pour simplifier la compréhension du fonctionnement de l'approche suivie,
- nous avons jugé utile de partitionner le travail en deux phases (figure
+ nous avons jugé utile de partitionner le travail en trois phases (figure
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -245,7 +245,7 @@ La phase de préparation qui prend en entrée un flux d'image sous forme d'une
 \end_layout
 
 \begin_layout Itemize
-La deuxième phase, dite d'extraction des vecteurs caractéristiques des changemen
+La deuxième phase, dite d'extraction des Vecteurs Caractéristiques des Changemen
 ts 
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
@@ -409,8 +409,8 @@ noprefix "false"
 \end_inset
 
  ci-dessous, l'étape de détection du visage s’agit de retrouver la zone
- du visage (la région d'intérêt ROI) dans une image pour qu’on puisse y
- effectuer des traitements par la suite.
+ du visage (la région d'intérêt ROI) dans une image sur laquelle nous effectuons
+ des traitements par la suite.
 \end_layout
 
 \begin_layout Standard
@@ -466,8 +466,38 @@ noprefix "false"
 \end_inset
 
 ).
- Nous avons utiliser son implémentation dans la bibliothèque dlib pour extraire
- la région d'intérêt des images de flux vidéo.
+ Le modèle, selon 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "gupta_2018"
+literal "false"
+
+\end_inset
+
+, est très léger, il permet de de détecter les visages dans la plupart des
+ cas avec un temps du réponse très court.
+ De plus, son implémentation est fournie par la bibliothèque dlib 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dliblibrary"
+literal "false"
+
+\end_inset
+
+.
+ Comme indiquée dans la section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Histogrammes-de-gradients"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, le modèle ne détecte pas les visages latéraux ou quand le visage est tourné
+ vers le bas ou vers le haut, ainsi, la ROI détecté exclut souvent une partie
+ du front et même une partie du menton parfois.
 \end_layout
 
 \begin_layout Subsection
@@ -477,11 +507,19 @@ noprefix "false"
 \begin_layout Standard
 Une fois l’étape de détection de visage est terminée, l’étape d’extraction
  des points de saillances prend place.
- Cette étape utilise la région (ROI) extraite de l’étape précédente pour
- déterminer 68 points de saillances.
- Nous allons utiliser un algorithme dit « algorithme d’estimations des points
- de saillances » qui est basé sur une approche inventée par Vahid Kazemi
- et Josephine Sullivan en 2014 
+ Cette étape utilise la région (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "ROI"
+description "Region Of Interest"
+literal "false"
+
+\end_inset
+
+ROI) extraite de l’étape précédente pour déterminer 68 points de saillances.
+ Nous allons utiliser un algorithme d’estimations des points de saillances
+ qui est basé sur une approche inventée par Vahid Kazemi et Josephine Sullivan
+ en 2014 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "kazemi2014one"
@@ -489,7 +527,7 @@ literal "false"
 
 \end_inset
 
- basé sur des arbres de régressions (un type d'arbre de décision).
+ utilisant des arbres de régressions.
 \end_layout
 
 \begin_layout Standard
@@ -532,7 +570,101 @@ L'idée de base est de définir 68 points spécifiques (appelés repères) qui
  existent sur chaque visage - le haut du menton, le bord extérieur de chaque
  œil, le bord intérieur de chaque sourcil, etc.
  Ensuite, utiliser un algorithme d'apprentissage automatique pour avoir
- un model capable de trouver ces 68 points sur n'importe quel visage.
+ un modèle capable de trouver ces 68 points sur n'importe quel visage.
+\end_layout
+
+\begin_layout Standard
+Ce modèle présente des performances intéressantes, il permet d’extraire
+ les 68 points dans la majorité des circonstances.
+ De plus, il est disponible dans la même bibliothèque dlib 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dliblibrary"
+literal "false"
+
+\end_inset
+
+ ainsi que c'est le modèle plus compatible avec le modèle de détection choisi,
+ néanmoins, il ne s’adapte pas avec les changements extrêmes d’expressions
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Limites-de-la-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ Cela est due à l’absence des visages avec des expressions extrêmes sur
+ les images de base d’apprentissage 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "le2012interactive"
+literal "false"
+
+\end_inset
+
+ utilisé pour entrainer le modèle.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/ex1.jpg
+	scale 40
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/ex2.jpg
+	scale 40
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename img/ex3.jpg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Limites-de-la-1"
+
+\end_inset
+
+Limites de la méthode d'extraction des points de saillances.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -602,16 +734,336 @@ Dans notre expérience, la lampe robotisée est mise devant différentes personn
  de la lampe.
  Cela engendre une diversité de valeurs des caractéristiques définis ci-dessus
  pour chaque personne et aussi pour la même personne avec des différentes
- distances.
+ distances (voire la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Exemple-du-problème"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
  De ce fait, il est nécessaire de normaliser ce vecteur des caractéristiques
  pour que la diversité des personnes (ou leurs distances de la caméra) n'affecte
  pas les résultats retournés.
- Nous avons donc normalisé notre vecteur caractéristique, en prenant le
- rapport des caractéristiques sur des distances fixes dans le visage, par
- exemple le rapport entre la largeur et la longueur des yeux représente
- la proportion d'ouverture des yeux.
- En conséquence, la valeur de chacune des caractéristiques est comprise
- entre 0 et 1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/avantage_normalisation.jpg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Exemple-du-problème"
+
+\end_inset
+
+Exemple du problème de representation des distances sans normalisation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nous avons donc normalisé chacune des valeurs de nos caractéristiques entre
+ 0 et 1, en prenant le rapport des caractéristiques sur des distances fixes
+ dans le visage.
+ Les détails des calculs sont présentés ci-dessous.
+ Les points utilisé dans les formules sont présenté par la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:L'ensemble-des-68"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ De plus, l'utilisation de la moyenne sur les points permet d'obtenir des
+ valeurs plus stables que de prendre qu'un seul point.
+\end_layout
+
+\begin_layout Subsubsection
+Écartement des sourcils
+\end_layout
+
+\begin_layout Standard
+L'écartement des sourcils est calculé en fonction de la distance sourcil-œil
+ et la distance sourcil-sourcil.
+ Nous avons utilisé la formule suivante (sourcil droite):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+EcartementSourcil=\frac{\left\Vert P_{24}\cdot Moy(P_{42}...P_{47})\right\Vert }{\left\Vert P_{21}\cdot P_{22}\right\Vert }
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+avec : 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+: le point numero 
+\begin_inset Formula $i$
+\end_inset
+
+, 
+\begin_inset Formula $Moy(X_{i}...X_{n})$
+\end_inset
+
+ : la moyenne (le centre) des points 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+ jusqu'à 
+\begin_inset Formula $X_{n}$
+\end_inset
+
+et 
+\begin_inset Formula $\left\Vert x\cdot y\right\Vert $
+\end_inset
+
+ : est la distance euclidienne entre 
+\begin_inset Formula $x$
+\end_inset
+
+ et 
+\begin_inset Formula $y$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Ouverture des yeux
+\end_layout
+
+\begin_layout Standard
+L'ouverture des yeux est le rapport entre la largeur d’œil et sa hauteur.
+ Elle est calculé par la formule suivante (Oeil droite):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+OuvertureOeil=\frac{\left\Vert Moy(P_{43},P_{44})\cdot Moy(P_{46},P_{47})\right\Vert }{\left\Vert P_{42}\cdot P_{45}\right\Vert }
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+où : 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+: le point numero 
+\begin_inset Formula $i$
+\end_inset
+
+, 
+\begin_inset Formula $Moy(X_{i}...X_{n})$
+\end_inset
+
+ : la moyenne (le centre) des points 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+ jusqu'à 
+\begin_inset Formula $X_{n}$
+\end_inset
+
+et 
+\begin_inset Formula $\left\Vert x\cdot y\right\Vert $
+\end_inset
+
+ : est la distance euclidienne entre 
+\begin_inset Formula $x$
+\end_inset
+
+ et 
+\begin_inset Formula $y$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Rotation du visage
+\end_layout
+
+\begin_layout Standard
+La rotation est calculé par la formule suivante :
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\begin_inset Formula 
+\begin{equation}
+Rotation=\frac{\left\Vert Moy(P_{0}...P_{3})\cdot Moy(P_{27}...P_{30})\right\Vert }{\left\Vert Moy(P_{27}...P_{30})\cdot Moy(P_{13}...P_{16})\right\Vert }
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+où : 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+: le point numero 
+\begin_inset Formula $i$
+\end_inset
+
+, 
+\begin_inset Formula $Moy(X_{i}...X_{n})$
+\end_inset
+
+ : la moyenne (le centre) des points 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+ jusqu'à 
+\begin_inset Formula $X_{n}$
+\end_inset
+
+et 
+\begin_inset Formula $\left\Vert x\cdot y\right\Vert $
+\end_inset
+
+ : est la distance euclidienne entre 
+\begin_inset Formula $x$
+\end_inset
+
+ et 
+\begin_inset Formula $y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Ouverture de la bouche
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Subsubsection
+Distance visage/caméra
+\end_layout
+
+\begin_layout Standard
+La distance visage/caméra est difficile à calculer car nous n'avons pas
+ assez d'information.
+ Donc, nous avons simplifier les calculs en prenant la surface de ROI sur
+ la surface de toute l'image :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+Distance=\frac{h*w}{H*W}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+où : 
+\begin_inset Formula $H$
+\end_inset
+
+ : la hauteur de l'image, 
+\begin_inset Formula $W$
+\end_inset
+
+ la largeur de l'image, 
+\begin_inset Formula $h$
+\end_inset
+
+ la hauteur de ROI et 
+\begin_inset Formula $w$
+\end_inset
+
+ sa largeur.
+\end_layout
+
+\begin_layout Subsubsection
+Position du visage
+\end_layout
+
+\begin_layout Standard
+La position du visage représente le centre de ROI, elle est calculée en
+ fonction des quatre points du coin de ROI.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+Position=Moy(C_{0},C_{1},C_{2},C_{3})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+où : 
+\begin_inset Formula $C_{i}$
+\end_inset
+
+ représente le point du coin 
+\begin_inset Formula $i$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -623,11 +1075,25 @@ Jusqu'à là, nous avons pu extraire les points de saillances et en définir
  des caractéristiques avec.
  Donc on peut passer ces vecteurs pour la prochaine phase pour le clustering
  des expressions.
- Cependant, nous nous intéressons au changement des expressions et non plus
- aux expressions statiques.
- Pour cela, il faut traiter plusieurs images (séquence d'images) pour qu'on
- puisse calculer le vecteur caractérisant le changement d'expressions sur
- cette séquence.
+ Cependant, puisque les gens ont des proportions du visages diffèrentes,
+ nous pouvons avoir deux comportements differents pour deux personnes avec
+ les mêmes expressions (par exemple l'expression 
+\begin_inset Quotes cld
+\end_inset
+
+neutre
+\begin_inset Quotes crd
+\end_inset
+
+).
+ Par conséquent, nous nous intéressons au changement des expressions au
+ lieu des expressions statiques.
+\end_layout
+
+\begin_layout Standard
+Pour réaliser cela, il faut traiter plusieurs images (séquence d'images)
+ pour qu'on puisse calculer le vecteur caractérisant le changement d'expressions
+ sur cette séquence.
 \end_layout
 
 \begin_layout Standard
@@ -730,7 +1196,7 @@ Nous pouvons formuler cela sous forme d'un problème d’apprentissage non
  supervisé discret où les des données sont les vecteurs caractéristiques
  des changements d'expresions et les clusters, ou encore classes ou groupes,
  représente les comportements.
- En effet, nous devons entrainer un model 
+ En effet, nous devons entrainer un modèle 
 \begin_inset Formula $f$
 \end_inset
 
@@ -779,7 +1245,7 @@ Avec
 
 \begin_layout Standard
 De plus, l’algorithme doit être capable d’apprendre en temps réel en raffinant
- le model à chaque nouvelle donnée d’entrée.
+ le modèle à chaque nouvelle donnée d’entrée.
  Ce qui rend la tache plus complexe.
  Pour ce faire, nous avons décider de mettre en place deux modéles, une
  variante du k-moyennes (k-means) et une variante de la carte auto-organisatrice.
@@ -790,7 +1256,7 @@ K-Means
 \end_layout
 
 \begin_layout Standard
-L’algorithme de base de k-means (expliqué dans le chapitre précedent section
+L’algorithme de base de k-means (expliqué dans le chapitre précèdent section
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -801,13 +1267,13 @@ noprefix "false"
 
 \end_inset
 
-) prend en entrée une base de vecteurs d’entrée et le nombre de clusters
+) prend en entrée une base de vecteurs de données et le nombre de clusters
  qui représente dans notre cas d’étude les comportements souhaités.
  Cependant, notre application est en temps réel, c'est-à-dire, nous aurons
  une nouvelle entrée dans chaque intervalle du temps, tout au long du flux
  vidéo.
- De plus, le model doit être capable de s’adapter avec les différentes entrées
- à n’importe quel instant.
+ De plus, le modèle doit être capable de s’adapter avec les différentes
+ entrées à n’importe quel instant.
  L’utilisation de l’algorithme de base pour l’application n’est pas le bon
  choix, car il nécessite un espace mémoire important due à l’extension de
  la base en temps réel, et les temps d’exécution augmentent en fonction
@@ -815,7 +1281,7 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-Pour pallier ce problème, nous avons pensé en premier temps à une approche
+Pour pallier à ce problème, nous avons pensé en premier temps à une approche
  qui consiste à construire une base, chaque période du temps, et la passer
  à l’algorithme.
  Cette approche permet d’économiser l’espace mémoire en conservant qu’une
@@ -829,7 +1295,7 @@ Les inconvénients de l’approche précédente nous ont amené à penser à une
  deuxième approche plus performante.
  Cette dernière commence par la collection d’une base initial de taille
  n prédéfinie, ensuite, elle passe cette base à l’algorithme k-moyennes
- qui permet de produire un model initial.
+ qui permet de produire un modèle initial.
  Par la suite, nous gardons en mémoire que les poids des prototypes des
  classes (les points centres représentant les clusters), puis, nous raffinons
  ce modèle pour chaque vecteur d’entrée.
@@ -944,9 +1410,9 @@ literal "false"
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-\Delta w_{i}=\varepsilon\parallel v-w_{i}\parallel h_{η}(i,s,v)(v-w_{i})
-\]
+\begin{equation}
+\Delta w_{i}=\varepsilon\parallel v-w_{i}\parallel h_{\eta}(i,s,v)(v-w_{i})
+\end{equation}
 
 \end_inset
 
