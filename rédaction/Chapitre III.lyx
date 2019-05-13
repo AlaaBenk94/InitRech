@@ -1241,7 +1241,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1815,8 +1815,18 @@ Nous avons présenté, dans ce chapitre, notre solution à la problématique
  posée au début de rapport.
  Cependant, certaines méthodes, utilisées dans les différentes étapes de
  la solution, présente des capacités assez limitées.
- Ces méthodes peuvent être subi à des amélioration et servir à améliorer
- les résultats.
+ En effet, la détection du visage été inutile avec les orientations extrêmes
+ du visage.
+ D'une autre part, le model d'extraction des points de saillances nécessite
+ des adaptations à l'application (entrainer le modèle sur des données plus
+ adaptées).
+ Ensuite, nous avons défini certaines caractéristiques pour les expressions,
+ où nous avons mentionné notre intérêt aux changements des expressions au
+ lieu des expressions statiques.
+ Finalement, nous avons présenté la dernière phase de notre solution dans
+ laquelle nous avons utilisé k-means et DSOM.
+ Certaines méthodes de la solution peuvent être subi à des amélioration
+ et servir à améliorer les résultats.
 \end_layout
 
 \end_body

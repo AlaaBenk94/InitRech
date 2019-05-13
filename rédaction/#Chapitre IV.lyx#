@@ -557,22 +557,22 @@ Tests
 \end_layout
 
 \begin_layout Standard
-Dans cette partie, nous essayons de tester tous les paramètres spécifiques
- à chaque méthode et essayer d'analyser et interpréter le comportement des
- modelés.
- Cependant, il n’existe pas une méthode (ou un algorithme) précise pour
+Dans cette partie, nous essayons de tester tous les paramètres spécifique
+ à chaque méthode et essayer d'analyser et interpreter le comporement des
+ models.
+ Cependant, ils n'existe pas une méthode (ou un algorithme) precise pour
  faire ces tests.
- Par conséquent, nous fixons les paramètres et nous varions un seul paramètre
+ Par conséquent, nous fixons les parametres et nous varions un seul parametre
  à la fois.
 \end_layout
 
 \begin_layout Standard
-Avant de commencer les tests, nous avons besoin d'exécuter les tests sur
+Avant de commancer les tests, nous avons besoin d'executer les tests sur
  les mêmes données car il est difficile d'observer le comportement sur des
  nouvelle données à chaque test (le cas d'utilisation directe de la webcam).
- Pour ce faire, nous avons enregistrer une vidéo dont nous avons essayé
- de varier toutes les valeurs des caractéristiques possibles.
- Nous l'avons utilisé pour les tests ci-après.
+ Pour ce faire, nous avons enregistrer une video dont nous avons esseyer
+ de varier tous les valeurs des caracteristiques possibles.
+ Nous l'avons utilisé pour les tests ci-aprés.
 \end_layout
 
 \begin_layout Subsection
@@ -585,7 +585,7 @@ Test 1 : cas général
 
 \begin_layout Standard
 La figure suivante représente les résultats des tests en utlisant les parametres
-, taille de la base initiale n=10 et le nombre de clusters k=9.
+ présents dans l'annexe.
 \end_layout
 
 \begin_layout Standard
@@ -597,7 +597,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/h.png
+	filename ../../img/h.png
 	width 40page%
 
 \end_inset
@@ -623,12 +623,39 @@ Test 1 - cas général
 \end_layout
 
 \begin_layout Standard
-Nous remarquons qu'il y a un cluster qui gagne plus que les autres.
- Cela, nous a amené à établir l'hypothèse qui dit que ce clusters (avec
- la plus grande fréquence) représente l'état neutre (absence du changement)
- car cet état est souvent fréquent.
- Autrement, nous remarquons une décroissance de la courbe de la distance
- qui signifie que le modèle apprendre des données d'entrées.
+Remarque :
+\end_layout
+
+\begin_layout Standard
+- on a un « prototype « cluster » qui gagne plus que les autre ( a une fréquence
+ élever )
+\end_layout
+
+\begin_layout Standard
+Hypothèse :
+\end_layout
+
+\begin_layout Standard
+comme le vecteur d’état neutre (expression neutre ) est le plus fréquent
+ dans les donnés nous avons établi a l’hypothèse que la moyen la plus fréquent
+ représente un cluster qui inclus les vecteur d’état neutre.
+\end_layout
+
+\begin_layout Standard
+Remarque :
+\end_layout
+
+\begin_layout Standard
+- on a une décroissance pour les distance a la moyenne
+\end_layout
+
+\begin_layout Standard
+Interprétation :
+\end_layout
+
+\begin_layout Standard
+- la décroissance de la distance a la moyenne signifies que le modèle apprend
+ ( réorganisation des moyenne )
 \end_layout
 
 \begin_layout Subsubsection*
@@ -637,11 +664,7 @@ Test 2 : taille de la base initiale
 
 \begin_layout Standard
 Pour tester le model avec les différentes tailles de la base initiale, nous
- avons fixé le nombre de clusters 
-\begin_inset Formula $k=10$
-\end_inset
-
-.
+ avons fixé quelques paramètres (disponibles dans l'annexe).
  Les résultats obtenus sont présenté par les figures 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -670,19 +693,19 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/taille/10/map.png
+	filename ../../img/taille/10/map.png
 	width 20page%
 
 \end_inset
@@ -708,12 +731,12 @@ n=10
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/taille/30/map.png
+	filename ../../img/taille/30/map.png
 	width 20page%
 
 \end_inset
@@ -740,12 +763,12 @@ n=30
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/taille/50/map.png
+	filename ../../img/taille/50/map.png
 	width 20page%
 
 \end_inset
@@ -768,12 +791,12 @@ n=50
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/taille/150/map.png
+	filename ../../img/taille/150/map.png
 	width 20page%
 
 \end_inset
@@ -844,19 +867,19 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/taille/10/n.png
+	filename ../../img/taille/10/n.png
 	width 30page%
 
 \end_inset
@@ -882,12 +905,12 @@ n=10
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/taille/30/n.png
+	filename ../../img/taille/30/n.png
 	width 30page%
 
 \end_inset
@@ -914,12 +937,12 @@ n=30
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/taille/50/n.png
+	filename ../../img/taille/50/n.png
 	width 30page%
 
 \end_inset
@@ -945,12 +968,12 @@ n=50
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/taille/150/n.png
+	filename ../../img/taille/150/n.png
 	width 30page%
 
 \end_inset
@@ -979,6 +1002,12 @@ n=150
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Test-2---1"
+
+\end_inset
+
 Test 2 - taille de la base - dimensions des clusters
 \end_layout
 
@@ -993,186 +1022,20 @@ Test 2 - taille de la base - dimensions des clusters
 \end_layout
 
 \begin_layout Standard
-Nous remarquons que les poids des clusters sont sensibles aux entrées (plus
- adaptatives), en revanche, le vecteur d'entrée n'influe pas ces poids quand
- la taille de la base initiale est importante.
- De cela, nous pouvons déduire que la contribution d'une nouvelle donnée
- à l'adaptation du modèle dépend de la taille de la base initiale.
+Nous remarquons, d e touts les moyenne est utile a la classification des
+ nouveaux vecteurs, autrement dit chaque moyenne occupe une région de l’espace
+ des vecteurs alors que touts moyenne a une fréquence non nulle ( une chance
+ de gagner non nulle ) .
+\end_layout
+
+\begin_layout Standard
+dans le cas ou k> 9 il existe forcement des moyenne non utile a cause qu’
+ il sont au milieux des autres moyennes ou isoler alors ils ne font aucun
+ classification.
 \end_layout
 
 \begin_layout Subsubsection*
 Test 2 : nombre de clusters
-\end_layout
-
-\begin_layout Standard
-Nous avons fixé la taille de la base initiale à 60, et nous avons fait varier
- le nombre de clusters.
- La figure suivante représente les résultats.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename img/n/4/hist.png
-	width 30page%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-k=4
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename img/n/9/h.png
-	width 30page%
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-k=9
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename img/n/16/h.png
-	width 30page%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-k=16
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename img/n/25/h.png
-	width 30page%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-k=25
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Test 2 - taille de la base - dimensions des clusters
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Nous remarquons que, si le nombre de clusters k est inférieur ou égal à
- 9, on a un avec une fréquence élever et le reste ayons une fréquence non
- nulle avec une variance faible entres eux (leurs fréquences sont proches),
- ainsi, que si le nombre de clusters k est supérieur à 9 on a un cluster
- avec une fréquence élevée et on a d'autres avec des fréquence nulle ou
- presque nulle.
- En plus, la variance est faible entre les autres clusters.
- Donc, nous pouvons dire que plusieurs clusters ne sont pas très utiles
- quand k est supérieur à 9.
 \end_layout
 
 \begin_layout Subsection
@@ -1695,15 +1558,15 @@ addcontentsline{toc}{section}{Conclusion}
 
 \begin_layout Standard
 Nous avons abordé dans ce chapitre notre implémentation de la solution et
- les différents outils et packages utilisés.
- Par la suite, nous l'avons mis en examen.
+ les differents outils et packages utilisés.
+ Par la suite, nous l'avons mi en examen.
  Cependant, par faute du temps, nous n'avons pas pu tester tous les paramètres
  possibles.
  De plus, due à l'absence d'une méthode exacte pour faire les tests et la
- difficulté de définir des critères dans lesquelles nous nous basons pour
- faire des interprétations sur le comportement du modèle, ont rendu difficile,
- voire impossible, d'en faire des interprétations et des conclusions sur
- la qualité des résultats obtenus.
+ difficulté de définir des criteres dans lesquelles nous nous basons pour
+ faire des interprétation sur le comportement du modèle, ont rendu difficile,
+ voire impossible, d'en faire des interpretation et des conclusions sur
+ comportement
 \end_layout
 
 \end_body

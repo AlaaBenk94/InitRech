@@ -508,7 +508,7 @@ ordre de la map.
 \end_layout
 
 \begin_layout Subsection*
-A.2 Paramètres fixés de DSOM
+A.3 Paramètres fixés de DSOM
 \end_layout
 
 \begin_layout Standard
@@ -627,7 +627,7 @@ n = 2 implique que le nombre de neurones n*n = 2*2 = 4
 \end_layout
 
 \begin_layout Subsection*
-A.3 Paramètres de K-Means
+A.4 Paramètres de K-Means
 \end_layout
 
 \begin_layout Standard

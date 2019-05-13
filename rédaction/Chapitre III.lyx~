@@ -1241,7 +1241,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1813,11 +1813,21 @@ addcontentsline{toc}{section}{Conclusion}
 \begin_layout Standard
 Nous avons présenté, dans ce chapitre, notre solution à la problématique
  posée au début de rapport.
- Nous avons obtenu de bons résultats.
  Cependant, certaines méthodes, utilisées dans les différentes étapes de
  la solution, présente des capacités assez limitées.
- Ces méthodes peuvent être subi à des amélioration et servir à améliorer
- les résultats.
+ En effet, le détection du visage été inutile avec les orientations extremes
+ du visage.
+ D'une autre part, le model d'extraction des points de saillances necessite
+ des adaptation à l'application (le réentrainer sur des données plus adaptées).
+ Ensuite, nous avons défini certaines caracteristique pour les expressions,
+ où nous avons mentioné notre interêt aux changements des expressions au
+ lieu des expressions statiques.
+ Finalement, nous avons présenté la dernier phase de notre solution dans
+ laquelle nous avons utilisé k-means et DSOM.
+ Certaines méthodes de la solution peuvent être subi à des amélioration
+ et servir à améliorer les résultats.
+ Dans le chapitre suivant nous mettons à l'examen notre implémentation de
+ la solution.
 \end_layout
 
 \end_body

@@ -166,8 +166,8 @@ e de gradients orientés qui donne de meilleurs résultats comparé aux autres
 \end_layout
 
 \begin_layout Standard
-Notre solution a été mise à l'examens à travers plusieurs tests, mais, l'absence
- d'une méthode exacte pour fixer les paramètres et la difficulté de définir
+Notre solution à été mise à l'examens à travers plusieurs tests, mais, l'absence
+ d'une méthode exacte pour fixer les parametres et la difficulté de définir
  des critères dans lesquelles nous nous basons dans nos tests, ont rendu
  difficile, voire impossible, d'en faire des conclusions sur les performances
  de notre solution.
