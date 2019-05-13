@@ -201,6 +201,19 @@ status collapsed
 
 \end_inset
 
+ Intégrer la solution sur la lampe rebotisé.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Argument item:1
+status collapsed
+
+\begin_layout Plain Layout
+•
+\end_layout
+
+\end_inset
+
  Utiliser la régression pour encoder les changements d’expressions, et donc
  la possibilité de traiter plusieurs images de flux qu’on veut.
 \end_layout

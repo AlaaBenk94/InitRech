@@ -166,8 +166,8 @@ e de gradients orientés qui donne de meilleurs résultats comparé aux autres
 \end_layout
 
 \begin_layout Standard
-Notre solution à été mise à l'examens à travers plusieurs tests, mais, l'absence
- d'une méthode exacte pour fixer les parametres et la difficulté de définir
+Notre solution a été mise à l'examens à travers plusieurs tests, mais, l'absence
+ d'une méthode exacte pour fixer les paramètres et la difficulté de définir
  des critères dans lesquelles nous nous basons dans nos tests, ont rendu
  difficile, voire impossible, d'en faire des conclusions sur les performances
  de notre solution.
@@ -189,6 +189,19 @@ status collapsed
 
  Mettre en place des méthodes d’évaluation de performances de model du clusterin
 g et implémenter d’autres méthodes performantes afin d'en comparer.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Argument item:1
+status collapsed
+
+\begin_layout Plain Layout
+•
+\end_layout
+
+\end_inset
+
+ Intégrer la solution sur la lampe rebotisé
 \end_layout
 
 \begin_layout Itemize
