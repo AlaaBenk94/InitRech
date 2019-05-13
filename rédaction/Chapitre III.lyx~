@@ -1230,8 +1230,8 @@ Phase de décision
 \begin_layout Standard
 La dernière phase de l'approche, est celle de décision, dans laquelle nous
  prenons les vecteurs caractéristiques issues de la phase antérieure, et
- on applique les algorithmes d’apprentissage KMeans et DSOM dessus pour
- avoir en sortie le comportement approprié.
+ on y applique les algorithmes d’apprentissage KMeans et DSOM pour avoir
+ en sortie le comportement approprié.
 \end_layout
 
 \begin_layout Standard
