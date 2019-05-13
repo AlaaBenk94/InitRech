@@ -556,10 +556,6 @@ Fenetre des entrées-sorties
 Tests
 \end_layout
 
-\begin_layout Subsection
-Préparation des données des tests
-\end_layout
-
 \begin_layout Standard
 Dans cette partie, nous essayons de tester tous les paramètres spécifiaque
  à chaque méthode et essayer de fixer ces paramètres pour chaque selon le
@@ -569,6 +565,461 @@ Dans cette partie, nous essayons de tester tous les paramètres spécifiaque
 
 \begin_layout Subsection
 K-Means
+\end_layout
+
+\begin_layout Subsubsection*
+Test 1 : cas général
+\end_layout
+
+\begin_layout Standard
+La figure suivante représente les résultats des tests en utlisant les parametres
+ présents dans l'annexe.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../img/h.png
+	width 40page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Test 1 - cas général
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Remarque :
+\end_layout
+
+\begin_layout Standard
+- on a un « prototype « cluster » qui gagne plus que les autre ( a une fréquence
+ élever )
+\end_layout
+
+\begin_layout Standard
+Hypothèse :
+\end_layout
+
+\begin_layout Standard
+comme le vecteur d’état neutre (expression neutre ) est le plus fréquent
+ dans les donnés nous avons établi a l’hypothèse que la moyen la plus fréquent
+ représente un cluster qui inclus les vecteur d’état neutre.
+\end_layout
+
+\begin_layout Standard
+Remarque :
+\end_layout
+
+\begin_layout Standard
+- on a une décroissance pour les distance a la moyenne
+\end_layout
+
+\begin_layout Standard
+Interprétation :
+\end_layout
+
+\begin_layout Standard
+- la décroissance de la distance a la moyenne signifies que le modèle apprend
+ ( réorganisation des moyenne )
+\end_layout
+
+\begin_layout Subsubsection*
+Test 2 : taille de la base initiale
+\end_layout
+
+\begin_layout Standard
+Pour tester le model avec les différentes tailles de la base initiale, nous
+ avons fixé quelques paramètres (disponibles dans l'annexe).
+ Les résultats obtenus sont présenté par les figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Test-2--"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ et 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Test-2---1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ suivantes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../img/taille/10/map.png
+	width 20page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+n=10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../img/taille/30/map.png
+	width 20page%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+n=30
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../img/taille/50/map.png
+	width 20page%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+n=50
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../img/taille/150/map.png
+	width 20page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+n=150
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Test-2--"
+
+\end_inset
+
+Test 2 - taille de la base - plan 2D
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+D'après la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Test-2--"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, nous remarquons que incrémentation de la taille de la base engendre une
+ meilleur distribution des clusters.
+ Ce peut être expliqué par le fait qu'une grande base initiale permet de
+ mieux représenter l'espace des données d'entrées.
+ Donc, les clusters seront mieux distribué dans cet espace.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../img/taille/10/n.png
+	width 30page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+n=10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../img/taille/30/n.png
+	width 30page%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+n=30
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../img/taille/50/n.png
+	width 30page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+n=50
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../img/taille/150/n.png
+	width 30page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+n=150
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Test-2---1"
+
+\end_inset
+
+Test 2 - taille de la base - dimensions des clusters
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nous remarquons, d e touts les moyenne est utile a la classification des
+ nouveaux vecteurs, autrement dit chaque moyenne occupe une région de l’espace
+ des vecteurs alors que touts moyenne a une fréquence non nulle ( une chance
+ de gagner non nulle ) .
+\end_layout
+
+\begin_layout Standard
+dans le cas ou k> 9 il existe forcement des moyenne non utile a cause qu’
+ il sont au milieux des autres moyennes ou isoler alors ils ne font aucun
+ classification.
 \end_layout
 
 \begin_layout Subsection
@@ -1055,10 +1506,6 @@ Il ne nous reste qu'un seul paramètre, nous avons essayés de tester le paramè
  très difficile de tester sur une vidéo avec des valeurs différentes, même
  avec un écart très grand entre ces valeurs.
  Alors, nous avons préférés le laisser à 0.1.
-\end_layout
-
-\begin_layout Section
-Comparaison [ Pas sure ]
 \end_layout
 
 \begin_layout Section*
