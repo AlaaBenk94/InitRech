@@ -176,8 +176,8 @@ Introduction
 
 \begin_layout Standard
 Dans la première partie de ce chapitre, nous présentons l'implémentation
- de notre solution, ainsi que les outils employés dans mise en œuvre de
- cette dernière.
+ de notre solution, ainsi que les outils employés dans la mise en œuvre
+ de cette dernière.
  La deuxième et la dernière partie sera consacrée aux différents tests,
  observations et conclusions.
 \end_layout
@@ -205,7 +205,7 @@ Implémentation
 \begin_layout Standard
 Le but de notre implémentation est de mettre en œuvre une application fonctionne
 lle de notre solution, mais aussi, de fournir un maximum de liberté dans
- le control de l’application afin d’analyser les différents résultats.
+ le contrôl de l’application afin d’analyser les différents résultats.
 \end_layout
 
 \begin_layout Standard
@@ -288,11 +288,12 @@ Nous avons défini dans notre application plusieurs paramètres contrôlables
 
 \begin_layout Standard
 Comme nous voulons analyser le comportement de notre application en fonction
- des différentes entrées et pour comparer les deux modèles utilisé dans
- notre solution, nous avons besoins de visualiser tous les résultats retournée
+ des différentes entrées et pour comparer les deux modèles utilisés dans
+ notre solution, nous avons besoins de visualiser tous les résultats retournés
  d’une manière lisible et interprétable.
- Pour cela, nous avons implémenté plusieurs interfaces qui affiche les courbes
- et les diagrammes des différents attributs de l’application en temps réel.
+ Pour cela, nous avons implémenté plusieurs interfaces qui affichent les
+ courbes et les diagrammes des différents attributs de l’application en
+ temps réel.
  Ces interfaces sont les suivantes :
 \end_layout
 
@@ -311,7 +312,7 @@ noprefix "false"
 
 \end_inset
 
-), permet d’afficher le flux vidéo, les points de saillances détecté, le
+), permet d’afficher le flux vidéo, les points de saillances détectés, le
  numéro de comportement retourné ainsi que les deux images utilisées pour
  calculer le VCC actuel.
 \end_layout
@@ -367,7 +368,7 @@ La fenêtre du plan 2D
 \end_layout
 
 \begin_layout Standard
-L'interface, présenté par la figure 
+L'interface, présentée par la figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Fenetre-du-plan"
@@ -379,8 +380,8 @@ noprefix "false"
 
 , affiche les clusters et la nouvelle donnée dans un plan 2D à l'aide de
  l'ACP.
- Cela ne sera très utile pour visualiser la forme de nos modèles, et spécifiquem
-ent la forme de la DSOM.
+ Cela nous a été très utile pour visualiser la forme de nos modèles, et
+ spécifiquement la forme de la DSOM.
 \end_layout
 
 \begin_layout Standard
@@ -430,7 +431,7 @@ La fenêtre des dimensions des clusters
 \end_layout
 
 \begin_layout Standard
-La fenêtre des dimensions des cluster (figure 
+La fenêtre des dimensions des clusters (figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Fenetre-des-dimensions"
@@ -993,11 +994,15 @@ Test 2 - taille de la base - dimensions des clusters
 \end_layout
 
 \begin_layout Standard
-Nous remarquons que les poids des clusters sont sensibles aux entrées (plus
- adaptatives), en revanche, le vecteur d'entrée n'influe pas ces poids quand
- la taille de la base initiale est importante.
+<<<<<<< HEADNous remarquons que les poids des clusters sont sensibles aux
+ entrées (plus adaptatives), en revanche, le vecteur d'entrée n'influe pas
+ ces poids quand la taille de la base initiale est importante.
  De cela, nous pouvons déduire que la contribution d'une nouvelle donnée
- à l'adaptation du modèle dépend de la taille de la base initiale.
+ à l'adaptation du modèle dépend de la taille de la base initiale.=======Dans
+ cette partie, nous essayons de tester tous les paramètres spécifiaque à
+ chaque méthode et essayer de fixer ces paramètres selon les résultats obtenus
+ pour pourvoir faire la comparaison entre elles d'une manière approximative.>>>>>
+>> f40c59f62215cb74be4a98641560d529a518e0d8
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1196,29 +1201,32 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/Fixed.PNG
+	width 20page%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename E:/InitRec/Fixed.PNG
-
-\end_inset
-
-
+im = fixed
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1228,18 +1236,24 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/Random.PNG
+	width 20page%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename E:/InitRec/Random.PNG
-
-\end_inset
-
-
+im = random
 \end_layout
 
 \end_inset
@@ -1257,26 +1271,25 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/Regular.PNG
+	width 20page%
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename E:/InitRec/Regular.PNG
-
-\end_inset
-
-
+im = regular
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1331,50 +1344,25 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/etat5.PNG
+	width 20page%
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename E:/InitRec/etat5.PNG
-	width 2in
-	height 2in
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename E:/InitRec/elast0.5.PNG
-	width 2in
-	height 2in
-
-\end_inset
-
-
+élasticité = 0
 \end_layout
 
 \end_inset
@@ -1388,20 +1376,21 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename E:/InitRec/elast1.PNG
-	width 2in
-	height 2in
+	filename img/elast0.5.PNG
+	width 20page%
 
 \end_inset
 
 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+elasticité = 0.5
 \end_layout
 
 \end_inset
@@ -1415,20 +1404,52 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename E:/InitRec/elast1.5.PNG
-	width 2in
-	height 2in
+	filename img/elast1.PNG
+	width 20page%
 
 \end_inset
 
 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+elasticité = 1.0
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/elast1.5.PNG
+	width 20page%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+elasticité = 1.5
 \end_layout
 
 \end_inset
@@ -1442,20 +1463,21 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename E:/InitRec/elat2.PNG
-	width 2in
-	height 2in
+	filename img/elat2.PNG
+	width 20page%
 
 \end_inset
 
 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+elasticité = 2
 \end_layout
 
 \end_inset
@@ -1514,21 +1536,25 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename E:/InitRec/n=4.png
+	filename img/n=4.png
+	width 30page%
 
 \end_inset
 
 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+n=2 (4 clusters)
 \end_layout
 
 \end_inset
@@ -1546,14 +1572,22 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/n=9.PNG
+	width 30page%
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename E:/InitRec/n=9.PNG
+n=3 (9 clusters)
+\end_layout
 
 \end_inset
 
@@ -1566,27 +1600,25 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
- 
+\align center
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename E:/InitRec/n=16.png
+	filename img/n=16.png
+	width 30page%
 
 \end_inset
 
 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+n=4 (16 clusters)
 \end_layout
 
 \end_inset
@@ -1604,18 +1636,24 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/n=25.png
+	width 30page%
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename E:/InitRec/n=25.png
-
-\end_inset
-
-
+n=5 (25 clusters)
 \end_layout
 
 \end_inset

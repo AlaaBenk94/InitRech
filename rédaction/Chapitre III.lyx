@@ -877,7 +877,7 @@ Ouverture des yeux
 
 \begin_layout Standard
 L'ouverture des yeux est le rapport entre la largeur d’œil et sa hauteur.
- Elle est calculé par la formule suivante (Oeil droite):
+ Elle est calculé par la formule suivante (Oeil droit):
 \end_layout
 
 \begin_layout Standard
@@ -932,7 +932,7 @@ Rotation du visage
 \end_layout
 
 \begin_layout Standard
-La rotation est calculé par la formule suivante :
+La rotation est calculée par la formule suivante :
 \end_layout
 
 \begin_layout Standard
@@ -989,7 +989,7 @@ Ouverture de la bouche
 \end_layout
 
 \begin_layout Standard
-L'ouverture de bouche est calculé par la formule suivante :
+L'ouverture de la bouche est calculée par la formule suivante :
 \end_layout
 
 \begin_layout Standard
@@ -1041,8 +1041,8 @@ Distance visage/caméra
 
 \begin_layout Standard
 La distance visage/caméra est difficile à calculer car nous n'avons pas
- assez d'information.
- Donc, nous avons simplifier les calculs en prenant la surface de ROI sur
+ assez d'informations.
+ Donc, nous avons simplifiés les calculs en prenant la surface du ROI sur
  la surface de toute l'image :
 \end_layout
 
@@ -1114,7 +1114,7 @@ Vecteurs caractéristiques des changements d'expressions
 \end_layout
 
 \begin_layout Standard
-Jusqu'à là, nous avons pu extraire les points de saillances et en définir
+Jusque là, nous avons pu extraire les points de saillances et en définir
  des caractéristiques avec.
  Donc on peut passer ces vecteurs à la prochaine phase pour le clustering
  des expressions.
@@ -1421,8 +1421,8 @@ Phase de décision
 \begin_layout Standard
 La dernière phase de l'approche, est celle de décision, dans laquelle nous
  prenons les vecteurs caractéristiques issues de la phase antérieure, et
- on y applique les algorithmes d’apprentissage KMeans et DSOM pour avoir
- en sortie le comportement approprié.
+ on applique les algorithmes d’apprentissage KMeans et DSOM dessus pour
+ avoir en sortie le comportement approprié.
 \end_layout
 
 \begin_layout Standard
