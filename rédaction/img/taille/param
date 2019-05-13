@@ -1,0 +1,1 @@
+python3 video_main.py -sz 10 -n 9 -d 111 -a 10 -v /home/walidone/Desktop/a.mp4

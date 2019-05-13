@@ -856,7 +856,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1011,10 +1011,211 @@ Test 2 - taille de la base - dimensions des clusters
 \end_layout
 
 \begin_layout Standard
-Nous remarquons, d e touts les moyenne est utile a la classification des
- nouveaux vecteurs, autrement dit chaque moyenne occupe une région de l’espace
- des vecteurs alors que touts moyenne a une fréquence non nulle ( une chance
- de gagner non nulle ) .
+Nous remarquons, dans la figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Test-2---1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, que les poids des clusters sont sensibles (adaptatives) aux nouvelles
+ entrées quand la taille de la base initiale est petite.
+ En revanche, l'influence de ces entrées, quand la base est grande, est
+ très faible.
+ Nous pouvons dire, que la contribution des nouvelles entrées dépend de
+ la taille de la base initiale.
+\end_layout
+
+\begin_layout Subsubsection*
+Test 3 : nombre de clusters
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/n/4/hist.png
+	width 30page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+k=4
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/n/9/h.png
+	width 30page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+n=9
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/n/16/h.png
+	width 30page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+n=16
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/n/25/h.png
+	width 30page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+n=25
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Test 2 - taille de la base - dimensions des clusters
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Remarque :
+\end_layout
+
+\begin_layout Standard
+si le nombre de claustre k est inférieur ou égal a 9 on a une moyenne avec
+ une fréquence élever et le reste ayons une fréquence non nulle avec une
+ variance faible entres ces moyenne ( des fréquence proche l’un a l’autre
+ ) 
+\end_layout
+
+\begin_layout Standard
+si le nombre de claustre k est supérieur a 9 on a une moyenne avec une fréquence
+ élever et on a des moyenne avec des fréquence nulle ou presque nulle en
+ plus une variance faible entre les moyenne qui reste ( différentes a la
+ moyen avec la fréquence maximale et non nulle ) 
+\end_layout
+
+\begin_layout Standard
+Interprétation :
+\end_layout
+
+\begin_layout Standard
+dans le cas ou k ≤ 9 il existe une partition des donnée a k classe talque
+ touts les moyenne est utile a la classification des nouveaux vecteurs,
+ autrement dit chaque moyenne occupe une région de l’espace des vecteurs
+ alors que touts moyenne a une fréquence non nulle ( une chance de gagner
+ non nulle ) .
 \end_layout
 
 \begin_layout Standard
