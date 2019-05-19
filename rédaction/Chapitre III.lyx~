@@ -352,7 +352,8 @@ Afin d’obtenir de bons résultats dans les prochaines étapes, nous avons
  jugé utile d’appliquer une égalisation d’histogramme en niveaux de gris.
  Cette dernière permet de mieux répartir les intensités des images à faible
  contraste pour obtenir des images de meilleure qualité.
- Un résumé de l’étape de prétraitement est illustré par la figure suivante.
+ Un résumé de l’étape de prétraitement est illustré par la figure suivante
+ :
 \end_layout
 
 \begin_layout Standard
@@ -567,7 +568,7 @@ status open
 
 \begin_layout Standard
 L'idée de base est de définir 68 points spécifiques (appelés repères) qui
- existent sur chaque visage - le haut du menton, le bord extérieur de chaque
+ existent sur chaque visage : le haut du menton, le bord extérieur de chaque
  œil, le bord intérieur de chaque sourcil, etc.
  Ensuite, utiliser un algorithme d'apprentissage automatique pour avoir
  un modèle capable de trouver ces 68 points sur n'importe quel visage.
@@ -584,8 +585,9 @@ literal "false"
 
 \end_inset
 
- ainsi que c'est le modèle plus compatible avec le modèle de détection choisi,
- néanmoins, il ne s’adapte pas avec les changements extrêmes d’expressions
+ ainsi que c'est le modèle le plus compatible avec le modèle de détection
+ choisie.
+ Néanmoins, il ne s’adapte pas avec les changements extrêmes d’expressions
  (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -597,8 +599,8 @@ noprefix "false"
 \end_inset
 
 ).
- Cela est due à l’absence des visages avec des expressions extrêmes sur
- les images de base d’apprentissage 
+ Cela est dû à l’absence des visages avec des expressions extrêmes sur les
+ images de base d’apprentissage 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "le2012interactive"
@@ -672,26 +674,27 @@ Phase d'extraction des VCC
 \end_layout
 
 \begin_layout Standard
-Cette phase permet en premier, de définir des caractéristiques d’expressions,
- choisis explicitement, à partir des vecteurs de points de saillances.
- Ensuite, utiliser ces caractéristiques pour calculer les vecteurs caractéristiq
-ues des changements d'expressions qui seront utilisé pour le clustering
- dans la phase qui suit.
+Cette phase permet en premier lieu, de définir des caractéristiques d’expression
+s, choisis explicitement, à partir des vecteurs de points de saillances.
+ Ensuite, nous utilisons ces caractéristiques pour calculer les vecteurs
+ caractéristiques des changements d'expressions qui seront utilisé pour
+ le clustering dans la phase qui suit.
 \end_layout
 
 \begin_layout Subsection
-Éxtraction et encodagedes caractéristique
+Éxtraction et encodage des caractéristiques
 \end_layout
 
 \begin_layout Standard
 Effectuer un apprentissage sur tous les 68 points extraits est, d'une part,
- très couteux en terme du temps et d'espace ainsi, il peuvent générer du
+ très couteux en terme du temps et d'espace ainsi, ils peuvent générer du
  bruit qui affecte la qualité des résultat obtenus.
  Par conséquent, nous allons extraire, à partir de ces points, des caractéristiq
 ues qui nous permettent de distinguer les différentes expressions du visage.
- Nous avons considéré neuf caractéristiques (à savoir : distance des sourcils,
- ouverture des yeux, position du visage, ouverture de la bouche et la rotation
- du visage), ils sont illustrés sur la figure ci-dessous.
+ Nous avons choisi neuf caractéristiques (à savoir : la distance des sourcils,
+ l'ouverture des yeux, la position du visage, l'ouverture de la bouche et
+ la rotation du visage).
+ Ces neuf caractéristiques sont illustrés dans la figure ci-dessous.
 \end_layout
 
 \begin_layout Standard
@@ -745,7 +748,7 @@ noprefix "false"
 \end_inset
 
 ).
- De ce fait, il est nécessaire de normaliser ce vecteur des caractéristiques
+ De ce fait, il est nécessaire de normaliser ce vecteur de caractéristiques
  pour que la diversité des personnes (ou leurs distances de la caméra) n'affecte
  pas les résultats retournés.
 \end_layout
@@ -799,7 +802,7 @@ Nous avons donc normalisé chacune des valeurs de nos caractéristiques entre
  0 et 1, en prenant le rapport des caractéristiques sur des distances fixes
  dans le visage.
  Les détails des calculs sont présentés ci-dessous.
- Les points utilisé dans les formules sont présenté par la figure 
+ Les points utilisés dans les formules sont présenté dans la figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:L'ensemble-des-68"
@@ -811,7 +814,7 @@ noprefix "false"
 
 .
  De plus, l'utilisation de la moyenne sur les points permet d'obtenir des
- valeurs plus stables que de prendre qu'un seul point.
+ valeurs plus stables que de prendre un seul point.
 \end_layout
 
 \begin_layout Subsubsection
@@ -821,7 +824,7 @@ noprefix "false"
 \begin_layout Standard
 L'écartement des sourcils est calculé en fonction de la distance sourcil-œil
  et la distance sourcil-sourcil.
- Nous avons utilisé la formule suivante (sourcil droite):
+ Nous avons utilisé la formule suivante (sourcil droit):
 \end_layout
 
 \begin_layout Standard
@@ -877,7 +880,7 @@ Ouverture des yeux
 
 \begin_layout Standard
 L'ouverture des yeux est le rapport entre la largeur d’œil et sa hauteur.
- Elle est calculé par la formule suivante (Oeil droit):
+ Elle est calculée par la formule suivante (Oeil droit):
 \end_layout
 
 \begin_layout Standard
@@ -1042,7 +1045,7 @@ Distance visage/caméra
 \begin_layout Standard
 La distance visage/caméra est difficile à calculer car nous n'avons pas
  assez d'informations.
- Donc, nous avons simplifiés les calculs en prenant la surface du ROI sur
+ Donc, nous avons simplifié les calculs en prenant la surface du ROI sur
  la surface de toute l'image :
 \end_layout
 
@@ -1230,8 +1233,8 @@ Phase de décision
 \begin_layout Standard
 La dernière phase de l'approche, est celle de décision, dans laquelle nous
  prenons les vecteurs caractéristiques issues de la phase antérieure, et
- on y applique les algorithmes d’apprentissage KMeans et DSOM pour avoir
- en sortie le comportement approprié.
+ on applique les algorithmes d’apprentissage KMeans et DSOM dessus pour
+ avoir en sortie le comportement approprié.
 \end_layout
 
 \begin_layout Standard
@@ -1318,7 +1321,7 @@ noprefix "false"
  De plus, le modèle doit être capable de s’adapter avec les différentes
  entrées à n’importe quel instant.
  L’utilisation de l’algorithme de base pour l’application n’est pas le bon
- choix, car il nécessite un espace mémoire important due à l’extension de
+ choix, car il nécessite un espace mémoire important dû à l’extension de
  la base en temps réel, et les temps d’exécution augmentent en fonction
  de la taille de la base ce qui résulte un temps de réponse très long.
 \end_layout

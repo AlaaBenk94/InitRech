@@ -563,7 +563,7 @@ Préparation des données des tests
 
 \begin_layout Standard
 Dans cette partie, nous essayons de tester tous les paramètres spécifiaque
- à chaque méthode et essayer de fixer ces paramètres  selon le résultats
+ à chaque méthode et essayer de fixer ces paramètres selon les résultats
  obtenus pour pourvoir faire la comparaison entre elles d'une manière approximat
 ive.
 \end_layout
@@ -896,7 +896,7 @@ Dans le test suivant, nous avons essayé de fixer la taille de la map avec
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -1018,7 +1018,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-test avec le paramèrte
+test avec le paramèrte n 
 \end_layout
 
 \end_inset
