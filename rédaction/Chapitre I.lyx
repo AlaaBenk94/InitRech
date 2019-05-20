@@ -192,10 +192,10 @@ addcontentsline{toc}{section}{Introduction}
 \end_layout
 
 \begin_layout Standard
-Premièrement et avant d'expliquer notre méthode, il nécessaire d'introduire
+Premièrement et avant d'expliquer notre méthode, il est nécessaire d'introduire
  le contexte du projet et les moyens logiciels et matériels existants.
- Au cours du chapitre, nous présentons le projet Psyphine et d'autres projets
- similaires.
+ Au cours de ce chapitre, nous présentons le projet Psyphine et d'autres
+ projets similaires.
  Nous décrivons la structure physique de la lampe robotisée, ses caractéristique
 s, ainsi que les travaux réalisés dans le cadre du même projet.
  Nous clôturons ce chapitre par l'établissement de notre problématique sur
@@ -460,7 +460,7 @@ La lampe Pinokio est composée dans sa structure générale de son corps d’une
 \begin_layout Standard
 Afin de répondre aux questions liées aux interactions homme/machine et l'attribu
 tion de conscience dans le cadre du projet, le groupe Psyphine a construit
- et développé un prototype robotisé qui se présente sous la forme d'une
+ et a développé un prototype robotisé qui se présente sous la forme d'une
  lampe dite 
 \begin_inset Quotes cld
 \end_inset
@@ -491,7 +491,7 @@ noprefix "false"
 
 , est construite de contreplaqué léger dont les pièces ont été découpées
  au laser.
- Ces derniers sont assemblées autour de cinq moteurs.
+ Ces dernières sont assemblées autour de cinq moteurs.
  L’abat-jour a été découpé dans un carton jaune et contient une ampoule
  centrale et une petite caméra située juste au dessus de l’ampoule 
 \begin_inset CommandInset citation
@@ -680,7 +680,7 @@ La lampe comporte un système qui permet de faire fonctionner les moteurs.
  Cependant, la totalité des traitements couteux sont exécutés sur un ordinateur
  auquel les moteurs sont raccordés sur un port USB ou en wifi par l’intermédiair
 e d’un Raspberry Pi.
- Cet ordinateur s’occupe de commander la lampe rebotisé dont chaque mouvement
+ Cet ordinateur s’occupe de commander la lampe rebotisée dont chaque mouvement
  de cette dernière consiste en une séquence de positions pour chacun des
  moteurs.
 \end_layout
@@ -710,7 +710,7 @@ literal "false"
  En premier, ils ont mis en place un système pour contrôler les moteurs
  de la lampe à distance.
  Ensuite, ils ont réalisé un suivi de visage dont la détection est basée
- sur la méthode Viola et Jones implémenté dans la bibliothèque 
+ sur la méthode Viola et Jones implémentée dans la bibliothèque 
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "OpenCV"
@@ -720,8 +720,8 @@ literal "false"
 \end_inset
 
  OpenCV.
- Finalement, leur travail à révélé plusieurs problèmes comme la fluidité
- de mouvement de suivi, qui a été réglé en modifiant le temps d’exécution,
+ Finalement, leur travail a révélé plusieurs problèmes comme la fluidité
+ de mouvement du suivi, qui a été réglé en modifiant le temps d’exécution,
  ainsi que le problème persistant de réchauffement des moteurs.
 \end_layout
 
@@ -741,7 +741,7 @@ literal "false"
  Ils ont adapté la même méthode que celle du travail précédent pour le suivi
  de visage.
  Ainsi, ils ont consacré une grande partie de leur travail à la cinématique
- inversé pour les mouvements de la lampe.
+ inversée pour les mouvements de la lampe.
 \end_layout
 
 \begin_layout Standard
@@ -776,12 +776,12 @@ literal "false"
 \end_inset
 
 , un axe de travail différents des autres travaux.
- Il s’agit de la classification des émotions.Initialement, ils ont utilisé
- la bibliothèque (dlib) pour détecter les visage et extraire des points
- de saillances.
- Ensuite, ils ont classifé les émotions en trois classe (joie, colère et
+ Il s’agit de la classification des émotions.
+ Initialement, ils ont utilisé la bibliothèque (dlib) pour détecter les
+ visage et extraire des points de saillances.
+ Ensuite, ils ont classifé les émotions en trois classes (joie, colère et
  surprise) à l'aide du model bayésien.
- Ce dernier a été validé par la validation croisée a k-plis avec une précision
+ Ce dernier a été validé par la validation croisée à k-plis avec une précision
  de 82%, 97% et 31% pour la surprise, la joie et la colère respectivement.
 \end_layout
 
@@ -802,7 +802,7 @@ literal "false"
  et l’évaluation de la détection, de la bibliothèque dlib, sur les différentes
  contraintes (l’intensité de lumière, l’angle de rotation…).
  Ils ont clôturé leur réalisation par la mise en place d’une méthode de
- détection d’ouverture de bouche.
+ détection d’ouverture de la bouche.
 \end_layout
 
 \begin_layout Section
@@ -817,7 +817,7 @@ Plusieurs sujets ont été abordé dans les travaux précédents du projet Psyph
  du projet Psyphine.
  Celles proposées sont, la détection des objets, la détection des émotions,
  la reconnaissance du visage, le problème du réchauffement des moteurs,
- le raffinement du mouvement de la lampe rebotisé, etc.
+ le raffinement du mouvement de la lampe rebotisée, etc.
  Cependant, nous voulions travailler sur l’ensemble des trois premières
  thématiques mentionnées.
  Néanmoins, puisque le but du projet est d’étudier les 
@@ -832,7 +832,7 @@ durée maximale de 10 minutes
 \emph default
  dans les différents salons et évènement scientifiques, ce qui implique
  que les participants, des différentes expériences, seront en interaction
- non verbale avec la lampe rebotisé qu’
+ non verbale avec la lampe rebotisée qu’
 \emph on
 une seul fois
 \emph default
@@ -840,7 +840,7 @@ une seul fois
  Donc, la reconnaissance du visage ne sera pas très utile à ces études.
  Par conséquent, la détection des émotions semble la plus intéressante des
  thématiques.
- Mais, le but du projet, c’est de permettre à la lampe réagir aux différentes
+ Mais, le but du projet, est de permettre à la lampe de réagir aux différentes
  expressions, des participants, 
 \emph on
 sans avoir besoin de les interpréter
@@ -854,9 +854,9 @@ Tout cela nous à permet d’en sortir avec la problématique que nous allons
  Notre contribution est donc d’affecter à la lampe la capacité d’interagir
  (de se comporter) conformément au changement d'expressions du visage de
  la personne en face.
- En effet, la problématique principale est comment concevons-nous un système
- qui permet à la lampe d’exécuter des comportements en fonction des différentes
- réactions des gens perçues par le biais de sa webcam.
+ En effet, la problématique principale est comment peut-on concevoir un
+ système qui permet à la lampe d’exécuter des comportements en fonction
+ des différentes réactions des gens aperçues par le biais de sa webcam ?
 \end_layout
 
 \begin_layout Standard

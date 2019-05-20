@@ -322,7 +322,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -452,7 +452,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -516,7 +516,7 @@ n des sorties.
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1192,6 +1192,7 @@ Tout d'abord, nous allons commencer par la méthode d'initialisation (regular,
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -1335,6 +1336,7 @@ Ensuite, nous avons tester le paramètre de l'élasticité de la map, la figure
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -1526,7 +1528,12 @@ Dans le test suivant, nous avons essayé de fixer la taille de la map avec
 \end_layout
 
 \begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -1667,7 +1674,7 @@ n=5 (25 clusters)
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Test avec le paramèrte
+test avec le paramèrte n
 \end_layout
 
 \end_inset

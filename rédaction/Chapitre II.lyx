@@ -222,7 +222,15 @@ Détection avec la méthode de Viola et Jones
 Les cascades de Haar est une méthode utilisée pour la détection d’objet
  de classificateurs en cascade basés sur les fonctionnalités Haar, c’est
  une méthode efficace de détection d’objets proposée par Paul Viola et Michel
- Jones en 2001.
+ Jones en 2001 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "viola2001rapid"
+literal "false"
+
+\end_inset
+
+.
  Il s’agit d’une approche basée sur l’apprentissage automatique.
 \end_layout
 
@@ -407,7 +415,7 @@ name "subsec:Histogrammes-de-gradients"
 
 \end_inset
 
- Détection avec la l'Histogrammes de gradients orientées (HOG)
+ Détection avec l'Histogrammes de gradients orientées (HOG)
 \end_layout
 
 \begin_layout Standard
@@ -788,19 +796,15 @@ L'ensemble des 68 points détectés par Dlib pré-entraîné
 \end_layout
 
 \begin_layout Standard
-Ici, les points originaux sont les données constituées par exemple un ensemble
- d’individus, le clustering les partitionne dans des groupes où chaque groupe
- représente un ensemble d’individus qui partagent une même caractéristique.
- Le clustering comprend plusieurs algorithmes de classifications pour classifier
- chaque point de données dans un groupe spécifique tels que : k-Means le
- plus algorithme connu dans la classification non supervisée, Mean-Shift
- un algorithme basé sur une fenêtre glissante qui tente de trouver des zones
- senses de points de données, Density-Based Spatial Clustering of Applications
- with Noise (DBSCAN), un algorithme basé sur la densité similaire au décalage
- moyen, Expectation-Maximization (EM) à l’aide de Modèles de Mélange Gaussiens
- (GMM) et Self Organising Map (SOM).
- Dans ce qui suit nous allons nous intéresser aux deux algorithmes suivant
- : k-Means et l’algorithme Salf Organising Map (SOM).
+La région du visage peut être facilement obtenue par n’importe quel algorithme
+ de détection de visage (OpenCV Haar Cascade, Dlib HOG Detector, CNN, .
+ .
+ .
+ ).
+ Enfin, les options de formation sont un ensemble de paramètres qui définissent
+ les caractéristiques du modèle formé.
+ Ces paramètres peuvent être correctement ajustés afin d’obtenir le comportement
+ souhaité du modèle généré.
 \end_layout
 
 \begin_layout Section
@@ -831,7 +835,8 @@ Deux individus éloignés doivent appartenir à des groupes différents.
 \begin_layout Standard
 Afin de définir l’homogénéité d’un groupe d’observation, il est nécessaire
  de mesurer une ressemblance entre deux observations.
- D’où la notion de similarité et de dissimilarité 
+ D’où la notion de similarité et de dissimilarité comme la montre la figure
+ 1.5 : 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ClassNonSup"
@@ -880,20 +885,17 @@ Clustering
 \end_layout
 
 \begin_layout Standard
-Ici, les points originaux ce sont les données constituées par exemple un
+Ici, les points originaux ce sont les données constituées par exemple d'un
  ensemble d’individus, le clustering les partitionne dans des groupes où
  chaque groupe représente un ensemble d’individus qui partagent une même
  caractéristique.
  Le clustering comprend plusieurs algorithmes de classifications pour classifier
- chaque point de données dans un groupe spécifique tels que : k-Means le
- plus algorithme connu dans la classification non supervisée, Mean-Shift
- un algorithme basé sur une fenêtre glissante qui tente de trouver des zones
- senses de points de données, Density-Based Spatial Clustering of Applications
- with Noise (DBSCAN), un algorithme basé sue la densité similaire au décalage
- moyen, Expectation-Maximization (EM) à l’aide de Modèles de Mélange Gaussiens
- (GMM) et Self Organisation Map (SOM).
+ chaque point de données dans un groupe spécifique tels que : k-Means, Mean-Shif
+t, Density-Based Spatial Clustering of Applications with Noise (DBSCAN),
+ Expectation-Maximization (EM) à l’aide de Modèles de Mélange Gaussiens
+ (GMM) et Self Organising Map (SOM).
  Dans ce qui suit nous allons nous intéressés aux deux algorithmes suivent
- k-Means et l’algorithme Safe Organizen Map (SOM).
+ k-Means et l’algorithme Safe Organising Map (SOM).
 \end_layout
 
 \begin_layout Subsection
@@ -1072,8 +1074,8 @@ Carte auto-organisatrice (SOM)
 \end_layout
 
 \begin_layout Standard
-Self Orgasing Map ou la carte auto organisatrice (SOM), est un type de réseau
- de neurones artificiels (
+Self Organising Map ou la carte auto organisatrice (SOM), est un type de
+ réseau de neurones artificiels (
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "RNA"
@@ -1086,7 +1088,7 @@ RNA) formé à l’aide d’un apprentissage non supervisé afin de produire une
  représentation discrète, généralement bidimensionnelle, de l’espace d’entrée
  des échantillons d’apprentissage.
  La carte est donc une méthode pour faire la réduction de dimensionnalité.
- Les carte auto organisatrices différent des autres réseaux de neurones
+ Les cartes auto organisatrices différent des autres réseaux de neurones
  artificiels par le fait qu’elles appliquent l’apprentissage compétitif
  par opposition à l’apprentissage avec correction d’erreur et qu’elles utilisent
  une fonction de voisinage pour préserver les propriétés topologiques de
@@ -1131,7 +1133,15 @@ Réduction de la dimensionnalité dans la SOM
 
 \begin_layout Standard
 SOM a été introduite par le professeur finlandais Teuvo Kohonen dans les
- années 1980, elle est aussi appelée carte de Kohonen 
+ années 1980 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kohonen1990self"
+literal "false"
+
+\end_inset
+
+, elle est aussi appelée carte de Kohonen 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "kohonen1990self"
